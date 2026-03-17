@@ -10,7 +10,7 @@ It has 3 modes:
 
 1. If the `regexp` doesn't have flag `pattern:g`, then it returns the first match as an array with capturing groups and properties `index` (position of the match), `input` (input string, equals `str`):
 
-    ```js run
+```js
     let str = "I love JavaScript";
 
     let result = str.match(/Java(Script)/);
@@ -25,7 +25,7 @@ It has 3 modes:
     ```
 
 2. If the `regexp` has flag `pattern:g`, then it returns an array of all matches as strings, without capturing groups and other details.
-    ```js run
+```js
     let str = "I love JavaScript";
 
     let result = str.match(/Java(Script)/g);
@@ -38,7 +38,7 @@ It has 3 modes:
 
     That's an important nuance. If there are no matches, we don't get an empty array, but `null`. It's easy to make a mistake forgetting about it, e.g.:
 
-    ```js run
+```js
     let str = "I love JavaScript";
 
     let result = str.match(/HTML/);
@@ -49,7 +49,7 @@ It has 3 modes:
 
     If we want the result to be an array, we can write like this:
 
-    ```js
+```js
     let result = str.match(regexp) || [];
     ```
 
@@ -69,7 +69,7 @@ There are 3 differences from `match`:
 
 Usage example:
 
-```js run
+```js
 let str = '<h1>Hello, world!</h1>';
 let regexp = /<(.*?)>/g;
 
@@ -94,13 +94,13 @@ Splits the string using the regexp (or a substring) as a delimiter.
 
 We can use `split` with strings, like this:
 
-```js run
+```js
 alert('12-34-56'.split('-')) // array of ['12', '34', '56']
 ```
 
 But we can split by a regular expression, the same way:
 
-```js run
+```js
 alert('12, 34, 56'.split(/,\s*/)) // array of ['12', '34', '56']
 ```
 
@@ -108,7 +108,7 @@ alert('12, 34, 56'.split(/,\s*/)) // array of ['12', '34', '56']
 
 The method `str.search(regexp)` returns the position of the first match or `-1` if none found:
 
-```js run
+```js
 let str = "A drop of ink may make a million think";
 
 alert( str.search( /ink/i ) ); // 10 (first match position)
@@ -124,7 +124,7 @@ This is a generic method for searching and replacing, one of most useful ones. T
 
 We can use it without regexps, to search and replace a substring:
 
-```js run
+```js
 // replace a dash by a colon
 alert('12-34-56'.replace("-", ":")) // 12:34-56
 ```
@@ -137,9 +137,9 @@ You can see that in the example above: only the first `"-"` is replaced by `":"`
 
 To find all hyphens, we need to use not the string `"-"`, but a regexp `pattern:/-/g`, with the obligatory `pattern:g` flag:
 
-```js run
+```js
 // replace all dashes by a colon
-alert( '12-34-56'.replace( *!*/-/g*/!*, ":" ) )  // 12:34:56
+alert( '12-34-56'.replace( /-/g, ":" ) )  // 12:34:56
 ```
 
 The second argument is a replacement string. We can use special characters in it:
@@ -149,13 +149,13 @@ The second argument is a replacement string. We can use special characters in it
 |`$&`|inserts the whole match|
 |<code>$&#096;</code>|inserts a part of the string before the match|
 |`$'`|inserts a part of the string after the match|
-|`$n`|if `n` is a 1-2 digit number, inserts the contents of n-th capturing group, for details see [](info:regexp-groups)|
-|`$<name>`|inserts the contents of the parentheses with the given `name`, for details see [](info:regexp-groups)|
+|`$n`|if `n` is a 1-2 digit number, inserts the contents of n-th capturing group, for details see [](#)|
+|`$<name>`|inserts the contents of the parentheses with the given `name`, for details see [](#)|
 |`$$`|inserts character `$` |
 
 For instance:
 
-```js run
+```js
 let str = "John Smith";
 
 // swap first and last name
@@ -178,7 +178,7 @@ If there are no parentheses in the regexp, then there are only 3 arguments: `fun
 
 For example, let's uppercase all matches:
 
-```js run
+```js
 let str = "html and css";
 
 let result = str.replace(/html|css/gi, str => str.toUpperCase());
@@ -188,13 +188,13 @@ alert(result); // HTML and CSS
 
 Replace each match by its position in the string:
 
-```js run
+```js
 alert("Ho-Ho-ho".replace(/ho/gi, (match, offset) => offset)); // 0-3-6
 ```
 
 In the example below there are two parentheses, so the replacement function is called with 5 arguments: the first is the full match, then 2 parentheses, and after it (not used in the example) the match position and the source string:
 
-```js run
+```js
 let str = "John Smith";
 
 let result = str.replace(/(\w+) (\w+)/, (match, name, surname) => `${surname}, ${name}`);
@@ -204,7 +204,7 @@ alert(result); // Smith, John
 
 If there are many groups, it's convenient to use rest parameters to access them:
 
-```js run
+```js
 let str = "John Smith";
 
 let result = str.replace(/(\w+) (\w+)/, (...match) => `${match[2]}, ${match[1]}`);
@@ -214,7 +214,7 @@ alert(result); // Smith, John
 
 Or, if we're using named groups, then `groups` object with them is always the last, so we can obtain it like this:
 
-```js run
+```js
 let str = "John Smith";
 
 let result = str.replace(/(?<name>\w+) (?<surname>\w+)/, (...match) => {
@@ -239,7 +239,7 @@ The main use case for `replaceAll` is replacing all occurences of a string.
 
 Like this:
 
-```js run
+```js
 // replace all dashes by a colon
 alert('12-34-56'.replaceAll("-", ":")) // 12:34:56
 ```
@@ -263,7 +263,7 @@ So, repeated calls return all matches one after another, using property `regexp.
 
 In the past, before the method `str.matchAll` was added to JavaScript, calls of `regexp.exec` were used in the loop to get all matches with groups:
 
-```js run
+```js
 let str = 'More about JavaScript at https://javascript.info';
 let regexp = /javascript/ig;
 
@@ -282,7 +282,7 @@ This works now as well, although for newer browsers `str.matchAll` is usually mo
 
 For instance:
 
-```js run
+```js
 let str = 'Hello, world!';
 
 let regexp = /\w+/g; // without flag "g", lastIndex property is ignored
@@ -295,7 +295,7 @@ If the regexp has flag `pattern:y`, then the search will be performed exactly at
 
 Let's replace flag `pattern:g` with `pattern:y` in the example above. There will be no matches, as there's no word at position `5`:
 
-```js run
+```js
 let str = 'Hello, world!';
 
 let regexp = /\w+/y;
@@ -312,28 +312,28 @@ The method `regexp.test(str)` looks for a match and returns `true/false` whether
 
 For instance:
 
-```js run
+```js
 let str = "I love JavaScript";
 
 // these two tests do the same
-alert( *!*/love/i*/!*.test(str) ); // true
-alert( str.search(*!*/love/i*/!*) != -1 ); // true
+alert( /love/i.test(str) ); // true
+alert( str.search(/love/i) != -1 ); // true
 ```
 
 An example with the negative answer:
 
-```js run
+```js
 let str = "Bla-bla-bla";
 
-alert( *!*/love/i*/!*.test(str) ); // false
-alert( str.search(*!*/love/i*/!*) != -1 ); // false
+alert( /love/i.test(str) ); // false
+alert( str.search(/love/i) != -1 ); // false
 ```
 
 If the regexp has flag `pattern:g`, then `regexp.test` looks from `regexp.lastIndex` property and updates this property, just like `regexp.exec`.
 
 So we can use it to search from a given position:
 
-```js run
+```js
 let regexp = /love/gi;
 
 let str = "I love JavaScript";
@@ -343,12 +343,12 @@ regexp.lastIndex = 10;
 alert( regexp.test(str) ); // false (no match)
 ```
 
-:::warning Same global regexp tested repeatedly on different sources may fail
+
 If we apply the same global regexp to different inputs, it may lead to wrong result, because `regexp.test` call advances `regexp.lastIndex` property, so the search in another string may start from non-zero position.
 
 For instance, here we call `regexp.test` twice on the same text, and the second time fails:
 
-```js run
+```js
 let regexp = /javascript/g;  // (regexp just created: regexp.lastIndex=0)
 
 alert( regexp.test("javascript") ); // true (regexp.lastIndex=10 now)

@@ -57,9 +57,9 @@ Like this:
 
 The browser automatically fetches and evaluates the imported module (and its imports if needed), and then runs the script.
 
-:::warning Modules work only via HTTP(s), not in local files
+
 If you try to open a web-page locally, via `file://` protocol, you'll find that `import/export` directives don't work. Use a local web-server, such as [static-server](https://www.npmjs.com/package/static-server#getting-started) or use the "live server" capability of your editor, such as VS Code [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) to test modules.
-:::
+
 
 ## Core module features
 
@@ -71,7 +71,7 @@ There are core features, valid both for browser and server-side JavaScript.
 
 Modules always `use strict`, by default. E.g. assigning to an undeclared variable will give an error.
 
-```html run
+```html
 <script type="module">
   a = 5; // error
 </script>
@@ -95,16 +95,16 @@ This is the correct variant:
 
 In the browser, independent top-level scope also exists for each `<script type="module">`:
 
-```html run
+```html
 <script type="module">
   // The variable is only visible in this module script
   let user = "John";
 </script>
 
 <script type="module">
-  *!*
+  
   alert(user); // Error: user is not defined
-  */!*
+  
 </script>
 ```
 
@@ -159,10 +159,10 @@ admin.name = "Pete";
 import {admin} from './admin.js';
 alert(admin.name); // Pete
 
-*!*
+
 // Both 1.js and 2.js imported the same object
 // Changes made in 1.js are visible in 2.js
-*/!*
+
 ```
 
 So, let's reiterate -- the module is executed only once. Exports are generated, and then they are shared between importers, so if something changes the `admin` object, other modules will see that.
@@ -194,9 +194,9 @@ Another module can also see `admin.name`:
 // 📁 other.js
 import {admin, sayHi} from './admin.js';
 
-alert(admin.name); // *!*Pete*/!*
+alert(admin.name); // Pete
 
-sayHi(); // Ready to serve, *!*Pete*/!*!
+sayHi(); // Ready to serve, Pete!
 ```
 
 ### import.meta
@@ -205,7 +205,7 @@ The object `import.meta` contains the information about the current module.
 
 Its content depends on the environment. In the browser, it contains the url of the script, or a current webpage url if inside HTML:
 
-```html run height=0
+```html
 <script type="module">
   alert(import.meta.url); // script url (url of the html page for an inline script)
 </script>
@@ -219,7 +219,7 @@ In a module, top-level `this` is undefined.
 
 Compare it to non-module scripts, where `this` is a global object:
 
-```html run height=0
+```html
 <script>
   alert(this); // window
 </script>
@@ -237,7 +237,7 @@ You may want skip this section for now if you're reading for the first time, or 
 
 ### Module scripts are deferred
 
-Module scripts are *always* deferred, same effect as `defer` attribute (described in the chapter [](info:script-async-defer)), for both external and inline scripts.
+Module scripts are *always* deferred, same effect as `defer` attribute (described in the chapter [](#)), for both external and inline scripts.
 
 In other words:
 - downloading external module scripts `<script type="module" src="...">` doesn't block HTML processing, they load in parallel with other resources.
@@ -248,20 +248,20 @@ As a side-effect, module scripts always "see" the fully loaded HTML-page, includ
 
 For instance:
 
-```html run
+```html
 <script type="module">
-*!*
+
   alert(typeof button); // object: the script can 'see' the button below
-*/!*
+
   // as modules are deferred, the script runs after the whole page is loaded
 </script>
 
 Compare to regular script below:
 
 <script>
-*!*
+
   alert(typeof button); // button is undefined, the script can't see elements below
-*/!*
+
   // regular scripts run immediately, before the rest of the page is processed
 </script>
 
@@ -289,7 +289,7 @@ That's good for functionality that doesn't depend on anything, like counters, ad
 ```html
 <!-- all dependencies are fetched (analytics.js), and the script runs -->
 <!-- doesn't wait for the document or other <script> tags -->
-<script *!*async*/!* type="module">
+<script async type="module">
   import {counter} from './analytics.js';
 
   counter.count();
@@ -301,17 +301,17 @@ That's good for functionality that doesn't depend on anything, like counters, ad
 External scripts that have `type="module"` are different in two aspects:
 
 1. External scripts with the same `src` run only once:
-    ```html
+```html
     <!-- the script my.js is fetched and executed only once -->
     <script type="module" src="my.js"></script>
     <script type="module" src="my.js"></script>
     ```
 
-2. External scripts that are fetched from another origin (e.g. another site) require [CORS](mdn:Web/HTTP/CORS) headers, as described in the chapter <info:fetch-crossorigin>. In other words, if a module script is fetched from another origin, the remote server must supply a header `Access-Control-Allow-Origin` allowing the fetch.
-    ```html
+2. External scripts that are fetched from another origin (e.g. another site) require [CORS](mdn:Web/HTTP/CORS) headers, as described in the chapter &lt;info:fetch-crossorigin&gt;. In other words, if a module script is fetched from another origin, the remote server must supply a header `Access-Control-Allow-Origin` allowing the fetch.
+```html
     <!-- another-site.com must supply Access-Control-Allow-Origin -->
     <!-- otherwise, the script won't execute -->
-    <script type="module" src="*!*http://another-site.com/their.js*/!*"></script>
+    <script type="module" src="http://another-site.com/their.js"></script>
     ```
 
     That ensures better security by default.
@@ -332,7 +332,7 @@ Certain environments, like Node.js or bundle tools allow bare modules, without a
 
 Old browsers do not understand `type="module"`. Scripts of an unknown type are just ignored. For them, it's possible to provide a fallback using the `nomodule` attribute:
 
-```html run
+```html
 <script type="module">
   alert("Runs in modern browsers");
 </script>

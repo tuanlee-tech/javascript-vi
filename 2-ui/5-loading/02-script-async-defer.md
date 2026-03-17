@@ -3,14 +3,22 @@
 
 In modern websites, scripts are often "heavier" than HTML: their download size is larger, and processing time is also longer.
 
-When the browser loads HTML and comes across a `<script>...</script>` tag, it can't continue building the DOM. It must execute the script right now. The same happens for external scripts `<script src="..."></script>`: the browser must wait for the script to download, execute the downloaded script, and only then can it process the rest of the page.
+When the browser loads HTML and comes across a `
+```html
+<script>...</script>
+```
+` tag, it can't continue building the DOM. It must execute the script right now. The same happens for external scripts `
+```html
+<script src="..."></script>
+```
+`: the browser must wait for the script to download, execute the downloaded script, and only then can it process the rest of the page.
 
 That leads to two important issues:
 
 1. Scripts can't see DOM elements below them, so they can't add handlers etc.
 2. If there's a bulky script at the top of the page, it "blocks the page". Users can't see the page content till it downloads and runs:
 
-```html run height=100
+```html
 <p>...content before script...</p>
 
 <script src="https://javascript.info/article/script-async-defer/long.js?speed=1"></script>
@@ -41,7 +49,7 @@ The `defer` attribute tells the browser not to wait for the script. Instead, the
 
 Here's the same example as above, but with `defer`:
 
-```html run height=100
+```html
 <p>...content before script...</p>
 
 <script defer src="https://javascript.info/article/script-async-defer/long.js?speed=1"></script>
@@ -57,7 +65,7 @@ In other words:
 
 The following example demonstrates the second part:
 
-```html run height=100
+```html
 <p>...content before scripts...</p>
 
 <script>
@@ -87,9 +95,9 @@ Browsers scan the page for scripts and download them in parallel, to improve per
 
 That may be important for cases when we need to load a JavaScript library and then a script that depends on it.
 
-:::info The `defer` attribute is only for external scripts
+
 The `defer` attribute is ignored if the `<script>` tag has no `src`.
-:::
+
 
 ## async
 
@@ -109,7 +117,7 @@ Here's an example similar to what we've seen with `defer`: two scripts `long.js`
 
 They don't wait for each other. Whatever loads first (probably `small.js`) -- runs first:
 
-```html run height=100
+```html
 <p>...content before scripts...</p>
 
 <script>
@@ -139,7 +147,7 @@ There's one more important way of adding a script to the page.
 
 We can create a script and append it to the document dynamically using JavaScript:
 
-```js run
+```js
 let script = document.createElement('script');
 script.src = "/article/script-async-defer/long.js";
 document.body.append(script); // (*)
@@ -159,7 +167,7 @@ In this example, `loadScript(src)` function adds a script and also sets `async` 
 
 So `long.js` always runs first (as it's added first):
 
-```js run
+```js
 function loadScript(src) {
   let script = document.createElement('script');
   script.src = src;
@@ -192,10 +200,10 @@ In practice, `defer` is used for scripts that need the whole DOM and/or their re
 
 And  `async` is used for independent scripts, like counters or ads. And their relative execution order does not matter.
 
-:::warning Page without scripts should be usable
+
 Please note: if you're using `defer` or `async`, then user will see the the page *before* the script loads.
 
 In such case, some graphical components are probably not initialized yet.
 
 Don't forget to put "loading" indication and disable buttons that aren't functional yet. Let the user clearly see what he can do on the page, and what's still getting ready.
-:::
+

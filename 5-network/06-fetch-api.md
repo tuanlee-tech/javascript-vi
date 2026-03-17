@@ -5,11 +5,11 @@ So far, we know quite a bit about `fetch`.
 
 Let's see the rest of API, to cover all its abilities.
 
-:::info
+
 Please note: most of these options are used rarely. You may skip this chapter and still use `fetch` well.
 
 Still, it's good to know what `fetch` can do, so if the need arises, you can return and read the details.
-:::
+
 
 Here's the full list of all possible `fetch` options with their default values (alternatives in comments):
 
@@ -38,9 +38,9 @@ let promise = fetch(url, {
 
 An impressive list, right?
 
-We fully covered `method`, `headers` and `body` in the chapter <info:fetch>.
+We fully covered `method`, `headers` and `body` in the chapter &lt;info:fetch&gt;.
 
-The `signal` option is covered in <info:fetch-abort>.
+The `signal` option is covered in &lt;info:fetch-abort&gt;.
 
 Now let's explore the remaining capabilities.
 
@@ -55,9 +55,9 @@ Usually that header is set automatically and contains the url of the page that m
 To send no referer, set an empty string:
 ```js
 fetch('/page', {
-*!*
+
   referrer: "" // no Referer header
-*/!*
+
 });
 ```
 
@@ -67,9 +67,9 @@ To set another url within the current origin:
 fetch('/page', {
   // assuming we're on https://javascript.info
   // we can set any Referer header, but only within the current origin
-*!*
+
   referrer: "https://javascript.info/anotherpage"
-*/!*
+
 });
 ```
 
@@ -126,17 +126,17 @@ We can put it to all `fetch` calls, maybe integrate into JavaScript library of o
 
 Its only difference compared to the default behavior is that for requests to another origin `fetch` sends only the origin part of the URL (e.g. `https://javascript.info`, without path). For requests to our origin we still get the full `Referer` (maybe useful for debugging purposes).
 
-:::info Referrer policy is not only for `fetch`
+
 Referrer policy, described in the [specification](https://w3c.github.io/webappsec-referrer-policy/), is not just for `fetch`, but more global.
 
 In particular, it's possible to set the default policy for the whole page using the `Referrer-Policy` HTTP header, or per-link, with `<a rel="noreferrer">`.
-:::
+
 
 ## mode
 
 The `mode` option is a safe-guard that prevents occasional cross-origin requests:
 
-- **`"cors"`** -- the default, cross-origin requests are allowed, as described in <info:fetch-crossorigin>,
+- **`"cors"`** -- the default, cross-origin requests are allowed, as described in &lt;info:fetch-crossorigin&gt;,
 - **`"same-origin"`** -- cross-origin requests are forbidden,
 - **`"no-cors"`** -- only safe cross-origin requests are allowed.
 
@@ -147,7 +147,7 @@ This option may be useful when the URL for `fetch` comes from a 3rd-party, and w
 The `credentials` option specifies whether `fetch` should send cookies and HTTP-Authorization headers with the request.
 
 - **`"same-origin"`** -- the default, don't send for cross-origin requests,
-- **`"include"`** -- always send, requires `Accept-Control-Allow-Credentials` from cross-origin server in order for JavaScript to access the response, that was covered in the chapter <info:fetch-crossorigin>,
+- **`"include"`** -- always send, requires `Accept-Control-Allow-Credentials` from cross-origin server in order for JavaScript to access the response, that was covered in the chapter &lt;info:fetch-crossorigin&gt;,
 - **`"omit"`** -- never send, even for same-origin requests.
 
 ## cache
@@ -201,14 +201,14 @@ When the visitor leaves our page -- we'd like to save the data to our server.
 
 We can use the `window.onunload` event for that:
 
-```js run
+```js
 window.onunload = function() {
   fetch('/analytics', {
     method: 'POST',
     body: "statistics",
-*!*
+
     keepalive: true
-*/!*
+
   });
 };
 ```

@@ -14,30 +14,30 @@ Những phương thức này nên được dùng thay cho `__proto__`.
 
 Ví dụ:
 
-```js run
+```js
 let animal = {
   eats: true
 };
 
 // tạo một đối tượng nhận animal làm nguyên mẫu
-*!*
+
 let rabbit = Object.create(animal);
-*/!*
+
 
 alert(rabbit.eats); // true
 
-*!*
-alert(Object.getPrototypeOf(rabbit) === animal); // true
-*/!*
 
-*!*
+alert(Object.getPrototypeOf(rabbit) === animal); // true
+
+
+
 Object.setPrototypeOf(rabbit, {}); // đổi nguyên mẫu của rabbit thành {}
-*/!*
+
 ```
 
 `Object.create` có đối số thứ hai tùy chọn là các "property descriptor". Chúng ta có thể cung cấp các thuộc tính bổ sung cho đối tượng mới đó như thế này:
 
-```js run
+```js
 let animal = {
   eats: true
 };
@@ -51,7 +51,7 @@ let rabbit = Object.create(animal, {
 alert(rabbit.jumps); // true
 ```
 
-Các "property descriptor" đã được nói đến trong bài <info:property-descriptors>.
+Các "property descriptor" đã được nói đến trong bài &lt;info:property-descriptors&gt;.
 
 Chúng ta có thể sử dụng `Object.create` để nhân bản một đối tượng thay vì sao chép các thuộc tính bằng `for..in`:
 
@@ -77,11 +77,11 @@ Hiện tại, chúng ta có toàn quyền sử dụng tất cả những cách n
 
 Tại sao `__proto__` bị thay thế bởi các hàm `getPrototypeOf/setPrototypeOf`? Đó là một câu hỏi thú vị, yêu cầu chúng ta phải hiểu tại sao `__proto__` không tốt. Hãy đọc để có câu trả lời.
 
-:::warning Don't change `[[Prototype]]` on existing objects if speed matters
+
 Về mặt kỹ thuật, chúng ta có thể lấy/thiết lập `[[Prototype]]` bất cứ lúc nào. Nhưng thường chúng ta chỉ thiết lập nó một lần lúc tạo đối tượng và không sửa đổi nó nữa: `rabbit` kế thừa từ `animal`, điều đó sẽ không thay đổi.
 
 Và các công cụ JavaScript được tối ưu hóa cao cho điều này. Thay đổi nguyên mẫu "nhanh chóng" bằng `Object.setPrototypeOf` hoặc `obj.__proto__=` là một hoạt động rất chậm vì nó phá vỡ sự tối ưu hóa nội bộ cho các hoạt động truy cập thuộc tính đối tượng. Vì vậy, hãy tránh nó trừ khi bạn biết mình đang làm gì, hoặc tốc độ JavaScript hoàn toàn không quan trọng đối với bạn.
-:::
+
 
 ## Đối tượng không có nguyên mẫu [#very-plain]
 
@@ -91,7 +91,7 @@ Như chúng ta đã biết, các đối tượng có thể được dùng như c
 
 Kiểm tra ví dụ sau:
 
-```js run
+```js
 let obj = {};
 
 let key = prompt("Khóa mong muốn là gì?", "__proto__");
@@ -128,10 +128,10 @@ Như đã nói ở phần đầu của phần hướng dẫn này: `__proto__` l
 
 Bây giờ, nếu chúng ta định sử dụng một đối tượng như một mảng kết hợp mà không gặp phải các vấn đề như vậy, chúng ta có thể thực hiện điều đó với một mẹo nhỏ:
 
-```js run
-*!*
+```js
+
 let obj = Object.create(null);
-*/!*
+
 
 let key = prompt("Khóa mong muốn là gì?", "__proto__");
 obj[key] = "giá trị nào đó";
@@ -149,10 +149,10 @@ Chúng ta có thể gọi các đối tượng như vậy là các đối tượ
 
 Một nhược điểm là các đối tượng như vậy thiếu bất kỳ phương thức đối tượng có sẵn nào, ví dụ `toString`.
 
-```js run
-*!*
+```js
+
 let obj = Object.create(null);
-*/!*
+
 
 alert(obj); // Lỗi (không có toString)
 ```
@@ -161,7 +161,7 @@ alert(obj); // Lỗi (không có toString)
 
 Lưu ý rằng hầu hết các phương thức liên quan đến đối tượng là `Object.something(...)`, như `Object.keys(obj)` - chúng không có trong nguyên mẫu, vì vậy chúng sẽ tiếp tục hoạt động trên các đối tượng như vậy:
 
-```js run
+```js
 let chineseDictionary = Object.create(null);
 chineseDictionary.hello = "你好";
 chineseDictionary.bye = "再见";

@@ -15,30 +15,30 @@ It returns `true` if `obj` belongs to the `Class` or a class inheriting from it.
 
 For instance:
 
-```js run
+```js
 class Rabbit {}
 let rabbit = new Rabbit();
 
 // is it an object of Rabbit class?
-*!*
+
 alert( rabbit instanceof Rabbit ); // true
-*/!*
+
 ```
 
 It also works with constructor functions:
 
-```js run
-*!*
+```js
+
 // instead of class
 function Rabbit() {}
-*/!*
+
 
 alert( new Rabbit() instanceof Rabbit ); // true
 ```
 
 ...And with built-in classes like `Array`:
 
-```js run
+```js
 let arr = [1, 2, 3];
 alert( arr instanceof Array ); // true
 alert( arr instanceof Object ); // true
@@ -54,7 +54,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
 
     For example:
 
-    ```js run
+```js
     // setup instanceOf check that assumes that
     // anything with canEat property is an animal
     class Animal {
@@ -71,7 +71,7 @@ The algorithm of `obj instanceof Class` works roughly as follows:
 2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Class` checks whether `Class.prototype` is equal to one of the prototypes in the `obj` prototype chain.
 
     In other words, compare one after another:
-    ```js
+```js
     obj.__proto__ === Class.prototype?
     obj.__proto__.__proto__ === Class.prototype?
     obj.__proto__.__proto__.__proto__ === Class.prototype?
@@ -84,19 +84,19 @@ The algorithm of `obj instanceof Class` works roughly as follows:
 
     In the case of an inheritance, the match will be at the second step:
 
-    ```js run
+```js
     class Animal {}
     class Rabbit extends Animal {}
 
     let rabbit = new Rabbit();
-    *!*
+    
     alert(rabbit instanceof Animal); // true
-    */!*
+    
 
     // rabbit.__proto__ === Rabbit.prototype
-    *!*
+    
     // rabbit.__proto__.__proto__ === Animal.prototype (match!)
-    */!*
+    
     ```
 
 Here's the illustration of what `rabbit instanceof Animal` compares with `Animal.prototype`:
@@ -111,7 +111,7 @@ That can lead to interesting consequences when a `prototype` property is changed
 
 Like here:
 
-```js run
+```js
 function Rabbit() {}
 let rabbit = new Rabbit();
 
@@ -119,16 +119,16 @@ let rabbit = new Rabbit();
 Rabbit.prototype = {};
 
 // ...not a rabbit any more!
-*!*
+
 alert( rabbit instanceof Rabbit ); // false
-*/!*
+
 ```
 
 ## Bonus: Object.prototype.toString for the type
 
 We already know that plain objects are converted to string as `[object Object]`:
 
-```js run
+```js
 let obj = {};
 
 alert(obj); // [object Object]
@@ -150,21 +150,21 @@ By [specification](https://tc39.github.io/ecma262/#sec-object.prototype.tostring
 
 Let's demonstrate:
 
-```js run
+```js
 // copy toString method into a variable for convenience
 let objectToString = Object.prototype.toString;
 
 // what type is this?
 let arr = [];
 
-alert( objectToString.call(arr) ); // [object *!*Array*/!*]
+alert( objectToString.call(arr) ); // [object Array]
 ```
 
-Here we used [call](mdn:js/function/call) as described in the chapter [](info:call-apply-decorators) to execute the function `objectToString` in the context `this=arr`.
+Here we used [call](mdn:js/function/call) as described in the chapter [](#) to execute the function `objectToString` in the context `this=arr`.
 
 Internally, the `toString` algorithm examines `this` and returns the corresponding result. More examples:
 
-```js run
+```js
 let s = Object.prototype.toString;
 
 alert( s.call(123) ); // [object Number]
@@ -178,7 +178,7 @@ The behavior of Object `toString` can be customized using a special object prope
 
 For instance:
 
-```js run
+```js
 let user = {
   [Symbol.toStringTag]: "User"
 };
@@ -188,7 +188,7 @@ alert( {}.toString.call(user) ); // [object User]
 
 For most environment-specific objects, there is such a property. Here are some browser specific examples:
 
-```js run
+```js
 // toStringTag for the environment-specific object and class:
 alert( window[Symbol.toStringTag]); // Window
 alert( XMLHttpRequest.prototype[Symbol.toStringTag] ); // XMLHttpRequest

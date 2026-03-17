@@ -108,7 +108,7 @@ Given N of control points:
 
 These points make the curve.
 
-```online
+```text
 **Run and pause examples to clearly see the segments and how the curve is built.**
 ```
 
@@ -129,20 +129,20 @@ A non-smooth Bezier curve (yeah, that's possible too):
 
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
-```online
+```text
 If there's something unclear in the algorithm description, please look at the live examples above to see how
 the curve is built.
 ```
 
 As the algorithm is recursive, we can build Bezier curves of any order, that is: using 5, 6 or more control points. But in practice many points are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
 
-:::info How to draw a curve *through* given points?
+
 To specify a Bezier curve, control points are used. As we can see, they are not on the curve, except the first and the last ones.
 
 Sometimes we have another task: to draw a curve *through several points*, so that all of them are on a single smooth curve. That task is called  [interpolation](https://en.wikipedia.org/wiki/Interpolation), and here we don't cover it.
 
 There are mathematical formulas for such curves, for instance [Lagrange polynomial](https://en.wikipedia.org/wiki/Lagrange_polynomial). In computer graphics [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) is often used to build smooth curves that connect many points.
-:::
+
 
 
 ## Maths

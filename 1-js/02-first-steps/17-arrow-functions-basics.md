@@ -20,7 +20,7 @@ let func = function(arg1, arg2, ..., argN) {
 
 Let's see a concrete example:
 
-```js run
+```js
 let sum = (a, b) => a + b;
 
 /* This arrow function is a shorter form of:
@@ -39,18 +39,18 @@ As you can, see `(a, b) => a + b` means a function that accepts two arguments na
 
     For example:
 
-    ```js run
-    *!*
+```js
+    
     let double = n => n * 2;
     // roughly the same as: let double = function(n) { return n * 2 }
-    */!*
+    
 
     alert( double(3) ); // 6
     ```
 
 - If there are no arguments, parentheses will be empty (but they should be present):
 
-    ```js run
+```js
     let sayHi = () => alert("Hello!");
 
     sayHi();
@@ -60,7 +60,7 @@ Arrow functions can be used in the same way as Function Expressions.
 
 For instance, to dynamically create a function:
 
-```js run
+```js
 let age = prompt("What is your age?", 18);
 
 let welcome = (age < 18) ?
@@ -82,26 +82,26 @@ Sometimes we need something a little bit more complex, like multiple expressions
 
 Like this:
 
-```js run
+```js
 let sum = (a, b) => {  // the curly brace opens a multiline function
   let result = a + b;
-*!*
+
   return result; // if we use curly braces, then we need an explicit "return" 
-*/!*
+
 };
 
 alert( sum(1, 2) ); // 3
 ```
 
-:::info More to come
+
 Here we praised arrow functions for brevity. But that's not all!
 
 Arrow functions have other interesting features.
 
-To study them in-depth, we first need to get to know some other aspects of JavaScript, so we'll return to arrow functions later in the chapter <info:arrow-functions>.
+To study them in-depth, we first need to get to know some other aspects of JavaScript, so we'll return to arrow functions later in the chapter &lt;info:arrow-functions&gt;.
 
 For now, we can already use arrow functions for one-line actions and callbacks.
-:::
+
 
 ## Summary
 

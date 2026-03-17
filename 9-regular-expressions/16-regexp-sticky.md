@@ -30,7 +30,7 @@ So, successive calls to `regexp.exec(str)` return matches one after another.
 
 Here's an example of such calls:
 
-```js run
+```js
 let str = 'let varName'; // Let's find all words in this string
 let regexp = /\w+/g;
 
@@ -51,7 +51,7 @@ alert(regexp.lastIndex); // 0 (resets at search end)
 
 We can get all matches in the loop:
 
-```js run
+```js
 let str = 'let varName';
 let regexp = /\w+/g;
 
@@ -72,14 +72,14 @@ We can manually set `lastIndex` to `4`, to start the search from the given posit
 
 Like this:
 
-```js run
+```js
 let str = 'let varName = "value"';
 
 let regexp = /\w+/g; // without flag "g", property lastIndex is ignored
 
-*!*
+
 regexp.lastIndex = 4;
-*/!*
+
 
 let word = regexp.exec(str);
 alert(word); // varName
@@ -95,15 +95,15 @@ The result is correct.
 
 Please note: the `regexp.exec` call starts searching at position `lastIndex` and then goes further. If there's no word at position `lastIndex`, but it's somewhere after it, then it will be found:
 
-```js run
+```js
 let str = 'let varName = "value"';
 
 let regexp = /\w+/g;
 
-*!*
+
 // start the search from position 3
 regexp.lastIndex = 3;
-*/!*
+
 
 let word = regexp.exec(str); 
 // found the match at position 4
@@ -117,7 +117,7 @@ For some tasks, including the lexical analysis, that's just wrong. We need to fi
 
 Here's the same search with flag `pattern:y`:
 
-```js run
+```js
 let str = 'let varName = "value"';
 
 let regexp = /\w+/y;

@@ -24,7 +24,7 @@ There are two ways to implement it.
 
 1. Iterative thinking: the `for` loop:
 
-    ```js run
+```js
     function pow(x, n) {
       let result = 1;
 
@@ -41,7 +41,7 @@ There are two ways to implement it.
 
 2. Recursive thinking: simplify the task and call self:
 
-    ```js run
+```js
     function pow(x, n) {
       if (n == 1) {
         return x;
@@ -82,12 +82,12 @@ For example, to calculate `pow(2, 4)` the recursive variant does these steps:
 
 So, the recursion reduces a function call to a simpler one, and then -- to even more simpler, and so on, until the result becomes obvious.
 
-:::info Recursion is usually shorter
+
 A recursive solution is usually shorter than an iterative one.
 
 Here we can rewrite the same using the conditional operator `?` instead of `if` to make `pow(x, n)` more terse and still very readable:
 
-```js run
+```js
 function pow(x, n) {
   return (n == 1) ? x : (x * pow(x, n - 1));
 }
@@ -134,14 +134,14 @@ We can sketch it as:
 
 That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
 
-```js run
+```js
 function pow(x, n) {
   if (n == 1) {
     return x;
   } else {
-*!*
+
     return x * pow(x, n - 1);
-*/!*
+
   }
 }
 
@@ -187,11 +187,11 @@ The new current execution context is on top (and bold), and previous remembered 
 
 When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
 
-:::info
+
 Here in the picture we use the word "line", as in our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
 
 So it would be more precise to say that the execution resumes "immediately after the subcall".
-:::
+
 
 ### pow(2, 1)
 
@@ -223,9 +223,9 @@ During the execution of `pow(2, 1)`, unlike before, the condition `n == 1` is tr
 ```js
 function pow(x, n) {
   if (n == 1) {
-*!*
+
     return x;
-*/!*
+
   } else {
     return x * pow(x, n - 1);
   }
@@ -348,7 +348,7 @@ The 2nd case when we get an object is the recursive step. A complex task is spli
 The algorithm is probably even easier to read from the code:
 
 
-```js run
+```js
 let company = { // the same object, compressed for brevity
   sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 1600 }],
   development: {
@@ -358,7 +358,7 @@ let company = { // the same object, compressed for brevity
 };
 
 // The function to do the job
-*!*
+
 function sumSalaries(department) {
   if (Array.isArray(department)) { // case (1)
     return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
@@ -370,7 +370,7 @@ function sumSalaries(department) {
     return sum;
   }
 }
-*/!*
+
 
 alert(sumSalaries(company)); // 7700
 ```
@@ -385,7 +385,7 @@ We can easily see the principle: for an object `{...}` subcalls are made, while 
 
 Note that the code uses smart features that we've covered before:
 
-- Method `arr.reduce` explained in the chapter <info:array-methods> to get the sum of the array.
+- Method `arr.reduce` explained in the chapter &lt;info:array-methods&gt; to get the sum of the array.
 - Loop `for(val of Object.values(obj))` to iterate over object values: `Object.values` returns an array of them.
 
 
@@ -454,7 +454,7 @@ Graphical representation of the list:
 
 An alternative code for creation:
 
-```js no-beautify
+```js
 let list = { value: 1 };
 list.next = { value: 2 };
 list.next.next = { value: 3 };
@@ -489,10 +489,10 @@ list.next = { value: 2 };
 list.next.next = { value: 3 };
 list.next.next.next = { value: 4 };
 
-*!*
+
 // prepend the new value to the list
 list = { value: "new item", next: list };
-*/!*
+
 ```
 
 ![linked list](linked-list-0.svg)
@@ -531,7 +531,7 @@ Terms:
 
     For instance, the linked list can be defined as a data structure consisting of an object referencing a list (or null).
 
-    ```js
+```js
     list = { value, next -> list }
     ```
 

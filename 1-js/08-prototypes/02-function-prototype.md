@@ -4,17 +4,17 @@ Nhớ rằng, các đối tượng mới có thể được tạo bằng hàm t�
 
 Nếu `F.prototype` là một đối tượng, thì toán tử `new` dùng nó để đặt cho `[[Prototype]]` của đối tượng mới tạo ra.
 
-:::info
+
 JavaScript đã có kế thừa nguyên mẫu ngay từ đầu. Đây là một trong những tính năng cốt lõi của ngôn ngữ.
 
 Nhưng thời xưa, không có quyền truy cập trực tiếp vào nó. Điều duy nhất hoạt động đáng tin cậy là thuộc tính `"prototype"` của hàm khởi tạo, được mô tả trong chương này. Vì vậy, có rất nhiều tập lệnh vẫn sử dụng nó.
-:::
+
 
 Xin lưu ý rằng `F.prototype` ở đây nghĩa là một thuộc tính thông thường có tên là `"prototype"` của `F`. Nghe có vẻ giống với thuật ngữ "prototype", nhưng ở đây chúng ta thực sự muốn nói đến một thuộc tính thông thường với tên này.
 
 Đây là ví dụ:
 
-```js run
+```js
 let animal = {
   eats: true
 };
@@ -23,9 +23,9 @@ function Rabbit(name) {
   this.name = name;
 }
 
-*!*
+
 Rabbit.prototype = animal;
-*/!*
+
 
 let rabbit = new Rabbit("White Rabbit"); //  rabbit.__proto__ == animal
 
@@ -40,11 +40,11 @@ alert( rabbit.eats ); // true
 
 Ở hình trên, `"prototype"` là một mũi tên nằm ngang, mang nghĩa là một thuộc tính thông thường, và `[[Prototype]]` là mũi tên thẳng đứng, mang nghĩa là `rabbit` kế thừa từ `animal`.
 
-:::info `F.prototype` chỉ được dùng khi gọi `new F`
+
 Thuộc tính `F.prototype` chỉ được dùng khi `new F` được gọi, nó đặt `[[Prototype]]` của đối tượng mới tạo ra.
 
 Nếu sau khi tạo đối tượng, thuộc tính `F.prototype` bị thay đổi (`F.prototype = <một đối tượng khác>`), thì các đối tượng mới được tạo bởi `new F` sẽ có một đối tượng khác làm `[[Prototype]]`, nhưng các đối tượng hiện có vẫn giữ đối tượng `[[Prototype]]` cũ.
-:::
+
 
 ## F.prototype mặc định, thuộc tính "constructor"
 
@@ -66,7 +66,7 @@ Rabbit.prototype = { constructor: Rabbit };
 
 Chúng ta có thể kiểm tra nó:
 
-```js run
+```js
 function Rabbit() {}
 // theo mặc định:
 // Rabbit.prototype = { constructor: Rabbit }
@@ -76,7 +76,7 @@ alert( Rabbit.prototype.constructor == Rabbit ); // true
 
 Dĩ nhiên, nếu chúng ta không làm gì, thuộc tính `constructor` sẽ có sẵn cho mọi đối tượng rabbit thông qua `[[Prototype]]`:
 
-```js run
+```js
 function Rabbit() {}
 // theo mặc định:
 // Rabbit.prototype = { constructor: Rabbit }
@@ -92,7 +92,7 @@ Chúng ta có thể sử dụng thuộc tính `constructor` để tạo một đ
 
 Giống như ở đây:
 
-```js run
+```js
 function Rabbit(name) {
   this.name = name;
   alert(name);
@@ -100,9 +100,9 @@ function Rabbit(name) {
 
 let rabbit = new Rabbit("Thỏ trắng");
 
-*!*
+
 let rabbit2 = new rabbit.constructor("Thỏ đen");
-*/!*
+
 ```
 
 Cách này rất tiện nếu chúng ta có một đối tượng, nhưng không biết constructor nào đã tạo ra nó (ví dụ đối tượng đến từ một thư viện ngoài), và chúng ta muốn tạo một đối tượng khác cùng loại.
@@ -117,16 +117,16 @@ Cụ thể, nếu chúng ta thay thế toàn bộ `prototype` mặc định, th�
 
 Ví dụ:
 
-```js run
+```js
 function Rabbit() {}
 Rabbit.prototype = {
   jumps: true
 };
 
 let rabbit = new Rabbit();
-*!*
+
 alert(rabbit.constructor === Rabbit); // false
-*/!*
+
 ```
 
 Cho nên, để giữ lại `"constructor"` đúng, chúng ta có thể chọn thêm/xóa các thuộc tính khỏi `prototype` mặc định thay vì ghi đè toàn bộ nó.
@@ -145,9 +145,9 @@ Hoặc theo phương án khác, tạo lại thuộc tính `constructor` một c�
 ```js
 Rabbit.prototype = {
   jumps: true,
-*!*
+
   constructor: Rabbit
-*/!*
+
 };
 
 // bây giờ constructor vẫn đúng, vì chúng ta đã thêm nó

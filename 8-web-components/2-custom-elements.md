@@ -65,11 +65,11 @@ customElements.define("my-element", MyElement);
 
 Now for any HTML elements with tag `<my-element>`, an instance of `MyElement` is created, and the aforementioned methods are called. We also can `document.createElement('my-element')` in JavaScript.
 
-:::info Custom element name must contain a hyphen `-`
+
 Custom element name must have a hyphen `-`, e.g. `my-element` and `super-button` are valid names, but `myelement` is not.
 
 That's to ensure that there are no name conflicts between built-in and custom HTML elements.
-:::
+
 
 ## Example: "time-formatted"
 
@@ -78,11 +78,11 @@ For example, there already exists `<time>` element in HTML, for date/time. But i
 Let's create `<time-formatted>` element that displays the time in a nice, language-aware format:
 
 
-```html run height=50 autorun="no-epub"
+```html
 <script>
-*!*
+
 class TimeFormatted extends HTMLElement { // (1)
-*/!*
+
 
   connectedCallback() {
     let date = new Date(this.getAttribute('datetime') || Date.now());
@@ -100,15 +100,15 @@ class TimeFormatted extends HTMLElement { // (1)
 
 }
 
-*!*
+
 customElements.define("time-formatted", TimeFormatted); // (2)
-*/!*
+
 </script>
 
 <!-- (3) -->
-*!*
+
 <time-formatted datetime="2019-12-01"
-*/!*
+
   year="numeric" month="long" day="numeric"
   hour="numeric" minute="numeric" second="numeric"
   time-zone-name="short"
@@ -120,7 +120,7 @@ customElements.define("time-formatted", TimeFormatted); // (2)
 3. And then we can use it everywhere.
 
 
-:::info Custom elements upgrade
+
 If the browser encounters any `<time-formatted>` elements before `customElements.define`, that's not an error. But the element is yet unknown, just like any non-standard tag.
 
 Such "undefined" elements can be styled with CSS selector `:not(:defined)`.
@@ -131,9 +131,9 @@ is created for each, and `connectedCallback` is called. They become `:defined`.
 To get the information about custom elements, there are methods:
 - `customElements.get(name)` -- returns the class for a custom element with the given `name`,
 - `customElements.whenDefined(name)` -- returns a promise that resolves (without value) when a custom element with the given `name` becomes defined.
-:::
 
-:::info Rendering in `connectedCallback`, not in `constructor`
+
+
 In the example above, element content is rendered (created) in `connectedCallback`.
 
 Why not in the `constructor`?
@@ -143,7 +143,7 @@ The reason is simple: when `constructor` is called, it's yet too early. The elem
 Besides, if you think about it, that's better performance-wise -- to delay the work until it's really needed.
 
 The `connectedCallback` triggers when the element is added to the document. Not just appended to another element as a child, but actually becomes a part of the page. So we can build detached DOM, create elements and prepare them for later use. They will only be actually rendered when they make it into the page.
-:::
+
 
 ## Observing attributes
 
@@ -153,13 +153,13 @@ We can observe attributes by providing their list in `observedAttributes()` stat
 
 Here's a new `<time-formatted>`, that auto-updates when attributes change:
 
-```html run autorun="no-epub" height=50
+```html
 <script>
 class TimeFormatted extends HTMLElement {
 
-*!*
+
   render() { // (1)
-*/!*
+
     let date = new Date(this.getAttribute('datetime') || Date.now());
 
     this.innerHTML = new Intl.DateTimeFormat("default", {
@@ -173,24 +173,24 @@ class TimeFormatted extends HTMLElement {
     }).format(date);
   }
 
-*!*
+
   connectedCallback() { // (2)
-*/!*
+
     if (!this.rendered) {
       this.render();
       this.rendered = true;
     }
   }
 
-*!*
+
   static get observedAttributes() { // (3)
-*/!*
+
     return ['datetime', 'year', 'month', 'day', 'hour', 'minute', 'second', 'time-zone-name'];
   }
 
-*!*
+
   attributeChangedCallback(name, oldValue, newValue) { // (4)
-*/!*
+
     this.render();
   }
 
@@ -202,9 +202,9 @@ customElements.define("time-formatted", TimeFormatted);
 <time-formatted id="elem" hour="numeric" minute="numeric" second="numeric"></time-formatted>
 
 <script>
-*!*
+
 setInterval(() => elem.setAttribute('datetime', new Date()), 1000); // (5)
-*/!*
+
 </script>
 ```
 
@@ -222,22 +222,22 @@ That leads to important consequences for custom elements.
 
 For example, if a custom element tries to access `innerHTML` in `connectedCallback`, it gets nothing:
 
-```html run height=40
+```html
 <script>
 customElements.define('user-info', class extends HTMLElement {
 
   connectedCallback() {
-*!*
+
     alert(this.innerHTML); // empty (*)
-*/!*
+
   }
 
 });
 </script>
 
-*!*
+
 <user-info>John</user-info>
-*/!*
+
 ```
 
 If you run it, the `alert` is empty.
@@ -250,22 +250,22 @@ Or, if we really need the children, we can defer access to them with zero-delay 
 
 This works:
 
-```html run height=40
+```html
 <script>
 customElements.define('user-info', class extends HTMLElement {
 
   connectedCallback() {
-*!*
+
     setTimeout(() => alert(this.innerHTML)); // John (*)
-*/!*
+
   }
 
 });
 </script>
 
-*!*
+
 <user-info>John</user-info>
-*/!*
+
 ```
 
 Now the `alert` in line `(*)` shows "John", as we run it asynchronously, after the HTML parsing is complete. We can process children if needed and finish the initialization.
@@ -276,7 +276,7 @@ So the outer element finishes the initialization before the inner one.
 
 Let's demonstrate that on example:
 
-```html run height=0
+```html
 <script>
 customElements.define('user-info', class extends HTMLElement {
   connectedCallback() {
@@ -286,11 +286,11 @@ customElements.define('user-info', class extends HTMLElement {
 });
 </script>
 
-*!*
+
 <user-info id="outer">
   <user-info id="inner"></user-info>
 </user-info>
-*/!*
+
 ```
 
 Output order:
@@ -316,56 +316,56 @@ For example, buttons are instances of `HTMLButtonElement`, let's build upon it.
 
 1. Extend `HTMLButtonElement` with our class:
 
-    ```js
+```js
     class HelloButton extends HTMLButtonElement { /* custom element methods */ }
     ```
 
 2. Provide the third argument to `customElements.define`, that specifies the tag:
-    ```js
-    customElements.define('hello-button', HelloButton, *!*{extends: 'button'}*/!*);
+```js
+    customElements.define('hello-button', HelloButton, {extends: 'button'});
     ```    
 
     There may be different tags that share the same DOM-class, that's why specifying `extends` is needed.
 
 3. At the end, to use our custom element, insert a regular `<button>` tag, but add `is="hello-button"` to it:
-    ```html
+```html
     <button is="hello-button">...</button>
     ```
 
 Here's a full example:
 
-```html run autorun="no-epub"
+```html
 <script>
 // The button that says "hello" on click
 class HelloButton extends HTMLButtonElement {
-*!*
+
   constructor() {
-*/!*
+
     super();
     this.addEventListener('click', () => alert("Hello!"));
   }
 }
 
-*!*
+
 customElements.define('hello-button', HelloButton, {extends: 'button'});
-*/!*
+
 </script>
 
-*!*
-<button is="hello-button">Click me</button>
-*/!*
 
-*!*
+<button is="hello-button">Click me</button>
+
+
+
 <button is="hello-button" disabled>Disabled</button>
-*/!*
+
 ```
 
 Our new button extends the built-in one. So it keeps the same styles and standard features like `disabled` attribute.
 
 ## References
 
-- HTML Living Standard: <https://html.spec.whatwg.org/#custom-elements>.
-- Compatiblity: <https://caniuse.com/#feat=custom-elementsv1>.
+- HTML Living Standard: &lt;https://html.spec.whatwg.org/#custom-elements&gt;.
+- Compatiblity: &lt;https://caniuse.com/#feat=custom-elementsv1&gt;.
 
 ## Summary
 
@@ -375,7 +375,7 @@ Custom elements can be of two types:
 
     Definition scheme:
 
-    ```js
+```js
     class MyElement extends HTMLElement {
       constructor() { super(); /* ... */ }
       connectedCallback() { /* ... */ }
@@ -385,16 +385,16 @@ Custom elements can be of two types:
       adoptedCallback() { /* ... */ }
      }
     customElements.define('my-element', MyElement);
-    /* <my-element> */
+    /* &lt;my-element&gt; */
     ```
 
 2. "Customized built-in elements" -- extensions of existing elements.
 
     Requires one more `.define` argument, and `is="..."` in HTML:
-    ```js
+```js
     class MyButton extends HTMLButtonElement { /*...*/ }
     customElements.define('my-button', MyElement, {extends: 'button'});
     /* <button is="my-button"> */
     ```
 
-Custom elements are well-supported among browsers. There's a polyfill <https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs>.
+Custom elements are well-supported among browsers. There's a polyfill &lt;https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs&gt;.

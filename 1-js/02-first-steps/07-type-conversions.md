@@ -6,11 +6,11 @@ For example, `alert` automatically converts any value to a string to show it. Ma
 
 There are also cases when we need to explicitly convert a value to the expected type.
 
-:::info Not talking about objects yet
+
 In this chapter, we won't cover objects. For now we'll just be talking about primitives.
 
-Later, after we learn about objects, in the chapter <info:object-toprimitive> we'll see how objects fit in.
-:::
+Later, after we learn about objects, in the chapter &lt;info:object-toprimitive&gt; we'll see how objects fit in.
+
 
 ## String Conversion
 
@@ -20,14 +20,14 @@ For example, `alert(value)` does it to show the value.
 
 We can also call the `String(value)` function to convert a value to a string:
 
-```js run
+```js
 let value = true;
 alert(typeof value); // boolean
 
-*!*
+
 value = String(value); // now value is a string "true"
 alert(typeof value); // string
-*/!*
+
 ```
 
 String conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"`, etc.
@@ -38,13 +38,13 @@ Numeric conversion happens in mathematical functions and expressions automatical
 
 For example, when division `/` is applied to non-numbers:
 
-```js run
+```js
 alert( "6" / "2" ); // 3, strings are converted to numbers
 ```
 
 We can use the `Number(value)` function to explicitly convert a `value` to a number:
 
-```js run
+```js
 let str = "123";
 alert(typeof str); // string
 
@@ -57,7 +57,7 @@ Explicit conversion is usually required when we read a value from a string-based
 
 If the string is not a valid number, the result of such a conversion is `NaN`. For instance:
 
-```js run
+```js
 let age = Number("an arbitrary string instead of a number");
 
 alert(age); // NaN, conversion failed
@@ -74,7 +74,7 @@ Numeric conversion rules:
 
 Examples:
 
-```js run
+```js
 alert( Number("   123   ") ); // 123
 alert( Number("123z") );      // NaN (error reading a number at "z")
 alert( Number(true) );        // 1
@@ -98,7 +98,7 @@ The conversion rule:
 
 For instance:
 
-```js run
+```js
 alert( Boolean(1) ); // true
 alert( Boolean(0) ); // false
 
@@ -106,10 +106,10 @@ alert( Boolean("hello") ); // true
 alert( Boolean("") ); // false
 ```
 
-:::warning Please note: the string with zero `\0\"` is `true`"
+
 Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript, a non-empty string is always `true`.
 
-```js run
+```js
 alert( Boolean("0") ); // true
 alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
 :::
@@ -147,4 +147,4 @@ Most of these rules are easy to understand and memorize. The notable exceptions 
 - `undefined` is `NaN` as a number, not `0`.
 - `"0"` and space-only strings like `"   "` are true as a boolean.
 
-Objects aren't covered here. We'll return to them later in the chapter <info:object-toprimitive> that is devoted exclusively to objects after we learn more basic things about JavaScript.
+Objects aren't covered here. We'll return to them later in the chapter &lt;info:object-toprimitive&gt; that is devoted exclusively to objects after we learn more basic things about JavaScript.

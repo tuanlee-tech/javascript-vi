@@ -18,7 +18,7 @@ That leads us to the regexp `pattern:^(\w+\s?)*$`, it specifies zero or more suc
 
 In action:
 
-```js run
+```js
 let regexp = /^(\w+\s?)*$/;
 
 alert( regexp.test("A good string") ); // true
@@ -29,7 +29,7 @@ The regexp seems to work. The result is correct. Although, on certain strings it
 
 If you run the example below, you probably won't see anything, as JavaScript will just "hang". A web-browser will stop reacting on events, the UI will stop working (most browsers allow only scrolling). After some time it will suggest to reload the page. So be careful with this:
 
-```js run
+```js
 let regexp = /^(\w+\s?)*$/;
 let str = "An input string that takes a long time or even makes this regexp hang!";
 
@@ -47,7 +47,7 @@ To understand that, let's simplify the example: remove spaces `pattern:\s?`. The
 
 And, to make things more obvious, let's replace `pattern:\w` with `pattern:\d`. The resulting regular expression still hangs, for instance:
 
-```js run
+```js
 let regexp = /^(\d+)*$/;
 
 let str = "012345678901234567890123456789z";
@@ -194,7 +194,7 @@ Let's make the space non-optional by rewriting the regular expression as `patter
 
 This regexp is equivalent to the previous one (matches the same) and works well:
 
-```js run
+```js
 let regexp = /^(\w+\s)*\w*$/;
 let str = "An input string that takes a long time or even makes this regex hang!";
 
@@ -272,7 +272,7 @@ For instance, in the word `subject:JavaScript` it may not only match `match:Java
 
 Here's the comparison of two patterns:
 
-```js run
+```js
 alert( "JavaScript".match(/\w+Script/)); // JavaScript
 alert( "JavaScript".match(/(?=(\w+))\1Script/)); // null
 ```
@@ -282,13 +282,13 @@ alert( "JavaScript".match(/(?=(\w+))\1Script/)); // null
 
 We can put a more complex regular expression into `pattern:(?=(\w+))\1` instead of `pattern:\w`, when we need to forbid backtracking for `pattern:+` after it.
 
-:::info
+
 There's more about the relation between possessive quantifiers and lookahead in articles [Regex: Emulate Atomic Grouping (and Possessive Quantifiers) with LookAhead](http://instanceof.me/post/52245507631/regex-emulate-atomic-grouping-with-lookahead) and [Mimicking Atomic Groups](http://blog.stevenlevithan.com/archives/mimic-atomic-groups).
-:::
+
 
 Let's rewrite the first example using lookahead to prevent backtracking:
 
-```js run
+```js
 let regexp = /^((?=(\w+))\2\s?)*$/;
 
 alert( regexp.test("A good string") ); // true
@@ -300,7 +300,7 @@ alert( regexp.test(str) ); // false, works and fast!
 
 Here `pattern:\2` is used instead of `pattern:\1`, because there are additional outer parentheses. To avoid messing up with the numbers, we can give the parentheses a name, e.g. `pattern:(?<word>\w+)`.
 
-```js run
+```js
 // parentheses are named ?<word>, referenced as \k<word>
 let regexp = /^((?=(?<word>\w+))\k<word>\s?)*$/;
 

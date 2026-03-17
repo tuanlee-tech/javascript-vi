@@ -7,7 +7,7 @@ First, we can't dynamically generate any parameters of `import`.
 The module path must be a primitive string, can't be a function call. This won't work:
 
 ```js
-import ... from *!*getModuleName()*/!*; // Error, only from "string" is allowed
+import ... from getModuleName(); // Error, only from "string" is allowed
 ```
 
 Second, we can't import conditionally or at run-time:
@@ -87,12 +87,12 @@ Here's the full example:
 
 [codetabs src="say" current="index.html"]
 
-:::info
-Dynamic imports work in regular scripts, they don't require `script type="module"`.
-:::
 
-:::info
+Dynamic imports work in regular scripts, they don't require `script type="module"`.
+
+
+
 Although `import()` looks like a function call, it's a special syntax that just happens to use parentheses (similar to `super()`).
 
 So we can't copy `import` to a variable or use `call/apply` with it. It's not a function.
-:::
+

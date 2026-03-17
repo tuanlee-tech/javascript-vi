@@ -36,9 +36,9 @@ if (n < 0) {
 
 Bây giờ hãy thảo luận chi tiết về các quy tắc và lý do cho chúng.
 
-:::warning Không có quy tắc \bạn phải\""
+
 Không có gì là cố định ở đây. Đây là những sở thích phong cách, không phải giáo điều tôn giáo.
-:::
+
 
 ### Dấu ngoặc nhọn
 
@@ -56,20 +56,20 @@ Cấu trúc một dòng, chẳng hạn như `if (điều kiện) doSomething()`,
 
 Dưới đây là các biến thể được chú thích để bạn có thể tự đánh giá khả năng đọc được của chúng:    
 1. 😠 Người mới bắt đầu đôi khi làm điều đó. Tệ! Không cần dấu ngoặc nhọn: 
-   ```js
-    if (n < 0) *!*{*/!*alert(`Nguồn ${n} không được hỗ trợ`);*!*}*/!*
+```js
+    if (n < 0) {alert(`Nguồn ${n} không được hỗ trợ`);}
     ```
 2. 😠 Tách sang dòng riêng không dấu ngoặc. Đừng bao giờ làm vậy, dễ bị lỗi khi thêm dòng mới:
-    ```js
+```js
     if (n < 0)
       alert(`Nguồn ${n} không được hỗ trợ`);
     ```
 3. 😏 Một dòng không có dấu ngoặc nhọn - chấp nhận được, nếu ngắn:
-    ```js
+```js
     if (n < 0) alert(`Nguồn ${n} không được hỗ trợ`);
     ```
 4. 😃 Biến thể tốt nhất:
-    ```js
+```js
     if (n < 0) {
       alert(`Nguồn ${n} không được hỗ trợ`);
     }
@@ -117,7 +117,7 @@ Có hai loại thụt lề:
 
     Chẳng hạn, chúng ta có thể căn chỉnh các tham số với dấu ngoặc mở, như thế này:
 
-    ```js no-beautify
+```js
     show(parameters,
          aligned, // 5 dấu cách đệm ở bên trái
          one,
@@ -132,7 +132,7 @@ Có hai loại thụt lề:
 
     Ngay cả một chức năng đơn lẻ thường có thể được chia thành các khối hợp lý. Trong ví dụ bên dưới, việc khởi tạo các biến, vòng lặp chính và trả về kết quả được chia theo chiều dọc:
 
-    ```js
+```js
     function pow(x, n) {
       let result = 1;
       //              <--
@@ -150,7 +150,7 @@ Có hai loại thụt lề:
 
 Dấu chấm phẩy phải có sau mỗi câu lệnh, ngay cả khi nó có thể bị bỏ qua.
 
-Có những ngôn ngữ mà dấu chấm phẩy thực sự là tùy chọn và hiếm khi được sử dụng. Tuy nhiên, trong JavaScript, có những trường hợp ngắt dòng không được hiểu là dấu chấm phẩy, khiến mã dễ bị lỗi. Xem thêm về điều đó trong chương <info:structure#semicolon>.
+Có những ngôn ngữ mà dấu chấm phẩy thực sự là tùy chọn và hiếm khi được sử dụng. Tuy nhiên, trong JavaScript, có những trường hợp ngắt dòng không được hiểu là dấu chấm phẩy, khiến mã dễ bị lỗi. Xem thêm về điều đó trong chương &lt;info:structure#semicolon&gt;.
 
 Nếu là một lập trình viên JavaScript có kinh nghiệm, bạn có thể chọn kiểu mã không có dấu chấm phẩy như [StandardJS](https://standardjs.com/). Nếu không, tốt nhất là sử dụng dấu chấm phẩy để tránh những cạm bẫy có thể xảy ra. Phần lớn các nhà phát triển đặt dấu chấm phẩy.
 
@@ -158,7 +158,7 @@ Nếu là một lập trình viên JavaScript có kinh nghiệm, bạn có thể
 
 Cố gắng tránh lồng mã quá nhiều cấp độ.
 
-Ví dụ: trong vòng lặp, đôi khi nên sử dụng chỉ thị [`continue`](info:while-for#continue) để tránh lồng thêm.
+Ví dụ: trong vòng lặp, đôi khi nên sử dụng chỉ thị [`continue`](#) để tránh lồng thêm.
 
 Ví dụ: thay vì thêm điều kiện `if` lồng nhau như sau:
 
@@ -174,7 +174,7 @@ Ta có thể viết
 
 ```js
 for (let i = 0; i < 10; i++) {
-  if (!cond) *!*continue*/!*;
+  if (!cond) continue;
   ...  // <- không có cấp độ lồng thêm
 }
 ```
@@ -228,8 +228,8 @@ Nếu bạn đang viết một số hàm "helper" và mã sử dụng chúng, c�
 
 1. Khai báo các hàm *ở trên* mã sử dụng chúng:
 
-    ```js
-    // *!*khai báo hàm*/!*
+```js
+    // khai báo hàm
     function createElement() {
       ...
     }
@@ -242,20 +242,20 @@ Nếu bạn đang viết một số hàm "helper" và mã sử dụng chúng, c�
       ...
     }
 
-    // *!*mã sử dụng chúng*/!*
+    // mã sử dụng chúng
     let elem = createElement();
     setHandler(elem);
     walkAround();
     ```
 2. Code trước, sau đó viết hàm
 
-    ```js
-    // *!*mã sử dụng các chức năng*/!*
+```js
+    // mã sử dụng các chức năng
     let elem = createElement();
     setHandler(elem);
     walkAround();
 
-    // --- *!*hàm trợ giúp*/!* ---
+    // --- hàm trợ giúp ---
     function createElement() {
       ...
     }
@@ -284,7 +284,7 @@ Tất nhiên, một nhóm luôn có thể viết hướng dẫn phong cách củ
 
 Một số lựa chọn phổ biến:
 
-- [Hướng dẫn về phong cách JavaScript của Google](https://google.github.io/styleguide/jsguide.html)
+- [Hướng dẫn về phong cách JavaScript của Google](#)
 - [Hướng dẫn về phong cách JavaScript của Airbnb](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
@@ -334,7 +334,7 @@ Chẳng hạn, đối với ESLint, bạn nên làm như sau:
 
 Ở đây, lệnh `"extends"` có nghĩa là cấu hình này dựa trên bộ cài đặt "eslint:recommended". Sau đó, chúng ta có thể thay đổi theo cách của mình.
 
-Cũng có thể tải xuống các bộ quy tắc kiểu từ web và và thay đổi chúng. Xem <http://eslint.org/docs/user-guide/getting-started> để biết thêm chi tiết về cài đặt.
+Cũng có thể tải xuống các bộ quy tắc kiểu từ web và và thay đổi chúng. Xem &lt;http://eslint.org/docs/user-guide/getting-started&gt; để biết thêm chi tiết về cài đặt.
 
 Ngoài ra, một số IDE nhất định có linting tích hợp, thuận tiện nhưng không thể tùy chỉnh như ESLint.
 

@@ -24,25 +24,25 @@ Sau khi tạo, chúng ta có thể lưu thông tin vào biến bằng toán tử
 ```js
 let message;
 
-*!*
+
 message = 'Hello'; // lưu chuỗi
-*/!*
+
 ```
 
 Chuỗi trên giờ được lưu vào vùng nhớ tướng ứng với biến. Chúng ta có thể truy cập vùng nhớ này bằng cách sử dụng tên biến.
 
-```js run
+```js
 let message;
 message = 'Hello!';
 
-*!*
+
 alert(message); // hiển thị nội dung của biến
-*/!*
+
 ```
 
 Để ngắn gọn, chúng ta có thể kết hợp khai báo đồng thời gán giá trị cho biến trong một dòng:
 
-```js run
+```js
 let message = 'Hello!'; // định nghĩa biến và gán giá trị
 
 alert(message); // Hello!
@@ -50,7 +50,7 @@ alert(message); // Hello!
 
 Chúng ta có thể khai báo nhiều biến trên một dòng:
 
-```js no-beautify
+```js
 let user = 'John', age = 25, message = 'Hello';
 ```
 
@@ -65,7 +65,7 @@ let message = 'Hello';
 ```
 
 Một vài người định nghĩa nhiều biến theo cách đặc biệt:
-```js no-beautify
+```js
 let user = 'John',
   age = 25,
   message = 'Hello';
@@ -73,7 +73,7 @@ let user = 'John',
 
 ...Hoặc đặt dấu phảy đằng trước:
 
-```js no-beautify
+```js
 let user = 'John'
   , age = 25
   , message = 'Hello';
@@ -81,11 +81,11 @@ let user = 'John'
 
 Tất cả các cách trên đều hợp lệ, chọn cách nào là do sở thích của bạn.
 
-:::info `var` thay vì `let`
+
 Trong các mã chương trình cũ, bạn sẽ bắt gặp từ khóa `var` thay vì `let`:
 
 ```js
-*!*var*/!* message = 'Hello';
+var message = 'Hello';
 :::
 
 Từ khóa `var` *hầu như* giống hệt `let`. Nó cũng khai báo biến, nhưng có chút khác biệt, bởi nó làm việc theo cách cũ.
@@ -104,7 +104,7 @@ Ví dụ, biến `message` có thể xem như một hộp gắn nhãn `"message"
 Ta có thể đặt bất cứ giá trị nào trong hộp:
 
 Ta cũng có thể thay thế giá trị trong hộp nếu muốn:
-```js run
+```js
 let message;
 
 message = 'Hello!';
@@ -120,27 +120,27 @@ Khi thay đổi giá trị, giá trị cũ bị loại bỏ, giá trị mới th
 
 Chúng ta có thể khai báo hai biến và sao chép dữ liệu từ biến này sang biến kia.
 
-```js run
+```js
 let hello = 'Hello world!';
 
 let message;
 
-*!*
+
 // sao chép 'Hello world' từ hello sang message
 message = hello;
-*/!*
+
 
 // giờ hai biến chứa dữ liệu giống nhau
 alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
 
-:::warning Khai báo hai lần sẽ gây ra lỗi
+
 Một biến chỉ nên được khai báo một lần.
 
 Sự khai báo lặp lại cùng một biến là một lỗi:
 
-```js run
+```js
 let message = "This";
 
 // lặp lại 'let' dẫn đến một lỗi
@@ -149,13 +149,13 @@ let message = "That"; // SyntaxError: 'message' đã được khai báo rồi
 Vì thế, chúng ta nên khai báo mỗi biến một lần và tham chiếu đến nó mà không có `let`.
 ````
 
-:::info Ngôn ngữ lập trình hàm
+
 Cần chú ý rằng chúng ta cũng có các ngôn ngữ [lập trình hàm](https://vi.wikipedia.org/wiki/L%E1%BA%ADp_tr%C3%ACnh_h%C3%A0m), như [Scala](http://www.scala-lang.org/) hay [Erlang](http://www.erlang.org/) không cho phép thay đổi giá trị biến.
 
 Trong các ngôn ngữ này, một khi giá trị đã nằm trong "hộp", nó ở đó mãi mãi. Nếu cần lưu giá trị khác, chúng ta cần tạo ra "hộp" mới (khai báo một biến mới). Ta không thể tái sử dụng một biến đã có.
 
 Dù có vẻ kỳ lạ, chúng khá hiệu quả khi phát triển ứng dụng. Hơn nữa, có một số lĩnh vực, như tính toán song song, những hạn chế này lại trở thành ưu điểm. Nghiên cứu những ngôn ngữ này (dù không có kế hoạch sử dụng) vẫn được khuyến khích vì nó mở mang đầu óc của bạn.
-:::
+
 
 ## Đặt tên biến [#variable-naming]
 
@@ -177,7 +177,7 @@ Khi tên biến chứa nhiều từ, cách viết [camelCase](https://en.wikiped
 
 Các tên sau hợp lệ:
 
-```js run untrusted
+```js
 let $ = 1; // khai báo biến có tên "$"
 let _ = 2; // và biến có tên "_"
 
@@ -186,17 +186,17 @@ alert($ + _); // 3
 
 Ví dụ về các biến không hợp lệ:
 
-```js no-beautify
+```js
 let 1a; // không được bắt đầu là chữ số
 
 let my-name; // dấu gạch ngang '-' không được phép sử dụng
 ```
 
-:::info JavaScript phân biệt chữ hoa và chữ thường
-Các biến có tên `apple` và `AppLE` khác nhau.
-:::
 
-:::info Các kí tự không phải chữ cái Lating được phép dùng, nhưng không được khuyến khích
+Các biến có tên `apple` và `AppLE` khác nhau.
+
+
+
 Có thể sử dụng chữ cái trong bất cứ ngôn ngữ nào để đặt tên biến, ví dụ:
 
 ```js
@@ -207,24 +207,24 @@ let 我 = '...';
 Toàn bộ những tên biến như vậy hợp lệ, nhưng có một quy tắc được áp dụng rộng rãi là chỉ sử dụng các chữ cái trong bảng chữ cái tiếng Anh làm tên biến. Quy tắc này đảm bảo mọi người từ nhiều quốc gia có thể hiểu được.
 ````
 
-:::warning Các từ khóa
+
 Có một [danh sách các từ khóa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), được sử dụng bởi chính JavaScript và không cho phép dùng làm tên biến.
 
 Ví dụ: `let`, `class`, `return`, và `function` là các từ khóa.
 
 Mã dưới dưới đây tạo ra một lỗi cú pháp:
 
-```js run no-beautify
+```js
 let let = 5; // lỗi, không thể đặt tên biến là từ khóa "let"!
 let return = 5; // cũng không thể đặt tên biến là từ khóa "return"!
 :::
 ````
 
-:::warning Lệnh gán khi không dùng `use strict`
+
 
 Thông thường, chúng ta cần khai báo biến trước khi sử dụng. Nhưng ngày trước, có thể tạo ra một biến chỉ bằng cách gán giá trị cho nó mà không cần sử dụng `let`. Hiện nay cách này vẫn làm việc nếu ta không sử dụng `use strict`.
 
-```js run no-strict
+```js
 // chú ý: không dùng "use strict" trong ví dụ này
 
 num = 5; // biến "num" được tạo ra nếu chưa có
@@ -237,9 +237,9 @@ alert(num); // 5
 ```js
 "use strict";
 
-*!*
+
 num = 5; // lỗi: num chưa định nghĩa
-*/!*
+
 ```
 ````
 
@@ -253,7 +253,7 @@ const myBirthday = '18.04.1982';
 
 Biến khai báo bằng từ khóa `const` được gọi hà "hằng" (constant). Chúng không thể bị gán lại. Nếu cố tình làm thế sẽ dẫn tới một lỗi:
 
-```js run
+```js
 const myBirthday = '18.04.1982';
 
 myBirthday = '01.01.2001'; // lỗi, không thể gán lại một hằng!
@@ -270,7 +270,7 @@ Các hằng này được đặt tên bằng chữ viết hoa và ngăn cách c�
 
 Ví dụ, tạo hẳng đặt tên các mã màu:
 
-```js run
+```js
 const COLOR_RED = "#F00";
 const COLOR_GREEN = "#0F0";
 const COLOR_BLUE = "#00F";
@@ -321,7 +321,7 @@ Hãy dành thời gian suy nghĩ về việc đặt tên biến trước khi kha
 
 Nghe có vẻ đơn giản? Đúng là như vậy thật! Nhưng tạo ra các tên biến vừa ngắn gọn vừa mô tả tốt thì không đơn giản chút nào.
 
-:::info Tái sử dụng hay tạo mới?
+
 Và lưu ý cuối cùng. Có vài lập trình viên lười, thay vì tạo biến mới thường cố dùng lại các biến cũ.
 
 Kết quả, các biến của họ giống như những chiếc hộp mà mọi người ném đủ thứ vào mà không thay đổi nhãn. Vậy nên không ai biết trong hộp hiện tại chứa cái gì. Muốn biết lại cần đến gần và kiểm tra.
@@ -331,14 +331,14 @@ Những lập trình viên này tiết kiệm được chút ít thời gian t�
 Thêm một biến là tốt chứ không xấu.
 
 Bởi các minifier và trình duyệt hiện đại sẽ tối ưu được việc có nhiều biến trong chương trình, và hiệu năng chương trình không bị ảnh hưởng nhiều. Sử dụng các biến khác nhau cho những giá trị khác nhau thậm chí còn giúp JavaScript engine tối ưu mã của bạn.
-:::
+
 
 ## Tóm tắt
 
 Chúng ta có thể tạo ra các biến để lưu dữ liệu bằng cách sử dụng các từ khóa `var`, `let`, hoặc `const`.
 
 - `let` -- là cách khai báo hiện đại.
-- `var` -- là cách khai báo cũ. Thường chúng ta không còn dùng nó nữa, nhưng ta cũng sẽ chỉ ra chút khác biệt của nó so với `let` ở bài <info:var>, nếu bạn cần biết.
+- `var` -- là cách khai báo cũ. Thường chúng ta không còn dùng nó nữa, nhưng ta cũng sẽ chỉ ra chút khác biệt của nó so với `let` ở bài &lt;info:var&gt;, nếu bạn cần biết.
 - `const` -- giống như `let`, nhưng giá trị của biến không thay đổi được.
 
 Các biến nên được đặt tên sao cho dễ hiểu được dữ liệu bên trong nó.

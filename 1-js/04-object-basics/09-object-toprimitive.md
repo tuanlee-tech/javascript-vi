@@ -5,10 +5,10 @@ What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or p
 
 In that case, objects are auto-converted to primitives, and then the operation is carried out.
 
-In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
+In the chapter &lt;info:type-conversions&gt; we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
 
 1. All objects are `true` in a boolean context. There are only numeric and string conversions.
-2. The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
+2. The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter &lt;info:date&gt;) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
 3. As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
 
 ## ToPrimitive
@@ -20,7 +20,7 @@ There are three variants of type conversion, so-called "hints", described in the
 `"string"`
 : For an object-to-string conversion, when we're doing an operation on an object that expects a string, like `alert`:
 
-    ```js
+```js
     // output
     alert(obj);
 
@@ -31,7 +31,7 @@ There are three variants of type conversion, so-called "hints", described in the
 `"number"`
 : For an object-to-number conversion, like when we're doing maths:
 
-    ```js
+```js
     // explicit conversion
     let num = Number(obj);
 
@@ -50,7 +50,7 @@ There are three variants of type conversion, so-called "hints", described in the
 
     Also, if an object is compared using `==` with a string, number or a symbol, it's also unclear which conversion should be done, so the `"default"` hint is used.
 
-    ```js
+```js
     // binary plus uses the "default" hint
     let total = obj1 + obj2;
 
@@ -62,11 +62,11 @@ There are three variants of type conversion, so-called "hints", described in the
 
     In practice though, we don't need to remember these peculiar details, because all built-in objects except for one case (`Date` object, we'll learn it later) implement `"default"` conversion the same way as `"number"`. And we can do the same.
 
-:::info No `\boolean\"` hint"
+
 Please note -- there are only three hints. It's that simple.
 
 There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
-:::
+
 
 **To do the conversion, JavaScript tries to find and call three object methods:**
 
@@ -89,7 +89,7 @@ obj[Symbol.toPrimitive] = function(hint) {
 
 For instance, here `user` object implements it:
 
-```js run
+```js
 let user = {
   name: "John",
   money: 1000,
@@ -127,7 +127,7 @@ By default, a plain object has following `toString` and `valueOf` methods:
 
 Here's the demo:
 
-```js run
+```js
 let user = {name: "John"};
 
 alert(user); // [object Object]
@@ -142,7 +142,7 @@ Let's implement these methods.
 
 For instance, here `user` does the same as above using a combination of `toString` and `valueOf` instead of `Symbol.toPrimitive`:
 
-```js run
+```js
 let user = {
   name: "John",
   money: 1000,
@@ -168,7 +168,7 @@ As we can see, the behavior is the same as the previous example with `Symbol.toP
 
 Often we want a single "catch-all" place to handle all primitive conversions. In this case, we can implement `toString` only, like this:
 
-```js run
+```js
 let user = {
   name: "John",
 
@@ -191,11 +191,11 @@ There is no control whether `toString` returns exactly a string, or whether `Sym
 
 The only mandatory thing: these methods must return a primitive, not an object.
 
-:::info Historical notes
+
 For historical reasons, if `toString` or `valueOf` returns an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
 
 In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
-:::
+
 
 ## Further conversions
 
@@ -207,7 +207,7 @@ If we pass an object as an argument, then there are two stages:
 
 For instance:
 
-```js run
+```js
 let obj = {
   // toString handles all conversions in the absence of other methods
   toString() {
@@ -223,7 +223,7 @@ alert(obj * 2); // 4, object converted to primitive "2", then multiplication mad
 
 Binary plus will concatenate strings in the same situation, as it gladly accepts a string:
 
-```js run
+```js
 let obj = {
   toString() {
     return "2";

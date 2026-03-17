@@ -9,7 +9,7 @@ window.open('https://javascript.info/')
 
 ...And it will open a new window with given URL. Most modern browsers are configured to open url in new tabs instead of separate windows.
 
-Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: we can load content dynamically with [fetch](info:fetch) and show it in a dynamically generated `<div>`. So, popups is not something we use everyday.
+Popups exist from really ancient times. The initial idea was to show another content without closing the main window. As of now, there are other ways to do that: we can load content dynamically with [fetch](#) and show it in a dynamically generated `<div>`. So, popups is not something we use everyday.
 
 Also, popups are tricky on mobile devices, that don't show multiple windows simultaneously.
 
@@ -42,7 +42,7 @@ What if the popup opens from `onclick`, but after `setTimeout`? That's a bit tri
 
 Try this code:
 
-```js run
+```js
 // open after 3 seconds
 setTimeout(() => window.open('http://google.com'), 3000);
 ```
@@ -51,7 +51,7 @@ The popup opens in Chrome, but gets blocked in Firefox.
 
 ...If we decrease the delay, the popup works in Firefox too:
 
-```js run
+```js
 // open after 1 seconds
 setTimeout(() => window.open('http://google.com'), 1000);
 ```
@@ -91,7 +91,7 @@ There is also a number of less supported browser-specific features, which are us
 
 Let's open a window with minimal set of features, just to see which of them browser allows to disable:
 
-```js run
+```js
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
 width=0,height=0,left=-1000,top=-1000`;
 
@@ -102,7 +102,7 @@ Here most "window features" are disabled and window is positioned offscreen. Run
 
 Let's add normal positioning options and reasonable `width`, `height`, `left`, `top` coordinates:
 
-```js run
+```js
 let params = `scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,
 width=600,height=300,left=100,top=100`;
 
@@ -132,7 +132,7 @@ newWin.document.write("Hello, world!");
 
 And here we modify the contents after loading:
 
-```js run
+```js
 let newWindow = open('/', 'example', 'width=300,height=300')
 newWindow.focus();
 
@@ -140,19 +140,19 @@ alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
 
 newWindow.onload = function() {
   let html = `<div style="font-size:30px">Welcome!</div>`;
-*!*
+
   newWindow.document.body.insertAdjacentHTML('afterbegin', html);
-*/!*
+
 };
 ```
 
 Please note: immediately after `window.open`, the new window isn't loaded yet. That's demonstrated by `alert` in line `(*)`. So we wait for `onload` to modify it. We could also use `DOMContentLoaded` handler for `newWin.document`.
 
-:::warning Same origin policy
+
 Windows may freely access content of each other only if they come from the same origin (the same protocol://domain:port).
 
-Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail.com`, that's impossible for user safety reasons. For the details, see chapter <info:cross-window-communication>.
-:::
+Otherwise, e.g. if the main window is from `site.com`, and the popup from `gmail.com`, that's impossible for user safety reasons. For the details, see chapter &lt;info:cross-window-communication&gt;.
+
 
 ## Accessing window from popup
 
@@ -160,7 +160,7 @@ A popup may access the "opener" window as well using `window.opener` reference. 
 
 If you run the code below, it replaces the opener (current) window content with "Test":
 
-```js run
+```js
 let newWin = window.open("about:blank", "hello", "width=200,height=200");
 
 newWin.document.write(
@@ -182,7 +182,7 @@ The `closed` property is `true` if the window is closed. That's useful to check 
 
 This code loads and then closes the window:
 
-```js run
+```js
 let newWindow = open('/', 'example', 'width=300,height=300');
 
 newWindow.onload = function() {
@@ -210,19 +210,19 @@ There are methods to move/resize a window:
 
 There's also `window.onresize` event.
 
-:::warning Only popups
-To prevent abuse, the browser usually blocks these methods. They only work reliably on popups that we opened, that have no additional tabs.
-:::
 
-:::warning No minification/maximization
+To prevent abuse, the browser usually blocks these methods. They only work reliably on popups that we opened, that have no additional tabs.
+
+
+
 JavaScript has no way to minify or maximize a window. These OS-level functions are hidden from Frontend-developers.
 
 Move/resize methods do not work for maximized/minimized windows.
-:::
+
 
 ## Scrolling a window
 
-We already talked about scrolling a window in the chapter <info:size-and-scroll-window>.
+We already talked about scrolling a window in the chapter &lt;info:size-and-scroll-window&gt;.
 
 `win.scrollBy(x,y)`
 : Scroll the window `x` pixels right and `y` down relative the current scroll. Negative values are allowed.
@@ -243,7 +243,7 @@ Although, in practice they are severely limited, because in the past evil pages 
 
 For instance, look at this code:
 
-```js run
+```js
 window.onblur = () => window.focus();
 ```
 
@@ -270,7 +270,7 @@ If we're going to open a popup, a good practice is to inform the user about it. 
 - Browsers block `open` calls from the code outside of user actions. Usually a notification appears, so that a user may allow them.
 - Browsers open a new tab by default, but if sizes are provided, then it'll be a popup window.
 - The popup may access the opener window using the `window.opener` property.
-- The main window and the popup can freely read and modify each other if they have the same origin. Otherwise, they can change location of each other and [exchange messages](info:cross-window-communication).
+- The main window and the popup can freely read and modify each other if they have the same origin. Otherwise, they can change location of each other and [exchange messages](#).
 
 To close the popup: use `close()` call. Also the user may close them (just like any other windows). The `window.closed` is `true` after that.
 

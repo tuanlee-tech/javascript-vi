@@ -10,7 +10,7 @@ For the start, let's explore the "digit" class. It's written as `pattern:\d` and
 
 For instance, let's find the first digit in the phone number:
 
-```js run
+```js
 let str = "+7(903)-123-45-67";
 
 let regexp = /\d/;
@@ -22,7 +22,7 @@ Without the flag `pattern:g`, the regular expression only looks for the first ma
 
 Let's add the `pattern:g` flag to find all digits:
 
-```js run
+```js
 let str = "+7(903)-123-45-67";
 
 let regexp = /\d/g;
@@ -52,7 +52,7 @@ For instance, `pattern:\d\s\w` means a "digit" followed by a "space character" f
 
 For instance, `pattern:CSS\d` matches a string `match:CSS` with a digit after it:
 
-```js run
+```js
 let str = "Is there CSS4?";
 let regexp = /CSS\d/
 
@@ -61,7 +61,7 @@ alert( str.match(regexp) ); // CSS4
 
 Also we can use many character classes:
 
-```js run
+```js
 alert( "I love HTML5!".match(/\s\w\w\w\w\d/) ); // ' HTML5'
 ```
 
@@ -86,7 +86,7 @@ The "inverse" means that it matches all other characters, for instance:
 
 In the beginning of the chapter we saw how to make a number-only phone number from a string like `subject:+7(903)-123-45-67`: find all digits and join them.
 
-```js run
+```js
 let str = "+7(903)-123-45-67";
 
 alert( str.match(/\d/g).join('') ); // 79031234567
@@ -94,7 +94,7 @@ alert( str.match(/\d/g).join('') ); // 79031234567
 
 An alternative, shorter way is to find non-digits `pattern:\D` and remove them from the string:
 
-```js run
+```js
 let str = "+7(903)-123-45-67";
 
 alert( str.replace(/\D/g, "") ); // 79031234567
@@ -106,13 +106,13 @@ A dot `pattern:.` is a special character class that matches "any character excep
 
 For instance:
 
-```js run
+```js
 alert( "Z".match(/./) ); // Z
 ```
 
 Or in the middle of a regexp:
 
-```js run
+```js
 let regexp = /CS.4/;
 
 alert( "CSS4".match(regexp) ); // CSS4
@@ -122,7 +122,7 @@ alert( "CS 4".match(regexp) ); // CS 4 (space is also a character)
 
 Please note that a dot means "any character", but not the "absence of a character". There must be a character to match it:
 
-```js run
+```js
 alert( "CS4".match(/CS.4/) ); // null, no match because there's no character for the dot
 ```
 
@@ -132,7 +132,7 @@ By default, a dot doesn't match the newline character `\n`.
 
 For instance, the regexp `pattern:A.B` matches `match:A`, and then `match:B` with any character between them, except a newline `\n`:
 
-```js run
+```js
 alert( "A\nB".match(/A.B/) ); // null (no match)
 ```
 
@@ -140,16 +140,16 @@ There are many situations when we'd like a dot to mean literally "any character"
 
 That's what flag `pattern:s` does. If a regexp has it, then a dot `pattern:.` matches literally any character:
 
-```js run
+```js
 alert( "A\nB".match(/A.B/s) ); // A\nB (match!)
 ```
 
-:::warning Not supported in IE
+
 The `pattern:s` flag is not supported in IE.
 
-Luckily, there's an alternative, that works everywhere. We can use a regexp like `pattern:[\s\S]` to match "any character" (this pattern will be covered in the article <info:regexp-character-sets-and-ranges>).
+Luckily, there's an alternative, that works everywhere. We can use a regexp like `pattern:[\s\S]` to match "any character" (this pattern will be covered in the article &lt;info:regexp-character-sets-and-ranges&gt;).
 
-```js run
+```js
 alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
 :::
 
@@ -158,20 +158,20 @@ The pattern `pattern:[\s\S]` literally says: "a space character OR not a space c
 Also we can use this trick if we want both kind of "dots" in the same pattern: the actual dot `pattern:.` behaving the regular way ("not including a newline"), and also a way to match "any character" with `pattern:[\s\S]` or alike.
 ````
 
-:::warning Pay attention to spaces
+
 Usually we pay little attention to spaces. For us strings `subject:1-5` and `subject:1 - 5` are nearly identical.
 
 But if a regexp doesn't take spaces into account, it may fail to work.
 
 Let's try to find digits separated by a hyphen:
 
-```js run
+```js
 alert( "1 - 5".match(/\d-\d/) ); // null, no match!
 :::
 
 Let's fix it adding spaces into the regexp `pattern:\d - \d`:
 
-```js run
+```js
 alert( "1 - 5".match(/\d - \d/) ); // 1 - 5, now it works
 // or we can use \s class:
 alert( "1 - 5".match(/\d\s-\s\d/) ); // 1 - 5, also works

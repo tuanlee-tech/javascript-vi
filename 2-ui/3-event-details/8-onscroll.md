@@ -8,13 +8,13 @@ For instance:
 
 Here's a small function to show the current scroll:
 
-```js autorun
+```js
 window.addEventListener('scroll', function() {
   document.getElementById('showScroll').innerHTML = window.pageYOffset + 'px';
 });
 ```
 
-```online
+```text
 In action:
 
 Current scroll = <b id="showScroll">scroll the window</b>

@@ -33,7 +33,7 @@ Then handlers react on it as if it were a regular browser event. If the event wa
 
 In the example below the `click` event is initiated in JavaScript. The handler works same way as if the button was clicked:
 
-```html run no-beautify
+```html
 <button id="elem" onclick="alert('Click!');">Autoclick</button>
 
 <script>
@@ -42,11 +42,11 @@ In the example below the `click` event is initiated in JavaScript. The handler w
 </script>
 ```
 
-:::info event.isTrusted
+
 There is a way to tell a "real" user event from a script-generated one.
 
 The property `event.isTrusted` is `true` for events that come from real user actions and `false` for script-generated events.
-:::
+
 
 ## Bubbling example
 
@@ -54,7 +54,7 @@ We can create a bubbling event with the name `"hello"` and catch it on `document
 
 All we need is to set `bubbles` to `true`:
 
-```html run no-beautify
+```html
 <h1 id="elem">Hello from the script!</h1>
 
 <script>
@@ -97,7 +97,7 @@ The right constructor allows to specify standard properties for that type of eve
 
 Like `clientX/clientY` for a mouse event:
 
-```js run
+```js
 let event = new MouseEvent("click", {
   bubbles: true,
   cancelable: true,
@@ -105,16 +105,16 @@ let event = new MouseEvent("click", {
   clientY: 100
 });
 
-*!*
+
 alert(event.clientX); // 100
-*/!*
+
 ```
 
 Please note: the generic `Event` constructor does not allow that.
 
 Let's try:
 
-```js run
+```js
 let event = new Event("click", {
   bubbles: true, // only bubbles and cancelable
   cancelable: true, // work in the Event constructor
@@ -122,9 +122,9 @@ let event = new Event("click", {
   clientY: 100
 });
 
-*!*
+
 alert(event.clientX); // undefined, the unknown property is ignored!
-*/!*
+
 ```
 
 Technically, we can work around that by assigning directly `event.clientX=100` after creation. So that's a matter of convenience and following the rules. Browser-generated events always have the right type.
@@ -139,19 +139,19 @@ In the second argument (object) we can add an additional property `detail` for a
 
 For instance:
 
-```html run refresh
+```html
 <h1 id="elem">Hello for John!</h1>
 
 <script>
   // additional details come with the event to the handler
   elem.addEventListener("hello", function(event) {
-    alert(*!*event.detail.name*/!*);
+    alert(event.detail.name);
   });
 
   elem.dispatchEvent(new CustomEvent("hello", {
-*!*
+
     detail: { name: "John" }
-*/!*
+
   }));
 </script>
 ```
@@ -176,7 +176,7 @@ Below you can see a `#rabbit` and `hide()` function that dispatches `"hide"` eve
 
 Any handler can listen for that event with `rabbit.addEventListener('hide',...)` and, if needed, cancel the action using `event.preventDefault()`. Then the rabbit won't disappear:
 
-```html run refresh autorun
+```html
 <pre id="rabbit">
   |\   /|
    \|_|/
@@ -219,7 +219,7 @@ For instance, in the code below the `menu-open` event is triggered during the `o
 It's processed immediately, without waiting for `onclick` handler to end:
 
 
-```html run autorun
+```html
 <button id="menu">Menu (click me)</button>
 
 <script>
@@ -248,7 +248,7 @@ Let's say we don't like it. We'd want `onclick` to be fully processed first, ind
 
 Then we can either put the `dispatchEvent` (or another event-triggering call) at the end of `onclick` or, maybe better, wrap it in the zero-delay `setTimeout`:
 
-```html run
+```html
 <button id="menu">Menu (click me)</button>
 
 <script>

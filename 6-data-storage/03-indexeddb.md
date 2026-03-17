@@ -14,15 +14,15 @@ IndexedDB is a database that is built into browser, much more powerful than `loc
 
 That power is usually excessive for traditional client-server apps. IndexedDB is intended for offline apps, to be combined with ServiceWorkers and other technologies.
 
-The native interface to IndexedDB, described in the specification <https://www.w3.org/TR/IndexedDB>, is event-based.
+The native interface to IndexedDB, described in the specification &lt;https://www.w3.org/TR/IndexedDB&gt;, is event-based.
 
-We can also use `async/await` with the help of a promise-based wrapper, like <https://github.com/jakearchibald/idb>. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and then, after we gain an understanding of IndexedDb, we'll use the wrapper.
+We can also use `async/await` with the help of a promise-based wrapper, like &lt;https://github.com/jakearchibald/idb&gt;. That's pretty convenient, but the wrapper is not perfect, it can't replace events for all cases. So we'll start with events, and then, after we gain an understanding of IndexedDb, we'll use the wrapper.
 
-:::info Where's the data?
+
 Technically, the data is usually stored in the visitor's home directory, along with browser settings, extensions, etc.
 
 Different browsers and OS-level users have each their own independant storage.
-:::
+
 
 ## Open database
 
@@ -57,7 +57,7 @@ Let's say we published the first version of our app.
 Then we can open the database with version `1` and perform the initialization in an `upgradeneeded` handler like this:
 
 ```js
-let openRequest = indexedDB.open("store", *!*1*/!*);
+let openRequest = indexedDB.open("store", 1);
 
 openRequest.onupgradeneeded = function() {
   // triggers if the client had no database
@@ -79,7 +79,7 @@ Then, later, we publish the 2nd version.
 We can open it with version `2` and perform the upgrade like this:
 
 ```js
-let openRequest = indexedDB.open("store", *!*2*/!*);
+let openRequest = indexedDB.open("store", 2);
 
 openRequest.onupgradeneeded = function(event) {
   // the existing database version is less than 2 (or it doesn't exist)
@@ -106,13 +106,13 @@ let deleteRequest = indexedDB.deleteDatabase(name)
 // deleteRequest.onsuccess/onerror tracks the result
 ```
 
-:::warning We can't open an older version of the database
+
 If the current user database has a higher version than in the `open` call, e.g. the existing DB version is `3`, and we try to `open(...2)`, then that's an error, `openRequest.onerror` triggers.
 
 That's rare, but such a thing may happen when a visitor loads outdated JavaScript code, e.g. from a proxy cache. So the code is old, but his database is new.
 
 To protect from errors, we should check `db.version` and suggest a page reload. Use proper HTTP caching headers to avoid loading the old code, so that you'll never have such problems.
-:::
+
 
 ### Parallel update problem
 
@@ -142,24 +142,24 @@ openRequest.onerror = ...;
 openRequest.onsuccess = function() {
   let db = openRequest.result;
 
-  *!*
+  
   db.onversionchange = function() {
     db.close();
     alert("Database is outdated, please reload the page.")
   };
-  */!*
+  
 
   // ...the db is ready, use it...
 };
 
-*!*
+
 openRequest.onblocked = function() {
   // this event shouldn't trigger if we handle onversionchange correctly
 
   // it means that there's another open connection to same database
   // and it wasn't closed after db.onversionchange triggered for it
 };
-*/!*
+
 ```
 
 ...In other words, here we do two things:
@@ -278,11 +278,11 @@ db.transaction(store[, type]);
 
 There's also `versionchange` transaction type: such transactions can do everything, but we can't create them manually. IndexedDB automatically creates a `versionchange` transaction when opening the database, for `updateneeded` handler. That's why it's a single place where we can update the database structure, create/remove object stores.
 
-:::info Why are there different types of transactions?
+
 Performance is the reason why transactions need to be labeled either `readonly` and `readwrite`.
 
 Many `readonly` transactions are able to access the same store concurrently, but `readwrite` transactions can't. A `readwrite` transaction "locks" the store for writing. The next transaction must wait before the previous one finishes before accessing the same store.
-:::
+
 
 After the transaction is created, we can add an item to the store, like this:
 
@@ -290,9 +290,9 @@ After the transaction is created, we can add an item to the store, like this:
 let transaction = db.transaction("books", "readwrite"); // (1)
 
 // get an object store to operate on it
-*!*
+
 let books = transaction.objectStore("books"); // (2)
-*/!*
+
 
 let book = {
   id: 'js',
@@ -300,9 +300,9 @@ let book = {
   created: new Date()
 };
 
-*!*
+
 let request = books.add(book); // (3)
-*/!*
+
 
 request.onsuccess = function() { // (4)
   console.log("Book added to the store", request.result);
@@ -341,7 +341,7 @@ The short answer is: we don't.
 
 In the next version 3.0 of the specification, there will probably be a manual way to finish the transaction, but right now in 2.0 there isn't.
 
-**When all transaction requests are finished, and the [microtasks queue](info:microtask-queue) is empty, it is committed automatically.**
+**When all transaction requests are finished, and the [microtasks queue](#) is empty, it is committed automatically.**
 
 Usually, we can assume that a transaction commits when all its requests are complete, and the current code finishes.
 
@@ -356,9 +356,9 @@ let request1 = books.add(book);
 
 request1.onsuccess = function() {
   fetch('/').then(response => {
-*!*
+
     let request2 = books.add(anotherBook); // (*)
-*/!*
+
     request2.onerror = function() {
       console.log(request2.error.name); // TransactionInactiveError
     };
@@ -526,11 +526,11 @@ books.getAll()
 books.getAllKeys(IDBKeyRange.lowerBound('js', true))
 ```
 
-:::info Object store is always sorted
+
 An object store sorts values by key internally.
 
 So requests that return many values always return them in sorted by key order.
-:::
+
 
 ### By a field using an index
 
@@ -560,9 +560,9 @@ First, we need to create an index. It must be done in `upgradeneeded`, just like
 openRequest.onupgradeneeded = function() {
   // we must create the index here, in versionchange transaction
   let books = db.createObjectStore('books', {keyPath: 'id'});
-*!*
+
   let index = books.createIndex('price_idx', 'price');
-*/!*
+
 };
 ```
 
@@ -585,9 +585,9 @@ let transaction = db.transaction("books"); // readonly
 let books = transaction.objectStore("books");
 let priceIndex = books.index("price_idx");
 
-*!*
+
 let request = priceIndex.getAll(10);
-*/!*
+
 
 request.onsuccess = function() {
   if (request.result !== undefined) {
@@ -723,7 +723,7 @@ request.onsuccess = function() {
 
 Adding `onsuccess/onerror` to every request is quite a cumbersome task. Sometimes we can make our life easier by using event delegation, e.g. set handlers on the whole transactions, but `async/await` is much more convenient.
 
-Let's use a thin promise wrapper <https://github.com/jakearchibald/idb> further in this chapter. It creates a global `idb` object with [promisified](info:promisify) IndexedDB methods.
+Let's use a thin promise wrapper &lt;https://github.com/jakearchibald/idb&gt; further in this chapter. It creates a global `idb` object with [promisified](#) IndexedDB methods.
 
 Then, instead of `onsuccess/onerror` we can write like this:
 
@@ -800,7 +800,7 @@ The workaround is same as when working with native IndexedDB: either make a new 
 
 Internally, the wrapper performs a native IndexedDB request, adding `onerror/onsuccess` to it, and returns a promise that rejects/resolves with the result.
 
-That works fine most of the time. The examples are at the lib page <https://github.com/jakearchibald/idb>.
+That works fine most of the time. The examples are at the lib page &lt;https://github.com/jakearchibald/idb&gt;.
 
 In few rare cases, when we need the original `request` object, we can access it as `promise.request` property of the promise:
 

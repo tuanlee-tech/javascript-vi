@@ -19,7 +19,7 @@ There are two ways to tell the browser we don't want it to act:
 
 In this HTML a click on a link doesn't lead to navigation, browser doesn't do anything:
 
-```html autorun height=60 no-beautify
+```html
 <a href="/" onclick="return false">Click here</a>
 or
 <a href="/" onclick="event.preventDefault()">here</a>
@@ -27,13 +27,13 @@ or
 
 In the next example we'll use this technique to create a JavaScript-powered menu.
 
-:::warning Returning `false` from a handler is an exception
+
 The value returned by an event handler is usually ignored.
 
 The only exception is `return false` from a handler assigned using `on<event>`.
 
 In all other cases, `return` value is ignored. In particular, there's no sense in returning `true`.
-:::
+
 
 ### Example: the menu
 
@@ -67,9 +67,9 @@ menu.onclick = function(event) {
   let href = event.target.getAttribute('href');
   alert( href ); // ...can be loading from the server, UI generation etc
 
-*!*
+
   return false; // prevent browser action (don't go to the URL)
-*/!*
+
 };
 ```
 
@@ -77,16 +77,16 @@ If we omit `return false`, then after our code executes the browser will do its 
 
 By the way, using event delegation here makes our menu very flexible. We can add nested lists and style them using CSS to "slide down".
 
-:::info Follow-up events
+
 Certain events flow one into another. If we prevent the first event, there will be no second.
 
 For instance, `mousedown` on an `<input>` field leads to focusing in it, and the `focus` event. If we prevent the `mousedown` event, there's no focus.
 
 Try to click on the first `<input>` below -- the `focus` event happens. But if you click the second one, there's no focus.
 
-```html run autorun
+```html
 <input value="Focus works" onfocus="this.value=''">
-<input *!*onmousedown="return false"*/!* onfocus="this.value=''" value="Click me">
+<input onmousedown="return false" onfocus="this.value=''" value="Click me">
 :::
 
 That's because the browser action is canceled on `mousedown`. The focusing is still possible if we use another way to enter the input. For instance, the `key:Tab` key to switch from the 1st input into the 2nd. But not with the mouse click any more.
@@ -113,7 +113,7 @@ The property `event.defaultPrevented` is `true` if the default action was preven
 
 There's an interesting use case for it.
 
-You remember in the chapter <info:bubbling-and-capturing> we talked about `event.stopPropagation()` and why stopping bubbling is bad?
+You remember in the chapter &lt;info:bubbling-and-capturing&gt; we talked about `event.stopPropagation()` and why stopping bubbling is bad?
 
 Sometimes we can use `event.defaultPrevented` instead, to signal other event handlers that the event was handled.
 
@@ -121,10 +121,10 @@ Let's see a practical example.
 
 By default the browser on `contextmenu` event (right mouse click) shows a context menu with standard options. We can prevent it and show our own, like this:
 
-```html autorun height=50 no-beautify run
+```html
 <button>Right-click shows browser context menu</button>
 
-<button *!*oncontextmenu="alert('Draw our menu'); return false"*/!*>
+<button oncontextmenu="alert('Draw our menu'); return false">
   Right-click shows our context menu
 </button>
 ```
@@ -133,7 +133,7 @@ Now, in addition to that context menu we'd like to implement document-wide conte
 
 Upon right click, the closest context menu should show up.
 
-```html autorun height=80 no-beautify run
+```html
 <p>Right-click here for the document context menu</p>
 <button id="elem">Right-click here for the button context menu</button>
 
@@ -154,16 +154,16 @@ The problem is that when we click on `elem`, we get two menus: the button-level 
 
 How to fix it? One of solutions is to think like: "When we handle right-click in the button handler, let's stop its bubbling" and use `event.stopPropagation()`:
 
-```html autorun height=80 no-beautify run
+```html
 <p>Right-click for the document menu</p>
 <button id="elem">Right-click for the button menu (fixed with event.stopPropagation)</button>
 
 <script>
   elem.oncontextmenu = function(event) {
     event.preventDefault();
-*!*
+
     event.stopPropagation();
-*/!*
+
     alert("Button context menu");
   };
 
@@ -179,7 +179,7 @@ Now the button-level menu works as intended. But the price is high. We forever d
 An alternative solution would be to check in the `document` handler if the default action was prevented? If it is so, then the event was handled, and we don't need to react on it.
 
 
-```html autorun height=80 no-beautify run
+```html
 <p>Right-click for the document menu (added a check for event.defaultPrevented)</p>
 <button id="elem">Right-click for the button menu</button>
 
@@ -190,9 +190,9 @@ An alternative solution would be to check in the `document` handler if the defau
   };
 
   document.oncontextmenu = function(event) {
-*!*
+
     if (event.defaultPrevented) return;
-*/!*
+
 
     event.preventDefault();
     alert("Document context menu");
@@ -202,17 +202,17 @@ An alternative solution would be to check in the `document` handler if the defau
 
 Now everything also works correctly. If we have nested elements, and each of them has a context menu of its own, that would also work. Just make sure to check for `event.defaultPrevented` in each `contextmenu` handler.
 
-:::info event.stopPropagation() and event.preventDefault()
-As we can clearly see, `event.stopPropagation()` and `event.preventDefault()` (also known as `return false`) are two different things. They are not related to each other.
-:::
 
-:::info Nested context menus architecture
+As we can clearly see, `event.stopPropagation()` and `event.preventDefault()` (also known as `return false`) are two different things. They are not related to each other.
+
+
+
 There are also alternative ways to implement nested context menus. One of them is to have a single global object with a handler for `document.oncontextmenu`, and also methods that allow us to store other handlers in it.
 
 The object will catch any right-click, look through stored handlers and run the appropriate one.
 
 But then each piece of code that wants a context menu should know about that object and use its help instead of the own `contextmenu` handler.
-:::
+
 
 ## Summary
 
@@ -233,7 +233,7 @@ The `passive: true` option of `addEventListener` tells the browser that the acti
 
 If the default action was prevented, the value of `event.defaultPrevented` becomes `true`, otherwise it's `false`.
 
-:::warning Stay semantic, don't abuse
+
 Technically, by preventing default actions and adding JavaScript we can customize the behavior of any elements. For instance, we can make a link `<a>` work like a button, and a button `<button>` behave as a link (redirect to another URL or so).
 
 But we should generally keep the semantic meaning of HTML elements. For instance, `<a>` should perform navigation, not a button.
@@ -241,4 +241,4 @@ But we should generally keep the semantic meaning of HTML elements. For instance
 Besides being "just a good thing", that makes your HTML better in terms of accessibility.
 
 Also if we consider the example with `<a>`, then please note: a browser allows us to open such links in a new window (by right-clicking them and other means). And people like that. But if we make a button behave as a link using JavaScript and even look like a link using CSS, then `<a>`-specific browser features still won't work for it.
-:::
+

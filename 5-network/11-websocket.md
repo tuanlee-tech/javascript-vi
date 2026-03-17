@@ -9,18 +9,18 @@ WebSocket is especially great for services that require continuous data exchange
 To open a websocket connection, we need to create `new WebSocket` using the special protocol `ws` in the url:
 
 ```js
-let socket = new WebSocket("*!*ws*/!*://javascript.info");
+let socket = new WebSocket("ws://javascript.info");
 ```
 
 There's also encrypted `wss://` protocol. It's like HTTPS for websockets.
 
-:::info Always prefer `wss://`
+
 The `wss://` protocol is not only encrypted, but also more reliable.
 
 That's because `ws://` data is not encrypted, visible for any intermediary. Old proxy servers do not know about WebSocket, they may see "strange" headers and abort the connection.
 
 On the other hand, `wss://` is WebSocket over TLS, (same as HTTPS is HTTP over TLS), the transport security layer encrypts the data at sender and decrypts at the receiver. So data packets are passed encrypted through proxies. They can't see what's inside and let them through.
-:::
+
 
 Once the socket is created, we should listen to events on it. There are totally 4 events:
 - **`open`** -- connection established,
@@ -32,7 +32,7 @@ Once the socket is created, we should listen to events on it. There are totally 
 
 Here's an example:
 
-```js run
+```js
 let socket = new WebSocket("wss://javascript.info/article/websocket/demo/hello");
 
 socket.onopen = function(e) {
@@ -94,9 +94,9 @@ Sec-WebSocket-Version: 13
 - `Sec-WebSocket-Key` -- a random browser-generated key for security.
 - `Sec-WebSocket-Version` -- WebSocket protocol version, 13 is the current one.
 
-:::info WebSocket handshake can't be emulated
+
 We can't use `XMLHttpRequest` or `fetch` to make this kind of HTTP-request, because JavaScript is not allowed to set these headers.
-:::
+
 
 If the server agrees to switch to WebSocket, it should send code 101 response:
 
@@ -123,7 +123,7 @@ For instance:
 
     This optional header is set using the second parameter of `new WebSocket`. That's the array of subprotocols, e.g. if we'd like to use SOAP or WAMP:
 
-    ```js
+```js
     let socket = new WebSocket("wss://javascript.info/chat", ["soap", "wamp"]);
     ```
 
@@ -139,10 +139,10 @@ Connection: Upgrade
 Origin: https://javascript.info
 Sec-WebSocket-Key: Iv8io/9s+lYFgZWcXczP8Q==
 Sec-WebSocket-Version: 13
-*!*
+
 Sec-WebSocket-Extensions: deflate-frame
 Sec-WebSocket-Protocol: soap, wamp
-*/!*
+
 ```
 
 Response:
@@ -152,10 +152,10 @@ Response:
 Upgrade: websocket
 Connection: Upgrade
 Sec-WebSocket-Accept: hsBlbuDTkk24srzEOTBUlZAlC2g=
-*!*
+
 Sec-WebSocket-Extensions: deflate-frame
 Sec-WebSocket-Protocol: soap
-*/!*
+
 ```
 
 Here the server responds that it supports the extension "deflate-frame", and only SOAP of the requested subprotocols.
@@ -179,7 +179,7 @@ A call `socket.send(body)` allows `body` in string or a binary format, including
 
 That's set by `socket.binaryType` property, it's `"blob"` by default, so binary data comes as `Blob` objects.
 
-[Blob](info:blob) is a high-level binary object, it directly integrates with `<a>`, `<img>` and other tags, so that's a sane default. But for binary processing, to access individual data bytes, we can change it to `"arraybuffer"`:
+[Blob](#) is a high-level binary object, it directly integrates with `<a>`, `<img>` and other tags, so that's a sane default. But for binary processing, to access individual data bytes, we can change it to `"arraybuffer"`:
 
 ```js
 socket.binaryType = "arraybuffer";
@@ -273,7 +273,7 @@ To get connection state, additionally there's `socket.readyState` property with 
 
 ## Chat example
 
-Let's review a chat example using browser WebSocket API and Node.js WebSocket module <https://github.com/websockets/ws>. We'll pay the main attention to the client side, but the server is also simple.
+Let's review a chat example using browser WebSocket API and Node.js WebSocket module &lt;https://github.com/websockets/ws&gt;. We'll pay the main attention to the client side, but the server is also simple.
 
 HTML: we need a `<form>` to send messages and a `<div>` for incoming messages:
 

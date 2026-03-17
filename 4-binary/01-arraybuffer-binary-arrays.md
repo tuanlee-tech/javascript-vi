@@ -12,19 +12,19 @@ Binary data in JavaScript is implemented in a non-standard way, compared to othe
 **The basic binary object is `ArrayBuffer` -- a reference to a fixed-length contiguous memory area.**
 
 We create it like this:
-```js run
+```js
 let buffer = new ArrayBuffer(16); // create a buffer of length 16
 alert(buffer.byteLength); // 16
 ```
 
 This allocates a contiguous memory area of 16 bytes and pre-fills it with zeroes.
 
-:::warning `ArrayBuffer` is not an array of something
+
 Let's eliminate a possible source of confusion. `ArrayBuffer` has nothing in common with `Array`:
 - It has a fixed length, we can't increase or decrease it.
 - It takes exactly that much space in the memory.
 - To access individual bytes, another "view" object is needed, not `buffer[index]`.
-:::
+
 
 `ArrayBuffer` is a memory area. What's stored in it? It has no clue. Just a raw sequence of bytes.
 
@@ -47,14 +47,14 @@ So, the binary data in an `ArrayBuffer` of 16 bytes can be interpreted as 16 "ti
 
 But if we're going to write into it, or iterate over it, basically for almost any operation – we must use a view, e.g:
 
-```js run
+```js
 let buffer = new ArrayBuffer(16); // create a buffer of length 16
 
-*!*
+
 let view = new Uint32Array(buffer); // treat buffer as a sequence of 32-bit integers
 
 alert(Uint32Array.BYTES_PER_ELEMENT); // 4 bytes per integer
-*/!*
+
 
 alert(view.length); // 4, it stores that many integers
 alert(view.byteLength); // 16, the size in bytes
@@ -98,25 +98,25 @@ new TypedArray();
 2. If an `Array`, or any array-like object is given, it creates a typed array of the same length and copies the content.
 
     We can use it to pre-fill the array with the data:
-    ```js run
-    *!*
+```js
+    
     let arr = new Uint8Array([0, 1, 2, 3]);
-    */!*
+    
     alert( arr.length ); // 4, created binary array of the same length
     alert( arr[1] ); // 1, filled with 4 bytes (unsigned 8-bit integers) with given values
     ```
 3. If another `TypedArray` is supplied, it does the same: creates a typed array of the same length and copies values. Values are converted to the new type in the process, if needed.
-    ```js run
+```js
     let arr16 = new Uint16Array([1, 1000]);
-    *!*
+    
     let arr8 = new Uint8Array(arr16);
-    */!*
+    
     alert( arr8[0] ); // 1
     alert( arr8[1] ); // 232, tried to copy 1000, but can't fit 1000 into 8 bits (explanations below)
     ```
 
 4. For a numeric argument `length` -- creates the typed array to contain that many elements. Its byte length will be `length` multiplied by the number of bytes in a single item `TypedArray.BYTES_PER_ELEMENT`:
-    ```js run
+```js
     let arr = new Uint16Array(4); // create typed array for 4 integers
     alert( Uint16Array.BYTES_PER_ELEMENT ); // 2 bytes per integer
     alert( arr.byteLength ); // 8 (size in bytes)
@@ -146,11 +146,11 @@ Here's the list of typed arrays:
 - `Int8Array`, `Int16Array`, `Int32Array` -- for signed integer numbers (can be negative).
 - `Float32Array`, `Float64Array` -- for signed floating-point numbers of 32 and 64 bits.
 
-:::warning No `int8` or similar single-valued types
+
 Please note, despite of the names like `Int8Array`, there's no single-value type like `int`, or `int8` in JavaScript.
 
 That's logical, as `Int8Array` is not an array of these individual values, but rather a view on `ArrayBuffer`.
-:::
+
 
 ### Out-of-bounds behavior
 
@@ -172,7 +172,7 @@ In other words, the number modulo 2<sup>8</sup> is saved.
 
 Here's the demo:
 
-```js run
+```js
 let uint8array = new Uint8Array(16);
 
 let num = 256;
@@ -226,7 +226,7 @@ new DataView(buffer, [byteOffset], [byteLength])
 
 For instance, here we extract numbers in different formats from the same buffer:
 
-```js run
+```js
 // binary array of 4 bytes, all have the maximal value 255
 let buffer = new Uint8Array([255, 255, 255, 255]).buffer;
 

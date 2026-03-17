@@ -18,7 +18,7 @@ Thuộc tính `[[Prototype]]` là thuộc tính nội bộ và bị ẩn đi, nh
 
 Một trong số đó là sử dụng tên đặc biệt `__proto__`, như sau:
 
-```js run
+```js
 let animal = {
   eats: true
 };
@@ -26,9 +26,9 @@ let rabbit = {
   jumps: true
 };
 
-*!*
+
 rabbit.__proto__ = animal;
-*/!*
+
 ```
 
 Bây giờ nếu chúng ta đọc một thuộc tính từ `rabbit`, và nó bị thiếu, JavaScript sẽ tự động lấy nó từ `animal`.
@@ -43,14 +43,14 @@ let rabbit = {
   jumps: true
 };
 
-*!*
+
 rabbit.__proto__ = animal; // (*)
-*/!*
+
 
 // bây giờ chúng ta có thể tìm thấy cả hai thuộc tính trong rabbit
-*!*
+
 alert( rabbit.eats ); // true (**)
-*/!*
+
 alert( rabbit.jumps ); // true
 ```
 
@@ -66,14 +66,14 @@ Vậy nên nếu `animal` có nhiều thuộc tính và phương thức, thì ch
 
 Nếu chúng ta có một phương thức trong `animal`, thì nó có thể gọi từ `rabbit`:
 
-```js run
+```js
 let animal = {
   eats: true,
-*!*
+
   walk() {
     alert("Con vật bước đi");
   }
-*/!*
+
 };
 
 let rabbit = {
@@ -82,9 +82,9 @@ let rabbit = {
 };
 
 // walk được lấy từ nguyên mẫu
-*!*
+
 rabbit.walk(); // Con vật bước đi
-*/!*
+
 ```
 
 Phương thức được tự động lấy từ nguyên mẫu như sau:
@@ -93,7 +93,7 @@ Phương thức được tự động lấy từ nguyên mẫu như sau:
 
 Chuỗi nguyên mẫu có thể dài hơn:
 
-```js run
+```js
 let animal = {
   eats: true,
   walk() {
@@ -103,16 +103,16 @@ let animal = {
 
 let rabbit = {
   jumps: true,
-*!*
+
   __proto__: animal
-*/!*
+
 };
 
 let longEar = {
   earLength: 10,
-*!*
+
   __proto__: rabbit
-*/!*
+
 };
 
 // walk được lấy từ chuỗi nguyên mẫu
@@ -131,7 +131,7 @@ Chỉ có hai hạn chế:
 
 Ngoài ra, nó có thể là hiển nhiên, nhưng vẫn phải nói: chỉ có thể có duy nhất một `[[Prototype]]`. Một đối tượng không được kế thừa từ hai đối tượng khác.
 
-:::info `__proto__` là một bộ getter/setter lịch sử cho `[[Prototype]]`
+
 Đó là một sai lầm phổ biến của các nhà phát triển ít kinh nghiệm khi không biết sự khác biệt giữa hai điều này.
 
 Xin lưu ý rằng `__proto__` *không đồng nhất* với thuộc tính nội bộ `[[Prototype]]`. Nó là một bộ getter/setter cho `[[Prototype]]`. Bây giờ chúng ta chỉ cần ghi nhớ điều đó, sau này chúng ta sẽ gặp các tình huống mà điều đó là quan trọng.
@@ -141,7 +141,7 @@ Thuộc tính `__proto__` hơi lỗi thời một chút. Nó tồn tại vì cá
 Theo đặc tả, `__proto__` chỉ được hỗ trợ bởi các trình duyệt. Mặc dầu vậy trên thực tế, tất cả các môi trường bao gồm cả phía server cũng hỗ trợ `__proto__`, vì vậy chúng ta khá an toàn khi sử dụng nó.
 
 Vì về mặt trực quan, ký hiệu `__proto__` trông rõ ràng hơn một chút nên chúng ta sử dụng nó trong các ví dụ.
-:::
+
 
 ## Hành động ghi dữ liệu không sử dụng nguyên mẫu
 
@@ -151,7 +151,7 @@ Các hoạt động ghi/xóa thực hiện trực tiếp trên đối tượng.
 
 Trong ví dụ dưới đây, chúng ta gán phương thức riêng `walk` cho `rabbit`:
 
-```js run
+```js
 let animal = {
   eats: true,
   walk() {
@@ -163,11 +163,11 @@ let rabbit = {
   __proto__: animal
 };
 
-*!*
+
 rabbit.walk = function() {
   alert("Rabbit! Bounce-bounce!");
 };
-*/!*
+
 
 rabbit.walk(); // Rabbit! Bounce-bounce!
 ```
@@ -180,7 +180,7 @@ Các thuộc tính truy cập là một ngoại lệ, vì phép gán được x�
 
 Vì lý do đó, `admin.fullName` hoạt động chính xác trong mã bên dưới:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith",
@@ -226,7 +226,7 @@ Ví dụ, ở đây `animal` đại diện cho một "kho lưu trữ phương th
 
 Lời gọi `rabbit.sleep()` thiết lập `this.isSleeping` trên đối tượng `rabbit`:
 
-```js run
+```js
 // animal có các phương thức
 let animal = {
   walk() {
@@ -265,7 +265,7 @@ Vòng lặp `for..in` liệt kê cả các thuộc tính được kế thừa.
 
 Ví dụ:
 
-```js run
+```js
 let animal = {
   eats: true
 };
@@ -275,22 +275,22 @@ let rabbit = {
   __proto__: animal
 };
 
-*!*
+
 // Object.keys chỉ trả về các khóa của riêng nó
 alert(Object.keys(rabbit)); // jumps
-*/!*
 
-*!*
+
+
 // vòng lặp for..in liệt kê cả khóa riêng và khóa được kế thừa
 for(let prop in rabbit) alert(prop); // jumps, rồi eats
-*/!*
+
 ```
 
 Nếu đó không phải là những gì chúng ta muốn, và chúng ta muốn loại trừ các thuộc tính được kế thừa, có một phương thức có sẵn [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): nó trả về `true` nếu `obj` có một thuộc tính riêng (không phải được kế thừa) tên là `key`.
 
 Nên chúng ta có thể loại bỏ các thuộc tính được kế thừa (hoặc làm gì đó với chúng):
 
-```js run
+```js
 let animal = {
   eats: true
 };
@@ -321,11 +321,11 @@ Lưu ý, có một điều thú vị. Phương thức `rabbit.hasOwnProperty` đ
 
 Câu trả lời thật đơn giản: nó là thuộc tính không liệt kê. Cũng giống như mọi thuộc tính khác của `Object.prototype`, nó có cờ `enumerable:false`. Và `for..in` chỉ liệt kê các thuộc tính liệt kê được. Đó là lý do tại sao nó và các thuộc tính còn lại của `Object.prototype` không được liệt kê.
 
-:::info Hầu hết tất cả các phương thức lấy ra khóa/giá-trị khác đều bỏ qua các thuộc tính kế thừa
+
 Hầu hết tất cả các phương thức lấy ra khóa/giá-trị khác, như là `Object.keys`, `Object.values` v.v. đều bỏ qua các thuộc tính kế thừa.
 
 Chúng chỉ hoạt động trên chính đối tượng. Các thuộc tính từ nguyên mẫu *không* được tính đến.
-:::
+
 
 ## Tóm tắt
 

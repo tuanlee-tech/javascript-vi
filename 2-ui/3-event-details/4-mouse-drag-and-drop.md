@@ -59,7 +59,7 @@ ball.onmousedown = function(event) {
 
 If we run the code, we can notice something strange. On the beginning of the drag'n'drop, the ball "forks": we start dragging its "clone".
 
-```online
+```text
 Here's an example in action:
 
 [iframe src="ball" height=230]
@@ -79,7 +79,7 @@ ball.ondragstart = function() {
 
 Now everything will be all right.
 
-```online
+```text
 In action:
 
 [iframe src="ball2" height=230]
@@ -114,7 +114,7 @@ Let's update our algorithm:
 
     To get these shifts we can substract the coordinates:
 
-    ```js
+```js
     // onmousedown
     let shiftX = event.clientX - ball.getBoundingClientRect().left;
     let shiftY = event.clientY - ball.getBoundingClientRect().top;
@@ -122,11 +122,11 @@ Let's update our algorithm:
 
 2. Then while dragging we position the ball on the same shift relative to the pointer, like this:
 
-    ```js
+```js
     // onmousemove
     // ball has position:absolute
-    ball.style.left = event.pageX - *!*shiftX*/!* + 'px';
-    ball.style.top = event.pageY - *!*shiftY*/!* + 'px';
+    ball.style.left = event.pageX - shiftX + 'px';
+    ball.style.top = event.pageY - shiftY + 'px';
     ```
 
 The final code with better positioning:
@@ -134,10 +134,10 @@ The final code with better positioning:
 ```js
 ball.onmousedown = function(event) {
 
-*!*
+
   let shiftX = event.clientX - ball.getBoundingClientRect().left;
   let shiftY = event.clientY - ball.getBoundingClientRect().top;
-*/!*
+
 
   ball.style.position = 'absolute';
   ball.style.zIndex = 1000;
@@ -148,8 +148,8 @@ ball.onmousedown = function(event) {
   // moves the ball at (pageX, pageY) coordinates
   // taking initial shifts into account
   function moveAt(pageX, pageY) {
-    ball.style.left = pageX - *!*shiftX*/!* + 'px';
-    ball.style.top = pageY - *!*shiftY*/!* + 'px';
+    ball.style.left = pageX - shiftX + 'px';
+    ball.style.top = pageY - shiftY + 'px';
   }
 
   function onMouseMove(event) {
@@ -172,7 +172,7 @@ ball.ondragstart = function() {
 };
 ```
 
-```online
+```text
 In action (inside `<iframe>`):
 
 [iframe src="ball3" height=230]
@@ -200,7 +200,7 @@ The problem is that, while we're dragging, the draggable element is always above
 
 For instance, below are two `<div>` elements, red one on top of the blue one (fully covers). There's no way to catch an event on the blue one, because the red is on top:
 
-```html run autorun height=60
+```html
 <style>
   div {
     width: 50px;

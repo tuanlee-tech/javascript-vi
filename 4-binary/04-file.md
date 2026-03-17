@@ -23,7 +23,7 @@ As `File` inherits from `Blob`, `File` objects have the same properties, plus:
 
 That's how we can get a `File` object from `<input type="file">`:
 
-```html run
+```html
 <input type="file" onchange="showFile(this)">
 
 <script>
@@ -36,9 +36,9 @@ function showFile(input) {
 </script>
 ```
 
-:::info
+
 The input may select multiple files, so `input.files` is an array-like object with them. Here we have only one file, so we just take `input.files[0]`.
-:::
+
 
 ## FileReader
 
@@ -63,7 +63,7 @@ The choice of `read*` method depends on which format we prefer, how we're going 
 
 - `readAsArrayBuffer` -- for binary files, to do low-level binary operations. For high-level operations, like slicing, `File` inherits from `Blob`, so we can call them directly, without reading.
 - `readAsText` -- for text files, when we'd like to get a string.
-- `readAsDataURL` -- when we'd like to use this data in `src` for `img` or another tag. There's an alternative to reading a file for that, as discussed in chapter <info:blob>: `URL.createObjectURL(file)`.
+- `readAsDataURL` -- when we'd like to use this data in `src` for `img` or another tag. There's an alternative to reading a file for that, as discussed in chapter &lt;info:blob&gt;: `URL.createObjectURL(file)`.
 
 As the reading proceeds, there are events:
 - `loadstart` -- loading started.
@@ -81,7 +81,7 @@ The most widely used events are for sure `load` and `error`.
 
 Here's an example of reading a file:
 
-```html run
+```html
 <input type="file" onchange="readFile(this)">
 
 <script>
@@ -104,23 +104,23 @@ function readFile(input) {
 </script>
 ```
 
-:::info `FileReader` for blobs
-As mentioned in the chapter <info:blob>, `FileReader` can read not just files, but any blobs.
+
+As mentioned in the chapter &lt;info:blob&gt;, `FileReader` can read not just files, but any blobs.
 
 We can use it to convert a blob to another format:
 - `readAsArrayBuffer(blob)` -- to `ArrayBuffer`,
 - `readAsText(blob, [encoding])` -- to string (an alternative to `TextDecoder`),
 - `readAsDataURL(blob)` -- to base64 data url.
-:::
 
 
-:::info `FileReaderSync` is available inside Web Workers
+
+
 For Web Workers, there also exists a synchronous variant of `FileReader`, called [FileReaderSync](https://www.w3.org/TR/FileAPI/#FileReaderSync).
 
 Its reading methods `read*` do not generate events, but rather return a result, as regular functions do.
 
 That's only inside a Web Worker though, because delays in synchronous calls, that are possible while reading from files, in Web Workers are less important. They do not affect the page.
-:::
+
 
 ## Summary
 

@@ -2,7 +2,7 @@
 
 Phần này của hướng dẫn bàn về cốt lõi của JavaScript, về bản thân ngôn ngữ.
 
-Nhưng để chạy được JavaScript chúng ta cần một môi trường (enviroment), và bởi các hướng dẫn này được đưa lên webiste, môi trường trình duyệt (browser) là sự lựa chọn tốt hơn cả. Chúng ta phải sử dụng một số lệnh chỉ có trên môi trường trình duyệt (như `alert`) nhưng chúng không nhiều. Nếu bạn có kế hoạch học JavaScript để làm việc trên môi trường khác (như Node.js) bạn cũng sẽ không mất quá nhiều thời gian để học chúng. Ở [phần sau](/ui) của hướng dẫn này chúng ta sẽ tập trung vào cách sử dụng JavaScript trên trình duyệt.
+Nhưng để chạy được JavaScript chúng ta cần một môi trường (enviroment), và bởi các hướng dẫn này được đưa lên webiste, môi trường trình duyệt (browser) là sự lựa chọn tốt hơn cả. Chúng ta phải sử dụng một số lệnh chỉ có trên môi trường trình duyệt (như `alert`) nhưng chúng không nhiều. Nếu bạn có kế hoạch học JavaScript để làm việc trên môi trường khác (như Node.js) bạn cũng sẽ không mất quá nhiều thời gian để học chúng. Ở [phần sau](#) của hướng dẫn này chúng ta sẽ tập trung vào cách sử dụng JavaScript trên trình duyệt.
 
 Đầu tiên, chúng ta học cách làm sao để đưa một script (một đoạn mã JavaScript) vào một trang web. Trong môi trường máy chủ (như Node.js), bạn có thể đặt script này trong tệp `my.js` và chạy chỉ bằng một câu lệnh `"node my.js"`.
 
@@ -12,7 +12,7 @@ Các chương trình JavaScript có thể được chèn vào hầu như bất k
 
 Ví dụ:
 
-```html run height=100
+```html
 <!DOCTYPE HTML>
 <html>
 
@@ -20,11 +20,11 @@ Ví dụ:
 
   <p>Đoạn trước script...</p>
 
-*!*
+
   <script>
     alert( 'Chào thế giới!' );
   </script>
-*/!*
+
 
   <p>...Đoạn sau script.</p>
 
@@ -33,7 +33,7 @@ Ví dụ:
 </html>
 ```
 
-```online
+```text
 Bạn có thể chạy ví dụ trên bằng cách click vào nút "Play" ở góc trên bên phải.
 ```
 
@@ -43,16 +43,16 @@ Bạn có thể chạy ví dụ trên bằng cách click vào nút "Play" ở g�
 
 Thẻ `<script>` có vài thuộc tính ngày nay hiếm khi được sử dụng nhưng vẫn có thể gặp đâu đó trong các chương trình cũ:
 
-Thuộc tính `type`: <code>&lt;script <u>type</u>=...&gt;</code>
+Thuộc tính `type`: <code>&lt;script &lt;u&gt;type&lt;/u&gt;=...&gt;</code>
 : Chuẩn HTML4 cũ yêu cầu mỗi script phải có một `type`. Thường thì đó là `type="text/javascript"`. Hiện nay nó không còn cần thiết nữa. Ngoài ra, chuẩn HTML hiện đại đã thay đổi hoàn toàn ý nghĩa của thuộc tính này. Bây giờ, nó có thể được sử dụng cho các mô-đun JavaScript. Nhưng đó là một chủ đề nâng cao, chúng ta sẽ nói về các mô-đun trong một phần khác của hướng dẫn.
 
-Thuộc tính `language`: <code>&lt;script <u>language</u>=...&gt;</code>
+Thuộc tính `language`: <code>&lt;script &lt;u&gt;language&lt;/u&gt;=...&gt;</code>
 : Thuộc tính này cho biết script được viết bằng ngôn ngữ nào. Ngày nay JavaScript trở thành ngôn ngữ script mặc định, thuộc tính này không còn cần thiết nữa.
 
 Các chú thích trước và sau script.
 : Trong các sách và hướng dẫn rất cũ, bạn có thể gặp chú thích HTML bên trong thẻ `<script>` như thế này:
 
-    ```html no-beautify
+```html
     <script type="text/javascript"><!--
         ...
     //--></script>
@@ -86,7 +86,7 @@ Chúng ta có thể cho một URL đầy đủ. Ví dụ:
 …
 ```
 
-:::info
+
 Như một quy tắc, chỉ những script đơn giản nhất mới nên đặt trực tiếp trong tài liệu HTML. Những script phức tạp nên đặt trong các tệp riêng.
 
 Ưu điểm khi đặt script trong tệp riêng là trình duyệt sẽ tải chúng về và lưu lại trong [cache (bộ nhớ đệm)](https://vi.wikipedia.org/wiki/Cache_(tin_h%E1%BB%8Dc)) của nó.
@@ -94,15 +94,15 @@ Như một quy tắc, chỉ những script đơn giản nhất mới nên đặt
 Sau đó nếu có một trang khác cũng dùng script này, trình duyệt lấy nó từ bộ nhớ đệm mà không cần tải lại.
 
 Điều này giúp giảm thiểu băng thông và tăng tốc độ tải trang.
-:::
 
-:::warning Nếu `src` được dùng, nội dung của thẻ bị bỏ qua.
+
+
 Một thẻ `<script>` không thể vừa có thuộc tính `src` vừa có script bên trong.
 
 Sẽ không làm việc:
 
 ```html
-<script *!*src*/!*="file.js">
+<script src="file.js">
   alert(1); // script bị bỏ qua vì thuộc tính src được dùng
 </script>
 :::
@@ -112,17 +112,29 @@ Bạn buộc phải chọn hoặc sử dụng script ngoài `<script src="…">`
 Ví dụ trên có thể chia thành hai thẻ `<script>` để làm việc:
 
 ```html
+
+```html
 <script src="file.js"></script>
+```
+
+
+```html
 <script>
   alert(1);
 </script>
+```
+
 ```
 ````
 
 ## Tóm tắt
 
-- Chúng ta có thể sử dụng thẻ `<script>` để thêm mã JavaScript vào trang web.
+- Chúng ta có thể sử dụng thẻ `
+```html
+<script>` để thêm mã JavaScript vào trang web.
 - Thuộc tính `type` và `language` không cần sử dụng.
-- Một script đặt trong tệp ngoài được chèn vào trang web bằng `<script src="path/to/script.js"></script>`.
+- Một script đặt trong tệp ngoài được chèn vào trang web bằng `<script src="path/to/script.js"></script>
+```
+`.
 
 Còn nhiều điều để học về các script trong trình duyệt và cách nó tương tác với trang web. Nhưng hãy nhớ rằng trong phần này ta chỉ học về JavaScript, bạn không nên mất thời gian tìm hiểu cụ thể cách nó chạy trên trình duyệt. Chúng ta chỉ sử dụng trình duyệt như một cách để chạy JavaScript bởi nó rất thuận tiện cho việc học trực tuyến.

@@ -10,35 +10,35 @@ In the multiline mode they match not only at the beginning and the end of the st
 
 In the example below the text has multiple lines. The pattern `pattern:/^\d/gm` takes a digit from the beginning of each line:
 
-```js run
+```js
 let str = `1st place: Winnie
 2nd place: Piglet
 3rd place: Eeyore`;
 
-*!*
+
 alert( str.match(/^\d/gm) ); // 1, 2, 3
-*/!*
+
 ```
 
 Without the flag `pattern:m` only the first digit is matched:
 
-```js run
+```js
 let str = `1st place: Winnie
 2nd place: Piglet
 3rd place: Eeyore`;
 
-*!*
+
 alert( str.match(/^\d/g) ); // 1
-*/!*
+
 ```
 
 That's because by default a caret `pattern:^` only matches at the beginning of the text, and in the multiline mode -- at the start of any line.
 
-:::info
+
 "Start of a line" formally means "immediately after a line break": the test  `pattern:^` in multiline mode matches at all positions preceeded by a newline character `\n`.
 
 And at the text start.
-:::
+
 
 ## Searching at line end $
 
@@ -46,7 +46,7 @@ The dollar sign `pattern:$` behaves similarly.
 
 The regular expression `pattern:\d$` finds the last digit in every line
 
-```js run
+```js
 let str = `Winnie: 1
 Piglet: 2
 Eeyore: 3`;
@@ -56,11 +56,11 @@ alert( str.match(/\d$/gm) ); // 1,2,3
 
 Without the flag `pattern:m`, the dollar `pattern:$` would only match the end of the whole text, so only the very last digit would be found.
 
-:::info
+
 "End of a line" formally means "immediately before a line break": the test  `pattern:$` in multiline mode matches at all positions succeeded by a newline character `\n`.
 
 And at the text end.
-:::
+
 
 ## Searching for \n instead of ^ $
 
@@ -70,7 +70,7 @@ What's the difference? Let's see an example.
 
 Here we search for `pattern:\d\n` instead of `pattern:\d$`:
 
-```js run
+```js
 let str = `Winnie: 1
 Piglet: 2
 Eeyore: 3`;

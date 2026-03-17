@@ -19,7 +19,7 @@ How to delete an element from the array?
 
 The arrays are objects, so we can try to use `delete`:
 
-```js run
+```js
 let arr = ["I", "go", "home"];
 
 delete arr[1]; // remove "go"
@@ -50,12 +50,12 @@ This method is easy to grasp by examples.
 
 Let's start with the deletion:
 
-```js run
+```js
 let arr = ["I", "study", "JavaScript"];
 
-*!*
+
 arr.splice(1, 1); // from index 1 remove 1 element
-*/!*
+
 
 alert( arr ); // ["I", "JavaScript"]
 ```
@@ -64,19 +64,19 @@ Easy, right? Starting from the index `1` it removed `1` element.
 
 In the next example we remove 3 elements and replace them with the other two:
 
-```js run
-let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
+```js
+let arr = ["I", "study", "JavaScript", "right", "now"];
 
 // remove 3 first elements and replace them with another
 arr.splice(0, 3, "Let's", "dance");
 
-alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
+alert( arr ) // now ["Let's", "dance", "right", "now"]
 ```
 
 Here we can see that `splice` returns the array of removed elements:
 
-```js run
-let arr = [*!*"I", "study",*/!* "JavaScript", "right", "now"];
+```js
+let arr = ["I", "study", "JavaScript", "right", "now"];
 
 // remove 2 first elements
 let removed = arr.splice(0, 2);
@@ -86,7 +86,7 @@ alert( removed ); // "I", "study" <-- array of removed elements
 
 The `splice` method is also able to insert the elements without any removals. For that we need to set `deleteCount` to `0`:
 
-```js run
+```js
 let arr = ["I", "study", "JavaScript"];
 
 // from index 2
@@ -97,10 +97,10 @@ arr.splice(2, 0, "complex", "language");
 alert( arr ); // "I", "study", "complex", "language", "JavaScript"
 ```
 
-:::info Negative indexes allowed
+
 Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
 
-```js run
+```js
 let arr = [1, 2, 5];
 
 // from index -1 (one step from the end)
@@ -128,7 +128,7 @@ It's similar to a string method `str.slice`, but instead of substrings it makes 
 
 For instance:
 
-```js run
+```js
 let arr = ["t", "e", "s", "t"];
 
 alert( arr.slice(1, 3) ); // e,s (copy from 1 to 3)
@@ -156,7 +156,7 @@ If an argument `argN` is an array, then all its elements are copied. Otherwise, 
 
 For instance:
 
-```js run
+```js
 let arr = [1, 2];
 
 // create an array from: arr and [3,4]
@@ -171,7 +171,7 @@ alert( arr.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
 
 Normally, it only copies elements from arrays. Other objects, even if they look like arrays, are added as a whole:
 
-```js run
+```js
 let arr = [1, 2];
 
 let arrayLike = {
@@ -184,15 +184,15 @@ alert( arr.concat(arrayLike) ); // 1,2,[object Object]
 
 ...But if an array-like object has a special `Symbol.isConcatSpreadable` property, then it's treated as an array by `concat`: its elements are added instead:
 
-```js run
+```js
 let arr = [1, 2];
 
 let arrayLike = {
   0: "something",
   1: "else",
-*!*
+
   [Symbol.isConcatSpreadable]: true,
-*/!*
+
   length: 2
 };
 
@@ -212,14 +212,14 @@ arr.forEach(function(item, index, array) {
 
 For instance, this shows each element of the array:
 
-```js run
+```js
 // for each element call alert
 ["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
 ```
 
 And this code is more elaborate about their positions in the target array:
 
-```js run
+```js
 ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
   alert(`${item} is at index ${index} in ${array}`);
 });
@@ -242,7 +242,7 @@ The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/
 
 For instance:
 
-```js run
+```js
 let arr = [1, 0, false];
 
 alert( arr.indexOf(0) ); // 1
@@ -258,7 +258,7 @@ If we want to check for inclusion, and don't want to know the exact index, then 
 
 Also, a very minor difference of `includes` is that it correctly handles `NaN`, unlike `indexOf/lastIndexOf`:
 
-```js run
+```js
 const arr = [NaN];
 alert( arr.indexOf(NaN) ); // -1 (should be 0, but === equality doesn't work for NaN)
 alert( arr.includes(NaN) );// true (correct)
@@ -288,7 +288,7 @@ If it returns `true`, the search is stopped, the `item` is returned. If nothing 
 
 For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
 
-```js run
+```js
 let users = [
   {id: 1, name: "John"},
   {id: 2, name: "Pete"},
@@ -323,7 +323,7 @@ let results = arr.filter(function(item, index, array) {
 
 For instance:
 
-```js run
+```js
 let users = [
   {id: 1, name: "John"},
   {id: 2, name: "Pete"},
@@ -356,7 +356,7 @@ let result = arr.map(function(item, index, array) {
 
 For instance, here we transform each element into its length:
 
-```js run
+```js
 let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length);
 alert(lengths); // 5,7,6
 ```
@@ -369,13 +369,13 @@ It also returns the sorted array, but the returned value is usually ignored, as 
 
 For instance:
 
-```js run
+```js
 let arr = [ 1, 2, 15 ];
 
 // the method reorders the content of arr
 arr.sort();
 
-alert( arr );  // *!*1, 15, 2*/!*
+alert( arr );  // 1, 15, 2
 ```
 
 Did you notice anything strange in the outcome?
@@ -399,7 +399,7 @@ function compare(a, b) {
 
 For instance, to sort as numbers:
 
-```js run
+```js
 function compareNumeric(a, b) {
   if (a > b) return 1;
   if (a == b) return 0;
@@ -408,11 +408,11 @@ function compareNumeric(a, b) {
 
 let arr = [ 1, 2, 15 ];
 
-*!*
-arr.sort(compareNumeric);
-*/!*
 
-alert(arr);  // *!*1, 2, 15*/!*
+arr.sort(compareNumeric);
+
+
+alert(arr);  // 1, 2, 15
 ```
 
 Now it works as intended.
@@ -423,7 +423,7 @@ The `arr.sort(fn)` method implements a generic sorting algorithm. We don't need 
 
 By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
 
-```js run
+```js
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
   alert( a + " <> " + b );
   return a - b;
@@ -432,22 +432,22 @@ By the way, if we ever want to know which elements are compared -- nothing preve
 
 The algorithm may compare an element with multiple others in the process, but it tries to make as few comparisons as possible.
 
-:::info A comparison function may return any number
+
 Actually, a comparison function is only required to return a positive number to say "greater" and a negative number to say "less".
 
 That allows to write shorter functions:
 
-```js run
+```js
 let arr = [ 1, 2, 15 ];
 
 arr.sort(function(a, b) { return a - b; });
 
-alert(arr);  // *!*1, 2, 15*/!*
+alert(arr);  // 1, 2, 15
 :::
 ````
 
-:::info Arrow functions for the best
-Remember [arrow functions](info:arrow-functions-basics)? We can use them here for neater sorting:
+
+Remember [arrow functions](#)? We can use them here for neater sorting:
 
 ```js
 arr.sort( (a, b) => a - b );
@@ -456,14 +456,14 @@ arr.sort( (a, b) => a - b );
 This works exactly the same as the longer version above.
 ````
 
-:::info Use `localeCompare` for strings
-Remember [strings](info:string#correct-comparisons) comparison algorithm? It compares letters by their codes by default.
+
+Remember [strings](#) comparison algorithm? It compares letters by their codes by default.
 
 For many alphabets, it's better to use `str.localeCompare` method to correctly sort letters, such as `Ö`.
 
 For example, let's sort a few countries in German:
 
-```js run
+```js
 let countries = ['Österreich', 'Andorra', 'Vietnam'];
 
 alert( countries.sort( (a, b) => a > b ? 1 : -1) ); // Andorra, Vietnam, Österreich (wrong)
@@ -478,7 +478,7 @@ The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in
 
 For instance:
 
-```js run
+```js
 let arr = [1, 2, 3, 4, 5];
 arr.reverse();
 
@@ -495,7 +495,7 @@ The [str.split(delim)](mdn:js/String/split) method does exactly that. It splits 
 
 In the example below, we split by a comma followed by space:
 
-```js run
+```js
 let names = 'Bilbo, Gandalf, Nazgul';
 
 let arr = names.split(', ');
@@ -507,16 +507,16 @@ for (let name of arr) {
 
 The `split` method has an optional second numeric argument -- a limit on the array length. If it is provided, then the extra elements are ignored. In practice it is rarely used though:
 
-```js run
+```js
 let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
 
 alert(arr); // Bilbo, Gandalf
 ```
 
-:::info Split into letters
+
 The call to `split(s)` with an empty `s` would split the string into an array of letters:
 
-```js run
+```js
 let str = "test";
 
 alert( str.split('') ); // t,e,s,t
@@ -527,7 +527,7 @@ The call [arr.join(glue)](mdn:js/Array/join) does the reverse to `split`. It cre
 
 For instance:
 
-```js run
+```js
 let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
 
 let str = arr.join(';'); // glue the array into a string using ;
@@ -570,7 +570,7 @@ The easiest way to grasp that is by example.
 
 Here we get a sum of an array in one line:
 
-```js run
+```js
 let arr = [1, 2, 3, 4, 5];
 
 let result = arr.reduce((sum, current) => sum + current, 0);
@@ -604,7 +604,7 @@ Here we can clearly see how the result of the previous call becomes the first ar
 
 We also can omit the initial value:
 
-```js run
+```js
 let arr = [1, 2, 3, 4, 5];
 
 // removed initial value from reduce (no 0)
@@ -621,7 +621,7 @@ But such use requires an extreme care. If the array is empty, then `reduce` call
 
 Here's an example:
 
-```js run
+```js
 let arr = [];
 
 // Error: Reduce of empty array with no initial value
@@ -640,14 +640,14 @@ Arrays do not form a separate language type. They are based on objects.
 
 So `typeof` does not help to distinguish a plain object from an array:
 
-```js run
+```js
 alert(typeof {}); // object
 alert(typeof []); // same
 ```
 
 ...But arrays are used so often that there's a special method for that: [Array.isArray(value)](mdn:js/Array/isArray). It returns `true` if the `value` is an array, and `false` otherwise.
 
-```js run
+```js
 alert(Array.isArray({})); // false
 
 alert(Array.isArray([])); // true
@@ -673,7 +673,7 @@ The value of `thisArg` parameter becomes `this` for `func`.
 
 For example, here we use a method of `army` object as a filter, and `thisArg` passes the context:
 
-```js run
+```js
 let army = {
   minAge: 18,
   maxAge: 27,
@@ -689,10 +689,10 @@ let users = [
   {age: 30}
 ];
 
-*!*
+
 // find users, for who army.canJoin returns true
 let soldiers = users.filter(army.canJoin, army);
-*/!*
+
 
 alert(soldiers.length); // 2
 alert(soldiers[0].age); // 20
@@ -746,7 +746,7 @@ These methods are the most used ones, they cover 99% of use cases. But there are
   These methods behave sort of like `||` and `&&` operators: if `fn` returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest of items; if `fn` returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest of items as well.
 
   We can use `every` to compare arrays:
-  ```js run
+```js
   function arraysEqual(arr1, arr2) {
     return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
   }

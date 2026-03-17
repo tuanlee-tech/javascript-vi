@@ -18,21 +18,21 @@ Và trong các hàm như vậy, chúng ta thường không muốn rời khỏi b
 
 ## Các hàm mũi tên không có "this"
 
-Như chúng ta nhớ từ chương <info:object-method>, các hàm mũi tên không có `this`. Nếu `this` được truy cập, nó được lấy từ bên ngoài.
+Như chúng ta nhớ từ chương &lt;info:object-method&gt;, các hàm mũi tên không có `this`. Nếu `this` được truy cập, nó được lấy từ bên ngoài.
 
 Ví dụ, chúng ta có thể sử dụng nó để lặp bên trong một phương thức của đối tượng:
 
-```js run
+```js
 let group = {
   title: "Our Group",
   students: ["John", "Pete", "Alice"],
 
   showList() {
-*!*
+
     this.students.forEach(
       student => alert(this.title + ': ' + student)
     );
-*/!*
+
   }
 };
 
@@ -43,18 +43,18 @@ group.showList();
 
 Nếu chúng ta sử dụng một hàm "thông thường", sẽ xảy ra lỗi:
 
-```js run
+```js
 let group = {
   title: "Our Group",
   students: ["John", "Pete", "Alice"],
 
   showList() {
-*!*
+
     this.students.forEach(function(student) {
       // Lỗi: Không thể truy cập thuộc tính 'title' của undefined
       alert(this.title + ': ' + student);
     });
-*/!*
+
   }
 };
 
@@ -65,16 +65,16 @@ Lỗi xảy ra do `forEach` chạy các hàm với `this=undefined` theo mặc �
 
 Điều đó không ảnh hưởng đến các hàm mũi tên, bởi vì chúng không có `this`.
 
-:::warning Hãm mũi tên không thể chạy với `new`
-Không có `this` tất nhiên là nguyên nhân của một hạn chế khác: không thể sử dụng các hàm mũi tên làm hàm tạo. Chúng không thể được gọi với `new`.
-:::
 
-:::info Các hàm mũi tên so với bind
+Không có `this` tất nhiên là nguyên nhân của một hạn chế khác: không thể sử dụng các hàm mũi tên làm hàm tạo. Chúng không thể được gọi với `new`.
+
+
+
 Có một sự khác biệt nhỏ giữa hàm mũi tên `=>` và hàm thông thường được gọi bằng `.bind(this)`:
 
 - `.bind(this)` tạo một "phiên bản ràng buộc" của hàm.
 - Mũi tên `=>` không tạo bất kỳ ràng buộc nào. Đơn giản là hàm không có `this`. Việc tra cứu `this` được thực hiện giống hệt như tìm kiếm theo biến thông thường: trong môi trường từ vựng bên ngoài.
-:::
+
 
 ## Các hàm mũi tên không có "arguments"
 
@@ -84,7 +84,7 @@ Các hàm mũi tên cũng không có biến `arguments`.
 
 Ví dụ: `defer(f, ms)` nhận một hàm và trả về một hàm bao xung quanh nó làm trễ lời gọi `ms` mili giây:
 
-```js run
+```js
 function defer(f, ms) {
   return function() {
     setTimeout(() => f.apply(this, arguments), ms);
@@ -121,6 +121,6 @@ Các hàm mũi tên:
 - Không có `this`
 - Không có `arguments`
 - Không thể gọi bằng `new`
-- Chúng cũng không có `super`, nhưng chúng ta chưa học nó. Chúng ta sẽ học ở chương <info:class-inheritance>
+- Chúng cũng không có `super`, nhưng chúng ta chưa học nó. Chúng ta sẽ học ở chương &lt;info:class-inheritance&gt;
 
 Đó là bởi vì chúng dành cho các đoạn mã ngắn không có "ngữ cảnh" của riêng chúng, mà hoạt động trong bối cảnh hiện tại. Và chúng thực sự tỏa sáng trong trường hợp sử dụng đó.

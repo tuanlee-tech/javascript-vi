@@ -32,13 +32,13 @@ The main features of `localStorage` are:
 
 For instance, if you run this code...
 
-```js run
+```js
 localStorage.setItem('test', 1);
 ```
 
 ...And close/open the browser or just open the same page in a different window, then you can get it like this:
 
-```js run
+```js
 alert( localStorage.getItem('test') ); // 1
 ```
 
@@ -50,7 +50,7 @@ The `localStorage` is shared between all windows with the same origin, so if we 
 
 We can also use a plain object way of getting/setting keys, like this:
 
-```js run
+```js
 // set key
 localStorage.test = 2;
 
@@ -64,7 +64,7 @@ delete localStorage.test;
 That's allowed for historical reasons, and mostly works, but generally not recommended, because:
 
 1. If the key is user-generated, it can be anything, like `length` or `toString`, or another built-in method of `localStorage`. In that case `getItem/setItem` work fine, while object-like access fails:
-    ```js run
+```js
     let key = 'length';
     localStorage[key] = 5; // Error, can't assign length
     ```
@@ -79,7 +79,7 @@ Unfortunately, storage objects are not iterable.
 
 One way is to loop over them as over an array:
 
-```js run
+```js
 for(let i=0; i<localStorage.length; i++) {
   let key = localStorage.key(i);
   alert(`${key}: ${localStorage.getItem(key)}`);
@@ -90,7 +90,7 @@ Another way is to use `for key in localStorage` loop, just as we do with regular
 
 It iterates over keys, but also outputs few built-in fields that we don't need:
 
-```js run
+```js
 // bad try
 for(let key in localStorage) {
   alert(key); // shows getItem, setItem and other built-in stuff
@@ -99,7 +99,7 @@ for(let key in localStorage) {
 
 ...So we need either to filter fields from the prototype with `hasOwnProperty` check:
 
-```js run
+```js
 for(let key in localStorage) {
   if (!localStorage.hasOwnProperty(key)) {
     continue; // skip keys like "setItem", "getItem" etc
@@ -110,7 +110,7 @@ for(let key in localStorage) {
 
 ...Or just get the "own" keys with `Object.keys` and then loop over them if needed:
 
-```js run
+```js
 let keys = Object.keys(localStorage);
 for(let key of keys) {
   alert(`${key}: ${localStorage.getItem(key)}`);
@@ -126,14 +126,14 @@ Please note that both key and value must be strings.
 
 If were any other type, like a number, or an object, it gets converted to string automatically:
 
-```js run
+```js
 sessionStorage.user = {name: "John"};
 alert(sessionStorage.user); // [object Object]
 ```
 
 We can use `JSON` to store objects though:
 
-```js run
+```js
 sessionStorage.user = JSON.stringify({name: "John"});
 
 // sometime later
@@ -143,7 +143,7 @@ alert( user.name ); // John
 
 Also it is possible to stringify the whole storage object, e.g. for debugging purposes:
 
-```js run
+```js
 // added formatting options to JSON.stringify to make the object look nicer
 alert( JSON.stringify(localStorage, null, 2) );
 ```
@@ -164,13 +164,13 @@ Let's see that in action.
 
 Run this code...
 
-```js run
+```js
 sessionStorage.setItem('test', 1);
 ```
 
 ...Then refresh the page. Now you can still get the data:
 
-```js run
+```js
 alert( sessionStorage.getItem('test') ); // after refresh: 1
 ```
 
@@ -194,13 +194,13 @@ Let's elaborate.
 
 Imagine, you have two windows with the same site in each. So `localStorage` is shared between them.
 
-```online
+```text
 You might want to open this page in two browser windows to test the code below.
 ```
 
 If both windows are listening for `window.onstorage`, then each one will react on updates that happened in the other one.
 
-```js run
+```js
 // triggers on updates made to the same storage from other documents
 window.onstorage = event => { // same as window.addEventListener('storage', event => {
   if (event.key != 'now') return;

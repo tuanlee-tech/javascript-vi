@@ -22,7 +22,7 @@ Let's send a simple form first.
 
 As you can see, that's almost one-liner:
 
-```html run autorun
+```html
 <form id="formElem">
   <input type="text" name="name" value="John">
   <input type="text" name="surname" value="Smith">
@@ -35,9 +35,9 @@ As you can see, that's almost one-liner:
 
     let response = await fetch('/article/formdata/post/user', {
       method: 'POST',
-*!*
+
       body: new FormData(formElem)
-*/!*
+
     });
 
     let result = await response.json();
@@ -68,7 +68,7 @@ There's also method `set`, with the same syntax as `append`. The difference is t
 
 Also we can iterate over formData fields using `for..of` loop:
 
-```js run
+```js
 let formData = new FormData();
 formData.append('key1', 'value1');
 formData.append('key2', 'value2');
@@ -85,7 +85,7 @@ The form is always sent as `Content-Type: multipart/form-data`, this encoding al
 
 Here's an example with such form:
 
-```html run autorun
+```html
 <form id="formElem">
   <input type="text" name="firstName" value="John">
   Picture: <input type="file" name="picture" accept="image/*">
@@ -98,9 +98,9 @@ Here's an example with such form:
 
     let response = await fetch('/article/formdata/post/user-avatar', {
       method: 'POST',
-*!*
+
       body: new FormData(formElem)
-*/!*
+
     });
 
     let result = await response.json();
@@ -112,7 +112,7 @@ Here's an example with such form:
 
 ## Sending a form with Blob data
 
-As we've seen in the chapter <info:fetch>, it's easy to send dynamically generated binary data e.g. an image, as `Blob`. We can supply it directly as `fetch` parameter `body`.
+As we've seen in the chapter &lt;info:fetch&gt;, it's easy to send dynamically generated binary data e.g. an image, as `Blob`. We can supply it directly as `fetch` parameter `body`.
 
 In practice though, it's often convenient to send an image not separately, but as a part of the form, with additional fields, such as "name" and other metadata.
 
@@ -120,7 +120,7 @@ Also, servers are usually more suited to accept multipart-encoded forms, rather 
 
 This example submits an image from `<canvas>`, along with some other fields, as a form, using `FormData`:
 
-```html run autorun height="90"
+```html
 <body style="margin:0">
   <canvas id="canvasElem" width="100" height="80" style="border:1px solid"></canvas>
 
@@ -136,11 +136,11 @@ This example submits an image from `<canvas>`, along with some other fields, as 
     async function submit() {
       let imageBlob = await new Promise(resolve => canvasElem.toBlob(resolve, 'image/png'));
 
-*!*
+
       let formData = new FormData();
       formData.append("firstName", "John");
       formData.append("image", imageBlob, "image.png");
-*/!*    
+    
 
       let response = await fetch('/article/formdata/post/image-form', {
         method: 'POST',

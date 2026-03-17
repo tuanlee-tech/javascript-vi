@@ -26,14 +26,14 @@ The meaning of these code samples is the same: "create a function and put it int
 
 We can even print out that value using `alert`:
 
-```js run
+```js
 function sayHi() {
   alert( "Hello" );
 }
 
-*!*
+
 alert( sayHi ); // shows the function code
-*/!*
+
 ```
 
 Please note that the last line does not run the function, because there are no parentheses after `sayHi`. There are programming languages where any mention of a function name causes its execution, but JavaScript is not like that.
@@ -46,7 +46,7 @@ But it's still a value. So we can work with it like with other kinds of values.
 
 We can copy a function to another variable:
 
-```js run no-beautify
+```js
 function sayHi() {   // (1) create
   alert( "Hello" );
 }
@@ -77,7 +77,7 @@ let func = sayHi;
 Everything would work the same.
 
 
-:::info Why is there a semicolon at the end?
+
 You might wonder, why does Function Expression have a semicolon `;` at the end, but Function Declaration does not:
 
 ```js
@@ -87,7 +87,7 @@ function sayHi() {
 
 let sayHi = function() {
   // ...
-}*!*;*/!*
+};
 :::
 
 The answer is simple:
@@ -112,13 +112,13 @@ We'll write a function `ask(question, yes, no)` with three parameters:
 
 The function should ask the `question` and, depending on the user's answer, call `yes()` or `no()`:
 
-```js run
-*!*
+```js
+
 function ask(question, yes, no) {
   if (confirm(question)) yes()
   else no();
 }
-*/!*
+
 
 function showOk() {
   alert( "You agreed." );
@@ -140,32 +140,32 @@ The idea is that we pass a function and expect it to be "called back" later if n
 
 We can use Function Expressions to write the same function much shorter:
 
-```js run no-beautify
+```js
 function ask(question, yes, no) {
   if (confirm(question)) yes()
   else no();
 }
 
-*!*
+
 ask(
   "Do you agree?",
   function() { alert("You agreed."); },
   function() { alert("You canceled the execution."); }
 );
-*/!*
+
 ```
 
 Here, functions are declared right inside the `ask(...)` call. They have no name, and so are called *anonymous*. Such functions are not accessible outside of `ask` (because they are not assigned to variables), but that's just what we want here.
 
 Such code appears in our scripts very naturally, it's in the spirit of JavaScript.
 
-:::info A function is a value representing an \action\""
+
 Regular values like strings or numbers represent the *data*.
 
 A function can be perceived as an *action*.
 
 We can pass it between variables and run when we want.
-:::
+
 
 
 ## Function Expression vs Function Declaration
@@ -176,7 +176,7 @@ First, the syntax: how to differentiate between them in the code.
 
 - *Function Declaration:* a function, declared as a separate statement, in the main code flow.
 
-    ```js
+```js
     // Function Declaration
     function sum(a, b) {
       return a + b;
@@ -184,7 +184,7 @@ First, the syntax: how to differentiate between them in the code.
     ```
 - *Function Expression:* a function, created inside an expression or inside another syntax construct. Here, the function is created at the right side of the "assignment expression" `=`:
 
-    ```js
+```js
     // Function Expression
     let sum = function(a, b) {
       return a + b;
@@ -209,10 +209,10 @@ And after all Function Declarations are processed, the code is executed. So it h
 
 For example, this works:
 
-```js run refresh untrusted
-*!*
+```js
+
 sayHi("John"); // Hello, John
-*/!*
+
 
 function sayHi(name) {
   alert( `Hello, ${name}` );
@@ -223,10 +223,10 @@ The Function Declaration `sayHi` is created when JavaScript is preparing to star
 
 ...If it were a Function Expression, then it wouldn't work:
 
-```js run refresh untrusted
-*!*
+```js
+
 sayHi("John"); // error!
-*/!*
+
 
 let sayHi = function(name) {  // (*) no magic any more
   alert( `Hello, ${name}` );
@@ -243,7 +243,7 @@ For instance, let's imagine that we need to declare a function `welcome()` depen
 
 If we use Function Declaration, it won't work as intended:
 
-```js run
+```js
 let age = prompt("What is your age?", 18);
 
 // conditionally declare a function
@@ -262,30 +262,30 @@ if (age < 18) {
 }
 
 // ...use it later
-*!*
+
 welcome(); // Error: welcome is not defined
-*/!*
+
 ```
 
 That's because a Function Declaration is only visible inside the code block in which it resides.
 
 Here's another example:
 
-```js run
+```js
 let age = 16; // take 16 as an example
 
 if (age < 18) {
-*!*
+
   welcome();               // \   (runs)
-*/!*
+
                            //  |
   function welcome() {     //  |  
     alert("Hello!");       //  |  Function Declaration is available
   }                        //  |  everywhere in the block where it's declared
                            //  |
-*!*
+
   welcome();               // /   (runs)
-*/!*
+
 
 } else {
 
@@ -297,9 +297,9 @@ if (age < 18) {
 // Here we're out of curly braces,
 // so we can not see Function Declarations made inside of them.
 
-*!*
+
 welcome(); // Error: welcome is not defined
-*/!*
+
 ```
 
 What can we do to make `welcome` visible outside of `if`?
@@ -308,7 +308,7 @@ The correct approach would be to use a Function Expression and assign `welcome` 
 
 This code works as intended:
 
-```js run
+```js
 let age = prompt("What is your age?", 18);
 
 let welcome;
@@ -327,33 +327,33 @@ if (age < 18) {
 
 }
 
-*!*
+
 welcome(); // ok now
-*/!*
+
 ```
 
 Or we could simplify it even further using a question mark operator `?`:
 
-```js run
+```js
 let age = prompt("What is your age?", 18);
 
 let welcome = (age < 18) ?
   function() { alert("Hello!"); } :
   function() { alert("Greetings!"); };
 
-*!*
+
 welcome(); // ok now
-*/!*
+
 ```
 
 
-:::info When to choose Function Declaration versus Function Expression?
+
 As a rule of thumb, when we need to declare a function, the first to consider is Function Declaration syntax. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
 
 That's also better for readability, as it's easier to look up `function f(…) {…}` in the code than `let f = function(…) {…};`. Function Declarations are more "eye-catching".
 
 ...But if a Function Declaration does not suit us for some reason, or we need a conditional declaration (we've just seen an example), then Function Expression should be used.
-:::
+
 
 ## Summary
 

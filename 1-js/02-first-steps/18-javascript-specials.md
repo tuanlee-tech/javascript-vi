@@ -6,20 +6,20 @@ This chapter briefly recaps the features of JavaScript that we've learned by now
 
 Statements are delimited with a semicolon:
 
-```js run no-beautify
+```js
 alert('Hello'); alert('World');
 ```
 
 Usually, a line-break is also treated as a delimiter, so that would also work:
 
-```js run no-beautify
+```js
 alert('Hello')
 alert('World')
 ```
 
 That's called "automatic semicolon insertion". Sometimes it doesn't work, for instance:
 
-```js run
+```js
 alert("There will be an error after this message")
 
 [1, 2].forEach(alert)
@@ -41,7 +41,7 @@ for(;;) {
 
 ...But even if we can put an "extra" semicolon somewhere, that's not an error. It will be ignored.
 
-More in: <info:structure>.
+More in: &lt;info:structure&gt;.
 
 ## Strict mode
 
@@ -59,7 +59,7 @@ Without `"use strict"`, everything still works, but some features behave in the 
 
 Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
 
-More in: <info:strict-mode>.
+More in: &lt;info:strict-mode&gt;.
 
 ## Variables
 
@@ -97,7 +97,7 @@ typeof null == "object" // error in the language
 typeof function(){} == "function" // functions are treated specially
 ```
 
-More in: <info:variables> and <info:types>.
+More in: &lt;info:variables&gt; and &lt;info:types&gt;.
 
 ## Interaction
 
@@ -116,7 +116,7 @@ All these functions are *modal*, they pause the code execution and prevent the v
 
 For instance:
 
-```js run
+```js
 let userName = prompt("Your name?", "Alice");
 let isTeaWanted = confirm("Do you want some tea?");
 
@@ -124,7 +124,7 @@ alert( "Visitor: " + userName ); // Alice
 alert( "Tea wanted: " + isTeaWanted ); // true
 ```
 
-More in: <info:alert-prompt-confirm>.
+More in: &lt;info:alert-prompt-confirm&gt;.
 
 ## Operators
 
@@ -135,7 +135,7 @@ Arithmetical
 
     The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
 
-    ```js run
+```js
     alert( '1' + 2 ); // '12', string
     alert( 1 + '2' ); // '12', string
     ```
@@ -158,7 +158,7 @@ Nullish coalescing operator
 Comparisons
 : Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
 
-    ```js run
+```js
     alert( 0 == false ); // true
     alert( 0 == '' ); // true
     ```
@@ -174,13 +174,13 @@ Comparisons
 Other operators
 : There are few others, like a comma operator.
 
-More in: <info:operators>, <info:comparison>, <info:logical-operators>, <info:nullish-coalescing-operator>.
+More in: &lt;info:operators&gt;, &lt;info:comparison&gt;, &lt;info:logical-operators&gt;, &lt;info:nullish-coalescing-operator&gt;.
 
 ## Loops
 
 - We covered 3 types of loops:
 
-    ```js
+```js
     // 1
     while (condition) {
       ...
@@ -200,7 +200,7 @@ More in: <info:operators>, <info:comparison>, <info:logical-operators>, <info:nu
 - The variable declared in `for(let...)` loop is visible only inside the loop. But we can also omit `let` and reuse an existing variable.
 - Directives `break/continue` allow to exit the whole loop/current iteration. Use labels to break nested loops.
 
-Details in: <info:while-for>.
+Details in: &lt;info:while-for&gt;.
 
 Later we'll study more types of loops to deal with objects.
 
@@ -210,7 +210,7 @@ The "switch" construct can replace multiple `if` checks. It uses `===` (strict e
 
 For instance:
 
-```js run
+```js
 let age = prompt('Your age?', 18);
 
 switch (age) {
@@ -227,7 +227,7 @@ switch (age) {
 }
 ```
 
-Details in: <info:switch>.
+Details in: &lt;info:switch&gt;.
 
 ## Functions
 
@@ -235,7 +235,7 @@ We covered three ways to create a function in JavaScript:
 
 1. Function Declaration: the function in the main code flow
 
-    ```js
+```js
     function sum(a, b) {
       let result = a + b;
 
@@ -245,7 +245,7 @@ We covered three ways to create a function in JavaScript:
 
 2. Function Expression: the function in the context of an expression
 
-    ```js
+```js
     let sum = function(a, b) {
       let result = a + b;
 
@@ -255,7 +255,7 @@ We covered three ways to create a function in JavaScript:
 
 3. Arrow functions:
 
-    ```js
+```js
     // expression at the right side
     let sum = (a, b) => a + b;
 
@@ -277,7 +277,7 @@ We covered three ways to create a function in JavaScript:
 - Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
 - Functions always return something. If there's no `return` statement, then the result is `undefined`.
 
-Details: see <info:function-basics>, <info:arrow-functions-basics>.
+Details: see &lt;info:function-basics&gt;, &lt;info:arrow-functions-basics&gt;.
 
 ## More to come
 

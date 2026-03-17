@@ -39,20 +39,20 @@ When we access something inside the embedded window, the browser checks if the i
 
 For instance, let's try reading and writing to `<iframe>` from another origin:
 
-```html run
+```html
 <iframe src="https://example.com" id="iframe"></iframe>
 
 <script>
   iframe.onload = function() {
     // we can get the reference to the inner window
-*!*
+
     let iframeWindow = iframe.contentWindow; // OK
-*/!*
+
     try {
       // ...but not to the document inside it
-*!*
+
       let doc = iframe.contentDocument; // ERROR
-*/!*
+
     } catch(e) {
       alert(e); // Security Error (another origin)
     }
@@ -60,17 +60,17 @@ For instance, let's try reading and writing to `<iframe>` from another origin:
     // also we can't READ the URL of the page in iframe
     try {
       // Can't read URL from the Location object
-*!*
+
       let href = iframe.contentWindow.location.href; // ERROR
-*/!*
+
     } catch(e) {
       alert(e); // Security Error
     }
 
     // ...we can WRITE into location (and thus load something else into the iframe)!
-*!*
+
     iframe.contentWindow.location = '/'; // OK
-*/!*
+
 
     iframe.onload = null; // clear the handler, not to run it after the location change
   };
@@ -84,7 +84,7 @@ The code above shows errors for any operations except:
 
 Contrary to that, if the `<iframe>` has the same origin, we can do anything with it:
 
-```html run
+```html
 <!-- iframe from the same site -->
 <iframe src="/" id="iframe"></iframe>
 
@@ -96,11 +96,11 @@ Contrary to that, if the `<iframe>` has the same origin, we can do anything with
 </script>
 ```
 
-:::info `iframe.onload` vs `iframe.contentWindow.onload`
+
 The `iframe.onload` event (on the `<iframe>` tag) is essentially the same as `iframe.contentWindow.onload` (on the embedded window object). It triggers when the embedded window fully loads with all resources.
 
 ...But we can't access `iframe.contentWindow.onload` for an iframe from another origin, so using `iframe.onload`.
-:::
+
 
 ## Windows on subdomains: document.domain
 
@@ -127,17 +127,17 @@ So if we do something with the document immediately, that will probably be lost.
 Here, look:
 
 
-```html run
+```html
 <iframe src="/" id="iframe"></iframe>
 
 <script>
   let oldDoc = iframe.contentDocument;
   iframe.onload = function() {
     let newDoc = iframe.contentDocument;
-*!*
+
     // the loaded document is not the same as initial!
     alert(oldDoc == newDoc); // false
-*/!*
+
   };
 </script>
 ```
@@ -150,7 +150,7 @@ The right document is definitely at place when `iframe.onload`  triggers. But it
 
 We can try to catch the moment earlier using checks in `setInterval`:
 
-```html run
+```html
 <iframe src="/" id="iframe"></iframe>
 
 <script>
@@ -177,7 +177,7 @@ An alternative way to get a window object for `<iframe>` -- is to get it from th
 
 For instance:
 
-```html run
+```html
 <iframe src="/" style="height:80px" name="win" id="iframe"></iframe>
 
 <script>
@@ -196,13 +196,13 @@ Navigation links are:
 
 For instance:
 
-```js run
+```js
 window.frames[0].parent === window; // true
 ```
 
 We can use the `top` property to check if the current document is open inside a frame or not:
 
-```js run
+```js
 if (window == top) { // current window == window.top?
   alert('The script is in the topmost window, not in a frame');
 } else {
@@ -244,9 +244,9 @@ Please note that nothing works. So the default set is really harsh:
 [codetabs src="sandbox" height=140]
 
 
-:::info
+
 The purpose of the `"sandbox"` attribute is only to *add more* restrictions. It cannot remove them. In particular, it can't relax same-origin restrictions if the iframe comes from another origin.
-:::
+
 
 ## Cross-window messaging
 
@@ -274,7 +274,7 @@ Specifying `targetOrigin` ensures that the window only receives the data if it's
 
 For instance, here `win` will only receive the message if it has a document from the origin `http://example.com`:
 
-```html no-beautify
+```html
 <iframe src="http://example.com" name="example">
 
 <script>
@@ -286,15 +286,15 @@ For instance, here `win` will only receive the message if it has a document from
 
 If we don't want that check, we can set `targetOrigin` to `*`.
 
-```html no-beautify
+```html
 <iframe src="http://example.com" name="example">
 
 <script>
   let win = window.frames.example;
 
-*!*
+
   win.postMessage("message", "*");
-*/!*
+
 </script>
 ```
 

@@ -4,7 +4,7 @@ If we send a `fetch` request to another web-site, it will probably fail.
 
 For instance, let's try fetching `http://example.com`:
 
-```js run async
+```js
 try {
   await fetch('http://example.com');
 } catch(err) {
@@ -40,14 +40,14 @@ One way to communicate with another server was to submit a `<form>` there. Peopl
 
 ```html
 <!-- form target -->
-*!*
+
 <iframe name="iframe"></iframe>
-*/!*
+
 
 <!-- a form could be dynamically generated and submited by JavaScript -->
-*!*
+
 <form target="iframe" method="POST" action="http://another.com/…">
-*/!*
+
   ...
 </form>
 ```
@@ -68,7 +68,7 @@ Let's say we, at our site, need to get the data from `http://another.com`, such 
 
 1. First, in advance, we declare a global function to accept the data, e.g. `gotWeather`.
 
-    ```js
+```js
     // 1. Declare the function to process the weather data
     function gotWeather({ temperature, humidity }) {
       alert(`temperature: ${temperature}, humidity: ${humidity}`);
@@ -76,13 +76,13 @@ Let's say we, at our site, need to get the data from `http://another.com`, such 
     ```
 2. Then we make a `<script>` tag with `src="http://another.com/weather.json?callback=gotWeather"`, using the name of our function as the `callback` URL-parameter.
 
-    ```js
+```js
     let script = document.createElement('script');
     script.src = `http://another.com/weather.json?callback=gotWeather`;
     document.body.append(script);
     ```
 3. The remote server `another.com` dynamically generates a script that calls `gotWeather(...)` with the data it wants us to receive.
-    ```js
+```js
     // The expected answer from the server looks like this:
     gotWeather({
       temperature: 25,
@@ -135,12 +135,12 @@ If a request is cross-origin, the browser always adds the `Origin` header to it.
 
 For instance, if we request `https://anywhere.com/request` from `https://javascript.info/page`, the headers will look like:
 
-```http
+```text
 GET /request
 Host: anywhere.com
-*!*
+
 Origin: https://javascript.info
-*/!*
+
 ...
 ```
 
@@ -155,12 +155,12 @@ The browser plays the role of a trusted mediator here:
 ![](xhr-another-domain.svg)
 
 Here's an example of a permissive server response:
-```http
+```text
 200 OK
 Content-Type:text/html; charset=UTF-8
-*!*
+
 Access-Control-Allow-Origin: https://javascript.info
-*/!*
+
 ```
 
 ## Response headers
@@ -176,25 +176,25 @@ For cross-origin request, by default JavaScript may only access so-called "safe"
 
 Accessing any other response header causes an error.
 
-:::info
+
 There's no `Content-Length` header in the list!
 
 This header contains the full response length. So, if we're downloading something and would like to track the percentage of progress, then an additional permission is required to access that header (see below).
-:::
+
 
 To grant JavaScript access to any other response header, the server must send the `Access-Control-Expose-Headers` header. It contains a comma-separated list of unsafe header names that should be made accessible.
 
 For example:
 
-```http
+```text
 200 OK
 Content-Type:text/html; charset=UTF-8
 Content-Length: 12345
 API-Key: 2c9de507f2c54aa1
 Access-Control-Allow-Origin: https://javascript.info
-*!*
+
 Access-Control-Expose-Headers: Content-Length,API-Key
-*/!*
+
 ```
 
 With such an `Access-Control-Expose-Headers` header, the script is allowed to read the `Content-Length` and `API-Key` headers of the response.
@@ -242,7 +242,7 @@ There are three reasons why the request is unsafe (one is enough):
 
 Prior to sending such a request, the browser, on its own, sends a preflight request that looks like this:
 
-```http
+```text
 OPTIONS /service.json
 Host: site.com
 Origin: https://javascript.info
@@ -270,7 +270,7 @@ If the server expects other methods and headers in the future, it makes sense to
 
 For example, this response also allows `PUT`, `DELETE` and additional headers:
 
-```http
+```text
 200 OK
 Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Methods: PUT,PATCH,DELETE
@@ -288,7 +288,7 @@ When the preflight is successful, the browser now makes the main request. The pr
 
 The main request has the `Origin` header (because it's cross-origin):
 
-```http
+```text
 PATCH /service.json
 Host: site.com
 Content-Type: application/json
@@ -300,17 +300,17 @@ Origin: https://javascript.info
 
 The server should not forget to add `Access-Control-Allow-Origin` to the main response. A successful preflight does not relieve from that:
 
-```http
+```text
 Access-Control-Allow-Origin: https://javascript.info
 ```
 
 Then JavaScript is able to read the main server response.
 
-:::info
+
 Preflight request occurs "behind the scenes", it's invisible to JavaScript.
 
 JavaScript only gets the response to the main request or an error if there's no server permission.
-:::
+
 
 ## Credentials
 
@@ -340,7 +340,7 @@ If the server agrees to accept the request *with credentials*, it should add a h
 
 For example:
 
-```http
+```text
 200 OK
 Access-Control-Allow-Origin: https://javascript.info
 Access-Control-Allow-Credentials: true

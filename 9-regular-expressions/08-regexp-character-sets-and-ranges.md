@@ -8,7 +8,7 @@ For instance, `pattern:[eao]` means any of the 3 characters: `'a'`, `'e'`, or `'
 
 That's called a *set*. Sets can be used in a regexp along with regular characters:
 
-```js run
+```js
 // find [t or m], and then "op"
 alert( "Mop top".match(/[tm]op/gi) ); // "Mop", "top"
 ```
@@ -17,7 +17,7 @@ Please note that although there are multiple characters in the set, they corresp
 
 So the example below gives no matches:
 
-```js run
+```js
 // find "V", then [o or i], then "la"
 alert( "Voila".match(/V[oi]la/) ); // null, no matches
 ```
@@ -38,7 +38,7 @@ For instance, `pattern:[a-z]` is a character in range from `a` to `z`, and `patt
 
 In the example below we're searching for `"x"` followed by two digits or letters from `A` to `F`:
 
-```js run
+```js
 alert( "Exception 0xAF".match(/x[0-9A-F][0-9A-F]/g) ); // xAF
 ```
 
@@ -52,13 +52,13 @@ For instance, if we'd like to look for a wordly character `pattern:\w` or a hyph
 
 Combining multiple classes is also possible, e.g. `pattern:[\s\d]` means "a space character or a digit".
 
-:::info Character classes are shorthands for certain character sets
+
 For instance:
 
 - **\d** -- is the same as `pattern:[0-9]`,
 - **\w** -- is the same as `pattern:[a-zA-Z0-9_]`,
 - **\s** -- is the same as `pattern:[\t\n\v\f\r ]`, plus few other rare Unicode space characters.
-:::
+
 
 ### Example: multi-language \w
 
@@ -76,7 +76,7 @@ Let's decipher it. Similar to `pattern:\w`, we're making a set of our own that i
 
 An example of use:
 
-```js run
+```js
 let regexp = /[\p{Alpha}\p{M}\p{Nd}\p{Pc}\p{Join_C}]/gu;
 
 let str = `Hi 你好 12`;
@@ -85,13 +85,13 @@ let str = `Hi 你好 12`;
 alert( str.match(regexp) ); // H,i,你,好,1,2
 ```
 
-Of course, we can edit this pattern: add Unicode properties or remove them. Unicode properties are covered in more details in the article <info:regexp-unicode>.
+Of course, we can edit this pattern: add Unicode properties or remove them. Unicode properties are covered in more details in the article &lt;info:regexp-unicode&gt;.
 
-:::warning Unicode properties aren't supported in IE
+
 Unicode properties `pattern:p{…}` are not implemented in IE. If we really need them, we can use library [XRegExp](http://xregexp.com/).
 
 Or just use ranges of characters in a language that interests us, e.g.  `pattern:[а-я]` for Cyrillic letters.
-:::
+
 
 ## Excluding ranges
 
@@ -107,7 +107,7 @@ For instance:
 
 The example below looks for any characters except letters, digits and spaces:
 
-```js run
+```js
 alert( "alice15@gmail.com".match(/[^\d\sA-Z]/gi) ); // @ and .
 ```
 
@@ -128,7 +128,7 @@ A dot `.` inside square brackets means just a dot. The pattern `pattern:[.,]` wo
 
 In the example below the regexp `pattern:[-().^+]` looks for one of the characters `-().^+`:
 
-```js run
+```js
 // No need to escape
 let regexp = /[-().^+]/g;
 
@@ -137,7 +137,7 @@ alert( "1 + 2 - 3".match(regexp) ); // Matches +, -
 
 ...But if you decide to escape them "just in case", then there would be no harm:
 
-```js run
+```js
 // Escaped everything
 let regexp = /[\-\(\)\.\^\+]/g;
 
@@ -150,7 +150,7 @@ If there are surrogate pairs in the set, flag `pattern:u` is required for them t
 
 For instance, let's look for `pattern:[𝒳𝒴]` in the string `subject:𝒳`:
 
-```js run
+```js
 alert( '𝒳'.match(/[𝒳𝒴]/) ); // shows a strange character, like [?]
 // (the search was performed incorrectly, half-character returned)
 ```
@@ -165,7 +165,7 @@ The regular expression engine thinks that `[𝒳𝒴]` -- are not two, but four 
 
 We can see their codes like this:
 
-```js run
+```js
 for(let i=0; i<'𝒳𝒴'.length; i++) {
   alert('𝒳𝒴'.charCodeAt(i)); // 55349, 56499, 55349, 56500
 };
@@ -175,7 +175,7 @@ So, the example above finds and shows the left half of `𝒳`.
 
 If we add flag `pattern:u`, then the behavior will be correct:
 
-```js run
+```js
 alert( '𝒳'.match(/[𝒳𝒴]/u) ); // 𝒳
 ```
 
@@ -183,7 +183,7 @@ The similar situation occurs when looking for a range, such as `[𝒳-𝒴]`.
 
 If we forget to add flag `pattern:u`, there will be an error:
 
-```js run
+```js
 '𝒳'.match(/[𝒳-𝒴]/); // Error: Invalid regular expression
 ```
 
@@ -191,7 +191,7 @@ The reason is that without flag `pattern:u` surrogate pairs are perceived as two
 
 With the flag `pattern:u` the pattern works correctly:
 
-```js run
+```js
 // look for characters from 𝒳 to 𝒵
 alert( '𝒴'.match(/[𝒳-𝒵]/u) ); // 𝒴
 ```

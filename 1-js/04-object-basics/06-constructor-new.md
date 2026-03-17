@@ -13,15 +13,15 @@ Constructor functions technically are regular functions. There are two conventio
 
 For instance:
 
-```js run
+```js
 function User(name) {
   this.name = name;
   this.isAdmin = false;
 }
 
-*!*
+
 let user = new User("Jack");
-*/!*
+
 
 alert(user.name); // Jack
 alert(user.isAdmin); // false
@@ -37,17 +37,17 @@ In other words, `new User(...)` does something like:
 
 ```js
 function User(name) {
-*!*
+
   // this = {};  (implicitly)
-*/!*
+
 
   // add properties to this
   this.name = name;
   this.isAdmin = false;
 
-*!*
+
   // return this;  (implicitly)
-*/!*
+
 }
 ```
 
@@ -66,7 +66,7 @@ That's the main purpose of constructors -- to implement reusable object creation
 
 Let's note once again -- technically, any function can be used as a constructor. That is: any function can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
 
-:::info new function() { ... }
+
 If we have many lines of code all about creation of a single complex object, we can wrap them in constructor function, like this:
 
 ```js
@@ -85,35 +85,35 @@ The constructor can't be called again, because it is not saved anywhere, just cr
 
 ## Constructor mode test: new.target
 
-:::info Advanced stuff
+
 The syntax from this section is rarely used, skip it unless you want to know everything.
-:::
+
 
 Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
 
 It is undefined for regular calls and equals the function if called with `new`:
 
-```js run
+```js
 function User() {
   alert(new.target);
 }
 
 // without "new":
-*!*
+
 User(); // undefined
-*/!*
+
 
 // with "new":
-*!*
+
 new User(); // function User { ... }
-*/!*
+
 ```
 
 That can be used inside the function to know whether it was called with `new`, "in constructor mode", or without it, "in regular mode".
 
 We can also make both `new` and regular calls to do the same, like this:
 
-```js run
+```js
 function User(name) {
   if (!new.target) { // if you run me without new
     return new User(name); // ...I will add new for you
@@ -143,7 +143,7 @@ In other words, `return` with an object returns that object, in all other cases 
 
 For instance, here `return` overrides `this` by returning an object:
 
-```js run
+```js
 function BigUser() {
 
   this.name = "John";
@@ -156,7 +156,7 @@ alert( new BigUser().name );  // Godzilla, got that object
 
 And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
 
-```js run
+```js
 function SmallUser() {
 
   this.name = "John";
@@ -169,7 +169,7 @@ alert( new SmallUser().name );  // John
 
 Usually constructors don't have a `return` statement. Here we mention the special behavior with returning objects mainly for the sake of completeness.
 
-:::info Omitting parentheses
+
 By the way, we can omit parentheses after `new`, if it has no arguments:
 
 ```js
@@ -189,7 +189,7 @@ Of course, we can add to `this` not only properties, but methods as well.
 
 For instance, `new User(name)` below creates an object with the given `name` and the method `sayHi`:
 
-```js run
+```js
 function User(name) {
   this.name = name;
 
@@ -198,11 +198,11 @@ function User(name) {
   };
 }
 
-*!*
+
 let john = new User("John");
 
 john.sayHi(); // My name is: John
-*/!*
+
 
 /*
 john = {
@@ -212,7 +212,7 @@ john = {
 */
 ```
 
-To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
+To create complex objects, there's a more advanced syntax, [classes](#), that we'll cover later.
 
 ## Summary
 
@@ -223,8 +223,8 @@ We can use constructor functions to make multiple similar objects.
 
 JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
 
-:::info Objects, we'll be back!
+
 In this chapter we only cover the basics about objects and constructors. They are essential for learning more about data types and functions in the next chapters.
 
-After we learn that, we return to objects and cover them in-depth in the chapters <info:prototypes> and <info:classes>.
-:::
+After we learn that, we return to objects and cover them in-depth in the chapters &lt;info:prototypes&gt; and &lt;info:classes&gt;.
+

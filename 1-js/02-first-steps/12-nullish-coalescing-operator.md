@@ -26,7 +26,7 @@ The common use case for `??` is to provide a default value for a potentially und
 
 For example, here we show `user` if defined, otherwise `Anonymous`:
 
-```js run
+```js
 let user;
 
 alert(user ?? "Anonymous"); // Anonymous (user not defined)
@@ -34,7 +34,7 @@ alert(user ?? "Anonymous"); // Anonymous (user not defined)
 
 Here's the example with `user` assigned to a name:
 
-```js run
+```js
 let user = "John";
 
 alert(user ?? "Anonymous"); // John (user defined)
@@ -48,32 +48,32 @@ We'd like to display the user name using one of these variables, or show "Anonym
 
 Let's use the `??` operator for that:
 
-```js run
+```js
 let firstName = null;
 let lastName = null;
 let nickName = "Supercoder";
 
 // shows the first defined value:
-*!*
+
 alert(firstName ?? lastName ?? nickName ?? "Anonymous"); // Supercoder
-*/!*
+
 ```
 
 ## Comparison with ||
 
-The OR `||` operator can be used in the same way as `??`, as it was described in the [previous chapter](info:logical-operators#or-finds-the-first-truthy-value).
+The OR `||` operator can be used in the same way as `??`, as it was described in the [previous chapter](#).
 
 For example, in the code above we could replace `??` with `||` and still get the same result:
 
-```js run
+```js
 let firstName = null;
 let lastName = null;
 let nickName = "Supercoder";
 
 // shows the first truthy value:
-*!*
+
 alert(firstName || lastName || nickName || "Anonymous"); // Supercoder
-*/!*
+
 ```
 
 Historically, the OR `||` operator was there first. It exists since the beginning of JavaScript, so developers were using it for such purposes for a long time.
@@ -90,7 +90,7 @@ In practice though, we may want to use default value only when the variable is `
 
 For example, consider this:
 
-```js run
+```js
 let height = 0;
 
 alert(height || 100); // 100
@@ -112,7 +112,7 @@ That means that, just like `||`, the nullish coalescing operator `??` is evaluat
 
 So if we'd like to choose a value with `??` in an expression with other operators, consider adding parentheses:
 
-```js run
+```js
 let height = null;
 let width = null;
 
@@ -138,7 +138,7 @@ Due to safety reasons, JavaScript forbids using `??` together with `&&` and `||`
 
 The code below triggers a syntax error:
 
-```js run
+```js
 let x = 1 && 2 ?? 3; // Syntax error
 ```
 
@@ -146,10 +146,10 @@ The limitation is surely debatable, it was added to the language specification w
 
 Use explicit parentheses to work around it:
 
-```js run
-*!*
+```js
+
 let x = (1 && 2) ?? 3; // Works
-*/!*
+
 
 alert(x); // 2
 ```
@@ -160,7 +160,7 @@ alert(x); // 2
 
     It's used to assign default values to variables:
 
-    ```js
+```js
     // set height=100, if height is null or undefined
     height = height ?? 100;
     ```

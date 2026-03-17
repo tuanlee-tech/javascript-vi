@@ -11,7 +11,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 `new Date()`
 : Without arguments -- create a `Date` object for the current date and time:
 
-    ```js run
+```js
     let now = new Date();
     alert( now ); // shows current date/time
     ```
@@ -19,7 +19,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 `new Date(milliseconds)`
 : Create a `Date` object with the time equal to number of milliseconds (1/1000 of a second) passed after the Jan 1st of 1970 UTC+0.
 
-    ```js run
+```js
     // 0 means 01.01.1970 UTC+0
     let Jan01_1970 = new Date(0);
     alert( Jan01_1970 );
@@ -34,7 +34,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
     It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `date.getTime()` method (see below).
 
     Dates before 01.01.1970 have negative timestamps, e.g.:
-    ```js run
+```js
     // 31 Dec 1969
     let Dec31_1969 = new Date(-24 * 3600 * 1000);
     alert( Dec31_1969 );
@@ -43,7 +43,7 @@ To create a new `Date` object call `new Date()` with one of the following argume
 `new Date(datestring)`
 : If there is a single argument, and it's a string, then it is parsed automatically. The algorithm is the same as `Date.parse` uses, we'll cover it later.
 
-    ```js run
+```js
     let date = new Date("2017-01-26");
     alert(date);
     // The time is not set, so it's assumed to be midnight GMT and
@@ -64,14 +64,14 @@ To create a new `Date` object call `new Date()` with one of the following argume
 
     For instance:
 
-    ```js
+```js
     new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
     new Date(2011, 0, 1); // the same, hours etc are 0 by default
     ```
 
     The maximal precision is 1 ms (1/1000 sec):
 
-    ```js run
+```js
     let date = new Date(2011, 0, 1, 2, 3, 4, 567);
     alert( date ); // 1.01.2011, 02:03:04.567
     ```
@@ -92,9 +92,9 @@ There are methods to access the year, month and so on from the `Date` object:
 [getHours()](mdn:js/Date/getHours), [getMinutes()](mdn:js/Date/getMinutes), [getSeconds()](mdn:js/Date/getSeconds), [getMilliseconds()](mdn:js/Date/getMilliseconds)
 : Get the corresponding time components.
 
-:::warning Not `getYear()`, but `getFullYear()`
+
 Many JavaScript engines implement a non-standard method `getYear()`. This method is deprecated. It returns 2-digit year sometimes. Please never use it. There is `getFullYear()` for the year.
-:::
+
 
 Additionally, we can get a day of week:
 
@@ -107,7 +107,7 @@ There are also their UTC-counterparts, that return day, month, year and so on fo
 
 If your local time zone is shifted relative to UTC, then the code below shows different hours:
 
-```js run
+```js
 // current date
 let date = new Date();
 
@@ -126,7 +126,7 @@ Besides the given methods, there are two special ones that do not have a UTC-var
 [getTimezoneOffset()](mdn:js/Date/getTimezoneOffset)
 : Returns the difference between UTC and the local time zone, in minutes:
 
-    ```js run
+```js
     // if you are in timezone UTC-1, outputs 60
     // if you are in timezone UTC+3, outputs -180
     alert( new Date().getTimezoneOffset() );
@@ -152,7 +152,7 @@ As we can see, some methods can set multiple components at once, for example `se
 
 For instance:
 
-```js run
+```js
 let today = new Date();
 
 today.setHours(0);
@@ -168,8 +168,8 @@ The *autocorrection* is a very handy feature of `Date` objects. We can set out-o
 
 For instance:
 
-```js run
-let date = new Date(2013, 0, *!*32*/!*); // 32 Jan 2013 ?!?
+```js
+let date = new Date(2013, 0, 32); // 32 Jan 2013 ?!?
 alert(date); // ...is 1st Feb 2013!
 ```
 
@@ -177,18 +177,18 @@ Out-of-range date components are distributed automatically.
 
 Let's say we need to increase the date "28 Feb 2016" by 2 days. It may be "2 Mar" or "1 Mar" in case of a leap-year. We don't need to think about it. Just add 2 days. The `Date` object will do the rest:
 
-```js run
+```js
 let date = new Date(2016, 1, 28);
-*!*
+
 date.setDate(date.getDate() + 2);
-*/!*
+
 
 alert( date ); // 1 Mar 2016
 ```
 
 That feature is often used to get the date after the given period of time. For instance, let's get the date for "70 seconds after now":
 
-```js run
+```js
 let date = new Date();
 date.setSeconds(date.getSeconds() + 70);
 
@@ -197,7 +197,7 @@ alert( date ); // shows the correct date
 
 We can also set zero or even negative values. For example:
 
-```js run
+```js
 let date = new Date(2016, 0, 2); // 2 Jan 2016
 
 date.setDate(1); // set day 1 of month
@@ -211,7 +211,7 @@ alert( date ); // 31 Dec 2015
 
 When a `Date` object is converted to number, it becomes the timestamp same as `date.getTime()`:
 
-```js run
+```js
 let date = new Date();
 alert(+date); // the number of milliseconds, same as date.getTime()
 ```
@@ -220,7 +220,7 @@ The important side effect: dates can be subtracted, the result is their differen
 
 That can be used for time measurements:
 
-```js run
+```js
 let start = new Date(); // start measuring time
 
 // do the job
@@ -245,19 +245,19 @@ It is used mostly for convenience or when performance matters, like in games in 
 
 So this is probably better:
 
-```js run
-*!*
+```js
+
 let start = Date.now(); // milliseconds count from 1 Jan 1970
-*/!*
+
 
 // do the job
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
-*!*
+
 let end = Date.now(); // done
-*/!*
+
 
 alert( `The loop took ${end - start} ms` ); // subtract numbers, not dates
 ```
@@ -290,7 +290,7 @@ The first idea may be to run them many times in a row and measure the time diffe
 
 Let's measure:
 
-```js run
+```js
 function diffSubtract(date1, date2) {
   return date2 - date1;
 }
@@ -326,7 +326,7 @@ As a result, the first benchmark will have less CPU resources than the second. T
 
 For example, like this:
 
-```js run
+```js
 function diffSubtract(date1, date2) {
   return date2 - date1;
 }
@@ -347,13 +347,13 @@ function bench(f) {
 let time1 = 0;
 let time2 = 0;
 
-*!*
+
 // run bench(diffSubtract) and bench(diffGetTime) each 10 times alternating
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
-*/!*
+
 
 alert( 'Total time for diffSubtract: ' + time1 );
 alert( 'Total time for diffGetTime: ' + time2 );
@@ -373,11 +373,11 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
-:::warning Be careful doing microbenchmarking
+
 Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
 
-The great pack of articles about V8 can be found at <http://mrale.ph>.
-:::
+The great pack of articles about V8 can be found at &lt;http://mrale.ph&gt;.
+
 
 ## Date.parse from a string
 
@@ -396,7 +396,7 @@ The call to `Date.parse(str)` parses the string in the given format and returns 
 
 For instance:
 
-```js run
+```js
 let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
 
 alert(ms); // 1327611110417  (timestamp)
@@ -404,7 +404,7 @@ alert(ms); // 1327611110417  (timestamp)
 
 We can instantly create a `new Date` object from the timestamp:
 
-```js run
+```js
 let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 
 alert(date);  
@@ -423,7 +423,7 @@ Note that unlike many other systems, timestamps in JavaScript are in millisecond
 
 Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
 
-```js run
+```js
 alert(`Loading started ${performance.now()}ms ago`);
 // Something like: "Loading started 34731.26000000001ms ago"
 // .26 is microseconds (260 microseconds)

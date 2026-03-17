@@ -16,7 +16,7 @@ Function objects contain some useable properties.
 
 For instance, a function's name is accessible as the "name" property:
 
-```js run
+```js
 function sayHi() {
   alert("Hi");
 }
@@ -26,7 +26,7 @@ alert(sayHi.name); // sayHi
 
 What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even if it's created without one, and then immediately assigned:
 
-```js run
+```js
 let sayHi = function() {
   alert("Hi");
 };
@@ -36,7 +36,7 @@ alert(sayHi.name); // sayHi (there's a name!)
 
 It also works if the assignment is done via a default value:
 
-```js run
+```js
 function f(sayHi = function() {}) {
   alert(sayHi.name); // sayHi (works!)
 }
@@ -48,7 +48,7 @@ In the specification, this feature is called a "contextual name". If the functio
 
 Object methods have names too:
 
-```js run
+```js
 let user = {
 
   sayHi() {
@@ -67,7 +67,7 @@ alert(user.sayBye.name); // sayBye
 
 There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
 
-```js run
+```js
 // function created inside array
 let arr = [function() {}];
 
@@ -81,7 +81,7 @@ In practice, however, most functions do have a name.
 
 There is another built-in property "length" that returns the number of function parameters, for instance:
 
-```js run
+```js
 function f1(a) {}
 function f2(a, b) {}
 function many(a, b, ...more) {}
@@ -106,7 +106,7 @@ To call `handler` the right way, we examine the `handler.length` property.
 
 The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to support universal handlers as well:
 
-```js run
+```js
 function ask(question, ...handlers) {
   let isYes = confirm(question);
 
@@ -133,14 +133,14 @@ We can also add properties of our own.
 
 Here we add the `counter` property to track the total calls count:
 
-```js run
+```js
 function sayHi() {
   alert("Hi");
 
-  *!*
+  
   // let's count how many times we run
   sayHi.counter++;
-  */!*
+  
 }
 sayHi.counter = 0; // initial value
 
@@ -150,15 +150,15 @@ sayHi(); // Hi
 alert( `Called ${sayHi.counter} times` ); // Called 2 times
 ```
 
-:::warning A property is not a variable
+
 A property assigned to a function like `sayHi.counter = 0` does *not* define a local variable `counter` inside it. In other words, a property `counter` and a variable `let counter` are two unrelated things.
 
 We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables are not function properties and vice versa. These are just parallel worlds.
-:::
 
-Function properties can replace closures sometimes. For instance, we can rewrite the counter function example from the chapter <info:closure> to use a function property:
 
-```js run
+Function properties can replace closures sometimes. For instance, we can rewrite the counter function example from the chapter &lt;info:closure&gt; to use a function property:
+
+```js
 function makeCounter() {
   // instead of:
   // let count = 0
@@ -183,7 +183,7 @@ Is it better or worse than using a closure?
 
 The main difference is that if the value of `count` lives in an outer variable, then external code is unable to access it. Only nested functions may modify it. And if it's bound to a function, then such a thing is possible:
 
-```js run
+```js
 function makeCounter() {
 
   function counter() {
@@ -197,10 +197,10 @@ function makeCounter() {
 
 let counter = makeCounter();
 
-*!*
+
 counter.count = 10;
 alert( counter() ); // 10
-*/!*
+
 ```
 
 So the choice of implementation depends on our aims.
@@ -220,7 +220,7 @@ let sayHi = function(who) {
 And add a name to it:
 
 ```js
-let sayHi = function *!*func*/!*(who) {
+let sayHi = function func(who) {
   alert(`Hello, ${who}`);
 };
 ```
@@ -233,8 +233,8 @@ Adding such a name also did not break anything.
 
 The function is still available as `sayHi()`:
 
-```js run
-let sayHi = function *!*func*/!*(who) {
+```js
+let sayHi = function func(who) {
   alert(`Hello, ${who}`);
 };
 
@@ -248,14 +248,14 @@ There are two special things about the name `func`, that are the reasons for it:
 
 For instance, the function `sayHi` below calls itself again with `"Guest"` if no `who` is provided:
 
-```js run
-let sayHi = function *!*func*/!*(who) {
+```js
+let sayHi = function func(who) {
   if (who) {
     alert(`Hello, ${who}`);
   } else {
-*!*
+
     func("Guest"); // use func to re-call itself
-*/!*
+
   }
 };
 
@@ -275,23 +275,23 @@ let sayHi = function(who) {
   if (who) {
     alert(`Hello, ${who}`);
   } else {
-*!*
+
     sayHi("Guest");
-*/!*
+
   }
 };
 ```
 
 The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
 
-```js run
+```js
 let sayHi = function(who) {
   if (who) {
     alert(`Hello, ${who}`);
   } else {
-*!*
+
     sayHi("Guest"); // Error: sayHi is not a function
-*/!*
+
   }
 };
 
@@ -307,14 +307,14 @@ The optional name which we can put into the Function Expression is meant to solv
 
 Let's use it to fix our code:
 
-```js run
-let sayHi = function *!*func*/!*(who) {
+```js
+let sayHi = function func(who) {
   if (who) {
     alert(`Hello, ${who}`);
   } else {
-*!*
+
     func("Guest"); // Now all fine
-*/!*
+
   }
 };
 
@@ -328,11 +328,11 @@ Now it works, because the name `"func"` is function-local. It is not taken from 
 
 The outer code still has its variable `sayHi` or `welcome`. And `func` is an "internal function name", how the function can call itself internally.
 
-:::info There's no such thing for Function Declaration
+
 The "internal name" feature described here is only available for Function Expressions, not for Function Declarations. For Function Declarations, there is no syntax for adding an "internal" name.
 
 Sometimes, when we need a reliable internal name, it's the reason to rewrite a Function Declaration to Named Function Expression form.
-:::
+
 
 ## Summary
 

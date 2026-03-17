@@ -23,7 +23,7 @@ Now if an element has `.animated` class, any change of `background-color` is ani
 
 Click the button below to animate the background:
 
-```html run autorun height=60
+```html
 <button id="color">Click me</button>
 
 <style>
@@ -51,14 +51,14 @@ We'll cover them in a moment, for now let's note that the common `transition` pr
 
 For instance, this button animates both `color` and `font-size`:
 
-```html run height=80 autorun no-beautify
+```html
 <button id="growing">Click me</button>
 
 <style>
 #growing {
-*!*
+
   transition: font-size 3s, color 2s;
-*/!*
+
 }
 </style>
 
@@ -119,10 +119,10 @@ JavaScript does it with an extra line:
 ```js
 stripe.onclick = function() {
   let sec = new Date().getSeconds() % 10;
-*!*
+
   // for instance, -3s here starts the animation from the 3rd second
   stripe.style.transitionDelay = '-' + sec + 's';
-*/!*
+
   stripe.classList.add('animate');
 };
 ```
@@ -137,7 +137,7 @@ That property accepts two kinds of values: a Bezier curve or steps. Let's start 
 
 ### Bezier curve
 
-The timing function can be set as a [Bezier curve](/bezier-curve) with 4 control points that satisfy the conditions:
+The timing function can be set as a [Bezier curve](#) with 4 control points that satisfy the conditions:
 
 1. First control point: `(0,0)`.
 2. Last control point: `(1,1)`.
@@ -254,7 +254,7 @@ As we know, `y` measures "the completion of the animation process". The value `y
 
 That's a "soft" variant for sure. If we put `y` values like `-99` and `99` then the train would jump out of the range much more.
 
-But how do we make a Bezier curve for a specific task? There are many tools. For instance, we can do it on the site <http://cubic-bezier.com/>.
+But how do we make a Bezier curve for a specific task? There are many tools. For instance, we can do it on the site &lt;http://cubic-bezier.com/&gt;.
 
 ### Steps
 
@@ -273,7 +273,7 @@ There will be 9 steps, a step-move for each digit:
 ```css
 #stripe.animate  {
   transform: translate(-90%);
-  transition: transform 9s *!*steps(9, start)*/!*;
+  transition: transform 9s steps(9, start);
 }
 ```
 
@@ -373,26 +373,26 @@ It specifies the "name" of the animation and rules - what, when and where to ani
 
 Here's an example with explanations:
 
-```html run height=60 autorun="no-epub" no-beautify
+```html
 <div class="progress"></div>
 
 <style>
-*!*
+
   @keyframes go-left-right {        /* give it a name: "go-left-right" */
     from { left: 0px; }             /* animate from left: 0px */
     to { left: calc(100% - 50px); } /* animate to left: 100%-50px */
   }
-*/!*
+
 
   .progress {
-*!*
+
     animation: go-left-right 3s infinite alternate;
     /* apply the animation "go-left-right" to the element
        duration 3 seconds
        number of times: infinite
        alternate direction every time
     */
-*/!*
+
 
     position: relative;
     border: 2px solid green;
@@ -415,12 +415,12 @@ They are good for most animation tasks. We're also able to use JavaScript for an
 
 Limitations of CSS animations compared to JavaScript animations:
 
-:::details So sánh plus="CSS animations" minus="JavaScript animations"
+
 + Simple things done simply.
 + Fast and lightweight for CPU.
 - JavaScript animations are flexible. They can implement any animation logic, like an "explosion" of an element.
 - Not just property changes. We can create new elements in JavaScript as part of the animation.
-:::
+
 
 The majority of animations can be implemented using CSS as described in this chapter. And the `transitionend` event allows JavaScript to be run after the animation, so it integrates fine with the code.
 

@@ -31,38 +31,38 @@ Ngoài các số thông thường, còn có các giá trị số đặc biệt k
 
     Chúng ta có thể thu được giá trị này bằng cách chia một số dương cho không:
 
-    ```js run
+```js
     alert( 1 / 0 ); // Infinity
     ```
 
     Or just reference it directly:
 
-    ```js run
+```js
     alert( Infinity ); // Infinity
     ```
 - `NaN` biểu diễn một lỗi tính toán. Nó là kết quả của một phép tính sai hoặc không xác định, ví dụ:
 
-    ```js run
+```js
     alert( "not a number" / 2 ); // NaN, phép chia như vậy là sai lầm
     ```
 
     `NaN` rất khó chịu. Bất kỳ thao tác nào khác trên `NaN` sẽ trả về` NaN`:
 
-    ```js run
+```js
     alert( "not a number" / 2 + 5 ); // NaN
     ```
 
     Cho nên, nếu `NaN` xuất hiện trong một biểu thức toán học, nó lan truyền tới kết quả của cả biểu thức.
 
-:::info Các phép tính toán học luôn an toàn
+
 Làm toán trong JavaScript rất "an toàn". Ta có thể làm bất cứ thứ gì: chia cho không, coi một chuỗi như một số, ...
 
 Tập lệnh sẽ không bao giờ dừng lại. Tệ nhất, chúng ta cũng nhận được giá trị `NaN`.
-:::
+
 
 Các giá trị số đặc biệt chính thức thuộc về kiểu "number". Tất nhiên chúng không phải là những con số theo nghĩa thông thường của từ này.
 
-Ta sẽ học được nhiều hơn về các số ở chương <info:number>.
+Ta sẽ học được nhiều hơn về các số ở chương &lt;info:number&gt;.
 
 ## BigInt
 
@@ -79,11 +79,11 @@ Một giá trị `BigInt` được tạo bằng cách thêm `n` vào cuối mộ
 const bigInt = 1234567890123456789012345678901234567890n;
 ```
 
-Vì các số `BigInt` hiếm khi cần thiết, chúng tôi không trình bày chúng ở đây mà dành cho chúng một chương riêng <info: bigint>. Hãy đọc nó khi bạn cần những con số lớn như vậy.
+Vì các số `BigInt` hiếm khi cần thiết, chúng tôi không trình bày chúng ở đây mà dành cho chúng một chương riêng &lt;info: bigint&gt;. Hãy đọc nó khi bạn cần những con số lớn như vậy.
 
-:::info Vấn đề tương thích
+
 Hiện tại, `BigInt` được hỗ trợ trong Firefox / Chrome / Edge / Safari, nhưng không hỗ trợ trong IE.
-:::
+
 
 Bạn có thể kiểm tra [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) để biết phiên bản trình duyệt nào có hỗ trợ.
 
@@ -107,30 +107,30 @@ Dấu nháy kép và dấu nháy đơn là những dấu nháy "đơn giản". T
 
 Backtick là các dấu nháy với tính năng mở rộng. Nó cho phép ta nhúng biến và biểu thức vào chuỗi bằng cách đặt chúng trong `${…}`, ví dụ:
 
-```js run
+```js
 let name = "John";
 
 // nhúng một biến
-alert( `Hello, *!*${name}*/!*!` ); // Hello, John!
+alert( `Hello, ${name}!` ); // Hello, John!
 
 // nhúng một biểu thức
-alert( `the result is *!*${1 + 2}*/!*` ); // the result is 3
+alert( `the result is ${1 + 2}` ); // the result is 3
 ```
 
 Biểu thức trong `${…}` được chạy và kết quả của nó trở thành một phần của chuỗi. Chúng ta có thể đặt bất cứ gì vào đó: một biến như `name` hay một biểu thức số học như `1 + 2` hoặc biểu thức phức tạp hơn.
 
 Chú ý rằng chỉ backtick cho phép tính năng này. Dấu nháy đơn và nháy kép không hỗ trợ!
-```js run
+```js
 alert( "the result is ${1 + 2}" ); // the result is ${1 + 2} (nháy kép không làm gì cả)
 ```
 
-Chúng ta sẽ tìm hiểu về chuỗi kỹ hơn ở chương <info:string>.
+Chúng ta sẽ tìm hiểu về chuỗi kỹ hơn ở chương &lt;info:string&gt;.
 
-:::info Không có kiểu *ký tự*.
+
 Trong một số ngôn ngữ, có một kiểu "ký tự" đặc biệt cho một ký tự đơn lẻ. Ví dụ, trong ngôn ngữ C và trong Java, nó được gọi là "char".
 
 Trong JavaScript, không có kiểu như vậy. Chỉ có một kiểu: `string` (chuỗi). Một chuỗi có thể bao gồm 0 ký tự (rỗng), một ký tự hoặc nhiều ký tự.
-:::
+
 
 ## Boolean (kiểu lôgic)
 
@@ -147,13 +147,13 @@ let ageFieldChecked = false; // không, trường age chưa được kiểm tra
 
 Giá trị lôgic cũng là kết quả của các phép so sánh:
 
-```js run
+```js
 let isGreater = 4 > 1;
 
 alert( isGreater ); // true (kết quả so sánh là "đúng")
 ```
 
-Chúng ta sẽ tìm hiểu sâu hơn về kiểu này trong chương <info:logical-operators>.
+Chúng ta sẽ tìm hiểu sâu hơn về kiểu này trong chương &lt;info:logical-operators&gt;.
 
 ## Giá trị "null"
 
@@ -179,7 +179,7 @@ Giá trị đặc biệt `undefined` cũng đứng một mình. Nó tạo ra m�
 
 Nếu một biến đã được khai báo, nhưng chưa được gán, giá trị của nó là `undefined`:
 
-```js run
+```js
 let age;
 
 alert(age); // hiện "undefined"
@@ -187,7 +187,7 @@ alert(age); // hiện "undefined"
 
 Về mặt kỹ thuật, có thể gán `undefined` cho một biến một cách tường minh:
 
-```js run
+```js
 let age = 100;
 
 // đổi giá trị thành undefined
@@ -204,7 +204,7 @@ Kiểu `object` hay đối tượng là một kiểu đặc biệt.
 
 Tất cả các kiểu khác được gọi là "primitive" (nguyên thủy) vì giá trị của chúng chỉ có thể chứa một thứ duy nhất (có thể là một chuỗi hoặc một số hoặc bất cứ thứ gì). Ngược lại, các đối tượng được sử dụng để lưu trữ các tập hợp dữ liệu và các thực thể phức tạp hơn.
 
-Vì quan trọng như vậy, các đối tượng xứng đáng được đối xử đặc biệt. Chúng ta sẽ bàn về chúng sau trong chương <info:object>, sau khi chúng ta tìm hiểu thêm về các giá trị nguyên thủy.
+Vì quan trọng như vậy, các đối tượng xứng đáng được đối xử đặc biệt. Chúng ta sẽ bàn về chúng sau trong chương &lt;info:object&gt;, sau khi chúng ta tìm hiểu thêm về các giá trị nguyên thủy.
 
 Kiểu `symbol` (biểu tượng) được sử dụng để tạo các định danh duy nhất cho các đối tượng. Chúng ta buộc phải đề cập đến nó ở đây chỉ để khỏi thiếu sót, nhưng cũng trì hoãn các chi tiết cho đến khi chúng ta biết về các đối tượng.
 
@@ -234,22 +234,22 @@ typeof "foo" // "string"
 
 typeof Symbol("id") // "symbol"
 
-*!*
+
 typeof Math // "object"  (1)
-*/!*
 
-*!*
+
+
 typeof null // "object"  (2)
-*/!*
 
-*!*
+
+
 typeof alert // "function"  (3)
-*/!*
+
 ```
 
 Ba dòng cuối cần phải giải thích thêm:
 
-1. `Math` là một đối tượng có sẵn cung cấp các phép tính toán học. Chúng ta sẽ tìm hiểu nó trong chương <info:number>. Ở đây, nó chỉ đóng vai trò như một ví dụ về một đối tượng.
+1. `Math` là một đối tượng có sẵn cung cấp các phép tính toán học. Chúng ta sẽ tìm hiểu nó trong chương &lt;info:number&gt;. Ở đây, nó chỉ đóng vai trò như một ví dụ về một đối tượng.
 2. Kết quả của `typeof null` là `"object"`. Đó là một lỗi được chính thức công nhận trong hành vi của `typeof`, xuất hiện từ những ngày đầu của JavaScript và được giữ lại để tương thích. Chắc chắn, `null` không phải là một đối tượng. Nó là một giá trị đặc biệt với một kiểu riêng biệt của nó.
 3. Kết quả của `typeof alert` là `"function"`, vì `alert` là một hàm. Chúng ta sẽ nghiên cứu các hàm trong các chương tiếp theo, chúng ta cũng sẽ thấy rằng không có kiểu "function" đặc biệt nào trong JavaScript. Các hàm thuộc về kiểu đối tượng. Nhưng `typeof` xử lý chúng theo cách khác, trả về `"function"`. Điều đó cũng đến từ những ngày đầu của JavaScript. Về mặt kỹ thuật, hành vi như vậy không đúng, nhưng có thể thuận tiện trong thực tế.
 

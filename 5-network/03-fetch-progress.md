@@ -3,7 +3,7 @@
 
 The `fetch` method allows to track *download* progress.
 
-Please note: there's currently no way for `fetch` to track *upload* progress. For that purpose, please use [XMLHttpRequest](info:xmlhttprequest), we'll cover it later.
+Please note: there's currently no way for `fetch` to track *upload* progress. For that purpose, please use [XMLHttpRequest](#), we'll cover it later.
 
 To track download progress, we can use `response.body` property. It's `ReadableStream` -- a special object that provides body chunk-by-chunk, as it comes. Readable streams are described in the [Streams API](https://streams.spec.whatwg.org/#rs-class) specification.
 
@@ -33,9 +33,9 @@ The result of `await reader.read()` call is an object with two properties:
 - **`done`** -- `true` when the reading is complete, otherwise `false`.
 - **`value`** -- a typed array of bytes: `Uint8Array`.
 
-:::info
+
 Streams API also describes asynchronous iteration over `ReadableStream` with `for await..of` loop, but it's not yet widely supported (see [browser issues](https://github.com/whatwg/streams/issues/778#issuecomment-461341033)), so we use `while` loop.
-:::
+
 
 We receive response chunks in the loop, until the loading finishes, that is: until `done` becomes `true`.
 
@@ -43,7 +43,7 @@ To log the progress, we just need for every received fragment `value` to add its
 
 Here's the full working example that gets the response and logs the progress in console, more explanations to follow:
 
-```js run async
+```js
 // Step 1: start the fetch and obtain a reader
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits?per_page=100');
 
@@ -91,7 +91,7 @@ Let's explain that step-by-step:
     Please note, we can't use both these methods to read the same response: either use a reader or a response method to get the result.
 2. Prior to reading, we can figure out the full response length from the `Content-Length` header.
 
-    It may be absent for cross-origin requests (see chapter <info:fetch-crossorigin>) and, well, technically a server doesn't have to set it. But usually it's at place.
+    It may be absent for cross-origin requests (see chapter &lt;info:fetch-crossorigin&gt;) and, well, technically a server doesn't have to set it. But usually it's at place.
 3. Call `await reader.read()` until it's done.
 
     We gather response chunks in the array `chunks`. That's important, because after the response is consumed, we won't be able to "re-read" it using `response.json()` or another way (you can try, there'll be an error).
@@ -100,10 +100,10 @@ Let's explain that step-by-step:
     2. Then use `.set(chunk, position)` method to copy each `chunk` one after another in it.
 5. We have the result in `chunksAll`. It's a byte array though, not a string.
 
-    To create a string, we need to interpret these bytes. The built-in [TextDecoder](info:text-decoder) does exactly that. Then we can `JSON.parse` it, if necessary.
+    To create a string, we need to interpret these bytes. The built-in [TextDecoder](#) does exactly that. Then we can `JSON.parse` it, if necessary.
 
     What if we need binary content instead of a string? That's even simpler. Replace steps 4 and 5 with a single line that creates a `Blob` from all chunks:
-    ```js
+```js
     let blob = new Blob(chunks);
     ```
 

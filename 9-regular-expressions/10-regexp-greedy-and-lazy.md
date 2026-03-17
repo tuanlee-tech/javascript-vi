@@ -16,7 +16,7 @@ A regular expression like `pattern:/".+"/g` (a quote, then something, then the o
 
 Let's try it:
 
-```js run
+```js
 let regexp = /".+"/g;
 
 let str = 'a "witch" and her "broom" is one';
@@ -104,7 +104,7 @@ To make things clear: usually a question mark `pattern:?` is a quantifier by its
 
 The regexp `pattern:/".+?"/g` works as intended: it finds `match:"witch"` and `match:"broom"`:
 
-```js run
+```js
 let regexp = /".+?"/g;
 
 let str = 'a "witch" and her "broom" is one';
@@ -148,7 +148,7 @@ Other quantifiers remain greedy.
 
 For instance:
 
-```js run
+```js
 alert( "123 456".match(/\d+ \d+?/) ); // 123 4
 ```
 
@@ -160,13 +160,13 @@ alert( "123 456".match(/\d+ \d+?/) ); // 123 4
 
     The lazy mode doesn't repeat anything without a need. The pattern finished, so we're done. We have a match `match:123 4`.
 
-:::info Optimizations
+
 Modern regular expression engines can optimize internal algorithms to work faster. So they may work a bit differently from the described algorithm.
 
 But to understand how regular expressions work and to build regular expressions, we don't need to know about that. They are only used internally to optimize things.
 
 Complex regular expressions are hard to optimize, so the search may work exactly as described as well.
-:::
+
 
 ## Alternative approach
 
@@ -174,7 +174,7 @@ With regexps, there's often more than one way to do the same thing.
 
 In our case we can find quoted strings without lazy mode using the regexp `pattern:"[^"]+"`:
 
-```js run
+```js
 let regexp = /"[^"]+"/g;
 
 let str = 'a "witch" and her "broom" is one';
@@ -199,7 +199,7 @@ Which regular expression to use?
 The first idea might be: `pattern:/<a href=".*" class="doc">/g`.
 
 Let's check it:
-```js run
+```js
 let str = '...<a href="link" class="doc">...';
 let regexp = /<a href=".*" class="doc">/g;
 
@@ -209,7 +209,7 @@ alert( str.match(regexp) ); // <a href="link" class="doc">
 
 It worked. But let's see what happens if there are many links in the text?
 
-```js run
+```js
 let str = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
 let regexp = /<a href=".*" class="doc">/g;
 
@@ -228,7 +228,7 @@ The match looks like this:
 
 Let's modify the pattern by making the quantifier `pattern:.*?` lazy:
 
-```js run
+```js
 let str = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
 let regexp = /<a href=".*?" class="doc">/g;
 
@@ -245,7 +245,7 @@ Now it seems to work, there are two matches:
 
 ...But let's test it on one more text input:
 
-```js run
+```js
 let str = '...<a href="link1" class="wrong">... <p style="" class="doc">...';
 let regexp = /<a href=".*?" class="doc">/g;
 
@@ -278,7 +278,7 @@ The correct variant can be: `pattern:href="[^"]*"`. It will take all characters 
 
 A working example:
 
-```js run
+```js
 let str1 = '...<a href="link1" class="wrong">... <p style="" class="doc">...';
 let str2 = '...<a href="link1" class="doc">... <a href="link2" class="doc">...';
 let regexp = /<a href="[^"]*" class="doc">/g;

@@ -29,21 +29,21 @@ Let's see how slots work on a simple example.
 
 Here, `<user-card>` shadow DOM provides two slots, filled from light DOM:
 
-```html run autorun="no-epub" untrusted height=80
+```html
 <script>
 customElements.define('user-card', class extends HTMLElement {
   connectedCallback() {
     this.attachShadow({mode: 'open'});
     this.shadowRoot.innerHTML = `
       <div>Name:
-*!*
+
         <slot name="username"></slot>
-*/!*
+
       </div>
       <div>Birthday:
-*!*
+
         <slot name="birthday"></slot>
-*/!*
+
       </div>
     `;
   }
@@ -51,8 +51,8 @@ customElements.define('user-card', class extends HTMLElement {
 </script>
 
 <user-card>
-  <span *!*slot="username"*/!*>John Smith</span>
-  <span *!*slot="birthday"*/!*>01.01.2001</span>
+  <span slot="username">John Smith</span>
+  <span slot="birthday">01.01.2001</span>
 </user-card>
 ```
 
@@ -112,7 +112,7 @@ alert( document.querySelectorAll('user-card span').length ); // 2
 
 So, the flattened DOM is derived from shadow DOM by inserting slots. The browser renders it and uses for style inheritance, event propagation (more about that later). But JavaScript still sees the document "as is", before flattening.
 
-:::warning Only top-level children may have slot=\...\" attribute"
+
 The `slot="..."` attribute is only valid for direct children of the shadow host (in our example, `<user-card>` element). For nested elements it's ignored.
 
 For example, the second `<span>` here is ignored (as it's not a top-level child of `<user-card>`):
@@ -172,7 +172,7 @@ The first `<slot>` in shadow DOM that doesn't have a name is a "default" slot. I
 
 For example, let's add the default slot to our `<user-card>` that shows all unslotted information about the user:
 
-```html run autorun="no-epub" untrusted height=140
+```html
 <script>
 customElements.define('user-card', class extends HTMLElement {
   connectedCallback() {
@@ -186,9 +186,9 @@ customElements.define('user-card', class extends HTMLElement {
     </div>
     <fieldset>
       <legend>Other information</legend>
-*!*
+
       <slot></slot>
-*/!*
+
     </fieldset>
     `;
   }
@@ -196,14 +196,14 @@ customElements.define('user-card', class extends HTMLElement {
 </script>
 
 <user-card>
-*!*
+
   <div>I like to swim.</div>
-*/!*
+
   <span slot="username">John Smith</span>
   <span slot="birthday">01.01.2001</span>
-*!*
+
   <div>...And play volleyball too!</div>
-*/!*
+
 </user-card>
 ```
 
@@ -228,12 +228,12 @@ The flattened DOM looks like this:
     </div>
     <fieldset>
       <legend>Other information</legend>
-*!*
+
       <slot>
         <div>I like to swim.</div>
         <div>...And play volleyball too!</div>
       </slot>
-*/!*
+
     </fieldset>
 </user-card>
 ```
@@ -330,7 +330,7 @@ So we don't have to do anything to update rendering. But if the component code w
 
 For example, here the menu item is inserted dynamically after 1 second, and the title changes after 2 seconds:
 
-```html run untrusted height=80
+```html
 <custom-menu id="menu">
   <span slot="title">Candy menu</span>
 </custom-menu>
@@ -374,7 +374,7 @@ There are two `slotchange` events here:
 
 Please note: there's no `slotchange` event after 2 seconds, when the content of `slot="title"` is modified. That's because there's no slot change. We modify the content inside the slotted element, that's another thing.
 
-If we'd like to track internal modifications of light DOM from JavaScript, that's also possible using a more generic mechanism: [MutationObserver](info:mutation-observer).
+If we'd like to track internal modifications of light DOM from JavaScript, that's also possible using a more generic mechanism: [MutationObserver](#).
 
 ## Slot API
 
@@ -390,7 +390,7 @@ These methods are useful when we need not just show the slotted content, but als
 
 For example, if `<custom-menu>` component wants to know, what it shows, then it could track `slotchange` and get the items from `slot.assignedElements`:
 
-```html run untrusted height=120
+```html
 <custom-menu id="menu">
   <span slot="title">Candy menu</span>
   <li slot="item">Lollipop</li>
@@ -409,7 +409,7 @@ customElements.define('custom-menu', class extends HTMLElement {
     </div>`;
 
     // triggers when slot content changes
-*!*
+
     this.shadowRoot.firstElementChild.addEventListener('slotchange', e => {
       let slot = e.target;
       if (slot.name == 'item') {
@@ -417,7 +417,7 @@ customElements.define('custom-menu', class extends HTMLElement {
         alert("Items: " + this.items);
       }
     });
-*/!*
+
   }
 });
 
@@ -450,7 +450,7 @@ JavaScript can access slots using methods:
 
 If we'd like to know what we're showing, we can track slot contents using:
 - `slotchange` event -- triggers the first time a slot is filled, and on any add/remove/replace operation of the slotted element, but not its children. The slot is `event.target`.
-- [MutationObserver](info:mutation-observer) to go deeper into slot content, watch changes inside it.
+- [MutationObserver](#) to go deeper into slot content, watch changes inside it.
 
 Now, as we know how to show elements from light DOM in shadow DOM, let's see how to style them properly. The basic rule is that shadow elements are styled inside, and light elements -- outside, but there are notable exceptions.
 

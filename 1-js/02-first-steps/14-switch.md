@@ -10,7 +10,7 @@ The `switch` has one or more `case` blocks and an optional default.
 
 It looks like this:
 
-```js no-beautify
+```js
 switch(x) {
   case 'value1':  // if (x === 'value1')
     ...
@@ -34,18 +34,18 @@ switch(x) {
 
 An example of `switch` (the executed code is highlighted):
 
-```js run
+```js
 let a = 2 + 2;
 
 switch (a) {
   case 3:
     alert( 'Too small' );
     break;
-*!*
+
   case 4:
     alert( 'Exactly!' );
     break;
-*/!*
+
   case 5:
     alert( 'Too big' );
     break;
@@ -62,20 +62,20 @@ Then `4`. That's a match, so the execution starts from `case 4` until the neares
 
 An example without `break`:
 
-```js run
+```js
 let a = 2 + 2;
 
 switch (a) {
   case 3:
     alert( 'Too small' );
-*!*
+
   case 4:
     alert( 'Exactly!' );
   case 5:
     alert( 'Too big' );
   default:
     alert( "I don't know such values" );
-*/!*
+
 }
 ```
 
@@ -87,21 +87,21 @@ alert( 'Too big' );
 alert( "I don't know such values" );
 ```
 
-:::info Any expression can be a `switch/case` argument
+
 Both `switch` and `case` allow arbitrary expressions.
 
 For example:
 
-```js run
+```js
 let a = "1";
 let b = 0;
 
 switch (+a) {
-*!*
+
   case b + 1:
     alert("this runs, because +a is 1, exactly equals b+1");
     break;
-*/!*
+
 
   default:
     alert("this doesn't run");
@@ -116,7 +116,7 @@ Several variants of `case` which share the same code can be grouped.
 
 For example, if we want the same code to run for `case 3` and `case 5`:
 
-```js run no-beautify
+```js
 let a = 3;
 
 switch (a) {
@@ -124,13 +124,13 @@ switch (a) {
     alert('Right!');
     break;
 
-*!*
+
   case 3: // (*) grouped two cases
   case 5:
     alert('Wrong!');
     alert("Why don't you take a math class?");
     break;
-*/!*
+
 
   default:
     alert('The result is strange. Really.');
@@ -147,7 +147,7 @@ Let's emphasize that the equality check is always strict. The values must be of 
 
 For example, let's consider the code:
 
-```js run
+```js
 let arg = prompt("Enter a value?");
 switch (arg) {
   case '0':

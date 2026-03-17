@@ -12,13 +12,13 @@ Thường thì mã gồm nhiều câu lệnh. Các câu lệnh được ngăn c�
 
 Ví dụ, ta chia "Chào thế giới!" thành hai thông báo:
 
-```js run no-beautify
+```js
 alert('Chào'); alert('thế giới!');
 ```
 
 Mỗi câu lệnh thường viết trên một dòng để dễ đọc hơn:
 
-```js run no-beautify
+```js
 alert('Chào');
 alert('thế giới!');
 ```
@@ -29,7 +29,7 @@ Hầu như có thể bỏ qua dấu chấm phảy nếu mỗi lệnh được vi
 
 Cách viết sau vẫn hoạt động:
 
-```js run no-beautify
+```js
 alert('Chào')
 alert('thế giới!')
 ```
@@ -40,7 +40,7 @@ alert('thế giới!')
 
 Trong các trường hợp này dấu xuống dòng không được JavaScript xem là dấu chấm phảy. Ví dụ:
 
-```js run no-beautify
+```js
 alert(3 +
 1
 + 2);
@@ -52,10 +52,10 @@ alert(3 +
 
 Các lỗi xảy ra trong trường hợp này khá khó thấy và sửa.
 
-:::info Một ví dụ về lỗi
+
 Nếu bạn tò mò muốn xem một lỗi như vậy, hãy kiểm tra mã này:
 
-```js run
+```js
 [1, 2].forEach(alert)
 :::
 
@@ -63,7 +63,7 @@ Lúc này, chưa cần biết về ý nghĩa của các dấu ngoặc vuông `[]
 
 Bây giờ, thêm một `alert` trước mã trên và *không* kết thúc nó bằng dấu chấm phảy:
 
-```js run no-beautify
+```js
 alert("Sẽ có một lỗi")
 
 [1, 2].forEach(alert)
@@ -72,7 +72,7 @@ alert("Sẽ có một lỗi")
 Nếu ta chạy mã trên, chỉ `alert` đầu tiên hiển thị thông báo và sau đó có một lỗi!
 
 Nhưng mọi thứ sẽ ổn nếu chúng ta thêm dấu chấm phảy sau `alert`:
-```js run
+```js
 alert("Mọi thứ đã ổn");
 
 [1, 2].forEach(alert)
@@ -85,7 +85,7 @@ Lỗi trong trường hợp không có dấu chấm phảy ở trên xuất hi�
 
 Bởi dấu chấm phảy không tự động được thêm vào, đoạn mã trên được xem như một lệnh duy nhất. JavaScript thấy nó như:
 
-```js run no-beautify
+```js
 alert("Sẽ có một lỗi")[1, 2].forEach(alert)
 ```
 
@@ -105,7 +105,7 @@ Các chú thích (comment) có thể đặt ở bất cứ đâu trong script. N
 Toàn bộ phần còn lại của dòng là chú thích. Chú thích một dòng có thể chiếm cả dòng, hoặc theo sau một câu lệnh.
 
 Ví dụ:
-```js run
+```js
 // Chú thích này chiếm cả dòng
 alert('Chào');
 
@@ -116,7 +116,7 @@ alert('thế giới!'); // Chú thích này theo sau một câu lệnh
 
 Ví dụ:
 
-```js run
+```js
 /* Một ví dụ về hai thông báo.
 Đây là một chú thích nhiều dòng
 */
@@ -128,23 +128,23 @@ Nội dung của chú thích bị bỏ qua, nên nếu đặt mã JavaScript tro
 
 Có thể lợi dụng điều này để tạm thời vô hiệu hóa một phần mã:
 
-```js run
+```js
 /* "Chú thích hóa" mã để vô hiệu hóa nó
 alert('Chào');
 */
 alert('World');
 ```
 
-:::info Dùng phím tắt!
-Trong hầu hết các trình soạn thảo mã, có thể chú thích hóa một dòng mã bằng tổ hợp phím `key:Ctrl+/`, nhiều dòng mã bằng tổ hợp phím `key:Ctrl+Shift+/`. Trên máy Mac, dùng `key:Cmd` thay cho `key:Ctrl` và `key:Option` thay cho `key:Shift`.
-:::
 
-:::warning Không được phép đặt một chú thích trong một chú thích khác (nested comment)!
+Trong hầu hết các trình soạn thảo mã, có thể chú thích hóa một dòng mã bằng tổ hợp phím `key:Ctrl+/`, nhiều dòng mã bằng tổ hợp phím `key:Ctrl+Shift+/`. Trên máy Mac, dùng `key:Cmd` thay cho `key:Ctrl` và `key:Option` thay cho `key:Shift`.
+
+
+
 Không thể đặt `/*...*/` trong một `/*...*/` khác.
 
 Mã sau không chạy và dẫn tới một lỗi:
 
-```js run no-beautify
+```js
 /*
   /* chú thích trong chú thích ?!? */
 */
@@ -156,4 +156,4 @@ alert( 'thế giới!' );
 
 Chú thích tuy làm tăng kích thước mã, nhưng điều đó không thành vấn đê. Có nhiều công cụ thu nhỏ mã trước khi đưa lên máy chủ. Chúng xóa các chú thích và chú thích không xuất hiện trong mã sản phẩm chính thức. Bởi vậy chú thích không gây ra các ảnh hưởng tiêu cực tới chương trình.
 
-Sau này trong chương <info:code-quality> chúng ta sẽ học cách viết chú thích sao cho hiệu quả.
+Sau này trong chương &lt;info:code-quality&gt; chúng ta sẽ học cách viết chú thích sao cho hiệu quả.

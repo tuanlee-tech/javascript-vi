@@ -22,9 +22,9 @@ document.head.append(script);
 
 ...But how to run the function that is declared inside that script? We need to wait until the script loads, and only then we can call it.
 
-:::info
-For our own scripts we could use [JavaScript modules](info:modules) here, but they are not widely adopted by third-party libraries.
-:::
+
+For our own scripts we could use [JavaScript modules](#) here, but they are not widely adopted by third-party libraries.
+
 
 ### script.onload
 
@@ -32,19 +32,19 @@ The main helper is the `load` event. It triggers after the script was loaded and
 
 For instance:
 
-```js run untrusted
+```js
 let script = document.createElement('script');
 
 // can load any script, from any domain
 script.src = "https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.3.0/lodash.js"
 document.head.append(script);
 
-*!*
+
 script.onload = function() {
   // the script creates a variable "_"
   alert( _.VERSION ); // shows library version
 };
-*/!*
+
 ```
 
 So in `onload` we can use script variables, run functions etc.
@@ -57,25 +57,25 @@ Errors that occur during the loading of the script can be tracked in an `error` 
 
 For instance, let's request a script that doesn't exist:
 
-```js run
+```js
 let script = document.createElement('script');
 script.src = "https://example.com/404.js"; // no such script
 document.head.append(script);
 
-*!*
+
 script.onerror = function() {
   alert("Error loading " + this.src); // Error loading https://example.com/404.js
 };
-*/!*
+
 ```
 
 Please note that we can't get HTTP error details here. We don't know if it was an error 404 or 500 or something else. Just that the loading failed.
 
-:::warning
+
 Events `onload`/`onerror` track only the loading itself.
 
 Errors that may occur during script processing and execution are out of scope for these events. That is: if a script loaded successfully, then `onload` triggers, even if it has programming errors in it. To track script errors, one can use `window.onerror` global handler.
-:::
+
 
 ## Other resources
 
@@ -83,7 +83,7 @@ The `load` and `error` events also work for other resources, basically for any r
 
 For example:
 
-```js run
+```js
 let img = document.createElement('img');
 img.src = "https://js.cx/clipart/train.gif"; // (*)
 
@@ -121,7 +121,7 @@ noSuchFunction();
 
 Now load it from the same site where it's located:
 
-```html run height=0
+```html
 <script>
 window.onerror = function(message, url, line, col, errorObj) {
   alert(`${message}\n${url}, ${line}:${col}`);
@@ -139,7 +139,7 @@ https://javascript.info/article/onload-onerror/crossorigin/error.js, 1:1
 
 Now let's load the same script from another domain:
 
-```html run height=0
+```html
 <script>
 window.onerror = function(message, url, line, col, errorObj) {
   alert(`${message}\n${url}, ${line}:${col}`);
@@ -171,11 +171,11 @@ There are three levels of cross-origin access:
 2. **`crossorigin="anonymous"`** -- access allowed if the server responds with the header `Access-Control-Allow-Origin` with `*` or our origin. Browser does not send authorization information and cookies to remote server.
 3. **`crossorigin="use-credentials"`** -- access allowed if the server sends back the header `Access-Control-Allow-Origin` with our origin and `Access-Control-Allow-Credentials: true`. Browser sends authorization information and cookies to remote server.
 
-:::info
-You can read more about cross-origin access in the chapter <info:fetch-crossorigin>. It describes the `fetch` method for network requests, but the policy is exactly the same.
 
-Such thing as "cookies" is out of our current scope, but you can read about them in the chapter <info:cookie>.
-:::
+You can read more about cross-origin access in the chapter &lt;info:fetch-crossorigin&gt;. It describes the `fetch` method for network requests, but the policy is exactly the same.
+
+Such thing as "cookies" is out of our current scope, but you can read about them in the chapter &lt;info:cookie&gt;.
+
 
 In our case, we didn't have any crossorigin attribute. So the cross-origin access was prohibited. Let's add it.
 
@@ -183,13 +183,13 @@ We can choose between `"anonymous"` (no cookies sent, one server-side header nee
 
 If we don't care about cookies, then `"anonymous"` is the way to go:
 
-```html run height=0
+```html
 <script>
 window.onerror = function(message, url, line, col, errorObj) {
   alert(`${message}\n${url}, ${line}:${col}`);
 };
 </script>
-<script *!*crossorigin="anonymous"*/!* src="https://cors.javascript.info/article/onload-onerror/crossorigin/error.js"></script>
+<script crossorigin="anonymous" src="https://cors.javascript.info/article/onload-onerror/crossorigin/error.js"></script>
 ```
 
 Now, assuming that the server provides an `Access-Control-Allow-Origin` header, everything's fine. We have the full error report.

@@ -47,11 +47,11 @@ blob.slice([byteStart], [byteEnd], [contentType]);
 
 The arguments are similar to `array.slice`, negative numbers are allowed too.
 
-:::info `Blob` objects are immutable
+
 We can't change data directly in a `Blob`, but we can slice parts of a `Blob`, create new `Blob` objects from them, mix them into a new `Blob` and so on.
 
 This behavior is similar to JavaScript strings: we can't change a character in a string, but we can make a new corrected string.
-:::
+
 
 ## Blob as URL
 
@@ -61,7 +61,7 @@ Thanks to `type`, we can also download/upload `Blob` objects, and the `type` nat
 
 Let's start with a simple example. By clicking on a link you download a dynamically-generated `Blob` with `hello world` contents as a file:
 
-```html run
+```html
 <!-- download attribute forces the browser to download instead of navigating -->
 <a download="hello.txt" href='#' id="link">Download</a>
 
@@ -76,7 +76,7 @@ We can also create a link dynamically in JavaScript and simulate a click by `lin
 
 Here's the similar code that causes user to download the dynamicallly created `Blob`, without any HTML:
 
-```js run
+```js
 let link = document.createElement('a');
 link.download = 'hello.txt';
 
@@ -130,20 +130,20 @@ For instance, here's a smiley:
 The browser will decode the string and show the image: <img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7">
 
 
-To transform a `Blob` into base64, we'll use the built-in `FileReader` object. It can read data from Blobs in multiple formats. In the [next chapter](info:file) we'll cover it more in-depth.
+To transform a `Blob` into base64, we'll use the built-in `FileReader` object. It can read data from Blobs in multiple formats. In the [next chapter](#) we'll cover it more in-depth.
 
 Here's the demo of downloading a blob, now via base-64:
 
-```js run
+```js
 let link = document.createElement('a');
 link.download = 'hello.txt';
 
 let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
 
-*!*
+
 let reader = new FileReader();
 reader.readAsDataURL(blob); // converts the blob to base64 and calls onload
-*/!*
+
 
 reader.onload = function() {
   link.href = reader.result; // data url
@@ -153,12 +153,12 @@ reader.onload = function() {
 
 Both ways of making a URL of a `Blob` are usable. But usually `URL.createObjectURL(blob)` is simpler and faster.
 
-:::details So sánh title-plus="URL.createObjectURL(blob)" title-minus="Blob to data url"
+
 + We need to revoke them if care about memory.
 + Direct access to blob, no "encoding/decoding"
 - No need to revoke anything.
 - Performance and memory losses on big `Blob` objects for encoding.
-:::
+
 
 ## Image to blob
 
@@ -171,7 +171,7 @@ Image operations are done via `<canvas>` element:
 
 In the example below, an image is just copied, but we could cut from it, or transform it on canvas prior to making a blob:
 
-```js run
+```js
 // take any image
 let img = document.querySelector('img');
 
@@ -205,7 +205,7 @@ If we prefer `async/await` instead of callbacks:
 let blob = await new Promise(resolve => canvasElem.toBlob(resolve, 'image/png'));
 ```
 
-For screenshotting a page, we can use a library such as <https://github.com/niklasvh/html2canvas>. What it does is just walks the page and draws it on `<canvas>`. Then we can get a `Blob` of it the same way as above.
+For screenshotting a page, we can use a library such as &lt;https://github.com/niklasvh/html2canvas&gt;. What it does is just walks the page and draws it on `<canvas>`. Then we can get a `Blob` of it the same way as above.
 
 ## From Blob to ArrayBuffer
 
@@ -217,9 +217,9 @@ But if we need to perform low-level processing, we can get the lowest-level `Arr
 // get arrayBuffer from blob
 let fileReader = new FileReader();
 
-*!*
+
 fileReader.readAsArrayBuffer(blob);
-*/!*
+
 
 fileReader.onload = function(event) {
   let arrayBuffer = fileReader.result;
@@ -233,7 +233,7 @@ While `ArrayBuffer`, `Uint8Array` and other `BufferSource` are "binary data", a 
 
 That makes Blobs convenient for upload/download operations, that are so common in the browser.
 
-Methods that perform web-requests, such as [XMLHttpRequest](info:xmlhttprequest), [fetch](info:fetch) and so on, can work with `Blob` natively, as well as with other binary types.
+Methods that perform web-requests, such as [XMLHttpRequest](#), [fetch](#) and so on, can work with `Blob` natively, as well as with other binary types.
 
 We can easily convert betweeen `Blob` and low-level binary data types:
 

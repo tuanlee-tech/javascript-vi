@@ -17,7 +17,7 @@ Without parentheses, the pattern `pattern:go+` means `subject:g` character, foll
 
 Parentheses group characters together, so `pattern:(go)+` means `match:go`, `match:gogo`, `match:gogogo` and so on.
 
-```js run
+```js
 alert( 'Gogogo now!'.match(/(go)+/ig) ); // "Gogogo"
 ```
 
@@ -37,7 +37,7 @@ As we can see, a domain consists of repeated words, a dot after each one except 
 
 In regular expressions that's `pattern:(\w+\.)+\w+`:
 
-```js run
+```js
 let regexp = /(\w+\.)+\w+/g;
 
 alert( "site.com my.site.com".match(regexp) ); // site.com,my.site.com
@@ -55,7 +55,7 @@ The email format is: `name@domain`. Any word can be the name, hyphens and dots a
 
 The pattern:
 
-```js run
+```js
 let regexp = /[-.\w]+@([\w-]+\.)+[\w-]+/g;
 
 alert("my@mail.com @ his@site.com.uk".match(regexp)); // my@mail.com, his@site.com.uk
@@ -80,7 +80,7 @@ Let's wrap the inner content into parentheses, like this: `pattern:<(.*?)>`.
 
 Now we'll get both the tag as a whole `match:<h1>` and its contents `match:h1` in the resulting array:
 
-```js run
+```js
 let str = '<h1>Hello, world!</h1>';
 
 let tag = str.match(/<(.*?)>/);
@@ -107,7 +107,7 @@ Here's how they are numbered (left to right, by the opening paren):
 
 In action:
 
-```js run
+```js
 let str = '<span class="my">';
 
 let regexp = /<(([a-z]+)\s*([^>]*))>/;
@@ -137,7 +137,7 @@ For instance, let's consider the regexp `pattern:a(z)?(c)?`. It looks for `"a"` 
 
 If we run it on the string with a single letter `subject:a`, then the result is:
 
-```js run
+```js
 let match = 'a'.match(/a(z)?(c)?/);
 
 alert( match.length ); // 3
@@ -150,7 +150,7 @@ The array has the length of `3`, but all groups are empty.
 
 And here's a more complex match for the string `subject:ac`:
 
-```js run
+```js
 let match = 'ac'.match(/a(z)?(c)?/)
 
 alert( match.length ); // 3
@@ -163,17 +163,17 @@ The array length is permanent: `3`. But there's nothing for the group `pattern:(
 
 ## Searching for all matches with groups: matchAll
 
-:::warning `matchAll` is a new method, polyfill may be needed
+
 The method `matchAll` is not supported in old browsers.
 
-A polyfill may be required, such as <https://github.com/ljharb/String.prototype.matchAll>.
-:::
+A polyfill may be required, such as &lt;https://github.com/ljharb/String.prototype.matchAll&gt;.
+
 
 When we search for all matches (flag `pattern:g`), the `match` method does not return contents for groups.
 
 For example, let's find all tags in a string:
 
-```js run
+```js
 let str = '<h1> <h2>';
 
 let tags = str.match(/<(.*?)>/g);
@@ -195,7 +195,7 @@ Just like `match`, it looks for matches, but there are 3 differences:
 
 For instance:
 
-```js run
+```js
 let results = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
 
 // results - is not an array, but an iterable object
@@ -209,11 +209,11 @@ alert(results[0]); // <h1>,h1 (1st tag)
 alert(results[1]); // <h2>,h2 (2nd tag)
 ```
 
-As we can see, the first difference is very important, as demonstrated in the line `(*)`. We can't get the match as `results[0]`, because that object isn't pseudoarray. We can turn it into a real `Array` using `Array.from`. There are more details about pseudoarrays and iterables in the article <info:iterable>.
+As we can see, the first difference is very important, as demonstrated in the line `(*)`. We can't get the match as `results[0]`, because that object isn't pseudoarray. We can turn it into a real `Array` using `Array.from`. There are more details about pseudoarrays and iterables in the article &lt;info:iterable&gt;.
 
 There's no need in `Array.from` if we're looping over results:
 
-```js run
+```js
 let results = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
 
 for(let result of results) {
@@ -231,7 +231,7 @@ let [tag1, tag2] = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
 
 Every match, returned by `matchAll`, has the same format as returned by `match` without flag `pattern:g`: it's an array with additional properties `index` (match index in the string) and `input` (source string):
 
-```js run
+```js
 let results = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
 
 let [tag1, tag2] = results;
@@ -242,7 +242,7 @@ alert( tag1.index ); // 0
 alert( tag1.input ); // <h1> <h2>
 ```
 
-:::info Why is a result of `matchAll` an iterable object, not an array?
+
 Why is the method designed like that? The reason is simple - for the optimization.
 
 The call to `matchAll` does not perform the search. Instead, it returns an iterable object, without the results initially. The search is performed each time we iterate over it, e.g. in the loop.
@@ -250,7 +250,7 @@ The call to `matchAll` does not perform the search. Instead, it returns an itera
 So, there will be found as many results as needed, not more.
 
 E.g. there are potentially 100 matches in the text, but in a `for..of` loop we found 5 of them, then decided it's enough and made a `break`. Then the engine won't spend time finding other 95 matches.
-:::
+
 
 ## Named groups
 
@@ -260,10 +260,10 @@ That's done by putting `pattern:?<name>` immediately after the opening paren.
 
 For example, let's look for a date in the format "year-month-day":
 
-```js run
-*!*
+```js
+
 let dateRegexp = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/;
-*/!*
+
 let str = "2019-04-30";
 
 let groups = str.match(dateRegexp).groups;
@@ -279,7 +279,7 @@ To look for all dates, we can add flag `pattern:g`.
 
 We'll also need `matchAll` to obtain full matches, together with groups:
 
-```js run
+```js
 let dateRegexp = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/g;
 
 let str = "2019-10-30 2020-01-01";
@@ -301,7 +301,7 @@ Method `str.replace(regexp, replacement)` that replaces all matches with `regexp
 
 For example,
 
-```js run
+```js
 let str = "John Bull";
 let regexp = /(\w+) (\w+)/;
 
@@ -312,7 +312,7 @@ For named parentheses the reference will be `pattern:$<name>`.
 
 For example, let's reformat dates from "year-month-day" to "day.month.year":
 
-```js run
+```js
 let regexp = /(?<year>[0-9]{4})-(?<month>[0-9]{2})-(?<day>[0-9]{2})/g;
 
 let str = "2019-10-30, 2020-01-01";
@@ -331,13 +331,13 @@ For instance, if we want to find `pattern:(go)+`, but don't want the parentheses
 
 In the example below we only get the name `match:John` as a separate member of the match:
 
-```js run
+```js
 let str = "Gogogo John!";
 
-*!*
+
 // ?: exludes 'go' from capturing
 let regexp = /(?:go)+ (\w+)/i;
-*/!*
+
 
 let result = str.match(regexp);
 

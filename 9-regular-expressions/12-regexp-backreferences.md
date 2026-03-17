@@ -1,4 +1,4 @@
-# Backreferences in pattern: \N and \k<name>
+# Backreferences in pattern: \N and \k&lt;name&gt;
 
 We can use the contents of capturing groups `pattern:(...)` not only in the result or in the replacement string, but also in the pattern itself.
 
@@ -14,7 +14,7 @@ How to find them?
 
 We can put both kinds of quotes in the square brackets: `pattern:['"](.*?)['"]`, but it would find strings with mixed quotes, like `match:"...'` and `match:'..."`. That would lead to incorrect matches when one quote appears inside other ones, like in the string `subject:"She's the one!"`:
 
-```js run
+```js
 let str = `He said: "She's the one!".`;
 
 let regexp = /['"](.*?)['"]/g;
@@ -29,12 +29,12 @@ To make sure that the pattern looks for the closing quote exactly the same as th
 
 Here's the correct code:
 
-```js run
+```js
 let str = `He said: "She's the one!".`;
 
-*!*
+
 let regexp = /(['"])(.*?)\1/g;
-*/!*
+
 
 alert( str.match(regexp) ); // "She's the one!"
 ```
@@ -45,13 +45,13 @@ Further in the pattern `pattern:\1` means "find the same text as in the first gr
 
 Similar to that, `pattern:\2` would mean the contents of the second group, `pattern:\3` - the 3rd group, and so on.
 
-:::info
-If we use `?:` in the group, then we can't reference it. Groups that are excluded from capturing `(?:...)` are not memorized by the engine.
-:::
 
-:::warning Don't mess up: in the pattern `pattern:\1`, in the replacement: `pattern:$1`
+If we use `?:` in the group, then we can't reference it. Groups that are excluded from capturing `(?:...)` are not memorized by the engine.
+
+
+
 In the replacement string we use a dollar sign: `pattern:$1`, while in the pattern - a backslash `pattern:\1`.
-:::
+
 
 ## Backreference by name: `\k<name>`
 
@@ -61,12 +61,12 @@ To reference a named group we can use `pattern:\k<name>`.
 
 In the example below the group with quotes is named `pattern:?<quote>`, so the backreference is `pattern:\k<quote>`:
 
-```js run
+```js
 let str = `He said: "She's the one!".`;
 
-*!*
+
 let regexp = /(?<quote>['"])(.*?)\k<quote>/g;
-*/!*
+
 
 alert( str.match(regexp) ); // "She's the one!"
 ```

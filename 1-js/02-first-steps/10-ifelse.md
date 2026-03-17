@@ -10,12 +10,12 @@ The `if(...)` statement evaluates a condition in parentheses and, if the result 
 
 For example:
 
-```js run
+```js
 let year = prompt('In which year was ECMAScript-2015 specification published?', '');
 
-*!*
+
 if (year == 2015) alert( 'You are right!' );
-*/!*
+
 ```
 
 In the example above, the condition is a simple equality check (`year == 2015`), but it can be much more complex.
@@ -35,7 +35,7 @@ We recommend wrapping your code block with curly braces `{}` every time you use 
 
 The `if (…)` statement evaluates the expression in its parentheses and converts the result to a boolean.
 
-Let's recall the conversion rules from the chapter <info:type-conversions>:
+Let's recall the conversion rules from the chapter &lt;info:type-conversions&gt;:
 
 - A number `0`, an empty string `""`, `null`, `undefined`, and `NaN` all become `false`. Because of that they are called "falsy" values.
 - Other values become `true`, so they are called "truthy".
@@ -71,7 +71,7 @@ if (cond) {
 The `if` statement may contain an optional "else" block. It executes when the condition is falsy.
 
 For example:
-```js run
+```js
 let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
 
 if (year == 2015) {
@@ -87,7 +87,7 @@ Sometimes, we'd like to test several variants of a condition. The `else if` clau
 
 For example:
 
-```js run
+```js
 let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
 
 if (year < 2015) {
@@ -109,17 +109,17 @@ Sometimes, we need to assign a variable depending on a condition.
 
 For instance:
 
-```js run no-beautify
+```js
 let accessAllowed;
 let age = prompt('How old are you?', '');
 
-*!*
+
 if (age > 18) {
   accessAllowed = true;
 } else {
   accessAllowed = false;
 }
-*/!*
+
 
 alert(accessAllowed);
 ```
@@ -153,7 +153,7 @@ let accessAllowed = age > 18 ? true : false;
 
 But parentheses make the code more readable, so we recommend using them.
 
-:::info
+
 In the example above, you can avoid using the question mark operator because the comparison itself returns `true/false`:
 
 ```js
@@ -167,7 +167,7 @@ let accessAllowed = age > 18;
 A sequence of question mark operators `?` can return a value that depends on more than one condition.
 
 For instance:
-```js run
+```js
 let age = prompt('age?', 18);
 
 let message = (age < 3) ? 'Hi, baby!' :
@@ -203,13 +203,13 @@ if (age < 3) {
 
 Sometimes the question mark `?` is used as a replacement for `if`:
 
-```js run no-beautify
+```js
 let company = prompt('Which company created JavaScript?', '');
 
-*!*
+
 (company == 'Netscape') ?
    alert('Right!') : alert('Wrong.');
-*/!*
+
 ```
 
 Depending on the condition `company == 'Netscape'`, either the first or the second expression after the `?` gets executed and shows an alert.
@@ -222,16 +222,16 @@ The notation is shorter than the equivalent `if` statement, which appeals to som
 
 Here is the same code using `if` for comparison:
 
-```js run no-beautify
+```js
 let company = prompt('Which company created JavaScript?', '');
 
-*!*
+
 if (company == 'Netscape') {
   alert('Right!');
 } else {
   alert('Wrong.');
 }
-*/!*
+
 ```
 
 Our eyes scan the code vertically. Code blocks which span several lines are easier to understand than a long, horizontal instruction set.

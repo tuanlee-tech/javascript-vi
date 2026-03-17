@@ -12,17 +12,17 @@ Trước khi tiếp tục, hãy nắm bắt một số thuật ngữ phổ biế
 - *Toán hạng* -- áp dụng cho các toán tử. Chẳng hạn, trọng phép nhân của `5 * 2` có hai toán hạng: toán hạng bên trái là `5` và toán hạng bên phải là `2`. Đôi khi, mọi người gọi là những "đối số" thay vì "toán hạng".
 - Một toán hạng là *đơn nguyên* nếu nó có một toán hạng đơn. Ví dụ: phủ định đơn nguyên `-` đảo ngược dấu của một số:
 
-    ```js run
+```js
     let x = 1;
 
-    *!*
+    
     x = -x;
-    */!*
+    
     alert( x ); // -1, phủ định đơn nguyên được áp dụng
     ```
 - Một toán tử là *binary* nếu nó có hai toán hạng. Trừ cũng tồn tại tương tự ở dạng đơn nguyên:
 
-    ```js run no-beautify
+```js
     let x = 1, y = 3;
     alert( y - x ); // 2, binary minus subtracts values
     ```
@@ -50,7 +50,7 @@ Kết quả của `a % b` là [phần dư](https://en.wikipedia.org/wiki/Remaind
 
 Ví dụ:
 
-```js run
+```js
 alert( 5 % 2 ); // 1, phần dư của 5 chia 2
 alert( 8 % 3 ); // 2, phần dư của 8 chia 3
 ```
@@ -63,7 +63,7 @@ In school maths, we write that as a<sup>b</sup>.
 
 For instance:
 
-```js run
+```js
 alert( 2 ** 2 ); // 2² = 4  
 alert( 2 ** 3 ); // 2³ = 8 
 alert( 2 ** 4 ); // 2⁴ = 16
@@ -73,7 +73,7 @@ Just like in maths, the exponentiation operator is defined for non-integer numbe
 
 For example, a square root is an exponentiation by ½:
 
-```js run
+```js
 alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root)
 alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
 ```
@@ -96,7 +96,7 @@ Nhớ rằng nếu một toán tử là chuỗi, toán tử còn lại cũng s�
 
 Ví dụ:
 
-```js run
+```js
 alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
@@ -105,7 +105,7 @@ Thấy không, nó không quan trọng toán tử đầu tiên hay thứ hai là
 
 Đây là một ví dụ phức tạp hơn:
 
-```js run
+```js
 alert(2 + 2 + '1' ); // "41" chứ không phải "221"
 ```
 
@@ -113,13 +113,13 @@ Nối chuỗi và chuyển đổi chuỗi là một tính năng đặc biệt c�
 
 Ví dụ, phép trừ và phép chia:
 
-```js run
+```js
 alert(2 + 2 + '1' ); // "41" and not "221"
 ```
 
 Tại đây, các toán tử lần lượt làm việc. `+` đầu tiên tính tổng hai số, do đó, nó trả về `4`, sau đó `+` tiếp theo thêm chuỗi `1` vào nó, do đó, nó giống như `4 + '1' = '41'`.
 
-```js run
+```js
 alert('1' + 2 + 2); // "122" không phải "14"
 ```
 
@@ -129,7 +129,7 @@ Nhị phân `+` là toán tử duy nhất hỗ trợ các chuỗi theo cách nh�
 
 Đây là bản demo cho phép trừ và phép chia:
 
-```js run
+```js
 alert( 6 - '2' ); // 4, chuyển '2' thành một số
 alert( '6' / '2' ); // 3, chuyển đổi cả hai toán hạng thành số
 ```
@@ -142,7 +142,7 @@ Cộng đơn nguyên, hay nói cách khác, toán tử cộng `+` áp dụng cho
 
 Ví dụ:
 
-```js run
+```js
 // Không đụng đến số
 
 let x = 1;
@@ -151,11 +151,11 @@ alert( +x ); // 1
 let y = -2;
 alert( +y ); // -2
 
-*!*
+
 // Chuyển đổi những thứ không phải số
 alert( +true ); // 1
 alert( +"" );   // 0
-*/!*
+
 ```
 
 Nó làm điều tương tự như là `Number(...)`, nhưng ngắn hơn.
@@ -164,7 +164,7 @@ Nhu cầu chuyển đổi chuỗi thành số phát sinh rất thường xuyên.
 
 Cộng nhị phân sẽ cộng chúng như là các chuỗi:
 
-```js run
+```js
 let apples = "2";
 let oranges = "3";
 
@@ -173,14 +173,14 @@ alert( apples + oranges ); // "23", cộng nhị nhân nối chuỗi
 
 Nếu ta muốn xem chúng như là các số, ta cần biến đổi chúng và sau đó cộng:
 
-```js run
+```js
 let apples = "2";
 let oranges = "3";
 
-*!*
+
 // cả hai giá trị được chuyển đổi sang số trước khi cộng nhị phân
 alert( +apples + +oranges ); // 5
-*/!*
+
 
 // biến thể dài hơn
 // alert( Number(apples) + Number(oranges) ); // 5
@@ -240,13 +240,13 @@ Gọi `x = value` nghĩa là gán `value` vào `x` *và sau đó trả về nó*
 
 Đây là demo sử dụng một phép gán như một phần của biểu thức phức tạp hơn:
 
-```js run
+```js
 let a = 1;
 let b = 2;
 
-*!*
+
 let c = 3 - (a = b + 1);
-*/!*
+
 
 alert( a ); // 3
 alert( c ); // 0
@@ -262,12 +262,12 @@ Tuy nhiên, đừng nên viết code như thế. Viết như vậy chắc chắn
 
 Một tính năng thú vị khác là khả năng gán chuỗi:
 
-```js run
+```js
 let a, b, c;
 
-*!*
+
 a = b = c = 2 + 2;
-*/!*
+
 
 alert( a ); // 4
 alert( b ); // 4
@@ -300,7 +300,7 @@ n = n * 2;
 
 Điều này có thể làm ngắn hơn bằng cách dùng `+=` và `*=`:
 
-```js run
+```js
 let n = 2;
 n += 5; // now n = 7 (same as n = n + 5)
 n *= 2; // now n = 14 (same as n = n * 2)
@@ -312,7 +312,7 @@ Phép tính ngắn "sửa-và-gán" tồn tại cho tất cả các toán tử s
 
 Các toán tử như vậy có cùng mức độ ưu tiên như một phép gán thông thường, vì vậy chúng chạy sau hầu hết các phép tính khác:
 
-```js run
+```js
 let n = 2;
 
 n *= 3 + 5;
@@ -330,22 +330,22 @@ Vì vậy, có các toán tử đặc biệt cho nó:
 
 - **Phép tăng** `++` làm tăng giá trị của biến lên 1:
 
-    ```js run no-beautify
+```js
     let counter = 2;
     counter++;        // hoạt động giống như counter = counter + 1, nhưng ngắn hơn
     alert( counter ); // 3
     ```
 - **Phép giảm** `--` giảm giá trị của biến đi 1:
 
-    ```js run no-beautify
+```js
     let counter = 2;
     counter--;        // hoạt động giống như counter = counter - 1, nhưng ngắn hơn
     alert( counter ); // 1
     ```
 
-:::warning
+
 Phép tăng/phép giảm chỉ có thể được áp dụng cho các biến. Nếu sử dụng nó trên một giá trị như `5++` sẽ báo lỗi.
-:::
+
 
 Toán tử `++` và `--` có thể được đặt trước hoặc sau một biến.
 
@@ -360,22 +360,22 @@ Hãy làm rõ. Như chúng ta biết, tất cả các toán tử đều trả v�
 
 Để thấy sự khác biệt, xem ví dụ sau:
 
-```js run
+```js
 let counter = 1;
 let a = ++counter; // (*)
 
-alert(a); // *!*2*/!*
+alert(a); // 2
 ```
 
 Trong dòng `(*)`, dạng *tiền tố* `++counter` tăng `counter` và trả về giá trị mới là `2`. Vì vậy, hàm `alert` sẽ hiển thị `2`.
 
 Giờ, hãy sử dụng dạng hậu tố:
 
-```js run
+```js
 let counter = 1;
 let a = counter++; // (*) thay đổi ++counter sang counter++
 
-alert(a); // *!*1*/!*
+alert(a); // 1
 ```
 
 Trong dòng `(*)`, dạng *hậu tố* `counter++` cũng tăng `counter` nhưng trả về giá trị *cũ* (trước khi tăng). Do đó, hàm `alert` sẽ hiển thị `1`.
@@ -384,7 +384,7 @@ Tóm tắt:
 
 - Nếu kết quả tăng/giảm không được sử dụng, sẽ không có sự khác biệt trong các dạng được sử dụng:
 
-    ```js run
+```js
     let counter = 0;
     counter++;
     ++counter;
@@ -393,31 +393,31 @@ Tóm tắt:
     ```
 - Nếu chúng ta muốn tăng giá trị *và* ngay lập tức sử dụng kết quả của toán tử, chúng ta cần dạng tiền tố:
 
-    ```js run
+```js
     let counter = 0;
     alert( ++counter ); // 1
     ```
     
 - Nếu chúng tâ muốn tăng một giá trị nhưng sử dụng giá trị trước đó của nó, thì chúng ta cần dạng hậu tố:
 
-    ```js run
+```js
     let counter = 0;
     alert( counter++ ); // 0
     ```
 
-:::info Tăng/giảm giữa các toán tử khác
+
 Toán tử `++/--` cũng có thể được sử dụng trong các biểu thức. Ưu tiên của nó cao hơn hầu hết các toán tử số học khác.
 
 Ví dụ:
 
-```js run
+```js
 let counter = 1;
 alert( 2 * ++counter ); // 4
 :::
 
 So sánh với:
 
-```js run
+```js
 let counter = 1;
 alert( 2 * counter++ ); // 2, vì counter++ trả về giá trị "cũ"
 ```
@@ -428,7 +428,7 @@ Trong lúc đọc code, lướt mắt theo chiều "dọc" nhanh có thể khi�
 
 Chúng tôi khuyến khích kiểu "mỗi dòng - một hành động":
 
-```js run
+```js
 let counter = 1;
 alert( 2 * counter );
 counter++;
@@ -461,21 +461,21 @@ The comma operator allows us to evaluate several expressions, dividing them with
 
 For example:
 
-```js run
-*!*
+```js
+
 let a = (1 + 2, 3 + 4);
-*/!*
+
 
 alert( a ); // 7 (kết quả của 3 + 4)
 ```
 
 Đây, biểu thức đầu tiên `1 + 2` được chạy và kết quả của nó bị ném đi. Sau đó, `3 + 4` được chạy và trả về một kết quả.
 
-:::info Dấu phẩy có độ ưu tiên rất thấp
+
 Xin lưu ý rằng toán tử dấu phẩy có độ ưu tiên rất thấp, thấp hơn `=`, vì vậy dấu ngoặc đơn rất quan trọng trong ví dụ trên.
 
 Nếu không có chúng: `a = 1 + 2, 3 + 4` chạy `+` trước, tổng hợp các số thành `a = 3, 7`, sau đó phép gán `=` gán `a = 3`, và phần còn lại bị bỏ qua. Nó giống như `(a = 1 + 2), 3 + 4`.
-:::
+
 
 Tại sao chúng ta cần một toán tử loại bỏ mọi thứ trừ biểu thức cuối cùng?
 
@@ -485,7 +485,7 @@ Ví dụ:
 
 ```js
 // ba toán tử trên một dòng
-for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
+for (a = 1, b = 3, c = a * b; a < 10; a++) {
  ...
 }
 ```

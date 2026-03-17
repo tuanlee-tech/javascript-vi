@@ -2,7 +2,7 @@
 
 Regular functions return only one, single value (or nothing).
 
-Generators can return ("yield") multiple values, one after another, on-demand. They work great with [iterables](info:iterable), allowing to create data streams with ease.
+Generators can return ("yield") multiple values, one after another, on-demand. They work great with [iterables](#), allowing to create data streams with ease.
 
 ## Generator functions
 
@@ -22,7 +22,7 @@ Generator functions behave differently from regular ones. When such function is 
 
 Here, take a look:
 
-```js run
+```js
 function* generateSequence() {
   yield 1;
   yield 2;
@@ -31,9 +31,9 @@ function* generateSequence() {
 
 // "generator function" creates "generator object"
 let generator = generateSequence();
-*!*
+
 alert(generator); // [object Generator]
-*/!*
+
 ```
 
 The function code execution hasn't started yet:
@@ -48,7 +48,7 @@ The result of `next()` is always an object with two properties:
 
 For instance, here we create the generator and get its first yielded value:
 
-```js run
+```js
 function* generateSequence() {
   yield 1;
   yield 2;
@@ -57,9 +57,9 @@ function* generateSequence() {
 
 let generator = generateSequence();
 
-*!*
+
 let one = generator.next();
-*/!*
+
 
 alert(JSON.stringify(one)); // {value: 1, done: false}
 ```
@@ -83,7 +83,7 @@ And, if we call it a third time, the execution reaches the `return` statement th
 ```js
 let three = generator.next();
 
-alert(JSON.stringify(three)); // {value: 3, *!*done: true*/!*}
+alert(JSON.stringify(three)); // {value: 3, done: true}
 ```
 
 ![](generateSequence-4.svg)
@@ -92,19 +92,19 @@ Now the generator is done. We should see it from `done:true` and process `value:
 
 New calls to `generator.next()` don't make sense any more. If we do them, they return the same object: `{done: true}`.
 
-:::info `function* f(…)` or `function *f(…)`?
+
 Both syntaxes are correct.
 
 But usually the first syntax is preferred, as the star `*` denotes that it's a generator function, it describes the kind, not the name, so it should stick with the `function` keyword.
-:::
+
 
 ## Generators are iterable
 
-As you probably already guessed looking at the `next()` method, generators are [iterable](info:iterable).
+As you probably already guessed looking at the `next()` method, generators are [iterable](#).
 
 We can loop over their values using `for..of`:
 
-```js run
+```js
 function* generateSequence() {
   yield 1;
   yield 2;
@@ -124,13 +124,13 @@ Looks a lot nicer than calling `.next().value`, right?
 
 It's because `for..of` iteration ignores the last `value`, when `done: true`. So, if we want all results to be shown by `for..of`, we must return them with `yield`:
 
-```js run
+```js
 function* generateSequence() {
   yield 1;
   yield 2;
-*!*
+
   yield 3;
-*/!*
+
 }
 
 let generator = generateSequence();
@@ -142,7 +142,7 @@ for(let value of generator) {
 
 As generators are iterable, we can call all related functionality, e.g. the spread syntax `...`:
 
-```js run
+```js
 function* generateSequence() {
   yield 1;
   yield 2;
@@ -154,15 +154,15 @@ let sequence = [0, ...generateSequence()];
 alert(sequence); // 0, 1, 2, 3
 ```
 
-In the code above, `...generateSequence()` turns the iterable generator object into an array of items (read more about the spread syntax in the chapter [](info:rest-parameters-spread#spread-syntax))
+In the code above, `...generateSequence()` turns the iterable generator object into an array of items (read more about the spread syntax in the chapter [](#))
 
 ## Using generators for iterables
 
-Some time ago, in the chapter [](info:iterable) we created an iterable `range` object that returns values `from..to`.
+Some time ago, in the chapter [](#) we created an iterable `range` object that returns values `from..to`.
 
 Here, let's remember the code:
 
-```js run
+```js
 let range = {
   from: 1,
   to: 5,
@@ -196,7 +196,7 @@ We can use a generator function for iteration by providing it as `Symbol.iterato
 
 Here's the same `range`, but much more compact:
 
-```js run
+```js
 let range = {
   from: 1,
   to: 5,
@@ -219,11 +219,11 @@ That's not a coincidence, of course. Generators were added to JavaScript languag
 
 The variant with a generator is much more concise than the original iterable code of `range`, and keeps the same functionality.
 
-:::info Generators may generate values forever
+
 In the examples above we generated finite sequences, but we can also make a generator that yields values forever. For instance, an unending sequence of pseudo-random numbers.
 
 That surely would require a `break` (or `return`) in `for..of` over such generator. Otherwise, the loop would repeat forever and hang.
-:::
+
 
 ## Generator composition
 
@@ -250,14 +250,14 @@ For generators, there's a special `yield*` syntax to "embed" (compose) one gener
 
 The composed generator:
 
-```js run
+```js
 function* generateSequence(start, end) {
   for (let i = start; i <= end; i++) yield i;
 }
 
 function* generatePasswordCodes() {
 
-*!*
+
   // 0..9
   yield* generateSequence(48, 57);
 
@@ -266,7 +266,7 @@ function* generatePasswordCodes() {
 
   // a..z
   yield* generateSequence(97, 122);
-*/!*
+
 
 }
 
@@ -283,14 +283,14 @@ The `yield*` directive *delegates* the execution to another generator. This term
 
 The result is the same as if we inlined the code from nested generators:
 
-```js run
+```js
 function* generateSequence(start, end) {
   for (let i = start; i <= end; i++) yield i;
 }
 
 function* generateAlphaNum() {
 
-*!*
+
   // yield* generateSequence(48, 57);
   for (let i = 48; i <= 57; i++) yield i;
 
@@ -299,7 +299,7 @@ function* generateAlphaNum() {
 
   // yield* generateSequence(97, 122);
   for (let i = 97; i <= 122; i++) yield i;
-*/!*
+
 
 }
 
@@ -324,12 +324,12 @@ To do so, we should call `generator.next(arg)`, with an argument. That argument 
 
 Let's see an example:
 
-```js run
+```js
 function* gen() {
-*!*
+
   // Pass a question to the outer code and wait for an answer
   let result = yield "2 + 2 = ?"; // (*)
-*/!*
+
 
   alert(result);
 }
@@ -360,7 +360,7 @@ As we can see, unlike regular functions, a generator and the calling code can ex
 
 To make things more obvious, here's another example, with more calls:
 
-```js run
+```js
 function* gen() {
   let ask1 = yield "2 + 2 = ?";
 
@@ -402,7 +402,7 @@ To pass an error into a `yield`, we should call `generator.throw(err)`. In that 
 
 For instance, here the yield of `"2 + 2 = ?"` leads to an error:
 
-```js run
+```js
 function* gen() {
   try {
     let result = yield "2 + 2 = ?"; // (1)
@@ -417,9 +417,9 @@ let generator = gen();
 
 let question = generator.next().value;
 
-*!*
+
 generator.throw(new Error("The answer is not found in my database")); // (2)
-*/!*
+
 ```
 
 The error, thrown into the generator at line `(2)` leads to an exception in line `(1)` with `yield`. In the example above, `try..catch` catches it and shows it.
@@ -428,7 +428,7 @@ If we don't catch it, then just like any exception, it "falls out" the generator
 
 The current line of the calling code is the line with `generator.throw`, labelled as `(2)`. So we can catch it here, like this:
 
-```js run
+```js
 function* generate() {
   let result = yield "2 + 2 = ?"; // Error in this line
 }
@@ -437,13 +437,13 @@ let generator = generate();
 
 let question = generator.next().value;
 
-*!*
+
 try {
   generator.throw(new Error("The answer is not found in my database"));
 } catch(e) {
   alert(e); // shows the error
 }
-*/!*
+
 ```
 
 If we don't catch the error there, then, as usual, it falls through to the outer calling code (if any) and, if uncaught, kills the script.

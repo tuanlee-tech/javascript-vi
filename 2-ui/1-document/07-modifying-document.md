@@ -10,7 +10,7 @@ Let's demonstrate using an example. We'll add a message on the page that looks n
 
 Here's how it will look:
 
-```html autorun height="80"
+```html
 <style>
 .alert {
   padding: 15px;
@@ -21,11 +21,11 @@ Here's how it will look:
 }
 </style>
 
-*!*
+
 <div class="alert">
   <strong>Hi there!</strong> You've read an important message.
 </div>
-*/!*
+
 ```
 
 That was the HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are in the HTML/CSS already).
@@ -37,14 +37,14 @@ To create DOM nodes, there are two methods:
 `document.createElement(tag)`
 : Creates a new *element node* with the given tag:
 
-    ```js
+```js
     let div = document.createElement('div');
     ```
 
 `document.createTextNode(text)`
 : Creates a new *text node* with the given text:
 
-    ```js
+```js
     let textNode = document.createTextNode('Here I am');
     ```
 
@@ -75,7 +75,7 @@ There's a special method `append` for that: `document.body.append(div)`.
 
 Here's the full code:
 
-```html run height="80"
+```html
 <style>
 .alert {
   padding: 15px;
@@ -91,9 +91,9 @@ Here's the full code:
   div.className = "alert";
   div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 
-*!*
+
   document.body.append(div);
-*/!*
+
 </script>
 ```
 
@@ -113,7 +113,7 @@ Let's see them in action.
 
 Here's an example of using these methods to add items to a list and the text before/after it:
 
-```html autorun
+```html
 <ol id="ol">
   <li>0</li>
   <li>1</li>
@@ -156,7 +156,7 @@ As said, these methods can insert multiple nodes and text pieces in a single cal
 
 For instance, here a string and an element are inserted:
 
-```html run
+```html
 <div id="div"></div>
 <script>
   div.before('<p>Hello</p>', document.createElement('hr'));
@@ -167,10 +167,10 @@ Please note: the text is inserted "as text", not "as HTML", with proper escaping
 
 So the final HTML is:
 
-```html run
-*!*
+```html
+
 &lt;p&gt;Hello&lt;/p&gt;
-*/!*
+
 <hr>
 <div id="div"></div>
 ```
@@ -196,7 +196,7 @@ The second parameter is an HTML string, that is inserted "as HTML".
 
 For instance:
 
-```html run
+```html
 <div id="div"></div>
 <script>
   div.insertAdjacentHTML('beforebegin', '<p>Hello</p>');
@@ -206,7 +206,7 @@ For instance:
 
 ...Would lead to:
 
-```html run
+```html
 <p>Hello</p>
 <div id="div"></div>
 <p>Bye</p>
@@ -229,7 +229,7 @@ They exist mainly to make the syntax "uniform". In practice, only `insertAdjacen
 
 So here's an alternative variant of showing a message:
 
-```html run
+```html
 <style>
 .alert {
   padding: 15px;
@@ -253,7 +253,7 @@ To remove a node, there's a method `node.remove()`.
 
 Let's make our message disappear after a second:
 
-```html run untrusted
+```html
 <style>
 .alert {
   padding: 15px;
@@ -270,9 +270,9 @@ Let's make our message disappear after a second:
   div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
 
   document.body.append(div);
-*!*
+
   setTimeout(() => div.remove(), 1000);
-*/!*
+
 </script>
 ```
 
@@ -282,7 +282,7 @@ Please note: if we want to *move* an element to another place -- there's no need
 
 For instance, let's swap elements:
 
-```html run height=50
+```html
 <div id="first">First</div>
 <div id="second">Second</div>
 <script>
@@ -303,7 +303,7 @@ Sometimes when we have a big element, that may be faster and simpler.
 
 An example of copying the message:
 
-```html run height="120"
+```html
 <style>
 .alert {
   padding: 15px;
@@ -319,12 +319,12 @@ An example of copying the message:
 </div>
 
 <script>
-*!*
+
   let div2 = div.cloneNode(true); // clone the message
   div2.querySelector('strong').innerHTML = 'Bye there!'; // change the clone
 
   div.after(div2); // show the clone after the existing div
-*/!*
+
 </script>
 ```
 
@@ -336,7 +336,7 @@ We can append other nodes to it, but when we insert it somewhere, then its conte
 
 For example, `getListContent` below generates a fragment with `<li>` items, that are later inserted into `<ul>`:
 
-```html run
+```html
 <ul id="ul"></ul>
 
 <script>
@@ -352,9 +352,9 @@ function getListContent() {
   return fragment;
 }
 
-*!*
+
 ul.append(getListContent()); // (*)
-*/!*
+
 </script>
 ```
 
@@ -370,7 +370,7 @@ Please note, at the last line `(*)` we append `DocumentFragment`, but it "blends
 
 `DocumentFragment` is rarely used explicitly. Why append to a special kind of node, if we can return an array of nodes instead? Rewritten example:
 
-```html run
+```html
 <ul id="ul"></ul>
 
 <script>
@@ -386,13 +386,13 @@ function getListContent() {
   return result;
 }
 
-*!*
+
 ul.append(...getListContent()); // append + "..." operator = friends!
-*/!*
+
 </script>
 ```
 
-We mention `DocumentFragment` mainly because there are some concepts on top of it, like [template](info:template-element) element, that we'll cover much later.
+We mention `DocumentFragment` mainly because there are some concepts on top of it, like [template](#) element, that we'll cover much later.
 
 ## Old-school insert/remove methods
 
@@ -409,7 +409,7 @@ The only reason we list these methods here is that you can find them in many old
 
     The following example adds a new `<li>` to the end of `<ol>`:
 
-    ```html run height=100
+```html
     <ol id="list">
       <li>0</li>
       <li>1</li>
@@ -429,7 +429,7 @@ The only reason we list these methods here is that you can find them in many old
 
     The following code inserts a new list item before the second `<li>`:
 
-    ```html run height=100
+```html
     <ol id="list">
       <li>0</li>
       <li>1</li>
@@ -439,14 +439,14 @@ The only reason we list these methods here is that you can find them in many old
       let newLi = document.createElement('li');
       newLi.innerHTML = 'Hello, world!';
 
-    *!*
+    
       list.insertBefore(newLi, list.children[1]);
-    */!*
+    
     </script>
     ```
     To insert `newLi` as the first element, we can do it like this:
 
-    ```js
+```js
     list.insertBefore(newLi, list.firstChild);
     ```
 
@@ -458,7 +458,7 @@ The only reason we list these methods here is that you can find them in many old
 
     The following example removes first `<li>` from `<ol>`:
 
-    ```html run height=100
+```html
     <ol id="list">
       <li>0</li>
       <li>1</li>
@@ -479,13 +479,13 @@ There's one more, very ancient method of adding something to a web-page: `docume
 
 The syntax:
 
-```html run
+```html
 <p>Somewhere in the page...</p>
-*!*
+
 <script>
   document.write('<b>Hello from JS</b>');
 </script>
-*/!*
+
 <p>The end</p>
 ```
 
@@ -501,15 +501,15 @@ If we call it afterwards, the existing document content is erased.
 
 For instance:
 
-```html run
+```html
 <p>After one second the contents of this page will be replaced...</p>
-*!*
+
 <script>
   // document.write after 1 second
   // that's after the page loaded, so it erases the existing content
   setTimeout(() => document.write('<b>...By this.</b>'), 1000);
 </script>
-*/!*
+
 ```
 
 So it's kind of unusable at "after loaded" stage, unlike other DOM methods we covered above.

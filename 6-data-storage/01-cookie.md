@@ -16,15 +16,15 @@ There are many tricky things about cookies and their options. In this chapter we
 
 ## Reading from document.cookie
 
-```online
+```text
 Does your browser store any cookies from this site? Let's see:
 ```
 
-```offline
+```text
 Assuming you're on a website, it's possible to see the cookies from it, like this:
 ```
 
-```js run
+```js
 // At javascript.info, we use Google Analytics for statistics,
 // so there should be some cookies
 alert( document.cookie ); // cookie1=value1; cookie2=value2;...
@@ -45,7 +45,7 @@ We can write to `document.cookie`. But it's not a data property, it's an accesso
 
 For instance, this call sets a cookie with the name `user` and value `John`:
 
-```js run
+```js
 document.cookie = "user=John"; // update only cookie named 'user'
 alert(document.cookie); // show all cookies
 ```
@@ -54,7 +54,7 @@ If you run it, then probably you'll see multiple cookies. That's because the `do
 
 Technically, name and value can have any characters. To keep the valid formatting, they should be escaped using a built-in `encodeURIComponent` function:
 
-```js run
+```js
 // special characters (spaces), need encoding
 let name = "my name";
 let value = "John Smith"
@@ -66,17 +66,17 @@ alert(document.cookie); // ...; my%20name=John%20Smith
 ```
 
 
-:::warning Limitations
+
 There are few limitations:
 - The `name=value` pair, after `encodeURIComponent`, should not exceed 4KB. So we can't store anything huge in a cookie.
 - The total number of cookies per domain is limited to around 20+, the exact limit depends on the browser.
-:::
+
 
 Cookies have several options, many of them are important and should be set.
 
 The options are listed after `key=value`, delimited by `;`, like this:
 
-```js run
+```js
 document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
 ```
 
@@ -278,7 +278,7 @@ There exist many cookie libraries for that, so these are for demo purposes. Full
 
 ### getCookie(name)
 
-The shortest way to access a cookie is to use a [regular expression](info:regular-expressions).
+The shortest way to access a cookie is to use a [regular expression](#).
 
 The function `getCookie(name)` returns the cookie with the given `name`:
 
@@ -301,7 +301,7 @@ Please note that a cookie value is encoded, so `getCookie` uses a built-in `deco
 
 Sets the cookie's `name` to the given `value` with `path=/` by default (can be modified to add other defaults):
 
-```js run
+```js
 function setCookie(name, value, options = {}) {
 
   options = {
@@ -343,9 +343,9 @@ function deleteCookie(name) {
 }
 ```
 
-:::warning Updating or deleting must use same path and domain
+
 Please note: when we update or delete a cookie, we should use exactly the same path and domain options as when we set it.
-:::
+
 
 Together: [cookie.js](cookie.js).
 
@@ -378,11 +378,11 @@ Also, some modern browsers employ special policies for such cookies:
 - Firefox comes with a "black list" of third-party domains where it blocks third-party cookies.
 
 
-:::info
+
 If we load a script from a third-party domain, like `<script src="https://google-analytics.com/analytics.js">`, and that script uses `document.cookie` to set a cookie, then such cookie is not third-party.
 
 If a script sets a cookie, then no matter where the script came from -- the cookie belongs to the domain of the current webpage.
-:::
+
 
 ## Appendix: GDPR
 

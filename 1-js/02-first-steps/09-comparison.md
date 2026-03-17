@@ -22,7 +22,7 @@ All comparison operators return a boolean value:
 
 For example:
 
-```js run
+```js
 alert( 2 > 1 );  // true (correct)
 alert( 2 == 1 ); // false (wrong)
 alert( 2 != 1 ); // true (correct)
@@ -30,7 +30,7 @@ alert( 2 != 1 ); // true (correct)
 
 A comparison result can be assigned to a variable, just like any value:
 
-```js run
+```js
 let result = 5 > 4; // assign the result of the comparison
 alert( result ); // true
 ```
@@ -43,7 +43,7 @@ In other words, strings are compared letter-by-letter.
 
 For example:
 
-```js run
+```js
 alert( 'Z' > 'A' ); // true
 alert( 'Glow' > 'Glee' ); // true
 alert( 'Bee' > 'Be' ); // true
@@ -65,11 +65,11 @@ The second comparison `'Glow'` and `'Glee'` needs more steps as strings are comp
 2. `l` is the same as `l`.
 3. `o` is greater than `e`. Stop here. The first string is greater.
 
-:::info Not a real dictionary, but Unicode order
+
 The comparison algorithm given above is roughly equivalent to the one used in dictionaries or phone books, but it's not exactly the same.
 
-For instance, case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? The lowercase `"a"`. Why? Because the lowercase character has a greater index in the internal encoding table JavaScript uses (Unicode). We'll get back to specific details and consequences of this in the chapter <info:string>.
-:::
+For instance, case matters. A capital letter `"A"` is not equal to the lowercase `"a"`. Which one is greater? The lowercase `"a"`. Why? Because the lowercase character has a greater index in the internal encoding table JavaScript uses (Unicode). We'll get back to specific details and consequences of this in the chapter &lt;info:string&gt;.
+
 
 ## Comparison of different types
 
@@ -77,7 +77,7 @@ When comparing values of different types, JavaScript converts the values to numb
 
 For example:
 
-```js run
+```js
 alert( '2' > 1 ); // true, string '2' becomes a number 2
 alert( '01' == 1 ); // true, string '01' becomes a number 1
 ```
@@ -86,12 +86,12 @@ For boolean values, `true` becomes `1` and `false` becomes `0`.
 
 For example:
 
-```js run
+```js
 alert( true == 1 ); // true
 alert( false == 0 ); // true
 ```
 
-:::info A funny consequence
+
 It is possible that at the same time:
 
 - Two values are equal.
@@ -99,7 +99,7 @@ It is possible that at the same time:
 
 For example:
 
-```js run
+```js
 let a = 0;
 alert( Boolean(a) ); // false
 
@@ -116,13 +116,13 @@ From JavaScript's standpoint, this result is quite normal. An equality check con
 
 A regular equality check `==` has a problem. It cannot differentiate `0` from `false`:
 
-```js run
+```js
 alert( 0 == false ); // true
 ```
 
 The same thing happens with an empty string:
 
-```js run
+```js
 alert( '' == false ); // true
 ```
 
@@ -136,7 +136,7 @@ In other words, if `a` and `b` are of different types, then `a === b` immediatel
 
 Let's try it:
 
-```js run
+```js
 alert( 0 === false ); // false, because the types are different
 ```
 
@@ -151,14 +151,14 @@ There's a non-intuitive behavior when `null` or `undefined` are compared to othe
 For a strict equality check `===`
 : These values are different, because each of them is a different type.
 
-    ```js run
+```js
     alert( null === undefined ); // false
     ```
 
 For a non-strict check `==`
 : There's a special rule. These two are a "sweet couple": they equal each other (in the sense of `==`), but not any other value.
 
-    ```js run
+```js
     alert( null == undefined ); // true
     ```
 
@@ -171,10 +171,10 @@ Now let's see some funny things that happen when we apply these rules. And, what
 
 Let's compare `null` with a zero:
 
-```js run
+```js
 alert( null > 0 );  // (1) false
 alert( null == 0 ); // (2) false
-alert( null >= 0 ); // (3) *!*true*/!*
+alert( null >= 0 ); // (3) true
 ```
 
 Mathematically, that's strange. The last result states that "`null` is greater than or equal to zero", so in one of the comparisons above it must be `true`, but they are both false.
@@ -187,7 +187,7 @@ On the other hand, the equality check `==` for `undefined` and `null` is defined
 
 The value `undefined` shouldn't be compared to other values:
 
-```js run
+```js
 alert( undefined > 0 ); // false (1)
 alert( undefined < 0 ); // false (2)
 alert( undefined == 0 ); // false (3)

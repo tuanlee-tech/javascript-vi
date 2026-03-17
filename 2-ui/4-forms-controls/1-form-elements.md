@@ -10,7 +10,7 @@ Document forms are members of the special collection `document.forms`.
 
 That's a so-called *"named collection"*: it's both named and ordered. We can use both the name or the number in the document to get the form.
 
-```js no-beautify
+```js
 document.forms.my; // the form with name="my"
 document.forms[0]; // the first form in the document
 ```
@@ -19,7 +19,7 @@ When we have a form, then any element is available in the named collection `form
 
 For instance:
 
-```html run height=40
+```html
 <form name="my">
   <input name="one" value="1">
   <input name="two" value="2">
@@ -40,10 +40,10 @@ There may be multiple elements with the same name. This is typical with radio bu
 
 In that case, `form.elements[name]` is a *collection*. For instance:
 
-```html run height=40
+```html
 <form>
-  <input type="radio" *!*name="age"*/!* value="10">
-  <input type="radio" *!*name="age"*/!* value="20">
+  <input type="radio" name="age" value="10">
+  <input type="radio" name="age" value="20">
 </form>
 
 <script>
@@ -51,21 +51,21 @@ let form = document.forms[0];
 
 let ageElems = form.elements.age;
 
-*!*
+
 alert(ageElems[0]); // [object HTMLInputElement]
-*/!*
+
 </script>
 ```
 
 These navigation properties do not depend on the tag structure. All control elements, no matter how deep they are in the form, are available in `form.elements`.
 
 
-:::info Fieldsets as \subforms\""
+
 A form may have one or many `<fieldset>` elements inside it. They also have `elements` property that lists form controls inside them.
 
 For instance:
 
-```html run height=80
+```html
 <body>
   <form id="form">
     <fieldset name="userFields">
@@ -77,19 +77,19 @@ For instance:
   <script>
     alert(form.elements.login); // <input name="login">
 
-*!*
+
     let fieldset = form.elements.userFields;
     alert(fieldset); // HTMLFieldSetElement
 
     // we can get the input by name both from the form and from the fieldset
     alert(fieldset.elements.login == form.elements.login); // true
-*/!*
+
   </script>
 </body>
 :::
 ````
 
-:::warning Shorter notation: `form.name`
+
 There's a shorter notation: we can access the element as `form[index/name]`.
 
 In other words, instead of `form.elements.login` we can write `form.login`.
@@ -98,7 +98,7 @@ That also works, but there's a minor issue: if we access an element, and then ch
 
 That's easy to see in an example:
 
-```html run height=40
+```html
 <form id="form">
   <input name="login">
 </form>
@@ -112,10 +112,10 @@ That's easy to see in an example:
   alert(form.elements.login); // undefined
   alert(form.elements.username); // input
 
-*!*
+
   // form allows both names: the new one and the old one
   alert(form.username == form.login); // true
-*/!*
+
 </script>
 :::
 
@@ -133,19 +133,19 @@ Here's the picture:
 
 For instance:
 
-```html run height=40
+```html
 <form id="form">
   <input type="text" name="login">
 </form>
 
 <script>
-*!*
+
   // form -> element
   let login = form.login;
 
   // element -> form
   alert(login.form); // HTMLFormElement
-*/!*
+
 </script>
 ```
 
@@ -166,11 +166,11 @@ textarea.value = "New text";
 input.checked = true; // for a checkbox or radio button
 ```
 
-:::warning Use `textarea.value`, not `textarea.innerHTML`
+
 Please note that even though `<textarea>...</textarea>` holds its value as nested HTML, we should never use `textarea.innerHTML` to access it.
 
 It stores only the HTML that was initially on the page, not the current value.
-:::
+
 
 ### select and option
 
@@ -188,7 +188,7 @@ They provide three different ways of setting a value for a `<select>`:
 
 Here is an example of all three methods:
 
-```html run
+```html
 <select id="select">
   <option value="apple">Apple</option>
   <option value="pear">Pear</option>
@@ -210,8 +210,8 @@ For multiple selected values, use the first way of setting values: add/remove th
 
 Here's an example of how to get selected values from a multi-select:
 
-```html run
-<select id="select" *!*multiple*/!*>
+```html
+<select id="select" multiple>
   <option value="blues" selected>Blues</option>
   <option value="rock" selected>Rock</option>
   <option value="classic">Classic</option>
@@ -227,7 +227,7 @@ Here's an example of how to get selected values from a multi-select:
 </script>
 ```
 
-The full specification of the `<select>` element is available in the specification <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
+The full specification of the `<select>` element is available in the specification &lt;https://html.spec.whatwg.org/multipage/forms.html#the-select-element&gt;.
 
 ### new Option
 
@@ -274,7 +274,7 @@ Option elements have properties:
 
 ## References
 
-- Specification: <https://html.spec.whatwg.org/multipage/forms.html>.
+- Specification: &lt;https://html.spec.whatwg.org/multipage/forms.html&gt;.
 
 ## Summary
 

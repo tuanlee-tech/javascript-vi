@@ -12,21 +12,21 @@ For instance, here all exports are valid:
 
 ```js
 // export an array
-*!*export*/!* let months = ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+export let months = ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // export a constant
-*!*export*/!* const MODULES_BECAME_STANDARD_YEAR = 2015;
+export const MODULES_BECAME_STANDARD_YEAR = 2015;
 
 // export a class
-*!*export*/!* class User {
+export class User {
   constructor(name) {
     this.name = name;
   }
 }
 ```
 
-:::info No semicolons after export class/function
-Please note that `export` before a class or a function does not make it a [function expression](info:function-expressions). It's still a function declaration, albeit exported.
+
+Please note that `export` before a class or a function does not make it a [function expression](#). It's still a function declaration, albeit exported.
 
 Most JavaScript style guides don't recommend semicolons after function and class declarations.
 
@@ -35,7 +35,7 @@ That's why there's no need for a semicolon at the end of `export class` and `exp
 ```js
 export function sayHi(user) {
   alert(`Hello, ${user}!`);
-} *!* // no ; at the end */!*
+}  // no ; at the end 
 :::
 
 ````
@@ -46,7 +46,7 @@ Also, we can put `export` separately.
 
 Here we first declare, and then export:
 
-```js  
+```js
 // 📁 say.js
 function sayHi(user) {
   alert(`Hello, ${user}!`);
@@ -56,9 +56,9 @@ function sayBye(user) {
   alert(`Bye, ${user}!`);
 }
 
-*!*
+
 export {sayHi, sayBye}; // a list of exported variables
-*/!*
+
 ```
 
 ...Or, technically we could put `export` above functions as well.
@@ -69,9 +69,9 @@ Usually, we put a list of what to import in curly braces `import {...}`, like th
 
 ```js
 // 📁 main.js
-*!*
+
 import {sayHi, sayBye} from './say.js';
-*/!*
+
 
 sayHi('John'); // Hello, John!
 sayBye('John'); // Bye, John!
@@ -81,9 +81,9 @@ But if there's a lot to import, we can import everything as an object using `imp
 
 ```js
 // 📁 main.js
-*!*
+
 import * as say from './say.js';
-*/!*
+
 
 say.sayHi('John');
 say.sayBye('John');
@@ -96,7 +96,7 @@ Well, there are few reasons.
 1. Modern build tools ([webpack](http://webpack.github.io) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
 
     Let's say, we added a 3rd-party library `say.js` to our project with many functions:
-    ```js
+```js
     // 📁 say.js
     export function sayHi() { ... }
     export function sayBye() { ... }
@@ -104,7 +104,7 @@ Well, there are few reasons.
     ```
 
     Now if we only use one of `say.js` functions in our project:
-    ```js
+```js
     // 📁 main.js
     import {sayHi} from './say.js';
     ```
@@ -121,9 +121,9 @@ For instance, let's import `sayHi` into the local variable `hi` for brevity, and
 
 ```js
 // 📁 main.js
-*!*
+
 import {sayHi as hi, sayBye as bye} from './say.js';
-*/!*
+
 
 hi('John'); // Hello, John!
 bye('John'); // Bye, John!
@@ -147,8 +147,8 @@ Now `hi` and `bye` are official names for outsiders, to be used in imports:
 // 📁 main.js
 import * as say from './say.js';
 
-say.*!*hi*/!*('John'); // Hello, John!
-say.*!*bye*/!*('John'); // Bye, John!
+say.hi('John'); // Hello, John!
+say.bye('John'); // Bye, John!
 ```
 
 ## Export default
@@ -168,7 +168,7 @@ Put `export default` before the entity to export:
 
 ```js
 // 📁 user.js
-export *!*default*/!* class User { // just add "default"
+export default class User { // just add "default"
   constructor(name) {
     this.name = name;
   }
@@ -181,7 +181,7 @@ There may be only one `export default` per file.
 
 ```js
 // 📁 main.js
-import *!*User*/!* from './user.js'; // not {User}, just User
+import User from './user.js'; // not {User}, just User
 
 new User('John');
 ```
@@ -260,7 +260,7 @@ Here's how to import the default export along with a named one:
 
 ```js
 // 📁 main.js
-import {*!*default as User*/!*, sayHi} from './user.js';
+import {default as User, sayHi} from './user.js';
 
 new User('John');
 ```
@@ -404,7 +404,7 @@ We can come across two problems with it:
 2. `export * from './user.js'` re-exports only named exports, but ignores the default one.
 
     If we'd like to re-export both named and the default export, then two statements are needed:
-    ```js
+```js
     export * from './user.js'; // to re-export named exports
     export {default} from './user.js'; // to re-export the default export
     ```

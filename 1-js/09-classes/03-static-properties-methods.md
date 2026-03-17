@@ -4,11 +4,11 @@ Chúng ta cũng có thể gán một phương thức cho chính hàm class, khô
 
 Trong một class, chúng được thêm vào trước bởi từ khóa `static`, như sau:
 
-```js run
+```js
 class User {
-*!*
+
   static staticMethod() {
-*/!*
+
     alert(this === User);
   }
 }
@@ -18,7 +18,7 @@ User.staticMethod(); // true
 
 Điều đó thực sự hoạt động giống như là gán trực tiếp nó dưới dạng thuộc tính:
 
-```js run
+```js
 class User { }
 
 User.staticMethod = function() {
@@ -34,18 +34,18 @@ Các phương thức tĩnh thường được sử dụng để cài đặt các
 
 Ví dụ, chúng ta có các đối tượng bài báo `Article` và cần một hàm để so sánh chúng. Một giải pháp tự nhiên là thêm phương thức `Article.compare`, như sau:
 
-```js run
+```js
 class Article {
   constructor(title, date) {
     this.title = title;
     this.date = date;
   }
 
-*!*
+
   static compare(articleA, articleB) {
     return articleA.date - articleB.date;
   }
-*/!*
+
 }
 
 // cách dùng
@@ -55,9 +55,9 @@ let articles = [
   new Article("JavaScript", new Date(2019, 11, 1))
 ];
 
-*!*
+
 articles.sort(Article.compare);
-*/!*
+
 
 alert( articles[0].title ); // CSS
 ```
@@ -74,19 +74,19 @@ Cách đầu tiên có thể được cài đặt bằng constructor. Đối v�
 
 Giống như `Article.createTodays()` ở đây:
 
-```js run
+```js
 class Article {
   constructor(title, date) {
     this.title = title;
     this.date = date;
   }
 
-*!*
+
   static createTodays() {
     // nhớ rằng, this = Article
     return new this("Tin vắn hôm nay", new Date());
   }
-*/!*
+
 }
 
 let article = Article.createTodays();
@@ -110,7 +110,7 @@ Article.remove({id: 12345});
 
 Các thuộc tính tĩnh cũng có thể tồn tại, chúng trông giống như các thuộc tính thông thường của class nhưng được thêm vào trước bởi từ khóa `static`:
 
-```js run
+```js
 class Article {
   static publisher = "Ilya Kantor";
 }
@@ -130,7 +130,7 @@ Các phương thức và thuộc tính tĩnh cũng được kế thừa.
 
 Ví dụ, `Animal.compare` và `Animal.planet` trong đoạn mã dưới đây được kế thừa và có thể truy cập như là `Rabbit.compare` và `Rabbit.planet`:
 
-```js run
+```js
 class Animal {
   static planet = "Trái đất";
 
@@ -144,11 +144,11 @@ class Animal {
     alert(`${this.name} chạy với tốc độ ${this.speed}.`);
   }
 
-*!*
+
   static compare(animalA, animalB) {
     return animalA.speed - animalB.speed;
   }
-*/!*
+
 
 }
 
@@ -164,9 +164,9 @@ let rabbits = [
   new Rabbit("Thỏ Đen", 5)
 ];
 
-*!*
+
 rabbits.sort(Rabbit.compare);
-*/!*
+
 
 rabbits[0].run(); // Thỏ Đen chạy với tốc độ 5.
 
@@ -188,7 +188,7 @@ Kết quả là, kế thừa hoạt động cho cả phương thức thông thư
 
 Đây, hãy kiểm tra điều đó bằng đoạn mã:
 
-```js run
+```js
 class Animal {}
 class Rabbit extends Animal {}
 

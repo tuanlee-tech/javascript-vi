@@ -1,6 +1,6 @@
 # Comments
 
-As we know from the chapter <info:structure>, comments can be single-line: starting with `//` and multiline: `/* ... */`.
+As we know from the chapter &lt;info:structure&gt;, comments can be single-line: starting with `//` and multiline: `/* ... */`.
 
 We normally use them to describe how and why the code works.
 
@@ -31,12 +31,12 @@ function showPrimes(n) {
   nextPrime:
   for (let i = 2; i < n; i++) {
 
-*!*
+
     // check if i is a prime number
     for (let j = 2; j < i; j++) {
       if (i % j == 0) continue nextPrime;
     }
-*/!*
+
 
     alert(i);
   }
@@ -50,7 +50,7 @@ The better variant, with a factored out function `isPrime`:
 function showPrimes(n) {
 
   for (let i = 2; i < n; i++) {
-    *!*if (!isPrime(i)) continue;*/!*
+    if (!isPrime(i)) continue;
 
     alert(i);  
   }
@@ -143,7 +143,7 @@ Such comments allow us to understand the purpose of the function and use it the 
 
 By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
 
-Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at &lt;http://usejsdoc.org/&gt;.
 
 Why is the task solved this way?
 : What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.

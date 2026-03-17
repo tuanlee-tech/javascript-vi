@@ -12,7 +12,7 @@ But instead of adding that functionality into `slow()` we'll create a wrapper fu
 
 Here's the code, and explanations follow:
 
-```js run
+```js
 function slow(x) {
   // there can be a heavy CPU-intensive job here
   alert(`Called with ${x}`);
@@ -67,7 +67,7 @@ The caching decorator mentioned above is not suited to work with object methods.
 
 For instance, in the code below `worker.slow()` stops working after the decoration:
 
-```js run
+```js
 // we'll make worker.slow caching
 let worker = {
   someMethod() {
@@ -88,9 +88,9 @@ function cachingDecorator(func) {
     if (cache.has(x)) {
       return cache.get(x);
     }
-*!*
+
     let result = func(x); // (**)
-*/!*
+
     cache.set(x, result);
     return result;
   };
@@ -100,9 +100,9 @@ alert( worker.slow(1) ); // the original method works
 
 worker.slow = cachingDecorator(worker.slow); // now make it caching
 
-*!*
+
 alert( worker.slow(2) ); // Whoops! Error: Cannot read property 'someMethod' of undefined
-*/!*
+
 ```
 
 The error occurs in the line `(*)` that tries to access `this.someMethod` and fails. Can you see why?
@@ -140,7 +140,7 @@ They both call `func` with arguments `1`, `2` and `3`. The only difference is th
 
 As an example, in the code below we call `sayHi` in the context of different objects: `sayHi.call(user)` runs `sayHi` providing `this=user`, and the next line sets `this=admin`:
 
-```js run
+```js
 function sayHi() {
   alert(this.name);
 }
@@ -156,7 +156,7 @@ sayHi.call( admin ); // Admin
 And here we use `call` to call `say` with the given context and phrase:
 
 
-```js run
+```js
 function say(phrase) {
   alert(this.name + ': ' + phrase);
 }
@@ -169,7 +169,7 @@ say.call( user, "Hello" ); // John: Hello
 
 In our case, we can use `call` in the wrapper to pass the context to the original function:
 
-```js run
+```js
 let worker = {
   someMethod() {
     return 1;
@@ -187,9 +187,9 @@ function cachingDecorator(func) {
     if (cache.has(x)) {
       return cache.get(x);
     }
-*!*
+
     let result = func.call(this, x); // "this" is passed correctly now
-*/!*
+
     cache.set(x, result);
     return result;
   };
@@ -240,7 +240,7 @@ Also we need to pass not just `x`, but all arguments in `func.call`. Let's recal
 
 Here's a more powerful `cachingDecorator`:
 
-```js run
+```js
 let worker = {
   slow(min, max) {
     alert(`Called with ${min},${max}`);
@@ -251,16 +251,16 @@ let worker = {
 function cachingDecorator(func, hash) {
   let cache = new Map();
   return function() {
-*!*
+
     let key = hash(arguments); // (*)
-*/!*
+
     if (cache.has(key)) {
       return cache.get(key);
     }
 
-*!*
+
     let result = func.call(this, ...arguments); // (**)
-*/!*
+
 
     cache.set(key, result);
     return result;
@@ -350,11 +350,11 @@ function hash(args) {
 
 So calling `join` on it would fail, as we can see below:
 
-```js run
+```js
 function hash() {
-*!*
+
   alert( arguments.join() ); // Error: arguments.join is not a function
-*/!*
+
 }
 
 hash(1, 2);
@@ -362,11 +362,11 @@ hash(1, 2);
 
 Still, there's an easy way to use array join:
 
-```js run
+```js
 function hash() {
-*!*
+
   alert( [].join.call(arguments) ); // 1,2
-*/!*
+
 }
 
 hash(1, 2);
@@ -400,7 +400,7 @@ E.g. in the example above if `slow` function had any properties on it, then `cac
 
 Some decorators may provide their own properties. E.g. a decorator may count how many times a function was invoked and how much time it took, and expose this information via wrapper properties.
 
-There exists a way to create decorators that keep access to function properties, but this requires using a special `Proxy` object to wrap a function. We'll discuss it later in the article <info:proxy#proxy-apply>.
+There exists a way to create decorators that keep access to function properties, but this requires using a special `Proxy` object to wrap a function. We'll discuss it later in the article &lt;info:proxy#proxy-apply&gt;.
 
 ## Summary
 

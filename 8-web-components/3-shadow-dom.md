@@ -24,7 +24,7 @@ We can't get built-in shadow DOM elements by regular JavaScript calls or selecto
 
 In the example above, we can see a useful attribute `pseudo`. It's non-standard, exists for historical reasons. We can use it style subelements with CSS, like this:
 
-```html run autorun
+```html
 <style>
 /* make the slider track red */
 input::-webkit-slider-runnable-track {
@@ -46,13 +46,13 @@ A DOM element can have two types of DOM subtrees:
 1. Light tree -- a regular DOM subtree, made of HTML children. All subtrees that we've seen in previous chapters were "light".
 2. Shadow tree -- a hidden DOM subtree, not reflected in HTML, hidden from prying eyes.
 
-If an element has both, then the browser renders only the shadow tree. But we can setup a kind of composition between shadow and light trees as well. We'll see the details later in the chapter <info:slots-composition>.
+If an element has both, then the browser renders only the shadow tree. But we can setup a kind of composition between shadow and light trees as well. We'll see the details later in the chapter &lt;info:slots-composition&gt;.
 
 Shadow tree can be used in Custom Elements to hide component internals and apply component-local styles.
 
 For example, this `<show-hello>` element hides its internal DOM in shadow tree:
 
-```html run autorun height=60
+```html
 <script>
 customElements.define('show-hello', class extends HTMLElement {
   connectedCallback() {
@@ -103,11 +103,11 @@ Shadow DOM is strongly delimited from the main document:
 
 For example:
 
-```html run untrusted height=40
+```html
 <style>
-*!*
+
   /* document style won't apply to the shadow tree inside #elem (1) */
-*/!*
+
   p { color: red; }
 </style>
 
@@ -115,17 +115,17 @@ For example:
 
 <script>
   elem.attachShadow({mode: 'open'});
-*!*
+
     // shadow tree has its own style (2)
-*/!*
+
   elem.shadowRoot.innerHTML = `
     <style> p { font-weight: bold; } </style>
     <p>Hello, John!</p>
   `;
 
-*!*
+
   // <p> is only visible from queries inside the shadow tree (3)
-*/!*
+
   alert(document.querySelectorAll('p').length); // 0
   alert(elem.shadowRoot.querySelectorAll('p').length); // 1
 </script>  
@@ -137,8 +137,8 @@ For example:
 
 ## References
 
-- DOM: <https://dom.spec.whatwg.org/#shadow-trees>
-- Compatibility: <https://caniuse.com/#feat=shadowdomv1>
+- DOM: &lt;https://dom.spec.whatwg.org/#shadow-trees&gt;
+- Compatibility: &lt;https://caniuse.com/#feat=shadowdomv1&gt;
 - Shadow DOM is mentioned in many other specifications, e.g. [DOM Parsing](https://w3c.github.io/DOM-Parsing/#the-innerhtml-mixin) specifies that shadow root has `innerHTML`.
 
 
@@ -154,4 +154,4 @@ Shadow DOM elements:
 - Invisible to JavaScript selectors from the main document, such as `querySelector`,
 - Use styles only from the shadow tree, not from the main document.
 
-Shadow DOM, if exists, is rendered by the browser instead of so-called "light DOM" (regular children). In the chapter <info:slots-composition> we'll see how to compose them.
+Shadow DOM, if exists, is rendered by the browser instead of so-called "light DOM" (regular children). In the chapter &lt;info:slots-composition&gt; we'll see how to compose them.

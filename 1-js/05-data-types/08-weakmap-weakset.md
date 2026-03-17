@@ -1,6 +1,6 @@
 # WeakMap and WeakSet
 
-As we know from the chapter <info:garbage-collection>, JavaScript engine stores a value in memory while it is reachable (and can potentially be used).
+As we know from the chapter &lt;info:garbage-collection&gt;, JavaScript engine stores a value in memory while it is reachable (and can potentially be used).
 
 For instance:
 ```js
@@ -11,9 +11,9 @@ let john = { name: "John" };
 // overwrite the reference
 john = null;
 
-*!*
+
 // the object will be removed from memory
-*/!*
+
 ```
 
 Usually, properties of an object or elements of an array or another data structure are considered reachable and kept in memory while that data structure is in memory.
@@ -29,11 +29,11 @@ let array = [ john ];
 
 john = null; // overwrite the reference
 
-*!*
+
 // the object previously referenced by john is stored inside the array
 // therefore it won't be garbage-collected
 // we can get it as array[0]
-*/!*
+
 ```
 
 Similar to that, if we use an object as the key in a regular `Map`, then while the `Map` exists, that object exists as well. It occupies memory and may not be garbage collected.
@@ -48,10 +48,10 @@ map.set(john, "...");
 
 john = null; // overwrite the reference
 
-*!*
+
 // john is stored inside the map,
 // we can get it by using map.keys()
-*/!*
+
 ```
 
 `WeakMap` is fundamentally different in this aspect. It doesn't prevent garbage-collection of key objects.
@@ -62,17 +62,17 @@ Let's see what it means on examples.
 
 The first difference between `Map` and `WeakMap` is that keys must be objects, not primitive values:
 
-```js run
+```js
 let weakMap = new WeakMap();
 
 let obj = {};
 
 weakMap.set(obj, "ok"); // works fine (object key)
 
-*!*
+
 // can't use a string as the key
 weakMap.set("test", "Whoops"); // Error, because "test" is not an object
-*/!*
+
 ```
 
 Now, if we use an object as the key in it, and there are no other references to that object -- it will be removed from memory (and from the map) automatically.
@@ -172,7 +172,7 @@ Another common example is caching. We can store ("cache") results from a functio
 
 To achieve that, we can use `Map` (not optimal scenario):
 
-```js run
+```js
 // 📁 cache.js
 let cache = new Map();
 
@@ -187,9 +187,9 @@ function process(obj) {
   return cache.get(obj);
 }
 
-*!*
+
 // Now we use process() in another file:
-*/!*
+
 
 // 📁 main.js
 let obj = {/* let's say we have an object */};
@@ -209,11 +209,11 @@ For multiple calls of `process(obj)` with the same object, it only calculates th
 
 If we replace `Map` with `WeakMap`, then this problem disappears. The cached result will be removed from memory automatically after the object gets garbage collected.
 
-```js run
+```js
 // 📁 cache.js
-*!*
+
 let cache = new WeakMap();
-*/!*
+
 
 // calculate and remember the result
 function process(obj) {
@@ -252,7 +252,7 @@ Being "weak", it also serves as additional storage. But not for arbitrary data, 
 
 For instance, we can add users to `WeakSet` to keep track of those who visited our site:
 
-```js run
+```js
 let visitedSet = new WeakSet();
 
 let john = { name: "John" };

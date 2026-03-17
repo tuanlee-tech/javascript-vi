@@ -20,7 +20,7 @@ For `mouseout` the reverse:
 - `event.target` -- is the element that the mouse left.
 - `event.relatedTarget` -- is the new under-the-pointer element, that mouse left for (`target` -> `relatedTarget`).
 
-```online
+```text
 In the example below each face and its features are separate elements. When you move the mouse, you can see mouse events in the text area.
 
 Each event has the information about both `target` and `relatedTarget`:
@@ -28,13 +28,13 @@ Each event has the information about both `target` and `relatedTarget`:
 [codetabs src="mouseoverout" height=280]
 ```
 
-:::warning `relatedTarget` can be `null`
+
 The `relatedTarget` property can be `null`.
 
 That's normal and just means that the mouse came not from another element, but from out of the window. Or that it left the window.
 
 We should keep that possibility in mind when using `event.relatedTarget` in our code. If we access `event.relatedTarget.tagName`, then there will be an error.
-:::
+
 
 ## Skipping elements
 
@@ -56,7 +56,7 @@ In particular, it's possible that the pointer jumps right inside the middle of t
 
 ![](mouseover-mouseout-from-outside.svg)
 
-```online
+```text
 You can check it out "live" on a teststand below.
 
 Its HTML has two nested elements: the `<div id="child">` is inside the `<div id="parent">`. If you move the mouse fast over them, then maybe only the child div triggers events, or maybe the parent one, or maybe there will be no events at all.
@@ -66,9 +66,9 @@ Also move the pointer into the child `div`, and then move it out quickly down th
 [codetabs height=360 src="mouseoverout-fast"]
 ```
 
-:::info If `mouseover` triggered, there must be `mouseout`
+
 In case of fast mouse movements, intermediate elements may be ignored, but one thing we know for sure: if the pointer "officially" entered an element (`mouseover` event generated), then upon leaving it we always get `mouseout`.
-:::
+
 
 ## Mouseout when leaving for a child
 
@@ -96,7 +96,7 @@ The `mouseover` event on a descendant bubbles up. So, if `#parent` has `mouseove
 
 ![](mouseover-bubble-nested.svg)
 
-```online
+```text
 You can see that very well in the example below: `<div id="child">` is inside the `<div id="parent">`. There are `mouseover/out` handlers on `#parent` element that output event details.
 
 If you move the mouse from `#parent` to `#child`, you see two events on `#parent`:
@@ -142,7 +142,7 @@ When the pointer enters an element -- `mouseenter` triggers. The exact location 
 
 When the pointer leaves an element -- `mouseleave` triggers.
 
-```online
+```text
 This example is similar to the one above, but now the top element has `mouseenter/mouseleave` instead of `mouseover/mouseout`.
 
 As you can see, the only generated events are the ones related to moving the pointer in and out of the top element. Nothing happens when the pointer goes to the child and back. Transitions between descendants are ignored
@@ -177,7 +177,7 @@ table.onmouseout = function(event) {
 };
 ```
 
-```online
+```text
 Here they are in action. As the mouse travels across the elements of this table, the current one is highlighted:
 
 [codetabs height=480 src="mouseenter-mouseleave-delegation"]
@@ -199,7 +199,7 @@ Once again, the important features are:
 1. It uses event delegation to handle entering/leaving of any `<td>` inside the table. So it relies on `mouseover/out` instead of `mouseenter/leave` that don't bubble and hence allow no delegation.
 2. Extra events, such as moving between descendants of `<td>` are filtered out, so that `onEnter/Leave` runs only if the pointer leaves or enters `<td>` as a whole.
 
-```online
+```text
 Here's the full example with all details:
 
 [codetabs height=460 src="mouseenter-mouseleave-delegation-2"]

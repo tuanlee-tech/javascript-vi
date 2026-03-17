@@ -10,7 +10,7 @@ let result = eval(code);
 
 For example:
 
-```js run
+```js
 let code = 'alert("Hello")';
 eval(code); // Hello
 ```
@@ -20,27 +20,27 @@ A string of code may be long, contain line breaks, function declarations, variab
 The result of `eval` is the result of the last statement.
 
 For example:
-```js run
+```js
 let value = eval('1+1');
 alert(value); // 2
 ```
 
-```js run
+```js
 let value = eval('let i = 0; ++i');
 alert(value); // 1
 ```
 
 The eval'ed code is executed in the current lexical environment, so it can see outer variables:
 
-```js run no-beautify
+```js
 let a = 1;
 
 function f() {
   let a = 2;
 
-*!*
+
   eval('alert(a)'); // 2
-*/!*
+
 }
 
 f();
@@ -48,7 +48,7 @@ f();
 
 It can change outer variables as well:
 
-```js untrusted refresh run
+```js
 let x = 5;
 eval("x = 10");
 alert(x); // 10, value modified
@@ -56,7 +56,7 @@ alert(x); // 10, value modified
 
 In strict mode, `eval` has its own lexical environment. So functions and variables, declared inside eval, are not visible outside:
 
-```js untrusted refresh run
+```js
 // reminder: 'use strict' is enabled in runnable examples by default
 
 eval("let x = 5; function f() {}");
@@ -73,7 +73,7 @@ In modern programming `eval` is used very sparingly. It's often said that "eval 
 
 The reason is simple: long, long time ago JavaScript was a much weaker language, many things could only be done with `eval`. But that time passed a decade ago.
 
-Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](info:modules).
+Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](#).
 
 Please note that its ability to access outer variables has side-effects.
 
@@ -87,7 +87,7 @@ There are two ways how to be totally safe from such problems.
 
 This way the code is executed in the global scope:
 
-```js untrusted refresh run
+```js
 let x = 1;
 {
   let x = 5;
@@ -97,13 +97,13 @@ let x = 1;
 
 **If eval'ed code needs local variables, change `eval` to `new Function` and pass them as arguments:**
 
-```js run
+```js
 let f = new Function('a', 'alert(a)');
 
 f(5); // 5
 ```
 
-The `new Function` construct is explained in the chapter <info:new-function>. It creates a function from a string, also in the global scope. So it can't see local variables. But it's so much clearer to pass them explicitly as arguments, like in the example above.
+The `new Function` construct is explained in the chapter &lt;info:new-function&gt;. It creates a function from a string, also in the global scope. So it can't see local variables. But it's so much clearer to pass them explicitly as arguments, like in the example above.
 
 ## Summary
 

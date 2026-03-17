@@ -10,7 +10,7 @@ Chúng ta sẽ sử dụng `window` ở đây, giả sử rằng môi trường 
 
 Tất cả các thuộc tính của đối tượng toàn cục có thể được truy cập một cách trực tiếp:
 
-```js run
+```js
 alert("Xin chào");
 // tương tự với
 window.alert("Xin chào");
@@ -18,7 +18,7 @@ window.alert("Xin chào");
 
 Trong trình duyệt, các biến và hàm toàn cục được khai báo với `var` (không phải với `let/const`!) sẽ trở thành thuộc tính của đối tượng toàn cục:
 
-```js run untrusted refresh
+```js
 var gVar = 5;
 
 alert(window.gVar); // 5 (trở thành thuộc tính của đối tượng toàn cục)
@@ -26,11 +26,11 @@ alert(window.gVar); // 5 (trở thành thuộc tính của đối tượng toàn
 
 Tác dụng tương tự với các khai báo hàm (các câu lệnh có từ khóa `function` trong dòng mã chính, không phải biểu thức hàm).
 
-Xin đừng dựa vào đó! Hành vi này tồn tại vì lý do tương thích. Các tập lệnh hiện đại sử dụng [JavaScript modules](info:modules) khiến điều đó không thể xảy ra.
+Xin đừng dựa vào đó! Hành vi này tồn tại vì lý do tương thích. Các tập lệnh hiện đại sử dụng [JavaScript modules](#) khiến điều đó không thể xảy ra.
 
 Nếu chúng ta đã dùng `let` thay thế, điều đó đã không xảy ra:
 
-```js run untrusted refresh
+```js
 let gLet = 5;
 
 alert(window.gLet); // undefined (không bị trở thành thuộc tính của đối tượng toàn cục)
@@ -38,13 +38,13 @@ alert(window.gLet); // undefined (không bị trở thành thuộc tính của �
 
 Nếu như có một giá trị nào đó thực sự quan trọng mà nó cần phải trở nên toàn cục, viết trực tiếp dưới dạng thuộc tính của đối tượng:
 
-```js run
-*!*
+```js
+
 // làm cho biến currentUser trở nên toàn cục, giờ nó có thể được truy cập ở mọi nơi
 window.currentUser = {
   name: "John"
 };
-*/!*
+
 
 // ở đâu đó trong code
 alert(currentUser.name);  // John
@@ -61,7 +61,7 @@ alert(window.currentUser.name); // John
 Đối tượng toàn cục thường được dùng để kiểm tra khả năng hỗ trợ các tính năng mới của ngôn ngữ.
 
 Ví dụ, khi muốn kiểm tra xem đối tượng `Promise` có tồn tại hay không (ở một số trình duyệt cũ, `Promise` không tồn tại):
-```js run
+```js
 if (!window.Promise) {
   alert("Trình duyệt cũ lắm rồi!");
 }
@@ -69,7 +69,7 @@ if (!window.Promise) {
 
 Nếu không có (giả sử chúng ta đang ở trong một trình duyệt cũ), chúng ta có thể tạo "polyfills": thêm các hàm không được môi trường hỗ trợ, nhưng tồn tại trong tiêu chuẩn hiện đại.
 
-```js run
+```js
 if (!window.Promise) {
   window.Promise = ... // cài đặt tùy chỉnh tính năng mới của ngôn ngữ
 ```
@@ -81,5 +81,5 @@ if (!window.Promise) {
 - Đối tượng toàn cục có một cái tên phổ quát hơn là `globalThis`.
     ...Nhưng thường được gọi bằng các tên dành riêng cho môi trường "kiểu cũ", chẳng hạn như `window` (trình duyệt) và `global` (Node.js).
 - Chúng ta chỉ nên lưu trữ các giá trị trong đối tượng toàn cục nếu chúng thực sự toàn cục cho dự án của chúng ta. Và giữ số lượng của chúng ở mức tối thiểu.
-- Trong trình duyệt, trừ khi chúng ta đang sử dụng [modules](info:modules), các biến và hàm toàn cục được khai báo với `var` sẽ trở thành thuộc tính của đối tượng toàn cục.
+- Trong trình duyệt, trừ khi chúng ta đang sử dụng [modules](#), các biến và hàm toàn cục được khai báo với `var` sẽ trở thành thuộc tính của đối tượng toàn cục.
 - Để làm cho mã của chúng ta dùng được lâu dài và dễ hiểu hơn, chúng ta nên truy cập trực tiếp vào các thuộc tính của đối tượng toàn cục, như là `window.x`.

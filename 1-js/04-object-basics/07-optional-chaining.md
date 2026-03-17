@@ -15,7 +15,7 @@ Most of our users have addresses in `user.address` property, with the street `us
 
 In such case, when we attempt to get `user.address.street`, and the user happens to be without an address, we get an error:
 
-```js run
+```js
 let user = {}; // a user without "address" property
 
 alert(user.address.street); // Error!
@@ -27,7 +27,7 @@ In many practical cases we'd prefer to get `undefined` instead of an error here 
 
 ...And another example. In the web development, we can get an object that corresponds to a web page element using a special method call, such as `document.querySelector('.elem')`, and it returns `null` when there's no such element.
 
-```js run
+```js
 // document.querySelector('.elem') is null if there's no element
 let html = document.querySelector('.elem').innerHTML; // error if it's null
 ```
@@ -60,7 +60,7 @@ That's just awful, one may even have problems understanding such code.
 
 Don't even care to, as there's a better way to write it, using the `&&` operator:
 
-```js run
+```js
 let user = {}; // user has no address
 
 alert( user.address && user.address.street && user.address.street.name ); // undefined (no error)
@@ -84,7 +84,7 @@ In other words, `value?.prop`:
 
 Here's the safe way to access `user.address.street` using `?.`:
 
-```js run
+```js
 let user = {}; // user has no address
 
 alert( user?.address?.street ); // undefined (no error)
@@ -94,7 +94,7 @@ The code is short and clean, there's no duplication at all.
 
 Reading the address with `user?.address` works even if `user` object doesn't exist:
 
-```js run
+```js
 let user = null;
 
 alert( user?.address ); // undefined
@@ -105,18 +105,18 @@ Please note: the `?.` syntax makes optional the value before it, but not any fur
 
 E.g. in `user?.address.street.name` the `?.` allows `user` to safely be `null/undefined` (and returns `undefined` in that case), but that's only for `user`. Further properties are accessed in a regular way. If we want some of them to be optional, then we'll need to replace more `.` with `?.`.
 
-:::warning Don't overuse the optional chaining
+
 We should use `?.` only where it's ok that something doesn't exist.
 
 For example, if according to our coding logic `user` object must exist, but `address` is optional, then we should write `user.address?.street`, but not `user?.address?.street`.
 
 So, if `user` happens to be undefined due to a mistake, we'll see a programming error about it and fix it. Otherwise, coding errors can be silenced where not appropriate, and become more difficult to debug.
-:::
 
-:::warning The variable before `?.` must be declared
+
+
 If there's no variable `user` at all, then `user?.anything` triggers an error:
 
-```js run
+```js
 // ReferenceError: user is not defined
 user?.address;
 :::
@@ -131,7 +131,7 @@ So, if there are any further function calls or side effects, they don't occur.
 
 For instance:
 
-```js run
+```js
 let user = null;
 let x = 0;
 
@@ -148,7 +148,7 @@ For example, `?.()` is used to call a function that may not exist.
 
 In the code below, some of our users have `admin` method, and some don't:
 
-```js run
+```js
 let userAdmin = {
   admin() {
     alert("I am admin");
@@ -157,13 +157,13 @@ let userAdmin = {
 
 let userGuest = {};
 
-*!*
-userAdmin.admin?.(); // I am admin
-*/!*
 
-*!*
+userAdmin.admin?.(); // I am admin
+
+
+
 userGuest.admin?.(); // nothing (no such method)
-*/!*
+
 ```
 
 Here, in both lines we first use the dot (`userAdmin.admin`) to get `admin` property, because we assume that the user object exists, so it's safe read from it.
@@ -172,7 +172,7 @@ Then `?.()` checks the left part: if the admin function exists, then it runs (th
 
 The `?.[]` syntax also works, if we'd like to use brackets `[]` to access properties instead of dot `.`. Similar to previous cases, it allows to safely read a property from an object that may not exist.
 
-```js run
+```js
 let key = "firstName";
 
 let user1 = {
@@ -187,15 +187,15 @@ alert( user2?.[key] ); // undefined
 
 Also we can use `?.` with `delete`:
 
-```js run
+```js
 delete user?.name; // delete user.name if user exists
 ```
 
-:::warning We can use `?.` for safe reading and deleting, but not writing
+
 The optional chaining `?.` has no use at the left side of an assignment.
 
 For example:
-```js run
+```js
 let user = null;
 
 user?.name = "John"; // Error, doesn't work

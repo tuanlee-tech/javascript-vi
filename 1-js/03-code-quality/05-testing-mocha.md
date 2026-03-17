@@ -93,7 +93,7 @@ These libraries are suitable for both in-browser and server-side testing. Here w
 
 The full HTML page with these frameworks and `pow` spec:
 
-```html src="index.html"
+```html
 ```
 
 The page can be divided into five parts:
@@ -138,21 +138,21 @@ We can select one of two ways to organize the test here:
 
 1. The first variant -- add one more `assert` into the same `it`:
 
-    ```js
+```js
     describe("pow", function() {
 
       it("raises to n-th power", function() {
         assert.equal(pow(2, 3), 8);
-    *!*
+    
         assert.equal(pow(3, 4), 81);
-    */!*
+    
       });
 
     });
     ```
 2. The second -- make two tests:
 
-    ```js
+```js
     describe("pow", function() {
 
       it("2 raised to power 3 is 8", function() {
@@ -232,9 +232,9 @@ Grouping is done with a nested `describe`:
 ```js
 describe("pow", function() {
 
-*!*
+
   describe("raises x to power 3", function() {
-*/!*
+
 
     function makeTest(x) {
       let expected = x * x * x;
@@ -247,9 +247,9 @@ describe("pow", function() {
       makeTest(x);
     }
 
-*!*
+
   });
-*/!*
+
 
   // ... more tests to follow here, both describe and it can be added
 });
@@ -261,12 +261,12 @@ The nested `describe` defines a new "subgroup" of tests. In the output we can se
 
 In the future we can add more `it` and `describe` on the top level with helper functions of their own, they won't see `makeTest`.
 
-:::info `before/after` and `beforeEach/afterEach`
+
 We can setup `before/after` functions that execute before/after running tests, and also `beforeEach/afterEach` functions that execute before/after *every* `it`.
 
 For instance:
 
-```js no-beautify
+```js
 describe("test", function() {
 
   before(() => alert("Testing started – before all tests"));
@@ -315,15 +315,15 @@ describe("pow", function() {
   // ...
 
   it("for negative n the result is NaN", function() {
-*!*
+
     assert.isNaN(pow(2, -1));
-*/!*
+
   });
 
   it("for non-integer n the result is NaN", function() {
-*!*
+
     assert.isNaN(pow(2, 1.5));    
-*/!*
+
   });
 
 });
@@ -335,7 +335,7 @@ The result with new tests:
 
 The newly added tests fail, because our implementation does not support them. That's how BDD is done: first we write failing tests, and then make an implementation for them.
 
-:::info Other assertions
+
 Please note the assertion `assert.isNaN`: it checks for `NaN`.
 
 There are other assertions in [Chai](http://chaijs.com) as well, for instance:
@@ -346,16 +346,16 @@ There are other assertions in [Chai](http://chaijs.com) as well, for instance:
 - `assert.isTrue(value)` -- checks that `value === true`
 - `assert.isFalse(value)` -- checks that `value === false`
 - ...the full list is in the [docs](http://chaijs.com/api/assert/)
-:::
+
 
 So we should add a couple of lines to `pow`:
 
 ```js
 function pow(x, n) {
-*!*
+
   if (n < 0) return NaN;
   if (Math.round(n) != n) return NaN;
-*/!*
+
 
   let result = 1;
 

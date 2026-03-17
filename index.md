@@ -11,7 +11,7 @@ hero:
       link: /1-js/01-getting-started/1-intro
     - theme: alt
       text: GitHub
-      link: https://github.com/
+      link: https://github.com/tuanlee-tech/javascript-vi
 
 features:
   - icon: 📖

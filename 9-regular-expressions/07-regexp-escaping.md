@@ -16,20 +16,20 @@ To use a special character as a regular one, prepend it with a backslash: `patte
 That's also called "escaping a character".
 
 For example:
-```js run
+```js
 alert( "Chapter 5.1".match(/\d\.\d/) ); // 5.1 (match!)
 alert( "Chapter 511".match(/\d\.\d/) ); // null (looking for a real dot \.)
 ```
 
 Parentheses are also special characters, so if we want them, we should use `pattern:\(`. The example below looks for a string `"g()"`:
 
-```js run
+```js
 alert( "function g()".match(/g\(\)/) ); // "g()"
 ```
 
 If we're looking for a backslash `\`, it's a special character in both regular strings and regexps, so we should double it.
 
-```js run
+```js
 alert( "1\\2".match(/\\/) ); // '\'
 ```
 
@@ -39,13 +39,13 @@ A slash symbol `'/'` is not a special character, but in JavaScript it is used to
 
 Here's what a search for a slash `'/'` looks like:
 
-```js run
+```js
 alert( "/".match(/\//) ); // '/'
 ```
 
 On the other hand, if we're not using `pattern:/.../`, but create a regexp using `new RegExp`, then we don't need to escape it:
 
-```js run
+```js
 alert( "/".match(new RegExp("/")) ); // finds /
 ```
 
@@ -55,7 +55,7 @@ If we are creating a regular expression with `new RegExp`, then we don't have to
 
 For instance, consider this:
 
-```js run
+```js
 let regexp = new RegExp("\d\.\d");
 
 alert( "Chapter 5.1".match(regexp) ); // null
@@ -67,7 +67,7 @@ The reason is that backslashes are "consumed" by a string. As we may recall, reg
 
 Here's how "\d\.\d" is preceived:
 
-```js run
+```js
 alert("\d\.\d"); // d.d
 ```
 
@@ -81,10 +81,10 @@ So `new RegExp` gets a string without backslashes. That's why the search doesn't
 
 To fix it, we need to double backslashes, because string quotes turn `\\` into `\`:
 
-```js run
-*!*
+```js
+
 let regStr = "\\d\\.\\d";
-*/!*
+
 alert(regStr); // \d\.\d (correct now)
 
 let regexp = new RegExp(regStr);

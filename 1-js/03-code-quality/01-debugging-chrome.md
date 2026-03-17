@@ -10,7 +10,7 @@ Chúng ta sẽ sử dụng Chrome ở đây, vì nó có đủ tính năng, hầ
 
 Phiên bản Chrome của bạn có thể trông hơi khác một chút nhưng vẫn phải rõ ràng có gì ở đó.
 
-- Mở [trang ví dụ](debugging/index.html) trong Chrome.
+- Mở [trang ví dụ](#) trong Chrome.
 - Bật công cụ dành cho nhà phát triển bằng `key:F12` (Mac: `key:Cmd+Opt+I`).
 - Chọn bảng `Sources`.
 
@@ -43,7 +43,7 @@ Ví dụ: ở đây `1+2` cho kết quả là `3` và `hello("debugger")` không
 
 ## Điểm dừng
 
-Hãy kiểm tra những gì đang diễn ra trong mã của [trang ví dụ](debugging/index.html). Trong `hello.js`, nhấp vào dòng số `4`. Vâng, ngay trên chữ số `4`, không phải trên mã.
+Hãy kiểm tra những gì đang diễn ra trong mã của [trang ví dụ](#). Trong `hello.js`, nhấp vào dòng số `4`. Vâng, ngay trên chữ số `4`, không phải trên mã.
 
 Chúc mừng! Bạn đã đặt một điểm dừng(breakpoint). Vui lòng nhấp vào số cho dòng `8`.
 
@@ -61,11 +61,11 @@ Chúng ta luôn có thể tìm thấy danh sách các điểm dừng trong bản
 - Loại bỏ breakpoint bằng cách click chuột phải chọn Remove.
 - ...Vân vân.
 
-:::info Điểm dừng có điều kiện
+
 *Nhấp chuột phải* vào số dòng cho phép tạo điểm ngắt *có điều kiện*. Nó chỉ kích hoạt khi biểu thức đã cho là đúng đắn.
 
 Điều đó rất hữu ích khi chúng ta chỉ cần dừng đối với một giá trị biến nhất định hoặc đối với các tham số nhất định.
-:::
+
 
 ## Lệnh gỡ lỗi
 
@@ -75,9 +75,9 @@ Chúng ta cũng có thể tạm dừng mã bằng cách sử dụng lệnh `debu
 function hello(name) {
   let phrase = `Hello, ${name}!`;
 
-*!*
+
   debugger;  // <-- trình gỡ lỗi dừng ở đây
-*/!*
+
 
   say(phrase);
 }
@@ -155,11 +155,11 @@ Có các nút cho nó ở trên cùng của bảng điều khiển bên phải. 
 <span class="devtools" style="background-position:-90px -146px"></span> -- bật/tắt tự động tạm dừng trong trường hợp có lỗi.
 : Khi được bật và các công cụ dành cho nhà phát triển đang mở, lỗi tập lệnh sẽ tự động tạm dừng quá trình thực thi. Sau đó, chúng ta có thể phân tích các biến để xem điều gì đã xảy ra. Vì vậy, nếu tập lệnh của chúng ta chết do lỗi, chúng ta có thể mở trình gỡ lỗi, bật tùy chọn này và tải lại trang để xem tập lệnh chết ở đâu và bối cảnh tại thời điểm đó là gì.
 
-:::info Continue to here
+
 Nhấp chuột phải vào một dòng mã sẽ mở menu ngữ cảnh với một tùy chọn tuyệt vời có tên "Continue to here".
 
 Điều đó rất hữu ích khi chúng ta muốn di chuyển nhiều bước về phía trước dòng, nhưng chúng ta quá lười để đặt điểm dừng.
-:::
+
 
 ## Ghi nhật ký
 
@@ -167,7 +167,7 @@ Nhấp chuột phải vào một dòng mã sẽ mở menu ngữ cảnh với m�
 
 Chẳng hạn, mã sau đây xuất các giá trị từ `0` đến `4` sang bảng điều khiển:
 
-```js run
+```js
 // mở console để thấy
 for (let i = 0; i < 5; i++) {
   console.log("value,", i);
@@ -187,7 +187,7 @@ Như chúng ta có thể thấy, có ba cách chính để tạm dừng tập l�
 
 Khi tạm dừng, chúng ta có thể gỡ lỗi - kiểm tra các biến và theo dõi mã để xem nơi thực thi sai.
 
-Có nhiều tùy chọn hơn trong các công cụ dành cho nhà phát triển ngoài những gì được đề cập ở đây. Hướng dẫn đầy đủ có tại <https://developers.google.com/web/tools/chrome-devtools>.
+Có nhiều tùy chọn hơn trong các công cụ dành cho nhà phát triển ngoài những gì được đề cập ở đây. Hướng dẫn đầy đủ có tại &lt;https://developers.google.com/web/tools/chrome-devtools&gt;.
 
 Thông tin từ chương này là đủ để bắt đầu gỡ lỗi, nhưng sau này, đặc biệt nếu bạn làm nhiều công việc trên trình duyệt, vui lòng vào đó và xem qua các khả năng nâng cao hơn của các công cụ dành cho nhà phát triển.
 

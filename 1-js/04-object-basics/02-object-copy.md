@@ -47,7 +47,7 @@ Now here's why it's important.
 
 For instance:
 
-```js no-beautify
+```js
 let user = { name: "John" };
 
 let admin = user; // copy the reference
@@ -61,16 +61,16 @@ As you can see, there's still one object, but now with two variables that refere
 
 We can use either variable to access the object and modify its contents:
 
-```js run
+```js
 let user = { name: 'John' };
 
 let admin = user;
 
-*!*
-admin.name = 'Pete'; // changed by the "admin" reference
-*/!*
 
-alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
+admin.name = 'Pete'; // changed by the "admin" reference
+
+
+alert(user.name); // 'Pete', changes are seen from the "user" reference
 ```
 
 It's as if we had a cabinet with two keys and used one of them (`admin`) to get into it and make changes. Then, if we later use another key (`user`), we are still opening the same cabinet and can access the changed contents.
@@ -81,7 +81,7 @@ Two objects are equal only if they are the same object.
 
 For instance, here `a` and `b` reference the same object, thus they are equal:
 
-```js run
+```js
 let a = {};
 let b = a; // copy the reference
 
@@ -91,7 +91,7 @@ alert( a === b ); // true
 
 And here two independent objects are not equal, even though they look alike (both are empty):
 
-```js run
+```js
 let a = {};
 let b = {}; // two independent objects
 
@@ -112,20 +112,20 @@ But if we really want that, then we need to create a new object and replicate th
 
 Like this:
 
-```js run
+```js
 let user = {
   name: "John",
   age: 30
 };
 
-*!*
+
 let clone = {}; // the new empty object
 
 // let's copy all user properties into it
 for (let key in user) {
   clone[key] = user[key];
 }
-*/!*
+
 
 // now clone is a fully independent object with the same content
 clone.name = "Pete"; // changed the data in it
@@ -153,17 +153,17 @@ let user = { name: "John" };
 let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
-*!*
+
 // copies all properties from permissions1 and permissions2 into user
 Object.assign(user, permissions1, permissions2);
-*/!*
+
 
 // now user = { name: "John", canView: true, canEdit: true }
 ```
 
 If the copied property name already exists, it gets overwritten:
 
-```js run
+```js
 let user = { name: "John" };
 
 Object.assign(user, { name: "Pete" });
@@ -179,21 +179,21 @@ let user = {
   age: 30
 };
 
-*!*
+
 let clone = Object.assign({}, user);
-*/!*
+
 ```
 
 It copies all properties of `user` into the empty object and returns it.
 
-There are also other methods of cloning an object, e.g. using the [spread syntax](info:rest-parameters-spread) `clone = {...user}`, covered later in the tutorial.
+There are also other methods of cloning an object, e.g. using the [spread syntax](#) `clone = {...user}`, covered later in the tutorial.
 
 ## Nested cloning
 
 Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
 
 Like this:
-```js run
+```js
 let user = {
   name: "John",
   sizes: {
@@ -209,7 +209,7 @@ Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes`
 
 Like this:
 
-```js run
+```js
 let user = {
   name: "John",
   sizes: {
@@ -231,19 +231,19 @@ To fix that, we should use a cloning loop that examines each value of `user[key]
 
 We can use recursion to implement it. Or, to not reinvent the wheel, take an existing implementation, for instance [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) from the JavaScript library [lodash](https://lodash.com).
 
-:::info Const objects can be modified
+
 An important side effect of storing objects as references is that an object declared as `const` *can* be modified.
 
 For instance:
 
-```js run
+```js
 const user = {
   name: "John"
 };
 
-*!*
+
 user.name = "Pete"; // (*)
-*/!*
+
 
 alert(user.name); // Pete
 :::

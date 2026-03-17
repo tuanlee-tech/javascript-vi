@@ -6,9 +6,9 @@ Such transformations are often required in real-life, as many functions and libr
 
 For better understanding, let's see an example.
 
-For instance, we have `loadScript(src, callback)` from the chapter <info:callbacks>.
+For instance, we have `loadScript(src, callback)` from the chapter &lt;info:callbacks&gt;.
 
-```js run
+```js
 function loadScript(src, callback) {
   let script = document.createElement('script');
   script.src = src;
@@ -96,12 +96,12 @@ We can improve our helper. Let's make a more advanced version of `promisify`.
 function promisify(f, manyArgs = false) {
   return function (...args) {
     return new Promise((resolve, reject) => {
-      function *!*callback(err, ...results*/!*) { // our custom callback for f
+      function callback(err, ...results) { // our custom callback for f
         if (err) {
           reject(err);
         } else {
           // resolve with all callback results if manyArgs is specified
-          *!*resolve(manyArgs ? results : results[0]);*/!*
+          resolve(manyArgs ? results : results[0]);
         }
       }
 
@@ -123,10 +123,10 @@ For more exotic callback formats, like those without `err` at all: `callback(res
 
 There are also modules with a bit more flexible promisification functions, e.g. [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). In Node.js, there's a built-in `util.promisify` function for that.
 
-:::info
+
 Promisification is a great approach, especially when you use `async/await` (see the next chapter), but not a total replacement for callbacks.
 
 Remember, a promise may have only one result, but a callback may technically be called many times.
 
 So promisification is only meant for functions that call the callback once. Further calls will be ignored.
-:::
+

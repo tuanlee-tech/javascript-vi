@@ -37,13 +37,13 @@ The content becomes live (styles apply, scripts run etc) when we insert it into 
 
 ## Inserting template
 
-The template content is available in its `content` property as a [DocumentFragment](info:modifying-document#document-fragment) -- a special type of DOM node.
+The template content is available in its `content` property as a [DocumentFragment](#) -- a special type of DOM node.
 
 We can treat it as any other DOM node, except one special property: when we insert it somewhere, its children are inserted instead.
 
 For example:
 
-```html run
+```html
 <template id="tmpl">
   <script>
     alert("Hello");
@@ -54,10 +54,10 @@ For example:
 <script>
   let elem = document.createElement('div');
 
-*!*
+
   // Clone the template content to reuse it multiple times
   elem.append(tmpl.content.cloneNode(true));
-*/!*
+
 
   document.body.append(elem);
   // Now the script from <template> runs
@@ -66,7 +66,7 @@ For example:
 
 Let's rewrite a Shadow DOM example from the previous chapter using `<template>`:
 
-```html run untrusted autorun="no-epub" height=60
+```html
 <template id="tmpl">
   <style> p { font-weight: bold; } </style>
   <p id="message"></p>
@@ -78,9 +78,9 @@ Let's rewrite a Shadow DOM example from the previous chapter using `<template>`:
   elem.onclick = function() {
     elem.attachShadow({mode: 'open'});
 
-*!*
+
     elem.shadowRoot.append(tmpl.content.cloneNode(true)); // (*)
-*/!*
+
 
     elem.shadowRoot.getElementById('message').innerHTML = "Hello from the shadows!";
   };

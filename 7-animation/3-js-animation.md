@@ -102,7 +102,7 @@ Usually `callback` runs very soon, unless the CPU is overloaded or the laptop ba
 
 The code below shows the time between first 10 runs for `requestAnimationFrame`. Usually it's 10-20ms:
 
-```html run height=40 refresh
+```html
 <script>
   let prev = performance.now();
   let times = 0;
@@ -153,7 +153,7 @@ Function `animate` accepts 3 parameters that essentially describes the animation
 
     For instance, a linear function means that the animation goes on uniformly with the same speed:
 
-    ```js
+```js
     function linear(timeFraction) {
       return timeFraction;
     }
@@ -170,7 +170,7 @@ Function `animate` accepts 3 parameters that essentially describes the animation
     This is that function that actually draws out the animation.
 
     It can move the element:
-    ```js
+```js
     function draw(progress) {
       train.style.left = progress + 'px';
     }

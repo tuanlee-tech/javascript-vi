@@ -26,14 +26,14 @@ let str = decoder.decode([input], [options]);
 
 For instance:
 
-```js run
+```js
 let uint8Array = new Uint8Array([72, 101, 108, 108, 111]);
 
 alert( new TextDecoder().decode(uint8Array) ); // Hello
 ```
 
 
-```js run
+```js
 let uint8Array = new Uint8Array([228, 189, 160, 229, 165, 189]);
 
 alert( new TextDecoder().decode(uint8Array) ); // 你好
@@ -42,7 +42,7 @@ alert( new TextDecoder().decode(uint8Array) ); // 你好
 We can decode a part of the buffer by creating a subarray view for it:
 
 
-```js run
+```js
 let uint8Array = new Uint8Array([0, 72, 101, 108, 108, 111, 0]);
 
 // the string is in the middle
@@ -68,7 +68,7 @@ It has two methods:
 - **`encode(str)`** -- returns `Uint8Array` from a string.
 - **`encodeInto(str, destination)`** -- encodes `str` into `destination` that must be `Uint8Array`.
 
-```js run
+```js
 let encoder = new TextEncoder();
 
 let uint8Array = encoder.encode("Hello");

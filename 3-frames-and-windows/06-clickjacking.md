@@ -19,16 +19,16 @@ Here's how clickjacking was done with Facebook:
 
 Here's how the evil page looks. To make things clear, the `<iframe>` is half-transparent (in real evil pages it's fully transparent):
 
-```html run height=120 no-beautify
+```html
 <style>
 iframe { /* iframe from the victim site */
   width: 400px;
   height: 100px;
   position: absolute;
   top:0; left:-20px;
-*!*
+
   opacity: 0.5; /* in real opacity:0 */
-*/!*
+
   z-index: 1;
 }
 </style>
@@ -36,11 +36,11 @@ iframe { /* iframe from the victim site */
 <div>Click to get rich now:</div>
 
 <!-- The url from the victim site -->
-*!*
+
 <iframe src="/clickjacking/facebook.html"></iframe>
 
 <button>Click here!</button>
-*/!*
+
 
 <div>...And you're cool (I'm a cool hacker actually)!</div>
 ```
@@ -59,7 +59,7 @@ Here's the same example, but closer to reality, with `opacity:0` for `<iframe>`:
 
 All we need to attack -- is to position the `<iframe>` on the evil page in such a way that the button is right over the link. So that when a user clicks the link, they actually click the button. That's usually doable with CSS.
 
-:::info Clickjacking is for clicks, not for keyboard
+
 The attack only affects mouse actions (or similar, like taps on mobile).
 
 Keyboard input is much difficult to redirect. Technically, if we have a text field to hack, then we can position an iframe in such a way that text fields overlap each other. So when a visitor tries to focus on the input they see on the page, they actually focus on the input inside the iframe.
@@ -67,7 +67,7 @@ Keyboard input is much difficult to redirect. Technically, if we have a text fie
 But then there's a problem. Everything that the visitor types will be hidden, because the iframe is not visible.
 
 People will usually stop typing when they can't see their new characters printing on the screen.
-:::
+
 
 ## Old-school defences (weak)
 
@@ -87,7 +87,7 @@ This not a reliable defence, because there are many ways to hack around it. Let'
 
 ### Blocking top-navigation
 
-We can block the transition caused by changing `top.location` in  [beforeunload](info:onload-ondomcontentloaded#window.onbeforeunload) event handler.
+We can block the transition caused by changing `top.location` in  [beforeunload](#) event handler.
 
 The top page (enclosing one, belonging to the hacker) sets a preventing handler to it, like this:
 
@@ -114,7 +114,7 @@ So we can add the iframe with `sandbox="allow-scripts allow-forms"`. That would 
 Here's the code:
 
 ```html
-<iframe *!*sandbox="allow-scripts allow-forms"*/!* src="facebook.html"></iframe>
+<iframe sandbox="allow-scripts allow-forms" src="facebook.html"></iframe>
 ```
 
 There are other ways to work around that simple protection too.
@@ -139,7 +139,7 @@ The header may have 3 values:
 
 For instance, Twitter uses `X-Frame-Options: SAMEORIGIN`.
 
-````online
+````text
 Here's the result:
 
 ```html
@@ -193,7 +193,7 @@ The demo:
 
 The `samesite` cookie attribute can also prevent clickjacking attacks.
 
-A cookie with such attribute is only sent to a website if it's opened directly, not via a frame, or otherwise. More information in the chapter <info:cookie#samesite>.
+A cookie with such attribute is only sent to a website if it's opened directly, not via a frame, or otherwise. More information in the chapter &lt;info:cookie#samesite&gt;.
 
 If the site, such as Facebook, had `samesite` attribute on its authentication cookie, like this:
 

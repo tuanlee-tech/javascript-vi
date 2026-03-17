@@ -36,7 +36,7 @@ For instance, a left-button click first triggers `mousedown`, when the button is
 
 In cases when a single action initiates multiple events, their order is fixed. That is, the handlers are called in the order `mousedown` -> `mouseup` -> `click`.
 
-```online
+```text
 Click the button below and you'll see the events. Try double-click too.
 
 On the teststand below all mouse events are logged, and if there is more than a 1 second delay between them they are separated by a horizontal ruler.
@@ -68,7 +68,7 @@ Most mouse devices only have the left and right buttons, so possible values are 
 
 Also there's `event.buttons` property that has all currently pressed buttons as an integer, one bit per button. In practice this property is very rarely used, you can find details at [MDN](mdn:/api/MouseEvent/buttons) if you ever need it.
 
-:::warning The outdated `event.which`
+
 Old code may use `event.which` property that's an old non-standard way of getting a button, with possible values:
 
 - `event.which == 1` – left button,
@@ -76,7 +76,7 @@ Old code may use `event.which` property that's an old non-standard way of gettin
 - `event.which == 3` – right button.
 
 As of now, `event.which` is deprecated, we shouldn't use it.
-:::
+
 
 ## Modifiers: shift, alt, ctrl and meta
 
@@ -93,21 +93,21 @@ They are `true` if the corresponding key was pressed during the event.
 
 For instance, the button below only works on `key:Alt+Shift`+click:
 
-```html autorun height=60
+```html
 <button id="button">Alt+Shift+Click on me!</button>
 
 <script>
   button.onclick = function(event) {
-*!*
+
     if (event.altKey && event.shiftKey) {
-*/!*
+
       alert('Hooray!');
     }
   };
 </script>
 ```
 
-:::warning Attention: on Mac it's usually `Cmd` instead of `Ctrl`
+
 On Windows and Linux there are modifier keys `key:Alt`, `key:Shift` and `key:Ctrl`. On Mac there's one more: `key:Cmd`, corresponding to the property `metaKey`.
 
 In most applications, when Windows/Linux uses `key:Ctrl`, on Mac `key:Cmd` is used.
@@ -121,13 +121,13 @@ Even if we'd like to force Mac users to `key:Ctrl`+click -- that's kind of diffi
 So if we want users of all operating systems to feel comfortable, then together with `ctrlKey` we should check `metaKey`.
 
 For JS-code it means that we should check `if (event.ctrlKey || event.metaKey)`.
-:::
 
-:::warning There are also mobile devices
+
+
 Keyboard combinations are good as an addition to the workflow. So that if the visitor uses a keyboard -- they work. 
 
 But if their device doesn't have it -- then there should be a way to live without modifier keys.
-:::
+
 
 ## Coordinates: clientX/Y, pageX/Y
 
@@ -136,7 +136,7 @@ All mouse events provide coordinates in two flavours:
 1. Window-relative: `clientX` and `clientY`.
 2. Document-relative: `pageX` and `pageY`.
 
-We already covered the difference between them in the chapter <info:coordinates>.
+We already covered the difference between them in the chapter &lt;info:coordinates&gt;.
 
 In short, document-relative coordinates `pageX/Y` are counted from the left-upper corner of the document, and do not change when the page is scrolled, while `clientX/Y` are counted from the current window left-upper corner. When the page is scrolled, they change.
 
@@ -144,10 +144,10 @@ For instance, if we have a window of the size 500x500, and the mouse is in the l
 
 And if the mouse is in the center, then `clientX` and `clientY` are `250`, no matter what place in the document it is. They are similar to `position:fixed` in that aspect.
 
-````online
+````text
 Move the mouse over the input field to see `clientX/clientY` (the example is in the `iframe`, so coordinates are relative to that `iframe`):
 
-```html autorun height=50
+```html
 <input onmousemove="this.value=event.clientX+':'+event.clientY" value="Mouse over me">
 ```
 ````
@@ -158,19 +158,19 @@ Double mouse click has a side-effect that may be disturbing in some interfaces: 
 
 For instance, double-clicking on the text below selects it in addition to our handler:
 
-```html autorun height=50
+```html
 <span ondblclick="alert('dblclick')">Double-click me</span>
 ```
 
 If one presses the left mouse button and, without releasing it, moves the mouse, that also makes the selection, often unwanted.
 
-There are multiple ways to prevent the selection, that you can read in the chapter <info:selection-range>.
+There are multiple ways to prevent the selection, that you can read in the chapter &lt;info:selection-range&gt;.
 
 In this particular case the most reasonable way is to prevent the browser action on `mousedown`. It prevents both these selections:
 
-```html autorun height=50
+```html
 Before...
-<b ondblclick="alert('Click!')" *!*onmousedown="return false"*/!*>
+<b ondblclick="alert('Click!')" onmousedown="return false">
   Double-click me
 </b>
 ...After
@@ -180,11 +180,11 @@ Now the bold element is not selected on double clicks, and pressing the left but
 
 Please note: the text inside it is still selectable. However, the selection should start not on the text itself, but before or after it. Usually that's fine for users.
 
-:::info Preventing copying
+
 If we want to disable selection to protect our page content from copy-pasting, then we can use another event: `oncopy`.
 
-```html autorun height=80 no-beautify
-<div *!*oncopy="alert('Copying forbidden!');return false"*/!*>
+```html
+<div oncopy="alert('Copying forbidden!');return false">
   Dear user,
   The copying is forbidden for you.
   If you know JS or HTML, then you can get everything from the page source though.

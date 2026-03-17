@@ -38,9 +38,9 @@ Cú pháp để mở rộng một class khác là: `class Child extends Parent`.
 Hãy tạo `class Rabbit` mà kế thừa từ `Animal`:
 
 ```js
-*!*
+
 class Rabbit extends Animal {
-*/!*
+
   hide() {
     alert(`${this.name} ẩn nấp!`);
   }
@@ -64,23 +64,23 @@ Ví dụ, để tìm phương thức `rabbit.run`, engine kiểm tra (từ dư�
 2. Nguyên mẫu của nó, là `Rabbit.prototype` (có `hide`, nhưng không có `run`).
 3. Nguyên mẫu của nó, là `Animal.prototype` (do `extends`), cuối cùng có phương thức `run`.
 
-Như chúng ta có thể nhớ lại từ chương <info:native-prototypes>, bản thân JavaScript sử dụng kế thừa nguyên mẫu cho các đối tượng có sẵn. Ví dụ, `Date.prototype.[[Prototype]]` là `Object.prototype`. Đó là lý do tại sao các đối tượng ngày tháng có quyền truy cập vào các phương thức của đối tượng chung.
+Như chúng ta có thể nhớ lại từ chương &lt;info:native-prototypes&gt;, bản thân JavaScript sử dụng kế thừa nguyên mẫu cho các đối tượng có sẵn. Ví dụ, `Date.prototype.[[Prototype]]` là `Object.prototype`. Đó là lý do tại sao các đối tượng ngày tháng có quyền truy cập vào các phương thức của đối tượng chung.
 
-:::info Bất kỳ biểu thức nào cũng được phép nằm sau `extends`
+
 Cú pháp class cho phép chỉ định không chỉ một class, mà còn bất kỳ biểu thức nào đằng sau `extends`.
 
 Ví dụ, một lời gọi hàm mà sinh ra một class cha:
 
-```js run
+```js
 function f(phrase) {
   return class {
     sayHi() { alert(phrase); }
   };
 }
 
-*!*
+
 class User extends f("Xin chào") {}
-*/!*
+
 
 new User().sayHi(); // Xin chào
 :::
@@ -114,7 +114,7 @@ Các class cung cấp từ khóa `"super"` cho điều đó.
 
 Ví dụ, làm cho rabbit tự động ẩn nấp sau khi đã dừng:
 
-```js run
+```js
 class Animal {
 
   constructor(name) {
@@ -139,12 +139,12 @@ class Rabbit extends Animal {
     alert(`${this.name} ẩn nấp!`);
   }
 
-*!*
+
   stop() {
     super.stop(); // gọi phương thức stop của class cha
     this.hide(); // và sau đó gọi hide của class con
   }
-*/!*
+
 }
 
 let rabbit = new Rabbit("Thỏ trắng");
@@ -155,8 +155,8 @@ rabbit.stop(); // Thỏ trắng đứng yên. Thỏ trắng ẩn nấp!
 
 Giờ `Rabbit` có phương thức `stop` mà gọi `super.stop()` của cha trong quá trình xử lý.
 
-:::info Các hàm mũi tên không có `super`
-Như đã nói trong chương <info:arrow-functions>, các hàm mũi tên không có `super`.
+
+Như đã nói trong chương &lt;info:arrow-functions&gt;, các hàm mũi tên không có `super`.
 
 Nếu truy cập, nó sẽ được lấy từ hàm bao ngoài. Ví dụ:
 ```js
@@ -186,11 +186,11 @@ Theo [(bản đặc tả)](https://tc39.github.io/ecma262/#sec-runtime-semantics
 ```js
 class Rabbit extends Animal {
   // được sinh ra cho các class con không có constructor
-*!*
+
   constructor(...args) {
     super(...args);
   }
-*/!*
+
 }
 ```
 
@@ -198,7 +198,7 @@ Chúng ta có thể thấy, nó cơ bản là gọi `constructor` cha và truy�
 
 Bây giờ hãy thêm một `constructor` tùy chỉnh cho `Rabbit`. Ngoài `name` ra, nó sẽ có `earLength`:
 
-```js run
+```js
 class Animal {
   constructor(name) {
     this.speed = 0;
@@ -209,21 +209,21 @@ class Animal {
 
 class Rabbit extends Animal {
 
-*!*
+
   constructor(name, earLength) {
     this.speed = 0;
     this.name = name;
     this.earLength = earLength;
   }
-*/!*
+
 
   // ...
 }
 
-*!*
+
 // Không hoạt động!
 let rabbit = new Rabbit("Thỏ trắng", 10); // Lỗi: this chưa được định nghĩa.
-*/!*
+
 ```
 
 Úi chà! Chúng ta có một lỗi. Bây giờ chúng ta không thể tạo đối tượng rabbit. Điều gì đã sai nhỉ?
@@ -247,7 +247,7 @@ Vì vậy, một derived constructor phải gọi `super` để thực thi const
 
 Để constructor `Rabbit` hoạt động, nó cần phải gọi `super()` trước khi sử dụng `this`, như ở đây:
 
-```js run
+```js
 class Animal {
 
   constructor(name) {
@@ -261,32 +261,32 @@ class Animal {
 class Rabbit extends Animal {
 
   constructor(name, earLength) {
-*!*
+
     super(name);
-*/!*
+
     this.earLength = earLength;
   }
 
   // ...
 }
 
-*!*
+
 // giờ thì ổn
 let rabbit = new Rabbit("Thỏ trắng", 10);
 alert(rabbit.name); // Thỏ trắng
 alert(rabbit.earLength); // 10
-*/!*
+
 ```
 
 ### Ghi đề các trường của class: một lưu ý tinh tế
 
-:::warning Lưu ý nâng cao
+
 Lưu ý này giả định rằng bạn có kinh nghiệm nhất định với các class, có thể trong các ngôn ngữ lập trình khác.
 
 Nó cung cấp cái nhìn sâu sắc hơn về ngôn ngữ và cũng giải thích hành vi mà có thể là nguồn gốc của các lỗi (nhưng không thường xuyên).
 
 Nếu bạn thấy nó khó hiểu, cứ đọc tiếp, rồi quay lại tìm hiểu nó vào một thời điểm nào đó sau này.
-:::
+
 
 Chúng ta có thể ghi đè không chỉ các phương thức mà còn cả các trường của class.
 
@@ -294,7 +294,7 @@ Dù vậy, có một hành vi tinh tế khi chúng ta truy cập một trường
 
 Hãy xét ví dụ này:
 
-```js run
+```js
 class Animal {
   name = 'động vật';
 
@@ -308,9 +308,9 @@ class Rabbit extends Animal {
 }
 
 new Animal(); // động vật
-*!*
+
 new Rabbit(); // động vật
-*/!*
+
 ```
 
 Ở đây class `Rabbit` mở rộng class `Animal` và ghi đè trường `name` với giá trị của riêng nó.
@@ -327,7 +327,7 @@ Nếu vẫn chưa rõ, hãy so sánh với các phương thức.
 
 Đây là đoạn mã tương tự, nhưng thay vì trường `this.name` chúng ta gọi phương thức `this.showName()`:
 
-```js run
+```js
 class Animal {
   showName() {  // thay vì this.name = 'động vật'
     alert('động vật');
@@ -345,9 +345,9 @@ class Rabbit extends Animal {
 }
 
 new Animal(); // động vật
-*!*
+
 new Rabbit(); // thỏ
-*/!*
+
 ```
 
 Xin lưu ý: bây giờ đầu ra là khác nhau.
@@ -375,11 +375,11 @@ Nếu nó trở thành một vấn đề, người ta có thể khắc phục n�
 
 ## Super: bản chất, [[HomeObject]]
 
-:::warning Thông tin nâng cao
+
 Nếu bạn lần đầu tiên đọc hướng dẫn này - phần này có thể bỏ qua.
 
 Nó là về các cơ chế bên trong đằng sau sự kế thừa và `super`.
-:::
+
 
 Hãy tìm hiểu sâu hơn một chút về `super`. Chúng ta sẽ thấy một số điều thú vị trong quá trình đó.
 
@@ -395,7 +395,7 @@ Bạn có thể bỏ qua phần này và chuyển đến mục con `[[HomeObject
 
 Trong ví dụ bên dưới, `rabbit.__proto__ = animal`. Bây giờ hãy thử: trong `rabbit.eat()` chúng ta sẽ gọi `animal.eat()`, sử dụng `this.__proto__`:
 
-```js run
+```js
 let animal = {
   name: "Động vật",
   eat() {
@@ -407,10 +407,10 @@ let rabbit = {
   __proto__: animal,
   name: "Thỏ",
   eat() {
-*!*
+
     // đó có lẽ là cách super.eat() hoạt động
     this.__proto__.eat.call(this); // (*)
-*/!*
+
   }
 };
 
@@ -423,7 +423,7 @@ Và trong đoạn mã trên nó thực sự hoạt động như dự định: ch
 
 Bây giờ chúng ta hãy thêm một đối tượng nữa vào chuỗi. Chúng ta sẽ thấy mọi thứ vỡ ra như thế nào:
 
-```js run
+```js
 let animal = {
   name: "Animal",
   eat() {
@@ -447,9 +447,9 @@ let longEar = {
   }
 };
 
-*!*
+
 longEar.eat(); // Lỗi: Đã vượt quá kích thước ngăn xếp lời gọi tối đa
-*/!*
+
 ```
 
 Đoạn mã không còn hoạt động nữa! Chúng ta có thể thấy lỗi khi cố gắng gọi `longEar.eat()`.
@@ -464,7 +464,7 @@ Vì vậy trong cả hai dòng `(*)` và `(**)`, giá trị của `this .__ prot
 
 1. Trong `longEar.eat()`, dòng `(**)` gọi `rabbit.eat` và cho nó `this=longEar`.
 
-    ```js
+```js
     // bên trong longEar.eat() chúng ta có this = longEar
     this.__proto__.eat.call(this) // (**)
     // trở thành
@@ -475,7 +475,7 @@ Vì vậy trong cả hai dòng `(*)` và `(**)`, giá trị của `this .__ prot
 
 2. Sau đó trong dòng `(*)` của `rabbit.eat`, chúng ta muốn chuyển lời gọi lên cao hơn nữa trong chuỗi nguyên mẫu, nhưng `this=longEar`, nên `this.__proto__.eat` lại là `rabbit.eat`!
 
-    ```js
+```js
     // bên trong rabbit.eat() chúng ta vẫn có this = longEar
     this.__proto__.eat.call(this) // (*)
     // trở thành
@@ -498,7 +498,7 @@ Sau đó `super` sử dụng `[[HomeObject]]` để tìm ra nguyên mẫu cha v�
 
 Hãy xem cách nó hoạt động, trước tiên với các đối tượng đơn giản:
 
-```js run
+```js
 let animal = {
   name: "Animal",
   eat() {         // animal.eat.[[HomeObject]] == animal
@@ -522,10 +522,10 @@ let longEar = {
   }
 };
 
-*!*
+
 // Làm việc đúng
 longEar.eat();  // Long Ear ăn.
-*/!*
+
 ```
 
 Nó hoạt động như dự định, do cơ chế `[[HomeObject]]`. Một phương thức, chẳng hạn như `longEar.eat`, biết `[[HomeObject]]` của nó và lấy phương thức cha từ nguyên mẫu của nó. Không cần sử dụng `this` chút nào.
@@ -540,7 +540,7 @@ Chỗ duy nhất trong ngôn ngữ sử dụng `[[HomeObject]]` -- là `super`. 
 
 Đây là ví dụ về một kết quả `super` sai sau khi sao chép:
 
-```js run
+```js
 let animal = {
   sayHi() {
     alert("Tôi là một con vật");
@@ -564,14 +564,14 @@ let plant = {
 // tree inherits from plant
 let tree = {
   __proto__: plant,
-*!*
+
   sayHi: rabbit.sayHi // (*)
-*/!*
+
 };
 
-*!*
+
 tree.sayHi();  // Tôi là một con vật (?!?)
-*/!*
+
 ```
 
 Lời gọi `tree.sayHi()` hiển thị "Tôi là một con vật". Rõ ràng là sai.
@@ -594,7 +594,7 @@ Sự khác biệt này có thể không cần thiết đối với chúng ta, nh
 
 Để so sánh, ví dụ dưới đây sử dụng cú pháp không-phải-phương-thức. Thuộc tính `[[HomeObject]]` không được thiết lập và sự kế thừa không hoạt động:
 
-```js run
+```js
 let animal = {
   eat: function() { // cố ý viết như thế này thay vì eat() {...
     // ...
@@ -608,9 +608,9 @@ let rabbit = {
   }
 };
 
-*!*
+
 rabbit.eat();  // Lỗi khi gọi super (vì không có [[HomeObject]])
-*/!*
+
 ```
 
 ## Tóm tắt

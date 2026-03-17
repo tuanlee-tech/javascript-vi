@@ -46,7 +46,7 @@ In practice, complex messages are usually sent JSON-encoded. Line-breaks are enc
 For instance:
 
 ```js
-data: {"user":"John","message":"First line*!*\n*/!* Second line"}
+data: {"user":"John","message":"First line\n Second line"}
 ```
 
 ...So we can assume that one `data:` holds exactly one message.
@@ -82,7 +82,7 @@ let source = new EventSource("https://another-site.com/events", {
 });
 ```
 
-Please see the chapter <info:fetch-crossorigin> for more details about cross-origin headers.
+Please see the chapter &lt;info:fetch-crossorigin&gt; for more details about cross-origin headers.
 
 
 ## Reconnection
@@ -115,9 +115,9 @@ eventSource.close();
 
 Also, there will be no reconnection if the response has an incorrect `Content-Type` or its HTTP status differs from 301, 307, 200 and 204. In such cases the `"error"` event will be emitted, and the browser won't reconnect.
 
-:::info
+
 When a connection is finally closed, there's no way to "reopen" it. If we'd like to connect again, just create a new `EventSource`.
-:::
+
 
 ## Message id
 
@@ -142,15 +142,15 @@ When a message with `id:` is received, the browser:
 - Sets the property `eventSource.lastEventId` to its value.
 - Upon reconnection sends the header `Last-Event-ID` with that `id`, so that the server may re-send following messages.
 
-:::info Put `id:` after `data:`
+
 Please note: the `id` is appended below message `data` by the server, to ensure that `lastEventId` is updated after the message is received.
-:::
+
 
 ## Connection status: readyState
 
 The `EventSource` object has `readyState` property, that has one of three values:
 
-```js no-beautify
+```js
 EventSource.CONNECTING = 0; // connecting or reconnecting
 EventSource.OPEN = 1;       // connected
 EventSource.CLOSED = 2;     // connection closed

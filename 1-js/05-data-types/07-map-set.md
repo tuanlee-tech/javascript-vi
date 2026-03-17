@@ -24,7 +24,7 @@ Methods and properties are:
 
 For instance:
 
-```js run
+```js
 let map = new Map();
 
 map.set('1', 'str1');   // a string key
@@ -41,17 +41,17 @@ alert( map.size ); // 3
 
 As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
 
-:::info `map[key]` isn't the right way to use a `Map`
+
 Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (only string/symbol keys and so on).
 
 So we should use `map` methods: `set`, `get` and so on.
-:::
+
 
 **Map can also use objects as keys.**
 
 For instance:
 
-```js run
+```js
 let john = { name: "John" };
 
 // for every user, let's store their visits count
@@ -67,7 +67,7 @@ Using objects as keys is one of the most notable and important `Map` features. T
 
 Let's try:
 
-```js run
+```js
 let john = { name: "John" };
 let ben = { name: "Ben" };
 
@@ -76,21 +76,21 @@ let visitsCountObj = {}; // try to use an object
 visitsCountObj[ben] = 234; // try to use ben object as the key
 visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
 
-*!*
+
 // That's what got written!
 alert( visitsCountObj["[object Object]"] ); // 123 
-*/!*
+
 ```
 
 As `visitsCountObj` is an object, it converts all `Object` keys, such as `john` and `ben` above, to same string `"[object Object]"`. Definitely not what we want.
 
-:::info How `Map` compares keys
+
 To test keys for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
 
 This algorithm can't be changed or customized.
-:::
 
-:::info Chaining
+
+
 Every `map.set` call returns the map itself, so we can "chain" the calls:
 
 ```js
@@ -111,7 +111,7 @@ For looping over a `map`, there are 3 methods:
 
 For instance:
 
-```js run
+```js
 let recipeMap = new Map([
   ['cucumber', 500],
   ['tomatoes', 350],
@@ -134,9 +134,9 @@ for (let entry of recipeMap) { // the same as of recipeMap.entries()
 }
 ```
 
-:::info The insertion order is used
+
 The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
-:::
+
 
 Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
 
@@ -151,7 +151,7 @@ recipeMap.forEach( (value, key, map) => {
 
 When a `Map` is created, we can pass an array (or another iterable) with key/value pairs for initialization, like this:
 
-```js run
+```js
 // array of [key, value] pairs
 let map = new Map([
   ['1',  'str1'],
@@ -166,15 +166,15 @@ If we have a plain object, and we'd like to create a `Map` from it, then we can 
 
 So we can create a map from an object like this:
 
-```js run
+```js
 let obj = {
   name: "John",
   age: 30
 };
 
-*!*
+
 let map = new Map(Object.entries(obj));
-*/!*
+
 
 alert( map.get('name') ); // John
 ```
@@ -188,7 +188,7 @@ We've just seen how to create `Map` from a plain object with `Object.entries(obj
 
 There's `Object.fromEntries` method that does the reverse: given an array of `[key, value]` pairs, it creates an object from them:
 
-```js run
+```js
 let prices = Object.fromEntries([
   ['banana', 1],
   ['orange', 2],
@@ -206,15 +206,15 @@ E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code th
 
 Here we go:
 
-```js run
+```js
 let map = new Map();
 map.set('banana', 1);
 map.set('orange', 2);
 map.set('meat', 4);
 
-*!*
+
 let obj = Object.fromEntries(map.entries()); // make a plain object (*)
-*/!*
+
 
 // done!
 // obj = { banana: 1, orange: 2, meat: 4 }
@@ -250,7 +250,7 @@ For example, we have visitors coming, and we'd like to remember everyone. But re
 
 `Set` is just the right thing for that:
 
-```js run
+```js
 let set = new Set();
 
 let john = { name: "John" };
@@ -278,7 +278,7 @@ The alternative to `Set` could be an array of users, and the code to check for d
 
 We can loop over a set either with `for..of` or using `forEach`:
 
-```js run
+```js
 let set = new Set(["oranges", "apples", "bananas"]);
 
 for (let value of set) alert(value);

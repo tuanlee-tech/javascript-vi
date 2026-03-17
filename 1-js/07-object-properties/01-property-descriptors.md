@@ -36,7 +36,7 @@ Giá trị trả về là một đối tượng gọi là "property desciptor" (
 
 Ví dụ:
 
-```js run
+```js
 let user = {
   name: "John"
 };
@@ -72,14 +72,14 @@ Nếu thuộc tính đã tồn tại, `defineProperty` cập nhật lại các c
 
 Ví dụ, thuộc tính `name` được tạo với tất cả các cờ là sai:
 
-```js run
+```js
 let user = {};
 
-*!*
+
 Object.defineProperty(user, "name", {
   value: "John"
 });
-*/!*
+
 
 let descriptor = Object.getOwnPropertyDescriptor(user, 'name');
 
@@ -87,11 +87,11 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 /*
 {
   "value": "John",
-*!*
+
   "writable": false,
   "enumerable": false,
   "configurable": false
-*/!*
+
 }
  */
 ```
@@ -104,40 +104,40 @@ Bây giờ, cùng xem các cờ có tác dụng gì qua ví dụ.
 
 Hãy làm cho `user.name` không thể ghi (không thể gán lại) bằng cách thay đổi cờ `writable`:
 
-```js run
+```js
 let user = {
   name: "John"
 };
 
 Object.defineProperty(user, "name", {
-*!*
+
   writable: false
-*/!*
+
 });
 
-*!*
+
 user.name = "Pete"; // Lỗi: Không thể gán cho thuộc tính chỉ đọc 'name'
-*/!*
+
 ```
 
 Giờ đây, không ai có thể thay đổi tên user của chúng ta, trừ khi họ áp dụng `defineProperty` của chính họ để ghi đè lên của chúng ta.
 
-:::info Lỗi chỉ xuất hiện trong chế độ nghiêm ngặt
+
 Trong chế độ không nghiêm ngặt, không có lỗi nào xảy ra khi ghi vào các thuộc tính không thể ghi và tương tự. Nhưng thao tác vẫn không thành công. Các hành động vi phạm cờ đơn giản là ngấm ngầm bị bỏ qua trong chế độ không nghiêm ngặt.
-:::
+
 
 Đây là ví dụ tương tự, nhưng thuộc tính được tạo từ đầu:
 
-```js run
+```js
 let user = { };
 
 Object.defineProperty(user, "name", {
-*!*
+
   value: "John",
   // đối với các thuộc tính mới, chúng ta cần liệt kê rõ ràng những gì là true
   enumerable: true,
   configurable: true
-*/!*
+
 });
 
 alert(user.name); // John
@@ -150,7 +150,7 @@ Bây giờ, hãy thêm một `toString` tùy chỉnh vào `user`.
 
 Thông thường, `toString` có sẵn cho các đối tượng là không thể liệt kê được, nó không hiển thị trong `for..in`. Nhưng nếu chúng ta thêm một `toString` của riêng mình, thì theo mặc định, nó sẽ hiển thị trong `for..in`, như thế này:
 
-```js run
+```js
 let user = {
   name: "John",
   toString() {
@@ -164,7 +164,7 @@ for (let key in user) alert(key); // name, toString
 
 Nếu không thích, chúng ta có thể đặt `enumerable:false`. Sau đó, nó sẽ không xuất hiện trong vòng lặp `for..in`, giống như những thuộc tính có sẵn:
 
-```js run
+```js
 let user = {
   name: "John",
   toString() {
@@ -173,14 +173,14 @@ let user = {
 };
 
 Object.defineProperty(user, "toString", {
-*!*
+
   enumerable: false
-*/!*
+
 });
 
-*!*
+
 // Giờ toString của chúng ta biến mất
-*/!*
+
 for (let key in user) alert(key); // name
 ```
 
@@ -198,7 +198,7 @@ Một thuộc tính không thể cấu hình sẽ không thể bị xóa.
 
 Ví dụ, `Math.PI` không thể ghi, không thể liệt kê và không thể cấu hình:
 
-```js run
+```js
 let descriptor = Object.getOwnPropertyDescriptor(Math, 'PI');
 
 alert( JSON.stringify(descriptor, null, 2 ) );
@@ -214,7 +214,7 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 
 Cho nên lập trình viên không thể thay đổi giá trị `Math.PI` hoặc ghi đè nó:
 
-```js run
+```js
 Math.PI = 3; // Lỗi
 
 // xóa Math.PI cũng không có kết quả
@@ -233,7 +233,7 @@ Nói một cách chính xác, khả năng không thể cấu hình áp đặt m�
 
 Ở đây `user.name` là không thể cấu hình, nhưng chúng ta vẫn có thể thay đổi nó (vì nó có thể ghi):
 
-```js run
+```js
 let user = {
   name: "John"
 };
@@ -248,7 +248,7 @@ delete user.name; // Lỗi
 
 Và ở đây, chúng ta đặt `user.name` thành hằng số "bị niêm phong mãi mãi":
 
-```js run
+```js
 let user = {
   name: "John"
 };

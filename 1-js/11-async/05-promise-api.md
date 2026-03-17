@@ -22,7 +22,7 @@ The new promise resolves when all listed promises are settled, and the array of 
 
 For instance, the `Promise.all` below settles after 3 seconds, and then its result is an array `[1, 2, 3]`:
 
-```js run
+```js
 Promise.all([
   new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
   new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
@@ -36,7 +36,7 @@ A common trick is to map an array of job data into an array of promises, and the
 
 For instance, if we have an array of URLs, we can fetch them all like this:
 
-```js run
+```js
 let urls = [
   'https://api.github.com/users/iliakan',
   'https://api.github.com/users/remy',
@@ -55,7 +55,7 @@ Promise.all(requests)
 
 A bigger example with fetching user information for an array of GitHub users by their names (we could fetch an array of goods by their ids, the logic is identical):
 
-```js run
+```js
 let names = ['iliakan', 'remy', 'jeresig'];
 
 let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
@@ -79,32 +79,32 @@ Promise.all(requests)
 
 For instance:
 
-```js run
+```js
 Promise.all([
   new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
-*!*
+
   new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
-*/!*
+
   new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
 ]).catch(alert); // Error: Whoops!
 ```
 
 Here the second promise rejects in two seconds. That leads to an immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the outcome of the entire `Promise.all`.
 
-:::warning In case of an error, other promises are ignored
+
 If one promise rejects, `Promise.all` immediately rejects, completely forgetting about the other ones in the list. Their results are ignored.
 
 For example, if there are multiple `fetch` calls, like in the example above, and one fails, the others will still continue to execute, but `Promise.all` won't watch them anymore. They will probably settle, but their results will be ignored.
 
-`Promise.all` does nothing to cancel them, as there's no concept of "cancellation" in promises. In [another chapter](info:fetch-abort) we'll cover `AbortController` that can help with that, but it's not a part of the Promise API.
-:::
+`Promise.all` does nothing to cancel them, as there's no concept of "cancellation" in promises. In [another chapter](#) we'll cover `AbortController` that can help with that, but it's not a part of the Promise API.
 
-:::info `Promise.all(iterable)` allows non-promise \regular\" values in `iterable`"
+
+
 Normally, `Promise.all(...)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's passed to the resulting array "as is".
 
 For instance, here the results are `[1, 2, 3]`:
 
-```js run
+```js
 Promise.all([
   new Promise((resolve, reject) => {
     setTimeout(() => resolve(1), 1000)
@@ -140,7 +140,7 @@ For example, we'd like to fetch the information about multiple users. Even if on
 
 Let's use `Promise.allSettled`:
 
-```js run
+```js
 let urls = [
   'https://api.github.com/users/iliakan',
   'https://api.github.com/users/remy',
@@ -206,7 +206,7 @@ let promise = Promise.race(iterable);
 
 For instance, here the result will be `1`:
 
-```js run
+```js
 Promise.race([
   new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
   new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
@@ -229,7 +229,7 @@ let promise = Promise.any(iterable);
 
 For instance, here the result will be `1`:
 
-```js run
+```js
 Promise.any([
   new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 1000)),
   new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
@@ -241,7 +241,7 @@ The first promise here was fastest, but it was rejected, so the second promise b
 
 Here's an example when all promises fail:
 
-```js run
+```js
 Promise.any([
   new Promise((resolve, reject) => setTimeout(() => reject(new Error("Ouch!")), 1000)),
   new Promise((resolve, reject) => setTimeout(() => reject(new Error("Error!")), 2000))
@@ -256,7 +256,7 @@ As you can see, error objects for failed promises are available in the `errors` 
 
 ## Promise.resolve/reject
 
-Methods `Promise.resolve` and `Promise.reject` are rarely needed in modern code, because `async/await` syntax (we'll cover it [a bit later](info:async-await)) makes them somewhat obsolete.
+Methods `Promise.resolve` and `Promise.reject` are rarely needed in modern code, because `async/await` syntax (we'll cover it [a bit later](#)) makes them somewhat obsolete.
 
 We cover them here for completeness and for those who can't use `async/await` for some reason.
 
@@ -279,9 +279,9 @@ let cache = new Map();
 
 function loadCached(url) {
   if (cache.has(url)) {
-*!*
+
     return Promise.resolve(cache.get(url)); // (*)
-*/!*
+
   }
 
   return fetch(url)

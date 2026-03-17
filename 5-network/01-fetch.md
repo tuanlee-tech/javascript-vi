@@ -63,27 +63,27 @@ if (response.ok) { // if HTTP-status is 200-299
 
 - **`response.text()`** -- read the response and return as text,
 - **`response.json()`** -- parse the response as JSON,
-- **`response.formData()`** -- return the response as `FormData` object (explained in the [next chapter](info:formdata)),
-- **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
-- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level representation of binary data),
+- **`response.formData()`** -- return the response as `FormData` object (explained in the [next chapter](#)),
+- **`response.blob()`** -- return the response as [Blob](#) (binary data with type),
+- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](#) (low-level representation of binary data),
 - additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows you to read the body chunk-by-chunk, we'll see an example later.
 
 For instance, let's get a JSON-object with latest commits from GitHub:
 
-```js run async
+```js
 let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
 let response = await fetch(url);
 
-*!*
+
 let commits = await response.json(); // read response body and parse as JSON
-*/!*
+
 
 alert(commits[0].author.login);
 ```
 
 Or, the same without `await`, using pure promises syntax:
 
-```js run
+```js
 fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
   .then(response => response.json())
   .then(commits => alert(commits[0].author.login));
@@ -91,7 +91,7 @@ fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commi
 
 To get the response text, `await response.text()` instead of `.json()`:
 
-```js run async
+```js
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
 
 let text = await response.text(); // read response body as text
@@ -99,14 +99,14 @@ let text = await response.text(); // read response body as text
 alert(text.slice(0, 80) + '...');
 ```
 
-As a show-case for reading in binary format, let's fetch and show a logo image of ["fetch" specification](https://fetch.spec.whatwg.org) (see chapter [Blob](info:blob) for details about operations on `Blob`):
+As a show-case for reading in binary format, let's fetch and show a logo image of ["fetch" specification](https://fetch.spec.whatwg.org) (see chapter [Blob](#) for details about operations on `Blob`):
 
-```js async run
+```js
 let response = await fetch('/article/fetch/logo-fetch.svg');
 
-*!*
+
 let blob = await response.blob(); // download as Blob object
-*/!*
+
 
 // create <img> for it
 let img = document.createElement('img');
@@ -122,7 +122,7 @@ setTimeout(() => { // hide after three seconds
 }, 3000);
 ```
 
-:::warning
+
 We can choose only one body-reading method.
 
 If we've already got the response with `response.text()`, then `response.json()` won't work, as the body content has already been processed.
@@ -139,7 +139,7 @@ The response headers are available in a Map-like headers object in `response.hea
 
 It's not exactly a Map, but it has similar methods to get individual headers by name or iterate over them:
 
-```js run async
+```js
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
 
 // get one header
@@ -197,19 +197,19 @@ To make a `POST` request, or a request with another method, we need to use `fetc
   - a string (e.g. JSON-encoded),
   - `FormData` object, to submit the data as `form/multipart`,
   - `Blob`/`BufferSource` to send binary data,
-  - [URLSearchParams](info:url), to submit the data in `x-www-form-urlencoded` encoding, rarely used.
+  - [URLSearchParams](#), to submit the data in `x-www-form-urlencoded` encoding, rarely used.
 
 The JSON format is used most of the time.
 
 For example, this code submits `user` object as JSON:
 
-```js run async
+```js
 let user = {
   name: 'John',
   surname: 'Smith'
 };
 
-*!*
+
 let response = await fetch('/article/fetch/post/user', {
   method: 'POST',
   headers: {
@@ -217,7 +217,7 @@ let response = await fetch('/article/fetch/post/user', {
   },
   body: JSON.stringify(user)
 });
-*/!*
+
 
 let result = await response.json();
 alert(result.message);
@@ -233,7 +233,7 @@ We can also submit binary data with `fetch` using `Blob` or `BufferSource` objec
 
 In this example, there's a `<canvas>` where we can draw by moving a mouse over it. A click on the "submit" button sends the image to the server:
 
-```html run autorun height="90"
+```html
 <body style="margin:0">
   <canvas id="canvasElem" width="100" height="80" style="border:1px solid"></canvas>
 
@@ -305,8 +305,8 @@ Methods to get response body:
 - **`response.text()`** -- return the response as text,
 - **`response.json()`** -- parse the response as JSON object,
 - **`response.formData()`** -- return the response as `FormData` object (form/multipart encoding, see the next chapter),
-- **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
-- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level binary data),
+- **`response.blob()`** -- return the response as [Blob](#) (binary data with type),
+- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](#) (low-level binary data),
 
 Fetch options so far:
 - `method` -- HTTP-method,

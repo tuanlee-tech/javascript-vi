@@ -7,10 +7,15 @@ export default defineConfig({
   lang: 'vi-VN',
 
   head: [
+    ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
     ['meta', { name: 'theme-color', content: '#F0DB4F' }],
-    ['meta', { name: 'og:type', content: 'website' }],
-    ['meta', { name: 'og:locale', content: 'vi_VN' }],
-    ['meta', { name: 'og:site_name', content: 'JavaScript Tiếng Việt' }],
+    ['meta', { property: 'og:type', content: 'website' }],
+    ['meta', { property: 'og:locale', content: 'vi_VN' }],
+    ['meta', { property: 'og:title', content: 'JavaScript Tiếng Việt' }],
+    ['meta', { property: 'og:description', content: 'Hướng dẫn JavaScript hiện đại - Phiên bản tiếng Việt của javascript.info' }],
+    ['meta', { property: 'og:image', content: '/og-image.png' }],
+    ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
+    ['meta', { name: 'twitter:image', content: '/og-image.png' }],
   ],
 
   themeConfig: {
@@ -90,4 +95,9 @@ export default defineConfig({
 
   cleanUrls: true,
   lastUpdated: true,
+  vite: {
+    build: {
+      chunkSizeWarningLimit: 2000,
+    }
+  }
 })

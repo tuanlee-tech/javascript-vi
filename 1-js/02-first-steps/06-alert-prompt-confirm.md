@@ -8,7 +8,7 @@ This one we've seen already. It shows a message and waits for the user to press 
 
 For example:
 
-```js run
+```js
 alert("Hello");
 ```
 
@@ -18,7 +18,7 @@ The mini-window with the message is called a *modal window*. The word "modal" me
 
 The function `prompt` accepts two arguments:
 
-```js no-beautify
+```js
 result = prompt(title, [default]);
 ```
 
@@ -30,9 +30,9 @@ It shows a modal window with a text message, an input field for the visitor, and
 `default`
 : An optional second parameter, the initial value for the input field.
 
-:::info The square brackets in syntax `[...]`
+
 The square brackets around `default` in the syntax above denote that the parameter is optional, not required.
-:::
+
 
 The visitor can type something in the prompt input field and press OK. Then we get that text in the `result`. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key, then we get `null` as the `result`.
 
@@ -40,24 +40,24 @@ The call to `prompt` returns the text from the input field or `null` if the inpu
 
 For instance:
 
-```js run
+```js
 let age = prompt('How old are you?', 100);
 
 alert(`You are ${age} years old!`); // You are 100 years old!
 ```
 
-:::warning In IE: always supply a `default`
+
 The second parameter is optional, but if we don't supply it, Internet Explorer will insert the text `"undefined"` into the prompt.
 
 Run this code in Internet Explorer to see:
 
-```js run
+```js
 let test = prompt("Test");
 :::
 
 So, for prompts to look good in IE, we recommend always providing the second argument:
 
-```js run
+```js
 let test = prompt("Test", ''); // <-- for IE
 ```
 ````
@@ -76,7 +76,7 @@ The result is `true` if OK is pressed and `false` otherwise.
 
 For example:
 
-```js run
+```js
 let isBoss = confirm("Are you the boss?");
 
 alert( isBoss ); // true if OK is pressed

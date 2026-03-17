@@ -20,7 +20,7 @@ In JavaScript, the operator is a little bit trickier and more powerful. But firs
 
 There are four possible logical combinations:
 
-```js run
+```js
 alert( true || true );   // true
 alert( false || true );  // true
 alert( true || false );  // true
@@ -33,7 +33,7 @@ If an operand is not a boolean, it's converted to a boolean for the evaluation.
 
 For instance, the number `1` is treated as `true`, the number `0` as `false`:
 
-```js run
+```js
 if (1 || 0) { // works just like if( true || false )
   alert( 'truthy!' );
 }
@@ -43,19 +43,19 @@ Most of the time, OR `||` is used in an `if` statement to test if *any* of the g
 
 For example:
 
-```js run
+```js
 let hour = 9;
 
-*!*
+
 if (hour < 10 || hour > 18) {
-*/!*
+
   alert( 'The office is closed.' );
 }
 ```
 
 We can pass more conditions:
 
-```js run
+```js
 let hour = 12;
 let isWeekend = true;
 
@@ -88,7 +88,7 @@ In other words, a chain of OR `||` returns the first truthy value or the last on
 
 For instance:
 
-```js run
+```js
 alert( 1 || 0 ); // 1 (1 is truthy)
 
 alert( null || 1 ); // 1 (1 is the first truthy value)
@@ -105,14 +105,14 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
     Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
 
-    ```js run
+```js
     let firstName = "";
     let lastName = "";
     let nickName = "SuperCoder";
 
-    *!*
+    
     alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
-    */!*
+    
     ```
 
     If all variables were falsy, `"Anonymous"` would show up.
@@ -127,9 +127,9 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
     In the example below, only the second message is printed:
 
-    ```js run no-beautify
-    *!*true*/!* || alert("not printed");
-    *!*false*/!* || alert("printed");
+```js
+    true || alert("not printed");
+    false || alert("printed");
     ```
 
     In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
@@ -146,7 +146,7 @@ result = a && b;
 
 In classical programming, AND returns `true` if both operands are truthy and `false` otherwise:
 
-```js run
+```js
 alert( true && true );   // true
 alert( false && true );  // false
 alert( true && false );  // false
@@ -155,7 +155,7 @@ alert( false && false ); // false
 
 An example with `if`:
 
-```js run
+```js
 let hour = 12;
 let minute = 30;
 
@@ -166,7 +166,7 @@ if (hour == 12 && minute == 30) {
 
 Just as with OR, any value is allowed as an operand of AND:
 
-```js run
+```js
 if (1 && 0) { // evaluated as true && false
   alert( "won't work, because the result is falsy" );
 }
@@ -193,7 +193,7 @@ The rules above are similar to OR. The difference is that AND returns the first 
 
 Examples:
 
-```js run
+```js
 // if the first operand is truthy,
 // AND returns the second operand:
 alert( 1 && 0 ); // 0
@@ -207,28 +207,28 @@ alert( 0 && "no matter what" ); // 0
 
 We can also pass several values in a row. See how the first falsy one is returned:
 
-```js run
+```js
 alert( 1 && 2 && null && 3 ); // null
 ```
 
 When all values are truthy, the last value is returned:
 
-```js run
+```js
 alert( 1 && 2 && 3 ); // 3, the last one
 ```
 
-:::info Precedence of AND `&&` is higher than OR `||`
+
 The precedence of AND `&&` operator is higher than OR `||`.
 
 So the code `a && b || c && d` is essentially the same as if the `&&` expressions were in parentheses: `(a && b) || (c && d)`.
-:::
 
-:::warning Don't replace `if` with `||` or `&&`
+
+
 Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
 
 For instance:
 
-```js run
+```js
 let x = 1;
 
 (x > 0) && alert( 'Greater than zero!' );
@@ -238,7 +238,7 @@ The action in the right part of `&&` would execute only if the evaluation reache
 
 So we basically have an analogue for:
 
-```js run
+```js
 let x = 1;
 
 if (x > 0) alert( 'Greater than zero!' );
@@ -265,14 +265,14 @@ The operator accepts a single argument and does the following:
 
 For instance:
 
-```js run
+```js
 alert( !true ); // false
 alert( !0 ); // true
 ```
 
 A double NOT `!!` is sometimes used for converting a value to boolean type:
 
-```js run
+```js
 alert( !!"non-empty string" ); // true
 alert( !!null ); // false
 ```
@@ -281,7 +281,7 @@ That is, the first NOT converts the value to boolean and returns the inverse, an
 
 There's a little more verbose way to do the same thing -- a built-in `Boolean` function:
 
-```js run
+```js
 alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```

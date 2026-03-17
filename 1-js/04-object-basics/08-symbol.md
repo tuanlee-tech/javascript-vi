@@ -27,45 +27,45 @@ Symbols are guaranteed to be unique. Even if we create many symbols with the sam
 
 For instance, here are two symbols with the same description -- they are not equal:
 
-```js run
+```js
 let id1 = Symbol("id");
 let id2 = Symbol("id");
 
-*!*
+
 alert(id1 == id2); // false
-*/!*
+
 ```
 
 If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. JavaScript symbols are different.
 
-:::warning Symbols don't auto-convert to a string
+
 Most values in JavaScript support implicit conversion to a string. For instance, we can `alert` almost any value, and it will work. Symbols are special. They don't auto-convert.
 
 For instance, this `alert` will show an error:
 
-```js run
+```js
 let id = Symbol("id");
-*!*
+
 alert(id); // TypeError: Cannot convert a Symbol value to a string
-*/!*
+
 :::
 
 That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
 
 If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
-```js run
+```js
 let id = Symbol("id");
-*!*
+
 alert(id.toString()); // Symbol(id), now it works
-*/!*
+
 ```
 
 Or get `symbol.description` property to show the description only:
-```js run
+```js
 let id = Symbol("id");
-*!*
+
 alert(id.description); // id
-*/!*
+
 ```
 
 ````
@@ -78,7 +78,7 @@ For instance, if we're working with `user` objects, that belong to a third-party
 
 Let's use a symbol key for it:
 
-```js run
+```js
 let user = { // belongs to another code
   name: "John"
 };
@@ -132,9 +132,9 @@ let id = Symbol("id");
 
 let user = {
   name: "John",
-*!*
+
   [id]: 123 // not "id": 123
-*/!*
+
 };
 ```
 That's because we need the value from the variable `id` as the key, not the string "id".
@@ -145,7 +145,7 @@ Symbolic properties do not participate in `for..in` loop.
 
 For instance:
 
-```js run
+```js
 let id = Symbol("id");
 let user = {
   name: "John",
@@ -153,9 +153,9 @@ let user = {
   [id]: 123
 };
 
-*!*
+
 for (let key in user) alert(key); // name, age (no symbols)
-*/!*
+
 
 // the direct access by the symbol works
 alert( "Direct: " + user[id] );
@@ -165,7 +165,7 @@ alert( "Direct: " + user[id] );
 
 In contrast, [Object.assign](mdn:js/Object/assign) copies both string and symbol properties:
 
-```js run
+```js
 let id = Symbol("id");
 let user = {
   [id]: 123
@@ -190,7 +190,7 @@ That call checks the global registry, and if there's a symbol described as `key`
 
 For instance:
 
-```js run
+```js
 // read from the global registry
 let id = Symbol.for("id"); // if the symbol did not exist, it is created
 
@@ -203,11 +203,11 @@ alert( id === idAgain ); // true
 
 Symbols inside the registry are called *global symbols*. If we want an application-wide symbol, accessible everywhere in the code -- that's what they are for.
 
-:::info That sounds like Ruby
+
 In some programming languages, like Ruby, there's a single symbol per name.
 
 In JavaScript, as we can see, that's right for global symbols.
-:::
+
 
 ### Symbol.keyFor
 
@@ -215,7 +215,7 @@ For global symbols, not only `Symbol.for(key)` returns a symbol by name, but the
 
 For instance:
 
-```js run
+```js
 // get symbol by name
 let sym = Symbol.for("name");
 let sym2 = Symbol.for("id");
@@ -231,7 +231,7 @@ That said, any symbols have `description` property.
 
 For instance:
 
-```js run
+```js
 let globalSymbol = Symbol.for("name");
 let localSymbol = Symbol("name");
 
@@ -272,6 +272,6 @@ Symbols have two main use cases:
 
     So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
 
-2. There are many system symbols used by JavaScript which are accessible as `Symbol.*`. We can use them to alter some built-in behaviors. For instance, later in the tutorial we'll use `Symbol.iterator` for [iterables](info:iterable), `Symbol.toPrimitive` to setup [object-to-primitive conversion](info:object-toprimitive) and so on.
+2. There are many system symbols used by JavaScript which are accessible as `Symbol.*`. We can use them to alter some built-in behaviors. For instance, later in the tutorial we'll use `Symbol.iterator` for [iterables](#), `Symbol.toPrimitive` to setup [object-to-primitive conversion](#) and so on.
 
 Technically, symbols are not 100% hidden. There is a built-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows us to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in functions and syntax constructs don't use these methods.

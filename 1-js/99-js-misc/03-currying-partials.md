@@ -15,8 +15,8 @@ Let's see an example first, to better understand what we're talking about, and t
 
 We'll create a helper function `curry(f)` that performs currying for a two-argument `f`. In other words, `curry(f)` for two-argument `f(a, b)` translates it into a function that runs as `f(a)(b)`:
 
-```js run
-*!*
+```js
+
 function curry(f) { // curry(f) does the currying transform
   return function(a) {
     return function(b) {
@@ -24,7 +24,7 @@ function curry(f) { // curry(f) does the currying transform
     };
   };
 }
-*/!*
+
 
 // usage
 function sum(a, b) {
@@ -44,7 +44,7 @@ As you can see, the implementation is straightforward: it's just two wrappers.
 
 More advanced implementations of currying, such as [_.curry](https://lodash.com/docs#curry) from lodash library, return a wrapper that allows a function to be called both normally and partially:
 
-```js run
+```js
 function sum(a, b) {
   return a + b;
 }
@@ -169,17 +169,17 @@ When we run it, there are two `if` execution branches:
 
 Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
 
-:::info Fixed-length functions only
+
 The currying requires the function to have a fixed number of arguments.
 
 A function that uses rest parameters, such as `f(...args)`, can't be curried this way.
-:::
 
-:::info A little more than currying
+
+
 By definition, currying should convert `sum(a, b, c)` into `sum(a)(b)(c)`.
 
 But most implementations of currying in JavaScript are advanced, as described: they also keep the function callable in the multi-argument variant.
-:::
+
 
 ## Summary
 

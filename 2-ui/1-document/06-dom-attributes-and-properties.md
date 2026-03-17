@@ -14,7 +14,7 @@ DOM nodes are regular JavaScript objects. We can alter them.
 
 For instance, let's create a new property in `document.body`:
 
-```js run
+```js
 document.body.myData = {
   name: 'Caesar',
   title: 'Imperator'
@@ -25,7 +25,7 @@ alert(document.body.myData.title); // Imperator
 
 We can add a method as well:
 
-```js run
+```js
 document.body.sayTagName = function() {
   alert(this.tagName);
 };
@@ -35,7 +35,7 @@ document.body.sayTagName(); // BODY (the value of "this" in the method is docume
 
 We can also modify built-in prototypes like `Element.prototype` and add new methods to all elements:
 
-```js run
+```js
 Element.prototype.sayHi = function() {
   alert(`Hello, I'm ${this.tagName}`);
 };
@@ -56,14 +56,14 @@ In HTML, tags may have attributes. When the browser parses the HTML to create DO
 So when an element has `id` or another *standard* attribute, the corresponding property gets created. But that doesn't happen if the attribute is non-standard.
 
 For instance:
-```html run
+```html
 <body id="test" something="non-standard">
   <script>
     alert(document.body.id); // test
-*!*
+
     // non-standard attribute does not yield a property
     alert(document.body.something); // undefined
-*/!*
+
   </script>
 </body>
 ```
@@ -71,14 +71,14 @@ For instance:
 Please note that a standard attribute for one element can be unknown for another one. For instance, `"type"` is standard for `<input>` ([HTMLInputElement](https://html.spec.whatwg.org/#htmlinputelement)), but not for `<body>` ([HTMLBodyElement](https://html.spec.whatwg.org/#htmlbodyelement)). Standard attributes are described in the specification for the corresponding element class.
 
 Here we can see it:
-```html run
+```html
 <body id="body" type="...">
   <input id="input" type="text">
   <script>
     alert(input.type); // text
-*!*
+
     alert(body.type); // undefined: DOM property not created, because it's non-standard
-*/!*
+
   </script>
 </body>
 ```
@@ -98,12 +98,12 @@ Also one can read all attributes using `elem.attributes`: a collection of object
 
 Here's a demo of reading a non-standard property:
 
-```html run
+```html
 <body something="non-standard">
   <script>
-*!*
+
     alert(document.body.getAttribute('something')); // non-standard
-*/!*
+
   </script>
 </body>
 ```
@@ -115,7 +115,7 @@ HTML attributes have the following features:
 
 Here's an extended demo of working with attributes:
 
-```html run
+```html
 <body>
   <div id="elem" about="Elephant"></div>
 
@@ -146,7 +146,7 @@ When a standard attribute changes, the corresponding property is auto-updated, a
 
 In the example below `id` is modified as an attribute, and we can see the property changed too. And then the same backwards:
 
-```html run
+```html
 <input>
 
 <script>
@@ -164,7 +164,7 @@ In the example below `id` is modified as an attribute, and we can see the proper
 
 But there are exclusions, for instance `input.value` synchronizes only from attribute -> to property, but not back:
 
-```html run
+```html
 <input>
 
 <script>
@@ -174,11 +174,11 @@ But there are exclusions, for instance `input.value` synchronizes only from attr
   input.setAttribute('value', 'text');
   alert(input.value); // text
 
-*!*
+
   // NOT property => attribute
   input.value = 'newValue';
   alert(input.getAttribute('value')); // text (not updated!)
-*/!*
+
 </script>
 ```
 
@@ -192,7 +192,7 @@ That "feature" may actually come in handy, because the user actions may lead to 
 
 DOM properties are not always strings. For instance, the `input.checked` property (for checkboxes) is a boolean:
 
-```html run
+```html
 <input id="input" type="checkbox" checked> checkbox
 
 <script>
@@ -203,7 +203,7 @@ DOM properties are not always strings. For instance, the `input.checked` propert
 
 There are other examples. The `style` attribute is a string, but the `style` property is an object:
 
-```html run
+```html
 <div id="div" style="color:red;font-size:120%">Hello</div>
 
 <script>
@@ -222,7 +222,7 @@ Quite rarely, even if a DOM property type is a string, it may differ from the at
 
 Here's an example:
 
-```html height=30 run
+```html
 <a id="a" href="#hello">link</a>
 <script>
   // attribute
@@ -244,11 +244,11 @@ Sometimes non-standard attributes are used to pass custom data from HTML to Java
 
 Like this:
 
-```html run
+```html
 <!-- mark the div to show "name" here -->
-<div *!*show-info="name"*/!*></div>
+<div show-info="name"></div>
 <!-- and age here -->
-<div *!*show-info="age"*/!*></div>
+<div show-info="age"></div>
 
 <script>
   // the code finds an element with the mark and shows what's requested
@@ -269,7 +269,7 @@ Also they can be used to style an element.
 
 For instance, here for the order state the attribute `order-state` is used:
 
-```html run
+```html
 <style>
   /* styles rely on the custom attribute "order-state" */
   .order[order-state="new"] {
@@ -317,7 +317,7 @@ For instance, if an `elem` has an attribute named `"data-about"`, it's available
 
 Like this:
 
-```html run
+```html
 <body data-about="Elephants">
 <script>
   alert(document.body.dataset.about); // Elephants
@@ -328,7 +328,7 @@ Multiword attributes like `data-order-state` become camel-cased: `dataset.orderS
 
 Here's a rewritten "order state" example:
 
-```html run
+```html
 <style>
   .order[data-order-state="new"] {
     color: green;

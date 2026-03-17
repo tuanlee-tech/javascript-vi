@@ -15,7 +15,7 @@ The function is created with the arguments `arg1...argN` and the given `function
 
 It's easier to understand by looking at an example. Here's a function with two arguments:
 
-```js run
+```js
 let sum = new Function('a', 'b', 'return a + b');
 
 alert( sum(1, 2) ); // 3
@@ -23,7 +23,7 @@ alert( sum(1, 2) ); // 3
 
 And here there's a function without arguments, with only the function body:
 
-```js run
+```js
 let sayHi = new Function('alert("Hello")');
 
 sayHi(); // Hello
@@ -46,19 +46,19 @@ It is used in very specific cases, like when we receive code from a server, or t
 
 ## Closure
 
-Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created  (we covered that in the chapter <info:closure>).
+Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created  (we covered that in the chapter &lt;info:closure&gt;).
 
 But when a function is created using `new Function`, its `[[Environment]]` is set to reference not the current Lexical Environment, but the global one.
 
 So, such function doesn't have access to outer variables, only to the global ones.
 
-```js run
+```js
 function getFunc() {
   let value = "test";
 
-*!*
+
   let func = new Function('alert(value)');
-*/!*
+
 
   return func;
 }
@@ -68,18 +68,18 @@ getFunc()(); // error: value is not defined
 
 Compare it with the regular behavior:
 
-```js run
+```js
 function getFunc() {
   let value = "test";
 
-*!*
+
   let func = function() { alert(value); };
-*/!*
+
 
   return func;
 }
 
-getFunc()(); // *!*"test"*/!*, from the Lexical Environment of getFunc
+getFunc()(); // "test", from the Lexical Environment of getFunc
 ```
 
 This special feature of `new Function` looks strange, but appears very useful in practice.

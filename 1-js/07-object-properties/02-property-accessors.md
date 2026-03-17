@@ -12,11 +12,11 @@ Các thuộc tính truy cập được biểu diễn bằng hai phương thức 
 
 ```js
 let obj = {
-  *!*get propName()*/!* {
+  get propName() {
     // getter, phương thức này thực thi khi truy cập obj.propName
   },
 
-  *!*set propName(value)*/!* {
+  set propName(value) {
     // setter, phương thức này thực thi khi gán obj.propName = value
   }
 };
@@ -35,42 +35,42 @@ let user = {
 
 Bây giờ chúng ta muốn thêm một thuộc tính `fullName`, mà giá trị là `"John Smith"`. Tất nhiên, chúng ta không muốn sao chép-dán thông tin hiện có, vì vậy chúng ta có thể cài đặt nó như một thuộc tính truy cập:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith",
 
-*!*
+
   get fullName() {
     return `${this.name} ${this.surname}`;
   }
-*/!*
+
 };
 
-*!*
+
 alert(user.fullName); // John Smith
-*/!*
+
 ```
 
 Nhìn từ bên ngoài, một thuộc tính truy cập trông giống như một thuộc tính thông thường. Đó là ý tưởng của các thuộc tính truy cập. Chúng ta không *gọi* `user.fullName` như một hàm, chúng ta *đọc* nó một cách bình thường: getter chạy đằng sau hậu trường.
 
 Hiện tại, `fullName` chỉ có một getter. Nếu chúng ta cố gắng gán `user.fullName=`, sẽ xảy ra lỗi:
 
-```js run
+```js
 let user = {
   get fullName() {
     return `...`;
   }
 };
 
-*!*
+
 user.fullName = "Test"; // Lỗi (thuộc tính chỉ có getter)
-*/!*
+
 ```
 
 Hãy sửa nó bằng cách thêm một setter cho `user.fullName`:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith",
@@ -79,11 +79,11 @@ let user = {
     return `${this.name} ${this.surname}`;
   },
 
-*!*
+
   set fullName(value) {
     [this.name, this.surname] = value.split(" ");
   }
-*/!*
+
 };
 
 // đặt fullName được thực thi với giá trị đã cho.
@@ -110,13 +110,13 @@ Các descriptor của thuộc tính truy cập khác với các descriptor của
 
 Ví dụ, để tạo thuộc tính truy cập `fullName` bằng `defineProperty`, chúng ta có thể truyền một descriptor có hai phương thức `get` và `set`:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith"
 };
 
-*!*
+
 Object.defineProperty(user, 'fullName', {
   get() {
     return `${this.name} ${this.surname}`;
@@ -125,7 +125,7 @@ Object.defineProperty(user, 'fullName', {
   set(value) {
     [this.name, this.surname] = value.split(" ");
   }
-*/!*
+
 });
 
 alert(user.fullName); // John Smith
@@ -137,10 +137,10 @@ Xin lưu ý rằng một thuộc tính có thể là một thuộc tính truy c�
 
 Nếu chúng ta cố đưa cả `get` và `value` vào trong một descriptor, sẽ gây ra lỗi:
 
-```js run
-*!*
+```js
+
 // Lỗi: descriptor của thuộc tính không hợp lệ
-*/!*
+
 Object.defineProperty({}, 'prop', {
   get() {
     return 1
@@ -156,7 +156,7 @@ Các getter/setter có thể dùng như các thuộc tính "bao" lấy các giá
 
 Ví dụ: nếu chúng ta muốn cấm các tên quá ngắn cho `user`, chúng ta có thể có một setter là `name` và giữ giá trị trong một thuộc tính riêng biệt là `_name`:
 
-```js run
+```js
 let user = {
   get name() {
     return this._name;
@@ -217,12 +217,12 @@ Hãy giữ lại nó.
 
 Thêm getter cho `age` sẽ giải quyết được vấn đề này:
 
-```js run no-beautify
+```js
 function User(name, birthday) {
   this.name = name;
   this.birthday = birthday;
 
-*!*
+
   // age có thể tính được từ ngày hiện tại và birthday
   Object.defineProperty(this, "age", {
     get() {
@@ -230,7 +230,7 @@ function User(name, birthday) {
       return todayYear - this.birthday.getFullYear();
     }
   });
-*/!*
+
 }
 
 let john = new User("John", new Date(1992, 6, 1));

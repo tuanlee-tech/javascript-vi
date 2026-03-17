@@ -24,7 +24,7 @@ let url = new URL('https://javascript.info/profile/admin');
 
 These two URLs are same:
 
-```js run
+```js
 let url1 = new URL('https://javascript.info/profile/admin');
 let url2 = new URL('/profile/admin', 'https://javascript.info');
 
@@ -34,7 +34,7 @@ alert(url2); // https://javascript.info/profile/admin
 
 We can easily create a new URL based on the path relative to an existing URL:
 
-```js run
+```js
 let url = new URL('https://javascript.info/profile/admin');
 let newUrl = new URL('tester', url);
 
@@ -43,7 +43,7 @@ alert(newUrl); // https://javascript.info/profile/tester
 
 The `URL` object immediately allows us to access its components, so it's a nice way to parse the url, e.g.:
 
-```js run
+```js
 let url = new URL('https://javascript.info/url');
 
 alert(url.protocol); // https:
@@ -62,11 +62,11 @@ Here's the cheatsheet for URL components:
 - there may be also `user` and `password` properties if HTTP authentication is present: `http://login:password@site.com` (not painted above, rarely used).
 
 
-:::info We can pass `URL` objects to networking (and most other) methods instead of a string
+
 We can use a `URL` object in `fetch` or `XMLHttpRequest`, almost everywhere where a URL-string is expected.
 
 Generally, the `URL` object can be passed to any method instead of a string, as most methods will perform the string conversion, that turns a `URL` object into a string with full URL.
-:::
+
 
 ## SearchParams "?..."
 
@@ -95,7 +95,7 @@ It provides convenient methods for search parameters:
 
 An example with parameters that contain spaces and punctuation marks:
 
-```js run
+```js
 let url = new URL('https://google.com/search');
 
 url.searchParams.set('q', 'test me!'); // added parameter with a space and !
@@ -122,7 +122,7 @@ Those that are not allowed, must be encoded, for instance non-latin letters and 
 
 The good news is that `URL` objects handle all that automatically. We just supply all parameters unencoded, and then convert the `URL` to string:
 
-```js run
+```js
 // using some cyrillic characters for this example
 
 let url = new URL('https://ru.wikipedia.org/wiki/Тест');
@@ -167,7 +167,7 @@ As we can see, characters such as `:`, `?`, `=`, `&`, `#` are allowed in URL.
 
 So, for a whole URL we can use `encodeURI`:
 
-```js run
+```js
 // using cyrillic characters in url path
 let url = encodeURI('http://site.com/привет');
 
@@ -176,7 +176,7 @@ alert(url); // http://site.com/%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82
 
 ...While for URL parameters we should use `encodeURIComponent` instead:
 
-```js run
+```js
 let music = encodeURIComponent('Rock&Roll');
 
 let url = `https://google.com/search?q=${music}`;
@@ -185,7 +185,7 @@ alert(url); // https://google.com/search?q=Rock%26Roll
 
 Compare it with `encodeURI`:
 
-```js run
+```js
 let music = encodeURI('Rock&Roll');
 
 let url = `https://google.com/search?q=${music}`;
@@ -198,12 +198,12 @@ But we should encode `&` inside a search parameter, otherwise, we get `q=Rock&Ro
 
 So we should use only `encodeURIComponent` for each search parameter, to correctly insert it in the URL string. The safest is to encode both name and value, unless we're absolutely sure that it has only allowed characters.
 
-:::info Encoding difference compared to `URL`
+
 Classes [URL](https://url.spec.whatwg.org/#url-class) and [URLSearchParams](https://url.spec.whatwg.org/#interface-urlsearchparams) are based on the latest URI specification: [RFC3986](https://tools.ietf.org/html/rfc3986), while `encode*` functions are based on the obsolete version [RFC2396](https://www.ietf.org/rfc/rfc2396.txt).
 
 There are a few differences, e.g. IPv6 addresses are encoded differently:
 
-```js run
+```js
 // valid url with IPv6 address
 let url = 'http://[2607:f8b0:4005:802::1007]/';
 

@@ -43,7 +43,7 @@ The code:
 ```js
 let selectedTd;
 
-*!*
+
 table.onclick = function(event) {
   let target = event.target; // where was the click?
 
@@ -51,7 +51,7 @@ table.onclick = function(event) {
 
   highlight(target); // highlight it
 };
-*/!*
+
 
 function highlight(td) {
   if (selectedTd) { // remove the existing highlight if any
@@ -72,9 +72,9 @@ In our case if we take a look inside the HTML, we can see nested tags inside `<t
 
 ```html
 <td>
-*!*
+
   <strong>Northwest</strong>
-*/!*
+
   ...
 </td>
 ```
@@ -116,12 +116,12 @@ Let's say, we want to make a menu with buttons "Save", "Load", "Search" and so o
 The first idea may be to assign a separate handler to each button. But there's a more elegant solution. We can add a handler for the whole menu and `data-action` attributes for buttons that has the method to call:
 
 ```html
-<button *!*data-action="save"*/!*>Click to Save</button>
+<button data-action="save">Click to Save</button>
 ```
 
 The handler reads the attribute and executes the method. Take a look at the working example:
 
-```html autorun height=60 run untrusted
+```html
 <div id="menu">
   <button data-action="save">Save</button>
   <button data-action="load">Load</button>
@@ -148,12 +148,12 @@ The handler reads the attribute and executes the method. Take a look at the work
     }
 
     onClick(event) {
-*!*
+
       let action = event.target.dataset.action;
       if (action) {
         this[action]();
       }
-*/!*
+
     };
   }
 
@@ -165,10 +165,10 @@ Please note that `this.onClick` is bound to `this` in `(*)`. That's important, b
 
 So, what advantages does delegation give us here?
 
-:::details So sánh
+
 + We don't need to write the code to assign a handler to each button. Just make a method and put it in the markup.
 + The HTML structure is flexible, we can add/remove buttons at any time.
-:::
+
 
 We could also use classes `.action-save`, `.action-load`, but an attribute `data-action` is better semantically. And we can use it in CSS rules too.
 
@@ -184,7 +184,7 @@ The pattern has two parts:
 
 For instance, here the attribute `data-counter` adds a behavior: "increase value on click" to buttons:
 
-```html run autorun height=60
+```html
 Counter: <input type="button" value="1" data-counter>
 One more counter: <input type="button" value="2" data-counter>
 
@@ -203,18 +203,18 @@ If we click a button -- its value is increased. Not buttons, but the general app
 
 There can be as many attributes with `data-counter` as we want. We can add new ones to HTML at any moment. Using the event delegation we "extended" HTML, added an attribute that describes a new behavior.
 
-:::warning For document-level handlers -- always `addEventListener`
+
 When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.on<event>`, because the latter will cause conflicts: new handlers overwrite old ones.
 
 For real projects it's normal that there are many handlers on `document` set by different parts of the code.
-:::
+
 
 ### Behavior: Toggler
 
 One more example of behavior. A click on an element with the attribute `data-toggle-id` will show/hide the element with the given `id`:
 
-```html autorun run height=60
-<button *!*data-toggle-id="subscribe-mail"*/!*>
+```html
+<button data-toggle-id="subscribe-mail">
   Show the subscription form
 </button>
 
@@ -223,7 +223,7 @@ One more example of behavior. A click on an element with the attribute `data-tog
 </form>
 
 <script>
-*!*
+
   document.addEventListener('click', function(event) {
     let id = event.target.dataset.toggleId;
     if (!id) return;
@@ -232,7 +232,7 @@ One more example of behavior. A click on an element with the attribute `data-tog
 
     elem.hidden = !elem.hidden;
   });
-*/!*
+
 </script>
 ```
 
@@ -258,15 +258,15 @@ The algorithm:
 
 Benefits:
 
-:::details So sánh
+
 + Simplifies initialization and saves memory: no need to add many handlers.
 + Less code: when adding or removing elements, no need to add/remove handlers.
 + DOM modifications: we can mass add/remove elements with `innerHTML` and the like.
-:::
+
 
 The delegation has its limitations of course:
 
-:::details So sánh
+
 - First, the event must be bubbling. Some events do not bubble. Also, low-level handlers should not use `event.stopPropagation()`.
 - Second, the delegation may add CPU load, because the container-level handler reacts on events in any place of the container, no matter whether they interest us or not. But usually the load is negligible, so we don't take it into account.
-:::
+

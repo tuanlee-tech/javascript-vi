@@ -11,13 +11,13 @@ And what if a function is passed along as a parameter and called from another pl
 
 Let's expand our knowledge to understand these scenarios and more complex ones.
 
-:::info We'll talk about `let/const` variables here
+
 In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
 
 - In this article we'll use `let` variables in examples.
 - Variables, declared with `const`, behave the same, so this article is about `const` too.
-- The old `var` has some notable differences, they will be covered in the article <info:var>.
-:::
+- The old `var` has some notable differences, they will be covered in the article &lt;info:var&gt;.
+
 
 ## Code blocks
 
@@ -25,7 +25,7 @@ If a variable is declared inside a code block `{...}`, it's only visible inside 
 
 For example:
 
-```js run
+```js
 {
   // do some job with local variables that should not be seen outside
 
@@ -39,7 +39,7 @@ alert(message); // Error: message is not defined
 
 We can use this to isolate a piece of code that does its own task, with variables that only belong to it:
 
-```js run
+```js
 {
   // show message
   let message = "Hello";
@@ -53,25 +53,25 @@ We can use this to isolate a piece of code that does its own task, with variable
 }
 ```
 
-:::info There'd be an error without blocks
+
 Please note, without separate blocks there would be an error, if we use `let` with the existing variable name:
 
-```js run
+```js
 // show message
 let message = "Hello";
 alert(message);
 
 // show another message
-*!*
+
 let message = "Goodbye"; // Error: variable already declared
-*/!*
+
 alert(message);
-:::
-````
+```
+
 
 For `if`, `for`, `while` and so on, variables declared in `{...}` are also only visible inside:
 
-```js run
+```js
 if (true) {
   let phrase = "Hello!";
 
@@ -87,7 +87,7 @@ That's great, as it allows us to create block-local variables, specific to an `i
 
 The similar thing holds true for `for` and `while` loops:
 
-```js run
+```js
 for (let i = 0; i < 3; i++) {
   // the variable i is only visible inside this for
   alert(i); // 0, then 1, then 2
@@ -126,7 +126,7 @@ What's much more interesting, a nested function can be returned: either as a pro
 
 Below, `makeCounter` creates the "counter" function that returns the next number on each invocation:
 
-```js run
+```js
 function makeCounter() {
   let count = 0;
 
@@ -150,11 +150,11 @@ Understanding such things is great for the overall knowledge of JavaScript and b
 
 ## Lexical Environment
 
-:::warning Here be dragons!
+
 The in-depth technical explanation lies ahead.
 
 As far as I'd like to avoid low-level language details, any understanding without them would be lacking and incomplete, so get ready.
-:::
+
 
 For clarity, the explanation is split into multiple steps.
 
@@ -196,11 +196,11 @@ Everything looks simple for now, right?
 - A variable is a property of a special internal object, associated with the currently executing block/function/script.
 - Working with variables is actually working with the properties of that object.
 
-:::info Lexical Environment is a specification object
+
 "Lexical Environment" is a specification object: it only exists "theoretically" in the [language specification](https://tc39.es/ecma262/#sec-lexical-environments) to describe how things work. We can't get this object in our code and manipulate it directly.
 
 JavaScript engines also may optimize it, discard variables that are unused to save memory and perform other internal tricks, as long as the visible behavior remains as described.
-:::
+
 
 ### Step 2. Function Declarations
 
@@ -224,8 +224,9 @@ When a function runs, at the beginning of the call, a new Lexical Environment is
 
 For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
 
-<!--
-    ```js
+
+
+```js
     let phrase = "Hello";
 
     function say(name) {
@@ -233,7 +234,7 @@ For instance, for `say("John")`, it looks like this (the execution is at the lin
     }
 
     say("John"); // Hello, John
-    ```-->
+```text
 
 ![](lexical-environment-simple.svg)
 
@@ -300,15 +301,15 @@ Here's the state after the execution:
 
 If we call `counter()` multiple times, the `count` variable will be increased to `2`, `3` and so on, at the same place.
 
-:::info Closure
+
 There is a general programming term "closure", that developers generally should know.
 
-A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in JavaScript, all functions are naturally closures (there is only one exception, to be covered in <info:new-function>).
+A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in JavaScript, all functions are naturally closures (there is only one exception, to be covered in &lt;info:new-function&gt;).
 
 That is: they automatically remember where they were created using a hidden `[[Environment]]` property, and then their code can access outer variables.
 
 When on an interview, a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe a few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
-:::
+
 
 ## Garbage collection
 
@@ -377,7 +378,7 @@ Try running the example below in Chrome with the Developer Tools open.
 
 When it pauses, in the console type `alert(value)`.
 
-```js run
+```js
 function f() {
   let value = Math.random();
 
@@ -396,7 +397,7 @@ As you could see -- there is no such variable! In theory, it should be accessibl
 
 That may lead to funny (if not such time-consuming) debugging issues. One of them -- we can see a same-named outer variable instead of the expected one:
 
-```js run global
+```js
 let value = "Surprise!";
 
 function f() {

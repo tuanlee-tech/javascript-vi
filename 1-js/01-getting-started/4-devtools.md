@@ -12,7 +12,7 @@ Developer tools are potent, they have many features. To start, we'll learn how t
 
 ## Google Chrome
 
-Open the page [bug.html](bug.html).
+Open the page [bug.html](#).
 
 There's an error in the JavaScript code on it. It's hidden from a regular visitor's eyes, so let's open developer tools to see it.
 
@@ -31,13 +31,13 @@ The exact look of developer tools depends on your version of Chrome. It changes 
 
 Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them.
 
-Now we can see errors, and that's enough for a start. We'll come back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
+Now we can see errors, and that's enough for a start. We'll come back to developer tools later and cover debugging more in-depth in the chapter &lt;info:debugging-chrome&gt;.
 
-:::info Multi-line input
+
 Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
 
 To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
-:::
+
 
 ## Firefox, Edge, and others
 

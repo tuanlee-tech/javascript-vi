@@ -12,7 +12,7 @@ In modern web-development `XMLHttpRequest` is used for three reasons:
 2. We need to support old browsers, and don't want polyfills (e.g. to keep scripts tiny).
 3. We need something that `fetch` can't do yet, e.g. to track upload progress.
 
-Does that sound familiar? If yes, then all right, go on with `XMLHttpRequest`. Otherwise, please head on to <info:fetch>.
+Does that sound familiar? If yes, then all right, go on with `XMLHttpRequest`. Otherwise, please head on to &lt;info:fetch&gt;.
 
 ## The basics
 
@@ -23,20 +23,20 @@ Let's see the asynchronous first, as it's used in the majority of cases.
 To do the request, we need 3 steps:
 
 1. Create `XMLHttpRequest`:
-    ```js
+```js
     let xhr = new XMLHttpRequest();
     ```
     The constructor has no arguments.
 
 2. Initialize it, usually right after `new XMLHttpRequest`:
-    ```js
+```js
     xhr.open(method, URL, [async, user, password])
     ```
 
     This method specifies the main parameters of the request:
 
     - `method` -- HTTP-method. Usually `"GET"` or `"POST"`.
-    - `URL` -- the URL to request, a string, can be [URL](info:url) object.
+    - `URL` -- the URL to request, a string, can be [URL](#) object.
     - `async` -- if explicitly set to `false`, then the request is synchronous, we'll cover that a bit later.
     - `user`, `password` -- login and password for basic HTTP auth (if required).
 
@@ -44,7 +44,7 @@ To do the request, we need 3 steps:
 
 3. Send it out.
 
-    ```js
+```js
     xhr.send([body])
     ```
 
@@ -59,7 +59,7 @@ To do the request, we need 3 steps:
     - `error` -- when the request couldn't be made, e.g. network down or invalid URL.
     - `progress` -- triggers periodically while the response is being downloaded, reports how much has been downloaded.
 
-    ```js
+```js
     xhr.onload = function() {
       alert(`Loaded: ${xhr.status} ${xhr.response}`);
     };
@@ -78,7 +78,7 @@ To do the request, we need 3 steps:
 
 Here's a full example. The code below loads the URL at `/article/xmlhttprequest/example/load` from the server and prints the progress:
 
-```js run
+```js
 // 1. Create a new XMLHttpRequest object
 let xhr = new XMLHttpRequest();
 
@@ -130,8 +130,8 @@ xhr.timeout = 10000; // timeout in ms, 10 seconds
 
 If the request does not succeed within the given time, it gets canceled and `timeout` event triggers.
 
-:::info URL search parameters
-To add parameters to URL, like `?name=value`, and ensure the proper encoding, we can use [URL](info:url) object:
+
+To add parameters to URL, like `?name=value`, and ensure the proper encoding, we can use [URL](#) object:
 
 ```js
 let url = new URL('https://google.com/search');
@@ -149,21 +149,21 @@ We can use `xhr.responseType` property to set the response format:
 
 - `""` (default) -- get as string,
 - `"text"` -- get as string,
-- `"arraybuffer"` -- get as `ArrayBuffer` (for binary data, see chapter <info:arraybuffer-binary-arrays>),
-- `"blob"` -- get as `Blob` (for binary data, see chapter <info:blob>),
+- `"arraybuffer"` -- get as `ArrayBuffer` (for binary data, see chapter &lt;info:arraybuffer-binary-arrays&gt;),
+- `"blob"` -- get as `Blob` (for binary data, see chapter &lt;info:blob&gt;),
 - `"document"` -- get as XML document (can use XPath and other XML methods) or HTML document (based on the MIME type of the received data),
 - `"json"` -- get as JSON (parsed automatically).
 
 For example, let's get the response as JSON:
 
-```js run
+```js
 let xhr = new XMLHttpRequest();
 
 xhr.open('GET', '/article/xmlhttprequest/example/json');
 
-*!*
+
 xhr.responseType = 'json';
-*/!*
+
 
 xhr.send();
 
@@ -174,11 +174,11 @@ xhr.onload = function() {
 };
 ```
 
-:::info
+
 In the old scripts you may also find `xhr.responseText` and even `xhr.responseXML` properties.
 
 They exist for historical reasons, to get either a string or XML document. Nowadays, we should set the format in `xhr.responseType` and get `xhr.response` as demonstrated above.
-:::
+
 
 ## Ready states
 
@@ -232,7 +232,7 @@ Here's the rewritten example, the 3rd parameter of `open` is `false`:
 ```js
 let xhr = new XMLHttpRequest();
 
-xhr.open('GET', '/article/xmlhttprequest/hello.txt', *!*false*/!*);
+xhr.open('GET', '/article/xmlhttprequest/hello.txt', false);
 
 try {
   xhr.send();
@@ -263,7 +263,7 @@ There are 3 methods for HTTP-headers:
 
     For instance:
 
-    ```js
+```js
     xhr.setRequestHeader('Content-Type', 'application/json');
     ```
 
@@ -281,7 +281,7 @@ There are 3 methods for HTTP-headers:
 
     For instance:
 
-    ```js
+```js
     xhr.setRequestHeader('X-Auth', '123');
     xhr.setRequestHeader('X-Auth', '456');
 
@@ -295,7 +295,7 @@ There are 3 methods for HTTP-headers:
 
     For instance:
 
-    ```js
+```js
     xhr.getResponseHeader('Content-Type')
     ```
 
@@ -304,7 +304,7 @@ There are 3 methods for HTTP-headers:
 
     Headers are returned as a single line, e.g.:
 
-    ```http
+```text
     Cache-Control: max-age=31536000
     Content-Length: 4260
     Content-Type: image/png
@@ -317,7 +317,7 @@ There are 3 methods for HTTP-headers:
 
     Like this (assuming that if two headers have the same name, then the latter one overwrites the former one):
 
-    ```js
+```js
     let headers = xhr
       .getAllResponseHeaders()
       .split('\r\n')
@@ -348,7 +348,7 @@ We create it, optionally fill from a form, `append` more fields if needed, and t
 
 For instance:
 
-```html run refresh
+```html
 <form name="person">
   <input name="name" value="John">
   <input name="surname" value="Smith">
@@ -430,7 +430,7 @@ xhr.upload.onerror = function() {
 
 Here's a real-life example: file upload with progress indication:
 
-```html run
+```html
 <input type="file" onchange="upload(this.files[0])">
 
 <script>
@@ -438,11 +438,11 @@ function upload(file) {
   let xhr = new XMLHttpRequest();
 
   // track upload progress
-*!*
+
   xhr.upload.onprogress = function(event) {
     console.log(`Uploaded ${event.loaded} of ${event.total}`);
   };
-*/!*
+
 
   // track completion: both successful or not
   xhr.onloadend = function() {
@@ -461,21 +461,21 @@ function upload(file) {
 
 ## Cross-origin requests
 
-`XMLHttpRequest` can make cross-origin requests, using the same CORS policy as [fetch](info:fetch-crossorigin).
+`XMLHttpRequest` can make cross-origin requests, using the same CORS policy as [fetch](#).
 
 Just like `fetch`, it doesn't send cookies and HTTP-authorization to another origin by default. To enable them, set `xhr.withCredentials` to `true`:
 
 ```js
 let xhr = new XMLHttpRequest();
-*!*
+
 xhr.withCredentials = true;
-*/!*
+
 
 xhr.open('POST', 'http://anywhere.com/request');
 ...
 ```
 
-See the chapter <info:fetch-crossorigin> for details about cross-origin headers.
+See the chapter &lt;info:fetch-crossorigin&gt; for details about cross-origin headers.
 
 
 ## Summary

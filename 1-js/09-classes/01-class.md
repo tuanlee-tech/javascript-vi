@@ -1,12 +1,12 @@
 # Cú pháp cơ bản của class
 
-```quote author="Wikipedia"
+```text
 Trong lập trình hướng đối tượng, một *class* là một khuôn mẫu mã chương trình có thể mở rộng (extensible program-code-template) dùng để tạo các đối tượng, cung cấp các giá trị ban đầu cho trạng thái của đối tượng (các biến thành viên) và các cài đặt cho hành vi của đối tượng (hàm thành viên hay phương thức).
 ```
 
 Trong thực tế, chúng ta thường phải tạo ra nhiều đối tượng cùng kiểu, như các người dùng, các mặt hàng hoặc bất kì thứ gì khác.
 
-Như chúng ta đã biết ở chương <info:constructor-new>, `new function` có thể giúp thực hiện việc đó.
+Như chúng ta đã biết ở chương &lt;info:constructor-new&gt;, `new function` có thể giúp thực hiện việc đó.
 
 Nhưng trong JavaScript hiện đại, có một cấu trúc cao cấp hơn gọi là "class", nó giới thiệu các tính năng mới tuyệt vời có lợi cho lập trình hướng đối tượng.
 
@@ -30,7 +30,7 @@ Phương thức `constructor()` tự động được gọi bởi `new`, nên ch
 
 Ví dụ:
 
-```js run
+```js
 class User {
 
   constructor(name) {
@@ -55,11 +55,11 @@ Khi `new User("John")` được gọi:
 
 ...Sau đó chúng ta có thể gọi các phương thức của đối tượng, chẳng hạn như `user.sayHi`.
 
-:::warning Không có dấu phảy ngăn cách các phương thức của class
+
 Một lỗi phổ biến với những nhà phát triển chưa có kinh nghiệm là đặt dấu phảy giữa các phương thức của class, điều này sẽ gây ra một lỗi cú pháp.
 
 Chúng ta không được nhầm lẫn cách viết "class" ở đây với các đối tượng trực tiếp. Bên trong class không yêu cầu dấu phảy.
-:::
+
 
 ## Class là gì?
 
@@ -71,16 +71,16 @@ Trong JavaScript, một class hầu như là một hàm.
 
 Đây, hãy xem:
 
-```js run
+```js
 class User {
   constructor(name) { this.name = name; }
   sayHi() { alert(this.name); }
 }
 
 // bằng chứng: User là một hàm
-*!*
+
 alert(typeof User); // function
-*/!*
+
 ```
 
 Những cái mà cấu trúc `class User {...}` thực sự làm là:
@@ -88,7 +88,7 @@ Những cái mà cấu trúc `class User {...}` thực sự làm là:
 1. Tạo một hàm có tên là `User`, hàm này sẽ trở thành kết quả của khai báo class. Mã hàm được lấy từ phương thức `constructor` (giả sử là rỗng nếu chúng ta không viết phương thức như vậy).
 2. Lưu các phương thức của class, chẳng hạn như `sayHi`, trong `User.prototype`.
 
-Sau khi đối tượng `new User` được tạo, khi chúng ta gọi một phương thức của nó, phương thức đó được lấy từ nguyên mẫu, giống như mô tả trong chương <info:function-prototype>. Vì vậy đối tượng có quyền truy cập đến các phương thức của class.
+Sau khi đối tượng `new User` được tạo, khi chúng ta gọi một phương thức của nó, phương thức đó được lấy từ nguyên mẫu, giống như mô tả trong chương &lt;info:function-prototype&gt;. Vì vậy đối tượng có quyền truy cập đến các phương thức của class.
 
 Chúng ta có thể minh họa kết quả của khai báo `class User` như sau:
 
@@ -96,7 +96,7 @@ Chúng ta có thể minh họa kết quả của khai báo `class User` như sau
 
 Đây là mã để xem xét nó:
 
-```js run
+```js
 class User {
   constructor(name) { this.name = name; }
   sayHi() { alert(this.name); }
@@ -119,7 +119,7 @@ alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 
 Đôi khi người ta nói rằng `class` là một cú pháp đặc biệt "syntactic sugar" (cú pháp được thiết kế để làm cho mọi thứ dễ đọc hơn, nhưng không giới thiệu bất kỳ điều gì mới), bởi vì chúng ta thực sự có thể khai báo tương tự mà không cần từ khóa `class` gì hết:
 
-```js run
+```js
 // viết lại class User trong các hàm thuần túy
 
 // 1. Tạo hàm constructor
@@ -147,7 +147,7 @@ Dù vậy, vẫn có những khác biệt quan trọng.
 
     Ngôn ngữ JavaScript kiểm tra thuộc tính đó ở nhiều nơi. Ví dụ: không giống như một hàm thông thường, nó phải được gọi bằng `new`:
 
-    ```js run
+```js
     class User {
       constructor() {}
     }
@@ -158,7 +158,7 @@ Dù vậy, vẫn có những khác biệt quan trọng.
 
     Hơn nữa, biểu diễn dạng chuỗi của một class constructor trong hầu hết các JavaScript engine đều bắt đầu với "class..."
 
-    ```js run
+```js
     class User {
       constructor() {}
     }
@@ -196,10 +196,10 @@ Tương tự như Biểu thức hàm có tên (Named Function Expressions), các
 
 Nếu một biểu thức class có tên, tên này chỉ có thể thấy được bên trong class:
 
-```js run
+```js
 // "Biểu thức class có tên"
 // (trong đặc tả không có thuật ngữ như thế, nhưng nó tương tự như Named Function Expressions)
-let User = class *!*MyClass*/!* {
+let User = class MyClass {
   sayHi() {
     alert(MyClass); // tên MyClass chỉ thấy được từ bên trong class
   }
@@ -212,7 +212,7 @@ alert(MyClass); // lỗi, tên MyClass không thấy được từ bên ngoài c
 
 Chúng ta thậm chí có thể tạo động các class "theo yêu cầu", như thế này:
 
-```js run
+```js
 function makeClass(phrase) {
   // khai báo một class và trả nó về
   return class {
@@ -234,7 +234,7 @@ Cũng giống như các đối tượng trực tiếp (literal object), các cla
 
 Đây là một ví dụ cho thuộc tính `user.name` mà được cài đặt bằng cách sử dụng `get/set`:
 
-```js run
+```js
 class User {
 
   constructor(name) {
@@ -242,15 +242,15 @@ class User {
     this.name = name;
   }
 
-*!*
+
   get name() {
-*/!*
+
     return this._name;
   }
 
-*!*
+
   set name(value) {
-*/!*
+
     if (value.length < 4) {
       alert("Tên quá ngắn.");
       return;
@@ -272,12 +272,12 @@ Về mặt kỹ thuật, khai báo class như vậy hoạt động bằng cách 
 
 Đây là một ví dụ với một tên phương thức được tính toán bằng cách sử dụng cặp ngoặc vuông `[...]`:
 
-```js run
+```js
 class User {
 
-*!*
+
   ['say' + 'Hi']() {
-*/!*
+
     alert("Hello");
   }
 
@@ -290,9 +290,9 @@ Các tính năng như thế rất dễ nhớ, vì chúng giống với các đ�
 
 ## Các trường của class
 
-:::warning Các trình duyệt cũ có thể phải cần polyfill
+
 Các trường của class là một bổ sung gần đây cho ngôn ngữ.
-:::
+
 
 Trước đó các class của chúng ta chỉ có các phương thức.
 
@@ -300,11 +300,11 @@ Trước đó các class của chúng ta chỉ có các phương thức.
 
 Ví dụ, hãy thêm thuộc tính `name` vào `class User`:
 
-```js run
+```js
 class User {
-*!*
+
   name = "John";
-*/!*
+
 
   sayHi() {
     alert(`Xin chào, ${this.name}!`);
@@ -314,15 +314,15 @@ class User {
 new User().sayHi(); // Xin chào, John!
 ```
 
-Vì vậy, chúng ta chỉ cần viết "<property name> = <value>" trong khai báo, và thế là xong.
+Vì vậy, chúng ta chỉ cần viết "&lt;property name&gt; = &lt;value&gt;" trong khai báo, và thế là xong.
 
 Sự khác biệt quan trọng của các trường của class là chúng được thiết lập trên các đối tượng riêng lẻ, chứ không phải `User.prototype`:
 
-```js run
+```js
 class User {
-*!*
+
   name = "John";
-*/!*
+
 }
 
 let user = new User();
@@ -332,11 +332,11 @@ alert(User.prototype.name); // undefined
 
 Chúng ta cũng có thể gán các giá trị bằng cách sử dụng các biểu thức phức tạp hơn và các lệnh gọi hàm:
 
-```js run
+```js
 class User {
-*!*
+
   name = prompt("Vui lòng nhập tên?", "John");
-*/!*
+
 }
 
 let user = new User();
@@ -345,13 +345,13 @@ alert(user.name); // John
 
 ### Tạo các phương thức ràng buộc với các trường của class
 
-Như đã trình bày trong chương <info:bind> các hàm trong JavaScript có `this` động. Nó phụ thuộc vào ngữ cảnh của lời gọi.
+Như đã trình bày trong chương &lt;info:bind&gt; các hàm trong JavaScript có `this` động. Nó phụ thuộc vào ngữ cảnh của lời gọi.
 
 Vì vậy, nếu một phương thức của đối tượng được truyền xung quanh và được gọi trong một ngữ cảnh khác, `this` sẽ không còn là một tham chiếu đến đối tượng của nó nữa.
 
 Ví dụ, mã này sẽ hiển thị `undefined`:
 
-```js run
+```js
 class Button {
   constructor(value) {
     this.value = value;
@@ -364,30 +364,30 @@ class Button {
 
 let button = new Button("xin chào");
 
-*!*
+
 setTimeout(button.click, 1000); // undefined
-*/!*
+
 ```
 
 Sự cố này được gọi là "mất `this`".
 
-Có hai cách tiếp cận để sửa nó, như đã thảo luận trong chương <info:bind>:
+Có hai cách tiếp cận để sửa nó, như đã thảo luận trong chương &lt;info:bind&gt;:
 
 1. Truyền một hàm-bao, chẳng hạn như `setTimeout(() => button.click(), 1000)`.
 2. Ràng buộc phương thức với đối tượng, ví dụ trong hàm tạo.
 
 Các trường của class cung cấp một cú pháp khác, khá thanh lịch:
 
-```js run
+```js
 class Button {
   constructor(value) {
     this.value = value;
   }
-*!*
+
   click = () => {
     alert(this.value);
   }
-*/!*
+
 }
 
 let button = new Button("xin chào");

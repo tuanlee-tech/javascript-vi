@@ -33,7 +33,7 @@ So for classes the similar-looking property `"className"` was introduced: the `e
 
 For instance:
 
-```html run
+```html
 <body class="main page">
   <script>
     alert(document.body.className); // main page
@@ -49,13 +49,13 @@ The `elem.classList` is a special object with methods to `add/remove/toggle` a s
 
 For instance:
 
-```html run
+```html
 <body class="main page">
   <script>
-*!*
+
     // add a class
     document.body.classList.add('article');
-*/!*
+
 
     alert(document.body.className); // main page article
   </script>
@@ -72,7 +72,7 @@ Methods of `classList`:
 
 Besides, `classList` is iterable, so we can list all classes with `for..of`, like this:
 
-```html run
+```html
 <body class="main page">
   <script>
     for (let name of document.body.classList) {
@@ -88,7 +88,7 @@ The property `elem.style` is an object that corresponds to what's written in the
 
 For multi-word property the camelCase is used:
 
-```js no-beautify
+```js
 background-color  => elem.style.backgroundColor
 z-index           => elem.style.zIndex
 border-left-width => elem.style.borderLeftWidth
@@ -96,11 +96,11 @@ border-left-width => elem.style.borderLeftWidth
 
 For instance:
 
-```js run
+```js
 document.body.style.backgroundColor = prompt('background color?', 'green');
 ```
 
-:::info Prefixed properties
+
 Browser-prefixed properties like `-moz-border-radius`, `-webkit-border-radius` also follow the same rule: a dash means upper case.
 
 For instance:
@@ -119,7 +119,7 @@ For instance, to hide an element, we can set `elem.style.display = "none"`.
 
 Then later we may want to remove the `style.display` as if it were not set. Instead of `delete elem.style.display` we should assign an empty string to it: `elem.style.display = ""`.
 
-```js run
+```js
 // if we run this code, the <body> will blink
 document.body.style.display = "none"; // hide
 
@@ -128,12 +128,12 @@ setTimeout(() => document.body.style.display = "", 1000); // back to normal
 
 If we set `style.display` to an empty string, then the browser applies CSS classes and its built-in styles normally, as if there were no such `style.display` property at all.
 
-:::info Full rewrite with `style.cssText`
+
 Normally, we use `style.*` to assign individual style properties. We can't set the full style like `div.style="color: red; width: 100px"`, because `div.style` is an object, and it's read-only.
 
 To set the full style as a string, there's a special property `style.cssText`:
 
-```html run
+```html
 <div id="div">Button</div>
 
 <script>
@@ -159,14 +159,14 @@ Don't forget to add CSS units to values.
 
 For instance, we should not set `elem.style.top` to `10`, but rather to `10px`. Otherwise it wouldn't work:
 
-```html run height=100
+```html
 <body>
   <script>
-  *!*
+  
     // doesn't work!
     document.body.style.margin = 20;
     alert(document.body.style.margin); // '' (empty string, the assignment is ignored)
-  */!*
+  
 
     // now add the CSS unit (px) - and it works
     document.body.style.margin = '20px';
@@ -192,7 +192,7 @@ So we can't read anything that comes from CSS classes using `elem.style`.
 
 For instance, here `style` doesn't see the margin:
 
-```html run height=60 no-beautify
+```html
 <head>
   <style> body { color: red; margin: 5px } </style>
 </head>
@@ -200,10 +200,10 @@ For instance, here `style` doesn't see the margin:
 
   The red text
   <script>
-*!*
+
     alert(document.body.style.color); // empty
     alert(document.body.style.marginTop); // empty
-*/!*
+
   </script>
 </body>
 ```
@@ -228,7 +228,7 @@ The result is an object with styles, like `elem.style`, but now with respect to 
 
 For instance:
 
-```html run height=100
+```html
 <head>
   <style> body { color: red; margin: 5px } </style>
 </head>
@@ -246,7 +246,7 @@ For instance:
 </body>
 ```
 
-:::info Computed and resolved values
+
 There are two concepts in [CSS](https://drafts.csswg.org/cssom/#resolved-values):
 
 1. A *computed* style value is the value after all CSS rules and CSS inheritance is applied, as the result of the CSS cascade. It can look like `height:1em` or `font-size:125%`.
@@ -255,16 +255,16 @@ There are two concepts in [CSS](https://drafts.csswg.org/cssom/#resolved-values)
 A long time ago `getComputedStyle` was created to get computed values, but it turned out that resolved values are much more convenient, and the standard changed.
 
 So nowadays `getComputedStyle` actually returns the resolved value of the property, usually in `px` for geometry.
-:::
 
-:::warning `getComputedStyle` requires the full property name
+
+
 We should always ask for the exact property that we want, like `paddingLeft` or `marginTop` or `borderTopWidth`. Otherwise the correct result is not guaranteed.
 
 For instance, if there are properties `paddingLeft/paddingTop`, then what should we get for `getComputedStyle(elem).padding`? Nothing, or maybe a "generated" value from known paddings? There's no standard rule here.
 
 There are other inconsistencies. As an example, some browsers (Chrome) show `10px` in the document below, and some of them (Firefox) --  do not:
 
-```html run
+```html
 <style>
   body {
     margin: 10px;
@@ -277,13 +277,13 @@ There are other inconsistencies. As an example, some browsers (Chrome) show `10p
 :::
 ````
 
-:::info Styles applied to `:visited` links are hidden!
+
 Visited links may be colored using `:visited` CSS pseudoclass.
 
 But `getComputedStyle` does not give access to that color, because otherwise an arbitrary page could find out whether the user visited a link by creating it on the page and checking the styles.
 
 JavaScript may not see the styles applied by `:visited`. And also, there's a limitation in CSS that forbids applying geometry-changing styles in `:visited`. That's to guarantee that there's no side way for an evil page to test if a link was visited and hence to break the privacy.
-:::
+
 
 ## Summary
 

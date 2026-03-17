@@ -4,7 +4,7 @@ In modern JavaScript, there are two types of numbers:
 
 1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
 
-2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
+2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter &lt;info:bigint&gt;.
 
 So here we'll talk about regular numbers. Let's expand our knowledge of them.
 
@@ -28,7 +28,7 @@ In real life though, we try to avoid writing long sequences of zeroes. We're too
 
 In JavaScript, we can shorten a number by appending the letter `"e"` to it and specifying the zeroes count:
 
-```js run
+```js
 let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
 
 alert( 7.3e9 );  // 7.3 billions (same as 7300000000 or 7_300_000_000)
@@ -71,7 +71,7 @@ In other words, a negative number after `"e"` means a division by 1 with the giv
 
 For instance:
 
-```js run
+```js
 alert( 0xff ); // 255
 alert( 0xFF ); // 255 (the same, case doesn't matter)
 ```
@@ -79,7 +79,7 @@ alert( 0xFF ); // 255 (the same, case doesn't matter)
 Binary and octal numeral systems are rarely used, but also supported using the `0b` and `0o` prefixes:
 
 
-```js run
+```js
 let a = 0b11111111; // binary form of 255
 let b = 0o377; // octal form of 255
 
@@ -93,7 +93,7 @@ There are only 3 numeral systems with such support. For other numeral systems, w
 The method `num.toString(base)` returns a string representation of `num` in the numeral system with the given `base`.
 
 For example:
-```js run
+```js
 let num = 255;
 
 alert( num.toString(16) );  // ff
@@ -108,17 +108,17 @@ Common use cases for this are:
 - **base=2** is mostly for debugging bitwise operations, digits can be `0` or `1`.
 - **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example to make a short url. Can simply represent it in the numeral system with base `36`:
 
-    ```js run
+```js
     alert( 123456..toString(36) ); // 2n9c
     ```
 
-:::warning Two dots to call a method
+
 Please note that two dots in `123456..toString(36)` is not a typo. If we want to call a method directly on a number, like `toString` in the example above, then we need to place two dots `..` after it.
 
 If we placed a single dot: `123456.toString(36)`, then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now goes the method.
 
 Also could write `(123456).toString(36)`.
-:::
+
 
 ## Rounding
 
@@ -157,7 +157,7 @@ There are two ways to do so:
 1. Multiply-and-divide.
 
     For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100` (or a bigger power of 10), call the rounding function and then divide it back.
-    ```js run
+```js
     let num = 1.23456;
 
     alert( Math.round(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
@@ -165,21 +165,21 @@ There are two ways to do so:
 
 2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
 
-    ```js run
+```js
     let num = 12.34;
     alert( num.toFixed(1) ); // "12.3"
     ```
 
     This rounds up or down to the nearest value, similar to `Math.round`:
 
-    ```js run
+```js
     let num = 12.36;
     alert( num.toFixed(1) ); // "12.4"
     ```
 
     Please note that result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
 
-    ```js run
+```js
     let num = 12.34;
     alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits
     ```
@@ -192,7 +192,7 @@ Internally, a number is represented in 64-bit format [IEEE-754](https://en.wikip
 
 If a number is too big, it would overflow the 64-bit storage, potentially giving an infinity:
 
-```js run
+```js
 alert( 1e500 ); // Infinity
 ```
 
@@ -200,15 +200,15 @@ What may be a little less obvious, but happens quite often, is the loss of preci
 
 Consider this (falsy!) test:
 
-```js run
-alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
+```js
+alert( 0.1 + 0.2 == 0.3 ); // false
 ```
 
 That's right, if we check whether the sum of `0.1` and `0.2` is `0.3`, we get `false`.
 
 Strange! What is it then if not `0.3`?
 
-```js run
+```js
 alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 
@@ -227,7 +227,7 @@ There's just no way to store *exactly 0.1* or *exactly 0.2* using the binary sys
 The numeric format IEEE-754 solves this by rounding to the nearest possible number. These rounding rules normally don't allow us to see that "tiny precision loss", but it exists.
 
 We can see this in action:
-```js run
+```js
 alert( 0.1.toFixed(20) ); // 0.10000000000000000555
 ```
 
@@ -235,29 +235,29 @@ And when we sum two numbers, their "precision losses" add up.
 
 That's why `0.1 + 0.2` is not exactly `0.3`.
 
-:::info Not only JavaScript
+
 The same issue exists in many other programming languages.
 
 PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format.
-:::
+
 
 Can we work around the problem? Sure, the most reliable method is to round the result with the help of a method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
 
-```js run
+```js
 let sum = 0.1 + 0.2;
 alert( sum.toFixed(2) ); // 0.30
 ```
 
 Please note that `toFixed` always returns a string. It ensures that it has 2 digits after the decimal point. That's actually convenient if we have an e-shopping and need to show `$0.30`. For other cases, we can use the unary plus to coerce it into a number:
 
-```js run
+```js
 let sum = 0.1 + 0.2;
 alert( +sum.toFixed(2) ); // 0.3
 ```
 
 We also can temporarily multiply the numbers by 100 (or a bigger number) to turn them into integers, do the maths, and then divide back. Then, as we're doing maths with integers, the error somewhat decreases, but we still get it on division:
 
-```js run
+```js
 alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
 alert( (0.28 * 100 + 0.14 * 100) / 100); // 0.4200000000000001
 ```
@@ -266,10 +266,10 @@ So, multiply/divide approach reduces the error, but doesn't remove it totally.
 
 Sometimes we could try to evade fractions at all. Like if we're dealing with a shop, then we can store prices in cents instead of dollars. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely possible. Just round them to cut "tails" when needed.
 
-:::info The funny thing
+
 Try running this:
 
-```js run
+```js
 // Hello! I'm a self-increasing number!
 alert( 9999999999999999 ); // shows 10000000000000000
 :::
@@ -279,13 +279,13 @@ This suffers from the same issue: a loss of precision. There are 64 bits for the
 JavaScript doesn't trigger an error in such events. It does its best to fit the number into the desired format, but unfortunately, this format is not big enough.
 ````
 
-:::info Two zeroes
+
 Another funny consequence of the internal representation of numbers is the existence of two zeroes: `0` and `-0`.
 
 That's because a sign is represented by a single bit, so it can be set or not set for any number including a zero.
 
 In most cases the distinction is unnoticeable, because operators are suited to treat them as the same.
-:::
+
 
 ## Tests: isFinite and isNaN
 
@@ -299,20 +299,20 @@ They belong to the type `number`, but are not "normal" numbers, so there are spe
 
 - `isNaN(value)` converts its argument to a number and then tests it for being `NaN`:
 
-    ```js run
+```js
     alert( isNaN(NaN) ); // true
     alert( isNaN("str") ); // true
     ```
 
     But do we need this function? Can't we just use the comparison `=== NaN`? Sorry, but the answer is no. The value `NaN` is unique in that it does not equal anything, including itself:
 
-    ```js run
+```js
     alert( NaN === NaN ); // false
     ```
 
 - `isFinite(value)` converts its argument to a number and returns `true` if it's a regular number, not `NaN/Infinity/-Infinity`:
 
-    ```js run
+```js
     alert( isFinite("15") ); // true
     alert( isFinite("str") ); // false, because a special value: NaN
     alert( isFinite(Infinity) ); // false, because a special value: Infinity
@@ -321,7 +321,7 @@ They belong to the type `number`, but are not "normal" numbers, so there are spe
 Sometimes `isFinite` is used to validate whether a string value is a regular number:
 
 
-```js run
+```js
 let num = +prompt("Enter a number", '');
 
 // will be true unless you enter Infinity, -Infinity or not a number
@@ -330,7 +330,7 @@ alert( isFinite(num) );
 
 Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.  
 
-:::info Compare with `Object.is`
+
 
 There is a special built-in method [`Object.is`](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
 
@@ -340,14 +340,14 @@ There is a special built-in method [`Object.is`](mdn:js/Object/is) that compares
 In all other cases, `Object.is(a, b)` is the same as `a === b`.
 
 This way of comparison is often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
-:::
+
 
 
 ## parseInt and parseFloat
 
 Numeric conversion using a plus `+` or `Number()` is strict. If a value is not exactly a number, it fails:
 
-```js run
+```js
 alert( +"100px" ); // NaN
 ```
 
@@ -359,7 +359,7 @@ That's what `parseInt` and `parseFloat` are for.
 
 They "read" a number from a string until they can't. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
 
-```js run
+```js
 alert( parseInt('100px') ); // 100
 alert( parseFloat('12.5em') ); // 12.5
 
@@ -369,14 +369,14 @@ alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
 
 There are situations when `parseInt/parseFloat` will return `NaN`. It happens when no digits could be read:
 
-```js run
+```js
 alert( parseInt('a123') ); // NaN, the first symbol stops the process
 ```
 
-:::info The second argument of `parseInt(str, radix)`
+
 The `parseInt()` function has an optional second parameter. It specifies the base of the numeral system, so `parseInt` can also parse strings of hex numbers, binary numbers and so on:
 
-```js run
+```js
 alert( parseInt('0xff', 16) ); // 255
 alert( parseInt('ff', 16) ); // 255, without 0x also works
 
@@ -393,7 +393,7 @@ A few examples:
 `Math.random()`
 : Returns a random number from 0 to 1 (not including 1).
 
-    ```js run
+```js
     alert( Math.random() ); // 0.1234567894322
     alert( Math.random() ); // 0.5435252343232
     alert( Math.random() ); // ... (any random numbers)
@@ -402,7 +402,7 @@ A few examples:
 `Math.max(a, b, c...)` / `Math.min(a, b, c...)`
 : Returns the greatest/smallest from the arbitrary number of arguments.
 
-    ```js run
+```js
     alert( Math.max(3, 5, -10, 0, 1) ); // 5
     alert( Math.min(1, 2) ); // 1
     ```
@@ -410,7 +410,7 @@ A few examples:
 `Math.pow(n, power)`
 : Returns `n` raised to the given power.
 
-    ```js run
+```js
     alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
     ```
 

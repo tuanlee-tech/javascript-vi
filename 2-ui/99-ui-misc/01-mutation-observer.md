@@ -48,7 +48,7 @@ Then after any changes, the `callback` is executed: changes are passed in the fi
 
 For example, here's a `<div>` with a `contentEditable` attribute. That attribute allows us to focus on it and edit.
 
-```html run
+```html
 <div contentEditable id="elem">Click and <b>edit</b>, please</div>
 
 <script>
@@ -139,7 +139,7 @@ document.querySelectorAll('pre[class*="language"]').forEach(Prism.highlightElem)
 
 Everything's simple so far, right? We find code snippets in HTML and highlight them.
 
-Now let's go on. Let's say we're going to dynamically fetch materials from a server. We'll study methods for that [later in the tutorial](info:fetch). For now it only matters that we fetch an HTML article from a webserver and display it on demand:
+Now let's go on. Let's say we're going to dynamically fetch materials from a server. We'll study methods for that [later in the tutorial](#). For now it only matters that we fetch an HTML article from a webserver and display it on demand:
 
 ```js
 let article = /* fetch new content from server */
@@ -156,10 +156,10 @@ We could append that call to the code that loads an article, like this:
 let article = /* fetch new content from server */
 articleElem.innerHTML = article;
 
-*!*
+
 let snippets = articleElem.querySelectorAll('pre[class*="language-"]');
 snippets.forEach(Prism.highlightElem);
-*/!*
+
 ```
 
 ...But, imagine if we have many places in the code where we load our content - articles, quizzes, forum posts, etc. Do we need to put the highlighting call everywhere, to highlight the code in content after loading? That's not very convenient.
@@ -178,7 +178,7 @@ Here's the working example.
 
 If you run this code, it starts observing the element below and highlighting any code snippets that appear there:
 
-```js run
+```js
 let observer = new MutationObserver(mutations => {
 
   for(let mutation of mutations) {
@@ -215,7 +215,7 @@ Please run the previous code (above, observes that element), and then the code b
 
 The following code populates its `innerHTML`, that causes the `MutationObserver` to react and highlight its contents:
 
-```js run
+```js
 let demoElem = document.getElementById('highlight-demo');
 
 // dynamically insert content with code snippets
@@ -254,15 +254,15 @@ observer.disconnect();
 ```
 
 
-:::info Records returned by `observer.takeRecords()` are removed from the processing queue
-The callback won't be called for records, returned by `observer.takeRecords()`.
-:::
 
-:::info Garbage collection interaction
+The callback won't be called for records, returned by `observer.takeRecords()`.
+
+
+
 Observers use weak references to nodes internally. That is, if a node is removed from the DOM, and becomes unreachable, then it can be garbage collected.
 
 The mere fact that a DOM node is observed doesn't prevent the garbage collection.
-:::
+
 
 ## Summary  
 

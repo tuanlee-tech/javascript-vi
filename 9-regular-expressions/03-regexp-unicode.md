@@ -20,14 +20,14 @@ Long time ago, when JavaScript language was created, Unicode encoding was simple
 
 For instance, `length` thinks that here are two characters:
 
-```js run
+```js
 alert('😄'.length); // 2
 alert('𝒳'.length); // 2
 ```
 
-...But we can see that there's only one, right? The point is that `length` treats 4 bytes as two 2-byte characters. That's incorrect, because they must be considered only together (so-called "surrogate pair", you can read about them in the article <info:string>).
+...But we can see that there's only one, right? The point is that `length` treats 4 bytes as two 2-byte characters. That's incorrect, because they must be considered only together (so-called "surrogate pair", you can read about them in the article &lt;info:string&gt;).
 
-By default, regular expressions also treat 4-byte "long characters" as a pair of 2-byte ones. And, as it happens with strings, that may lead to odd results. We'll see that a bit later, in the article <info:regexp-character-sets-and-ranges>.
+By default, regular expressions also treat 4-byte "long characters" as a pair of 2-byte ones. And, as it happens with strings, that may lead to odd results. We'll see that a bit later, in the article &lt;info:regexp-character-sets-and-ranges&gt;.
 
 Unlike strings, regular expressions have flag `pattern:u` that fixes such problems. With such flag, a regexp handles 4-byte characters correctly. And also Unicode property search becomes available, we'll get to it next.
 
@@ -43,7 +43,7 @@ For instance, `\p{Letter}` denotes a letter in any language. We can also use `\p
 
 In the example below three kinds of letters will be found: English, Georgian and Korean.
 
-```js run
+```js
 let str = "A ბ ㄱ";
 
 alert( str.match(/\p{L}/gu) ); // A,ბ,ㄱ
@@ -100,10 +100,10 @@ There are also other derived categories, like:
 
 Unicode supports many different properties, their full list would require a lot of space, so here are the references:
 
-- List all properties by a character: <https://unicode.org/cldr/utility/character.jsp>.
-- List all characters by a property: <https://unicode.org/cldr/utility/list-unicodeset.jsp>.
-- Short aliases for properties: <https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt>.
-- A full base of Unicode characters in text format, with all properties, is here: <https://www.unicode.org/Public/UCD/latest/ucd/>.
+- List all properties by a character: &lt;https://unicode.org/cldr/utility/character.jsp&gt;.
+- List all characters by a property: &lt;https://unicode.org/cldr/utility/list-unicodeset.jsp&gt;.
+- Short aliases for properties: &lt;https://www.unicode.org/Public/UCD/latest/ucd/PropertyValueAliases.txt&gt;.
+- A full base of Unicode characters in text format, with all properties, is here: &lt;https://www.unicode.org/Public/UCD/latest/ucd/&gt;.
 
 ### Example: hexadecimal numbers
 
@@ -111,7 +111,7 @@ For instance, let's look for hexadecimal numbers, written as `xFF`, where `F` is
 
 A hex digit can be denoted as `pattern:\p{Hex_Digit}`:
 
-```js run
+```js
 let regexp = /x\p{Hex_Digit}\p{Hex_Digit}/u;
 
 alert("number: xAF".match(regexp)); // xAF
@@ -125,7 +125,7 @@ There's a Unicode property `Script` (a writing system), that may have a value: `
 
 To look for characters in a given writing system we should use `pattern:Script=<value>`, e.g. for Cyrillic letters: `pattern:\p{sc=Cyrillic}`, for Chinese hieroglyphs: `pattern:\p{sc=Han}`, and so on:
 
-```js run
+```js
 let regexp = /\p{sc=Han}/gu; // returns Chinese hieroglyphs
 
 let str = `Hello Привет 你好 123_456`;
@@ -139,7 +139,7 @@ Characters that denote a currency, such as `$`, `€`, `¥`, have Unicode proper
 
 Let's use it to look for prices in the format "currency, followed by a digit":
 
-```js run
+```js
 let regexp = /\p{Sc}\d/gu;
 
 let  str = `Prices: $2, €1, ¥9`;
@@ -147,7 +147,7 @@ let  str = `Prices: $2, €1, ¥9`;
 alert( str.match(regexp) ); // $2,€1,¥9
 ```
 
-Later, in the article <info:regexp-quantifiers> we'll see how to look for numbers that contain many digits.
+Later, in the article &lt;info:regexp-quantifiers&gt; we'll see how to look for numbers that contain many digits.
 
 ## Summary
 

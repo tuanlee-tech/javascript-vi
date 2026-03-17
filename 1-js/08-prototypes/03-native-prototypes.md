@@ -8,7 +8,7 @@ Thuộc tính `"prototype"` được dùng rộng rãi bởi chính JavaScript. 
 
 Giả sử chúng ta xuất ra một đối tượng rỗng:
 
-```js run
+```js
 let obj = {};
 alert( obj ); // "[object Object]" ?
 ```
@@ -29,7 +29,7 @@ Cho nên khi `obj.toString()` được gọi thì phương thức này được 
 
 Chúng ta có thể kiểm tra nó như thế này:
 
-```js run
+```js
 let obj = {};
 
 alert(obj.__proto__ === Object.prototype); // true
@@ -40,7 +40,7 @@ alert(obj.toString === Object.prototype.toString); //true
 
 Xin lưu ý rằng không còn `[[Prototype]]` trong chuỗi phía trên `Object.prototype`:
 
-```js run
+```js
 alert(Object.prototype.__proto__); // null
 ```
 
@@ -58,7 +58,7 @@ Theo đặc tả, tất cả các nguyên mẫu có sẵn đều có `Object.pro
 
 Hãy kiểm tra các nguyên mẫu theo cách thủ công:
 
-```js run
+```js
 let arr = [1, 2, 3];
 
 // nó kế thừa từ Array.prototype?
@@ -73,7 +73,7 @@ alert( arr.__proto__.__proto__.__proto__ ); // null
 
 Một số phương thức trong nguyên mẫu có thể trùng lặp, ví dụ: `Array.prototype` có `toString` riêng liệt kê các phần tử được phân tách bằng dấu phẩy:
 
-```js run
+```js
 let arr = [1, 2, 3]
 alert(arr); // 1,2,3 <-- là kết quả của Array.prototype.toString
 ```
@@ -88,7 +88,7 @@ Các công cụ trong trình duyệt như Developer Console của Chrome cũng h
 
 Các đối tượng có sẵn khác cũng hoạt động tương tự. Ngay cả các hàm -- chúng là các đối tượng tạo ra bởi hàm tạo `Function` có sẵn, và các phương thức của nó (`call`/`apply` và phương thức khác) là lấy từ `Function.prototype`. Các hàm cũng có thể có phương thức `toString` của riêng chúng.
 
-```js run
+```js
 function f() {}
 
 alert(f.__proto__ == Function.prototype); // true
@@ -103,15 +103,15 @@ Như chúng ta vẫn nhớ, chúng không phải là các đối tượng. Nhưn
 
 Những đối tượng này được tạo ra một cách vô hình đối với chúng ta và hầu hết các engine tối ưu hóa chúng, nhưng đặc tả mô tả chính xác theo cách này. Các phương thức của các đối tượng này cũng nằm trong các nguyên mẫu, có sẵn dưới dạng `String.prototype`, `Number.prototype` và `Boolean.prototype`.
 
-:::warning Các giá trị `null` và `undefined` không có đối tượng bao
+
 Các giá trị đặc biệt `null` và `undefined` thì khác biệt. Chúng không có các bao đối tượng, vì vậy không có sẵn các phương thức và thuộc tính cho chúng. Và cũng không có các nguyên mẫu tương ứng.
-:::
+
 
 ## Thay đổi các nguyên mẫu có sẵn [#native-prototype-change]
 
 Các nguyên mẫu có sẵn có thể thay đổi được. Ví dụ, nếu chúng ta thêm vào `String.prototype` một phương thức, phương thức này trở nên sẵn có cho mọi chuỗi:
 
-```js run
+```js
 String.prototype.show = function() {
   alert(this);
 };
@@ -121,11 +121,11 @@ String.prototype.show = function() {
 
 Trong quá trình phát triển, chúng ta có thể có những ý tưởng về các phương thức mới mà chúng ta muốn có, và chúng ta có thể bị cám dỗ để thêm chúng vào các nguyên mẫu có sẵn. Nhưng đó nói chung là một ý kiến tồi.
 
-:::warning
+
 Các nguyên mẫu là toàn cục, vì vậy rất dễ xảy ra xung đột. Nếu hai thư viện cùng thêm một phương thức `String.prototype.show`, thì một trong số chúng sẽ ghi đè phương thức của cái kia.
 
 Vì thế, nói chung sửa đổi một nguyên mẫu có sẵn là một ý kiến tồi.
-:::
+
 
 **Trong lập trình hiện đại, chỉ có một trường hợp duy nhất có thể thay đổi các nguyên mẫu có sẵn. Đó là polyfilling.**
 
@@ -135,7 +135,7 @@ Sau đó, chúng ta có thể cài đặt nó theo cách thủ công và thêm n
 
 Ví dụ:
 
-```js run
+```js
 if (!String.prototype.repeat) { // nếu không có phương thức
   // thêm nó vào nguyên mẫu này
 
@@ -154,7 +154,7 @@ alert( "La".repeat(3) ); // LaLaLa
 
 ## Mượn phương thức từ các nguyên mẫu
 
-Trong chương <info:call-apply-decorators#method-borrowing> chúng ta đã nói về mượn phương thức.
+Trong chương &lt;info:call-apply-decorators#method-borrowing&gt; chúng ta đã nói về mượn phương thức.
 
 Đó là khi chúng ta lấy phương thức của một đối tượng và sao chép nó vào một đối tượng khác.
 
@@ -164,16 +164,16 @@ Ví dụ, nếu chúng ta đang tạo một đối tượng tựa như mảng, c
 
 Ví dụ:
 
-```js run
+```js
 let obj = {
   0: "Chào",
   1: "thế giới!",
   length: 2,
 };
 
-*!*
+
 obj.join = Array.prototype.join;
-*/!*
+
 
 alert( obj.join(',') ); // Chào thế giới!
 ```

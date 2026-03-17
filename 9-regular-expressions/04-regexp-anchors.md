@@ -6,7 +6,7 @@ The caret `pattern:^` matches at the beginning of the text, and the dollar `patt
 
 For instance, let's test if the text starts with `Mary`:
 
-```js run
+```js
 let str1 = "Mary had a little lamb";
 alert( /^Mary/.test(str1) ); // true
 ```
@@ -15,7 +15,7 @@ The pattern `pattern:^Mary` means: "string start and then Mary".
 
 Similar to this, we can test if the string ends with `snow` using `pattern:snow$`:
 
-```js run
+```js
 let str1 = "it's fleece was white as snow";
 alert( /snow$/.test(str1) ); // true
 ```
@@ -30,7 +30,7 @@ Let's check whether or not a string is a time in `12:34` format. That is: two di
 
 In regular expressions language that's `pattern:\d\d:\d\d`:
 
-```js run
+```js
 let goodInput = "12:34";
 let badInput = "12:345";
 
@@ -45,8 +45,8 @@ The whole string must be exactly in this format. If there's any deviation or an 
 
 Anchors behave differently if flag `pattern:m` is present. We'll see that in the next article.
 
-:::info Anchors have \zero width\""
+
 Anchors `pattern:^` and `pattern:$` are tests. They have zero width.
 
 In other words, they do not match a character, but rather force the regexp engine to check the condition (text start/end).
-:::
+

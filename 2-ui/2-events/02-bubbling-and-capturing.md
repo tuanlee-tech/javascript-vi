@@ -4,7 +4,7 @@ Let's start with an example.
 
 This handler is assigned to `<div>`, but also runs if you click any nested tag like `<em>` or `<code>`:
 
-```html autorun height=60
+```html
 <div onclick="alert('The handler!')">
   <em>If you click on <code>EM</code>, the handler on <code>DIV</code> runs.</em>
 </div>
@@ -20,7 +20,7 @@ The bubbling principle is simple.
 
 Let's say we have 3 nested elements `FORM > DIV > P` with a handler on each of them:
 
-```html run autorun
+```html
 <style>
   body * {
     margin: 10px;
@@ -47,11 +47,11 @@ So if we click on `<p>`, then we'll see 3 alerts: `p` -> `div` -> `form`.
 
 The process is called "bubbling", because events "bubble" from the inner element up through parents like a bubble in the water.
 
-:::warning *Almost* all events bubble.
+
 The key word in this phrase is "almost".
 
 For instance, a `focus` event does not bubble. There are other examples too, we'll meet them. But still it's an exception, rather than a rule, most events do bubble.
-:::
+
 
 ## event.target
 
@@ -87,21 +87,21 @@ The method for it is `event.stopPropagation()`.
 
 For instance, here `body.onclick` doesn't work if you click on `<button>`:
 
-```html run autorun height=60
+```html
 <body onclick="alert(`the bubbling doesn't reach here`)">
   <button onclick="event.stopPropagation()">Click me</button>
 </body>
 ```
 
-:::info event.stopImmediatePropagation()
+
 If an element has multiple event handlers on a single event, then even if one of them stops the bubbling, the other ones still execute.
 
 In other words, `event.stopPropagation()` stops the move upwards, but on the current element all other handlers will run.
 
 To stop the bubbling and prevent handlers on the current element from running, there's a method `event.stopImmediatePropagation()`. After it no other handlers execute.
-:::
 
-:::warning Don't stop bubbling without a need!
+
+
 Bubbling is convenient. Don't stop it without a real need: obvious and architecturally well thought out.
 
 Sometimes `event.stopPropagation()` creates hidden pitfalls that later may become problems.
@@ -113,7 +113,7 @@ For instance:
 3. Our analytic won't work over the area where clicks are stopped by `stopPropagation`. Sadly, we've got a "dead zone".
 
 There's usually no real need to prevent the bubbling. A task that seemingly requires that may be solved by other means. One of them is to use custom events, we'll cover them later. Also we can write our data into the `event` object in one handler and read it in another one, so we can pass to handlers on parents information about the processing below.
-:::
+
 
 
 ## Capturing
@@ -154,7 +154,7 @@ Note that while formally there are 3 phases, the 2nd phase ("target phase": the 
 
 Let's see both capturing and bubbling in action:
 
-```html run autorun height=140 edit
+```html
 <style>
   body * {
     margin: 10px;
@@ -186,11 +186,11 @@ If you click on `<p>`, then the sequence is:
 
 There's a property `event.eventPhase` that tells us the number of the phase on which the event was caught. But it's rarely used, because we usually know it in the handler.
 
-:::info To remove the handler, `removeEventListener` needs the same phase
-If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
-:::
 
-:::info Listeners on same element and same phase run in their set order
+If we `addEventListener(..., true)`, then we should mention the same phase in `removeEventListener(..., true)` to correctly remove the handler.
+
+
+
 If we have multiple event handlers on the same phase, assigned to the same element with `addEventListener`, they run in the same order as they are created:
 
 ```js

@@ -1,7 +1,7 @@
 # Ninja code
 
 
-```quote author="Khổng Tử (Luận ngữ)"
+```text
 Học mà không suy nghĩ thì vô ích; suy nghĩ mà không học thì nguy hiểm.
 ```
 
@@ -14,9 +14,9 @@ Các nhà lập trình viên ít kinh nghiệm đôi khi sử dụng chúng th�
 Hãy đọc kỹ chúng và tìm hiểu xem bạn là ai -- một ninja, một người mới hay có thể là một người đánh giá mã?
 
 
-:::warning Phát hiện trớ trêu
+
 Nhiều người cố gắng đi theo con đường ninja. Chỉ có một số ít thành công.
-:::
+
 
 
 ## Ngắn gọn là linh hồn của trí thông minh
@@ -38,7 +38,7 @@ Nói với họ rằng ngắn hơn luôn tốt hơn. Bắt đầu dẫn họ và
 
 ## Biến có một chữ cái
 
-```quote author="Lão Tử (Đạo đức kinh)"
+```text
 Đạo ẩn trong vô ngôn. Chỉ có Đạo là bắt đầu tốt và
 hoàn thành tốt.
 ```
@@ -66,7 +66,7 @@ Chỉ những người có trực giác thực sự tốt mới có thể hiểu
 
 ## Bay cao. Hãy trừu tượng.
 
-```quote author="Lão Tử (Đạo đức kinh)"
+```text
 Quảng trường lớn không có góc<br>
 Con tàu vĩ đại đã hoàn thành lần cuối,<br>
 Nốt tuyệt vời là âm thanh quý hiếm,<br>
@@ -104,7 +104,7 @@ Việc đọc nhanh mã như vậy trở nên không thể. Và khi có một l�
 
 ## Từ đồng nghĩa thông minh
 
-```quote author="Lão Tử (Đạo đức kinh)"
+```text
 Đạo có thể nói không phải là Đạo vĩnh cửu. Tên có thể đặt tên không phải là tên vĩnh cửu.
 ```
 
@@ -124,7 +124,7 @@ Chẳng hạn, hàm `printPage(page)` sẽ sử dụng một máy in. Và hàm `
 
 ## Sử dụng lại tên
 
-```quote author="Lão Tử (Đạo đức kinh)"
+```text
 Sau khi toàn bộ được chia, các bộ phận<br>
 cần tên.<br>
 Đã có đủ tên.<br>
@@ -174,7 +174,7 @@ Thật vậy, từ một mặt, một cái gì đó được viết: `super..`, 
 
 ## Chồng chéo các biến bên ngoài
 
-```quote author="Quan Vũ"
+```text
 Khi ở trong ánh sáng, không thể nhìn thấy gì trong bóng tối.<br>
 Khi ở trong bóng tối, bạn có thể nhìn thấy mọi thứ trong ánh sáng.
 ```
@@ -182,10 +182,10 @@ Khi ở trong bóng tối, bạn có thể nhìn thấy mọi thứ trong ánh s
 Sử dụng cùng tên cho các biến bên trong và bên ngoài một hàm. Đơn giản, không cần nỗ lực để tạo ra các tên mới.
 
 ```js
-let *!*user*/!* = authenticateUser();
+let user = authenticateUser();
 
 function render() {
-  let *!*user*/!* = anotherValue();
+  let user = anotherValue();
   ...
   ...rất nhiều dòng...
   ...
@@ -216,7 +216,7 @@ Những nhà phát triển cố gắng viết `if (checkPermission(..))`, sẽ t
 
 ## Hàm mạnh mẽ!
 
-```quote author="Lão Tử (Đạo đức kinh)"
+```text
 Đạo lớn chảy khắp nơi,<br>
 cả bên trái và bên phải.
 ```

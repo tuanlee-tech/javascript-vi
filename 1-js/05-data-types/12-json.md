@@ -6,16 +6,16 @@ Naturally, such a string should include all important properties.
 
 We could implement the conversion like this:
 
-```js run
+```js
 let user = {
   name: "John",
   age: 30,
 
-*!*
+
   toString() {
     return `{name: "${this.name}", age: ${this.age}}`;
   }
-*/!*
+
 };
 
 alert(user); // {name: "John", age: 30}
@@ -35,7 +35,7 @@ JavaScript provides methods:
 - `JSON.parse` to convert JSON back into an object.
 
 For instance, here we `JSON.stringify` a student:
-```js run
+```js
 let student = {
   name: 'John',
   age: 30,
@@ -44,14 +44,14 @@ let student = {
   wife: null
 };
 
-*!*
+
 let json = JSON.stringify(student);
-*/!*
+
 
 alert(typeof json); // we've got a string!
 
 alert(json);
-*!*
+
 /* JSON-encoded object:
 {
   "name": "John",
@@ -61,7 +61,7 @@ alert(json);
   "wife": null
 }
 */
-*/!*
+
 ```
 
 The method `JSON.stringify(student)` takes the object and converts it into a string.
@@ -88,7 +88,7 @@ JSON supports following data types:
 
 For instance:
 
-```js run
+```js
 // a number in JSON is just a number
 alert( JSON.stringify(1) ) // 1
 
@@ -108,7 +108,7 @@ Namely:
 - Symbolic keys and values.
 - Properties that store `undefined`.
 
-```js run
+```js
 let user = {
   sayHi() { // ignored
     alert("Hello");
@@ -126,15 +126,15 @@ The great thing is that nested objects are supported and converted automatically
 
 For instance:
 
-```js run
+```js
 let meetup = {
   title: "Conference",
-*!*
+
   room: {
     number: 23,
     participants: ["john", "ann"]
   }
-*/!*
+
 };
 
 alert( JSON.stringify(meetup) );
@@ -150,7 +150,7 @@ The important limitation: there must be no circular references.
 
 For instance:
 
-```js run
+```js
 let room = {
   number: 23
 };
@@ -163,9 +163,9 @@ let meetup = {
 meetup.place = room;       // meetup references room
 room.occupiedBy = meetup; // room references meetup
 
-*!*
+
 JSON.stringify(meetup); // Error: Converting circular structure to JSON
-*/!*
+
 ```
 
 Here, the conversion fails, because of circular reference: `room.occupiedBy` references `meetup`, and `meetup.place` references `room`:
@@ -196,7 +196,7 @@ If we pass an array of properties to it, only these properties will be encoded.
 
 For instance:
 
-```js run
+```js
 let room = {
   number: 23
 };
@@ -209,7 +209,7 @@ let meetup = {
 
 room.occupiedBy = meetup; // room references meetup
 
-alert( JSON.stringify(meetup, *!*['title', 'participants']*/!*) );
+alert( JSON.stringify(meetup, ['title', 'participants']) );
 // {"title":"Conference","participants":[{},{}]}
 ```
 
@@ -217,7 +217,7 @@ Here we are probably too strict. The property list is applied to the whole objec
 
 Let's include in the list every property except `room.occupiedBy` that would cause the circular reference:
 
-```js run
+```js
 let room = {
   number: 23
 };
@@ -230,7 +230,7 @@ let meetup = {
 
 room.occupiedBy = meetup; // room references meetup
 
-alert( JSON.stringify(meetup, *!*['title', 'participants', 'place', 'name', 'number']*/!*) );
+alert( JSON.stringify(meetup, ['title', 'participants', 'place', 'name', 'number']) );
 /*
 {
   "title":"Conference",
@@ -248,7 +248,7 @@ The function will be called for every `(key, value)` pair and should return the 
 
 In our case, we can return `value` "as is" for everything except `occupiedBy`. To ignore `occupiedBy`, the code below returns `undefined`:
 
-```js run
+```js
 let room = {
   number: 23
 };
@@ -295,7 +295,7 @@ Previously, all stringified objects had no indents and extra spaces. That's fine
 
 Here `space = 2` tells JavaScript to show nested objects on multiple lines, with indentation of 2 spaces inside an object:
 
-```js run
+```js
 let user = {
   name: "John",
   age: 25,
@@ -339,7 +339,7 @@ Like `toString` for string conversion, an object may provide method `toJSON` for
 
 For instance:
 
-```js run
+```js
 let room = {
   number: 23
 };
@@ -354,9 +354,9 @@ alert( JSON.stringify(meetup) );
 /*
   {
     "title":"Conference",
-*!*
+
     "date":"2017-01-01T00:00:00.000Z",  // (1)
-*/!*
+
     "room": {"number":23}               // (2)
   }
 */
@@ -366,14 +366,14 @@ Here we can see that `date` `(1)` became a string. That's because all dates have
 
 Now let's add a custom `toJSON` for our object `room` `(2)`:
 
-```js run
+```js
 let room = {
   number: 23,
-*!*
+
   toJSON() {
     return this.number;
   }
-*/!*
+
 };
 
 let meetup = {
@@ -381,17 +381,17 @@ let meetup = {
   room
 };
 
-*!*
+
 alert( JSON.stringify(room) ); // 23
-*/!*
+
 
 alert( JSON.stringify(meetup) );
 /*
   {
     "title":"Conference",
-*!*
+
     "room": 23
-*/!*
+
   }
 */
 ```
@@ -416,7 +416,7 @@ reviver
 
 For instance:
 
-```js run
+```js
 // stringified array
 let numbers = "[0, 1, 2, 3]";
 
@@ -427,7 +427,7 @@ alert( numbers[1] ); // 1
 
 Or for nested objects:
 
-```js run
+```js
 let userData = '{ "name": "John", "age": 35, "isAdmin": false, "friends": [0,1,2,3] }';
 
 let user = JSON.parse(userData);
@@ -441,10 +441,10 @@ Here are typical mistakes in hand-written JSON (sometimes we have to write it fo
 
 ```js
 let json = `{
-  *!*name*/!*: "John",                     // mistake: property name without quotes
-  "surname": *!*'Smith'*/!*,               // mistake: single quotes in value (must be double)
-  *!*'isAdmin'*/!*: false                  // mistake: single quotes in key (must be double)
-  "birthday": *!*new Date(2000, 2, 3)*/!*, // mistake: no "new" is allowed, only bare values
+  name: "John",                     // mistake: property name without quotes
+  "surname": 'Smith',               // mistake: single quotes in value (must be double)
+  'isAdmin': false                  // mistake: single quotes in key (must be double)
+  "birthday": new Date(2000, 2, 3), // mistake: no "new" is allowed, only bare values
   "friends": [0,1,2,3]              // here all fine
 }`;
 ```
@@ -470,14 +470,14 @@ let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
 
 Let's do it by calling `JSON.parse`:
 
-```js run
+```js
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
 
 let meetup = JSON.parse(str);
 
-*!*
+
 alert( meetup.date.getDate() ); // Error!
-*/!*
+
 ```
 
 Whoops! An error!
@@ -486,22 +486,22 @@ The value of `meetup.date` is a string, not a `Date` object. How could `JSON.par
 
 Let's pass to `JSON.parse` the reviving function as the second argument, that returns all values "as is", but `date` will become a `Date`:
 
-```js run
+```js
 let str = '{"title":"Conference","date":"2017-11-30T12:00:00.000Z"}';
 
-*!*
+
 let meetup = JSON.parse(str, function(key, value) {
   if (key == 'date') return new Date(value);
   return value;
 });
-*/!*
+
 
 alert( meetup.date.getDate() ); // now works!
 ```
 
 By the way, that works for nested objects as well:
 
-```js run
+```js
 let schedule = `{
   "meetups": [
     {"title":"Conference","date":"2017-11-30T12:00:00.000Z"},
@@ -514,9 +514,9 @@ schedule = JSON.parse(schedule, function(key, value) {
   return value;
 });
 
-*!*
+
 alert( schedule.meetups[1].date.getDate() ); // works!
-*/!*
+
 ```
 
 

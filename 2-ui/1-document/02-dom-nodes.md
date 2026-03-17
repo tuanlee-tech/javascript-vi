@@ -16,7 +16,7 @@ For example, `document.body` is the object representing the `<body>` tag.
 
 Running this code will make the `<body>` red for 3 seconds:
 
-```js run
+```js
 document.body.style.background = 'red'; // make the background red
 
 setTimeout(() => document.body.style.background = '', 3000); // return back
@@ -34,7 +34,7 @@ Soon we'll learn more ways to manipulate the DOM, but first we need to know abou
 
 Let's start with the following simple document:
 
-```html run no-beautify
+```html
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -50,13 +50,17 @@ The DOM represents HTML as a tree structure of tags. Here's how it looks:
 
 <div class="domtree"></div>
 
+
+```html
 <script>
 let node1 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  "},{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]},{"name":"#text","nodeType":3,"content":"\n"}]},{"name":"#text","nodeType":3,"content":"\n"},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n\n\n"}]}]}
 
 drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
+```
 
-```online
+
+```text
 On the picture above, you can click on element nodes and their children will open/collapse.
 ```
 
@@ -83,26 +87,30 @@ In other cases everything's straightforward -- if there are spaces (just like an
 
 Here are no space-only text nodes:
 
-```html no-beautify
+```html
 <!DOCTYPE HTML>
 <html><head><title>About elk</title></head><body>The truth about elk.</body></html>
 ```
 
 <div class="domtree"></div>
 
+
+```html
 <script>
 let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[{"name":"TITLE","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"About elk"}]}]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"The truth about elk."}]}]}
 
 drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
+```
 
-:::info Spaces at string start/end and space-only text nodes are usually hidden in tools
+
+
 Browser tools (to be covered soon) that work with DOM usually do not show spaces at the start/end of the text and empty text nodes (line-breaks) between tags.
 
 Developer tools save screen space this way.
 
 On further DOM pictures we'll sometimes omit them when they are irrelevant. Such spaces usually do not affect how the document is displayed.
-:::
+
 
 ## Autocorrection
 
@@ -115,17 +123,21 @@ As an example, if the HTML file is the single word `"Hello"`, the browser will w
 
 <div class="domtree"></div>
 
+
+```html
 <script>
 let node3 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Hello"}]}]}
 
 drawHtmlTree(node3, 'div.domtree', 690, 150);
 </script>
+```
+
 
 While generating the DOM, browsers automatically process errors in the document, close tags and so on.
 
 A document with unclosed tags:
 
-```html no-beautify
+```html
 <p>Hello
 <li>Mom
 <li>and
@@ -136,18 +148,22 @@ A document with unclosed tags:
 
 <div class="domtree"></div>
 
+
+```html
 <script>
 let node4 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"P","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Hello"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Mom"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"and"}]},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"Dad"}]}]}]}
 
 drawHtmlTree(node4, 'div.domtree', 690, 360);
 </script>
+```
 
-:::warning Tables always have `<tbody>`
+
+
 An interesting "special case" is tables. By DOM specification they must have `<tbody>` tag, but HTML text may omit it. Then the browser creates `<tbody>` in the DOM automatically.
 
 For the HTML:
 
-```html no-beautify
+```html
 <table id="table"><tr><td>1</td></tr></table>
 :::
 
@@ -176,9 +192,9 @@ For example, comments:
   The truth about elk.
   <ol>
     <li>An elk is a smart</li>
-*!*
+
     <!-- comment -->
-*/!*
+
     <li>...and cunning animal!</li>
   </ol>
 </body>
@@ -187,11 +203,15 @@ For example, comments:
 
 <div class="domtree"></div>
 
+
+```html
 <script>
 let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,"children":[]},{"name":"BODY","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n  The truth about elk.\n  "},{"name":"OL","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"\n    "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"An elk is a smart"}]},{"name":"#text","nodeType":3,"content":"\n    "},{"name":"#comment","nodeType":8,"content":"comment"},{"name":"#text","nodeType":3,"content":"\n    "},{"name":"LI","nodeType":1,"children":[{"name":"#text","nodeType":3,"content":"...and cunning animal!"}]},{"name":"#text","nodeType":3,"content":"\n  "}]},{"name":"#text","nodeType":3,"content":"\n\n\n"}]}]};
 
 drawHtmlTree(node6, 'div.domtree', 690, 500);
 </script>
+```
+
 
 We can see here a new tree node type -- *comment node*, labeled as `#comment`, between two text nodes.
 
@@ -216,7 +236,7 @@ To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hix
 
 Another way to explore the DOM is to use the browser developer tools. Actually, that's what we use when developing.
 
-To do so, open the web page [elk.html](elk.html), turn on the browser developer tools and switch to the Elements tab.
+To do so, open the web page [elk.html](#), turn on the browser developer tools and switch to the Elements tab.
 
 It should look like this:
 
@@ -277,6 +297,6 @@ An HTML/XML document is represented inside the browser as the DOM tree.
 
 We can use developer tools to inspect DOM and modify it manually.
 
-Here we covered the basics, the most used and important actions to start with. There's an extensive documentation about Chrome Developer Tools at <https://developers.google.com/web/tools/chrome-devtools>. The best way to learn the tools is to click here and there, read menus: most options are obvious. Later, when you know them in general, read the docs and pick up the rest.
+Here we covered the basics, the most used and important actions to start with. There's an extensive documentation about Chrome Developer Tools at &lt;https://developers.google.com/web/tools/chrome-devtools&gt;. The best way to learn the tools is to click here and there, read menus: most options are obvious. Later, when you know them in general, read the docs and pick up the rest.
 
 DOM nodes have properties and methods that allow us to travel between them, modify them, move around the page, and more. We'll get down to them in the next chapters.

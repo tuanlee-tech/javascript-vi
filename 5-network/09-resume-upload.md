@@ -4,7 +4,7 @@ With `fetch` method it's fairly easy to upload a file.
 
 How to resume the upload after lost connection? There's no built-in option for that, but we have the pieces to implement it.
 
-Resumable uploads should come with upload progress indication, as we expect big files (if we may need to resume). So, as `fetch` doesn't allow to track upload progress, we'll use [XMLHttpRequest](info:xmlhttprequest).
+Resumable uploads should come with upload progress indication, as we expect big files (if we may need to resume). So, as `fetch` doesn't allow to track upload progress, we'll use [XMLHttpRequest](#).
 
 ## Not-so-useful progress event
 
@@ -23,7 +23,7 @@ To resume upload, we need to know *exactly* the number of bytes received by the 
 ## Algorithm
 
 1. First, create a file id, to uniquely identify the file we're going to upload:
-    ```js
+```js
     let fileId = file.name + '-' + file.size + '-' + file.lastModified;
     ```
     That's needed for resume upload, to tell the server what we're resuming.
@@ -31,7 +31,7 @@ To resume upload, we need to know *exactly* the number of bytes received by the 
     If the name or the size or the last modification date changes, then there'll be another `fileId`.
 
 2. Send a request to the server, asking how many bytes it already has, like this:
-    ```js
+```js
     let response = await fetch('status', {
       headers: {
         'X-File-Id': fileId
@@ -47,7 +47,7 @@ To resume upload, we need to know *exactly* the number of bytes received by the 
     If the file doesn't yet exist at the server, then the server response should be `0`
 
 3. Then, we can use `Blob` method `slice` to send the file from `startByte`:
-    ```js
+```js
     xhr.open("POST", "upload", true);
 
     // File id, so that the server knows which file we upload

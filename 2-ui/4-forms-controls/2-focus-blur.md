@@ -21,7 +21,7 @@ In the example below:
 - The `blur` handler checks if the field has an email entered, and if not -- shows an error.
 - The `focus` handler hides the error message (on `blur` it will be checked again):
 
-```html run autorun height=60
+```html
 <style>
   .invalid { border-color: red; }
   #error { color: red }
@@ -32,14 +32,14 @@ Your email please: <input type="email" id="input">
 <div id="error"></div>
 
 <script>
-*!*input.onblur*/!* = function() {
+input.onblur = function() {
   if (!input.value.includes('@')) { // not email
     input.classList.add('invalid');
     error.innerHTML = 'Please enter a correct email.'
   }
 };
 
-*!*input.onfocus*/!* = function() {
+input.onfocus = function() {
   if (this.classList.contains('invalid')) {
     // remove the "error" indication, because the user wants to re-enter something
     this.classList.remove('invalid');
@@ -58,7 +58,7 @@ Methods `elem.focus()` and `elem.blur()` set/unset the focus on the element.
 
 For instance, let's make the visitor unable to leave the input if the value is invalid:
 
-```html run autorun height=80
+```html
 <style>
   .error {
     background: red;
@@ -73,10 +73,10 @@ Your email please: <input type="email" id="input">
     if (!this.value.includes('@')) { // not email
       // show the error
       this.classList.add("error");
-*!*
+
       // ...and put the focus back
       input.focus();
-*/!*
+
     } else {
       this.classList.remove("error");
     }
@@ -90,7 +90,7 @@ If we enter something into the input and then try to use `key:Tab` or click away
 
 Please note that we can't "prevent losing focus" by calling `event.preventDefault()` in `onblur`, because `onblur` works *after* the element lost the focus.
 
-:::warning JavaScript-initiated focus loss
+
 A focus loss can occur for many reasons.
 
 One of them is when the visitor clicks somewhere else. But also JavaScript itself may cause it, for instance:
@@ -101,7 +101,7 @@ One of them is when the visitor clicks somewhere else. But also JavaScript itsel
 These features sometimes cause `focus/blur` handlers to misbehave -- to trigger when they are not needed.
 
 The best recipe is to be careful when using these events. If we want to track user-initiated focus-loss, then we should avoid causing it ourselves.
-:::
+
 ## Allow focusing on any element: tabindex
 
 By default many elements do not support focusing.
@@ -130,7 +130,7 @@ There are two special values:
 
 For instance, here's a list. Click the first item and press `key:Tab`:
 
-```html autorun no-beautify
+```html
 Click the first item and press Tab. Keep track of the order. Please note that many subsequent Tabs can move the focus out of the iframe in the example.
 <ul>
   <li tabindex="1">One</li>
@@ -147,9 +147,9 @@ Click the first item and press Tab. Keep track of the order. Please note that ma
 
 The order is like this: `1 - 2 - 0`. Normally, `<li>` does not support focusing, but `tabindex` full enables it, along with events and styling with `:focus`.
 
-:::info The property `elem.tabIndex` works too
+
 We can add `tabindex` from JavaScript by using the `elem.tabIndex` property. That has the same effect.
-:::
+
 
 ## Delegation: focusin/focusout
 
@@ -157,9 +157,9 @@ Events `focus` and `blur` do not bubble.
 
 For instance, we can't put `onfocus` on the `<form>` to highlight it, like this:
 
-```html autorun height=80
+```html
 <!-- on focusing in the form -- add the class -->
-<form *!*onfocus="this.className='focused'"*/!*>
+<form onfocus="this.className='focused'">
   <input type="text" name="name" value="Name">
   <input type="text" name="surname" value="Surname">
 </form>
@@ -175,7 +175,7 @@ First, there's a funny historical feature: `focus/blur` do not bubble up, but pr
 
 This will work:
 
-```html autorun height=80
+```html
 <form id="form">
   <input type="text" name="name" value="Name">
   <input type="text" name="surname" value="Surname">
@@ -184,11 +184,11 @@ This will work:
 <style> .focused { outline: 1px solid red; } </style>
 
 <script>
-*!*
+
   // put the handler on capturing phase (last argument true)
   form.addEventListener("focus", () => form.classList.add('focused'), true);
   form.addEventListener("blur", () => form.classList.remove('focused'), true);
-*/!*
+
 </script>
 ```
 
@@ -198,7 +198,7 @@ Note that they must be assigned using `elem.addEventListener`, not `on<event>`.
 
 So here's another working variant:
 
-```html autorun height=80
+```html
 <form id="form">
   <input type="text" name="name" value="Name">
   <input type="text" name="surname" value="Surname">
@@ -207,10 +207,10 @@ So here's another working variant:
 <style> .focused { outline: 1px solid red; } </style>
 
 <script>
-*!*
+
   form.addEventListener("focusin", () => form.classList.add('focused'));
   form.addEventListener("focusout", () => form.classList.remove('focused'));
-*/!*
+
 </script>
 ```
 

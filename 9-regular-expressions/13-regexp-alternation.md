@@ -10,7 +10,7 @@ The corresponding regexp: `pattern:html|php|java(script)?`.
 
 A usage example:
 
-```js run
+```js
 let regexp = /html|php|css|java(script)?/gi;
 
 let str = "First HTML appeared, then CSS, then JavaScript";
@@ -63,7 +63,7 @@ But that's wrong, the alternation should only be used in the "hours" part of the
 
 The final solution:
 
-```js run
+```js
 let regexp = /([01]\d|2[0-3]):[0-5]\d/g;
 
 alert("00:00 10:10 23:59 25:99 1:2".match(regexp)); // 00:00,10:10,23:59

@@ -51,7 +51,7 @@ let user = {
 
 Here's an example of using `Object.values` to loop over property values:
 
-```js run
+```js
 let user = {
   name: "John",
   age: 30
@@ -63,11 +63,11 @@ for (let value of Object.values(user)) {
 }
 ```
 
-:::warning Object.keys/values/entries ignore symbolic properties
+
 Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
 
 Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys.
-:::
+
 
 
 ## Transforming objects
@@ -82,19 +82,19 @@ If we'd like to apply them, then we can use `Object.entries` followed by `Object
 
 For example, we have an object with prices, and would like to double them:
 
-```js run
+```js
 let prices = {
   banana: 1,
   orange: 2,
   meat: 4,
 };
 
-*!*
+
 let doublePrices = Object.fromEntries(
   // convert to array, map, and then fromEntries gives back the object
   Object.entries(prices).map(([key, value]) => [key, value * 2])
 );
-*/!*
+
 
 alert(doublePrices.meat); // 8
 ```   

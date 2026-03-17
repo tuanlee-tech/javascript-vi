@@ -10,13 +10,13 @@ To get window width and height, we can use the `clientWidth/clientHeight` of `do
 
 ![](document-client-width-height.svg)
 
-```online
+```text
 For instance, this button shows the height of your window:
 
 <button onclick="alert(document.documentElement.clientHeight)">alert(document.documentElement.clientHeight)</button>
 ```
 
-:::warning Not `window.innerWidth/innerHeight`
+
 Browsers also support properties like `window.innerWidth/innerHeight`. They look like what we want, so why not to use them instead?
 
 If there exists a scrollbar, and it occupies some space, `clientWidth/clientHeight` provide the width/height without it (subtract it). In other words, they return the width/height of the visible part of the document, available for the content.
@@ -24,7 +24,7 @@ If there exists a scrollbar, and it occupies some space, `clientWidth/clientHeig
 `window.innerWidth/innerHeight` includes the scrollbar.
 
 If there's a scrollbar, and it occupies some space, then these two lines show different values:
-```js run
+```js
 alert( window.innerWidth ); // full window width
 alert( document.documentElement.clientWidth ); // window width minus the scrollbar
 :::
@@ -32,11 +32,11 @@ alert( document.documentElement.clientWidth ); // window width minus the scrollb
 In most cases, we need the *available* window width in order to draw or position something within scrollbars (if there are any), so we should use `documentElement.clientHeight/clientWidth`.
 ````
 
-:::warning `DOCTYPE` is important
+
 Please note: top-level geometry properties may work a little bit differently when there's no `<!DOCTYPE HTML>` in HTML. Odd things are possible.
 
 In modern HTML we should always write `DOCTYPE`.
-:::
+
 
 ## Width/height of the document
 
@@ -46,7 +46,7 @@ But on that element, for the whole page, these properties do not work as intende
 
 To reliably obtain the full document height, we should take the maximum of these properties:
 
-```js run
+```js
 let scrollHeight = Math.max(
   document.body.scrollHeight, document.documentElement.scrollHeight,
   document.body.offsetHeight, document.documentElement.offsetHeight,
@@ -66,7 +66,7 @@ For document scroll, `document.documentElement.scrollLeft/scrollTop` works in mo
 
 Luckily, we don't have to remember these peculiarities at all, because the scroll is available in the special properties, `window.pageXOffset/pageYOffset`:
 
-```js run
+```js
 alert('Current scroll from the top: ' + window.pageYOffset);
 alert('Current scroll from the left: ' + window.pageXOffset);
 ```
@@ -75,11 +75,11 @@ These properties are read-only.
 
 ## Scrolling: scrollTo, scrollBy, scrollIntoView [#window-scroll]
 
-:::warning
+
 To scroll the page with JavaScript, its DOM must be fully built.
 
 For instance, if we try to scroll the page with a script in `<head>`, it won't work.
-:::
+
 
 Regular elements can be scrolled by changing `scrollTop/scrollLeft`.
 
@@ -89,7 +89,7 @@ Alternatively, there's a simpler, universal solution: special methods [window.sc
 
 - The method `scrollBy(x,y)` scrolls the page *relative to its current position*. For instance, `scrollBy(0,10)` scrolls the page `10px` down.
 
-    ```online
+```text
     The button below demonstrates this:
 
     <button onclick="window.scrollBy(0,10)">window.scrollBy(0,10)</button>
@@ -98,7 +98,7 @@ Alternatively, there's a simpler, universal solution: special methods [window.sc
 
     To scroll to the very beginning, we can use `scrollTo(0,0)`.
 
-    ```online
+```text
     <button onclick="window.scrollTo(0,0)">window.scrollTo(0,0)</button>
     ```
 
@@ -113,7 +113,7 @@ The call to `elem.scrollIntoView(top)` scrolls the page to make `elem` visible. 
 - If `top=true` (that's the default), then the page will be scrolled to make `elem` appear on the top of the window. The upper edge of the element will be aligned with the window top.
 - If `top=false`, then the page scrolls to make `elem` appear at the bottom. The bottom edge of the element will be aligned with the window bottom.
 
-```online
+```text
 The button below scrolls the page to position itself at the window top:
 
 <button onclick="this.scrollIntoView()">this.scrollIntoView()</button>
@@ -129,7 +129,7 @@ Sometimes we need to make the document "unscrollable". For instance, when we nee
 
 To make the document unscrollable, it's enough to set `document.body.style.overflow = "hidden"`. The page will "freeze" at its current scroll position.
 
-```online
+```text
 Try it:
 
 <button onclick="document.body.style.overflow = 'hidden'">document.body.style.overflow = 'hidden'</button>
@@ -152,7 +152,7 @@ Geometry:
 - Width/height of the visible part of the document (content area width/height): `document.documentElement.clientWidth/clientHeight`
 - Width/height of the whole document, with the scrolled out part:
 
-    ```js
+```js
     let scrollHeight = Math.max(
       document.body.scrollHeight, document.documentElement.scrollHeight,
       document.body.offsetHeight, document.documentElement.offsetHeight,

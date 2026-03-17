@@ -30,21 +30,21 @@ The topmost tree nodes are available directly as `document` properties:
 `<head>` = `document.head`
 : The `<head>` tag is available as `document.head`.
 
-:::warning There's a catch: `document.body` can be `null`
+
 A script cannot access an element that doesn't exist at the moment of running.
 
 In particular, if a script is inside `<head>`, then `document.body` is unavailable, because the browser did not read it yet.
 
 So, in the example below the first `alert` shows `null`:
 
-```html run
+```html
 <html>
 
 <head>
   <script>
-*!*
+
     alert( "From HEAD: " + document.body ); // null, there's no <body> yet
-*/!*
+
   </script>
 </head>
 
@@ -59,9 +59,9 @@ So, in the example below the first `alert` shows `null`:
 :::
 ````
 
-:::info In the DOM world `null` means \doesn't exist\""
+
 In the DOM, the `null` value means "doesn't exist" or "no such node".
-:::
+
 
 ## Children: childNodes, firstChild, lastChild
 
@@ -72,7 +72,7 @@ There are two terms that we'll use from now on:
 
 For instance, here `<body>` has children `<div>` and `<ul>` (and few blank text nodes):
 
-```html run
+```html
 <html>
 <body>
   <div>Begin</div>
@@ -92,7 +92,7 @@ For instance, here `<body>` has children `<div>` and `<ul>` (and few blank text 
 
 The example below shows children of `document.body`:
 
-```html run
+```html
 <html>
 <body>
   <div>Begin</div>
@@ -104,11 +104,11 @@ The example below shows children of `document.body`:
   <div>End</div>
 
   <script>
-*!*
+
     for (let i = 0; i < document.body.childNodes.length; i++) {
       alert( document.body.childNodes[i] ); // Text, DIV, Text, UL, ..., SCRIPT
     }
-*/!*
+
   </script>
   ...more stuff...
 </body>
@@ -134,7 +134,7 @@ As we can see, `childNodes` looks like an array. But actually it's not an array,
 There are two important consequences:
 
 1. We can use `for..of` to iterate over it:
-  ```js
+```js
   for (let node of document.body.childNodes) {
     alert(node); // shows all nodes from the collection
   }
@@ -142,36 +142,36 @@ There are two important consequences:
   That's because it's iterable (provides the `Symbol.iterator` property, as required).
 
 2. Array methods won't work, because it's not an array:
-  ```js run
+```js
   alert(document.body.childNodes.filter); // undefined (there's no filter method!)
   ```
 
 The first thing is nice. The second is tolerable, because we can use `Array.from` to create a "real" array from the collection, if we want array methods:
 
-  ```js run
+```js
   alert( Array.from(document.body.childNodes).filter ); // function
   ```
 
-:::warning DOM collections are read-only
+
 DOM collections, and even more -- *all* navigation properties listed in this chapter are read-only.
 
 We can't replace a child by something else by assigning `childNodes[i] = ...`.
 
 Changing DOM needs other methods. We will see them in the next chapter.
-:::
 
-:::warning DOM collections are live
+
+
 Almost all DOM collections with minor exceptions are *live*. In other words, they reflect the current state of DOM.
 
 If we keep a reference to `elem.childNodes`, and add/remove nodes into DOM, then they appear in the collection automatically.
-:::
 
-:::warning Don't use `for..in` to loop over collections
+
+
 Collections are iterable using `for..of`. Sometimes people try to use `for..in` for that.
 
 Please, don't. The `for..in` loop iterates over all enumerable properties. And collections have some "extra" rarely used properties that we usually do not want to get:
 
-```html run
+```html
 <body>
 <script>
   // shows 0, 1, length, item, values and more.
@@ -201,7 +201,7 @@ The parent is available as `parentNode`.
 
 For example:
 
-```js run
+```js
 // parent of <body> is <html>
 alert( document.body.parentNode === document.documentElement ); // true
 
@@ -229,12 +229,12 @@ The links are similar to those given above, just with `Element` word inside:
 - `previousElementSibling`, `nextElementSibling` -- neighbor elements.
 - `parentElement` -- parent element.
 
-:::info Why `parentElement`? Can the parent be *not* an element?
+
 The `parentElement` property returns the "element" parent, while `parentNode` returns "any node" parent. These properties are usually the same: they both get the parent.
 
 With the one exception of `document.documentElement`:
 
-```js run
+```js
 alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 :::
@@ -251,7 +251,7 @@ while(elem = elem.parentElement) { // go up till <html>
 
 Let's modify one of the examples above: replace `childNodes` with `children`. Now it shows only elements:
 
-```html run
+```html
 <html>
 <body>
   <div>Begin</div>
@@ -262,13 +262,17 @@ Let's modify one of the examples above: replace `childNodes` with `children`. No
 
   <div>End</div>
 
-  <script>
-*!*
+  
+```html
+<script>
+
     for (let elem of document.body.children) {
       alert(elem); // DIV, UL, DIV, SCRIPT
     }
-*/!*
+
   </script>
+```
+
   ...
 </body>
 </html>
@@ -300,7 +304,7 @@ Tables are a great example of that, and represent a particularly important case:
 
 An example of usage:
 
-```html run height=100
+```html
 <table id="table">
   <tr>
     <td>one</td><td>two</td>
@@ -310,14 +314,18 @@ An example of usage:
   </tr>
 </table>
 
+
+```html
 <script>
   // get td with "two" (first row, second column)
-  let td = table.*!*rows[0].cells[1]*/!*;
+  let td = table.rows[0].cells[1];
   td.style.backgroundColor = "red"; // highlight it
 </script>
 ```
 
-The specification: [tabular data](https://html.spec.whatwg.org/multipage/tables.html).
+```
+
+The specification: [tabular data](#).
 
 There are also additional navigation properties for HTML forms. We'll look at them later when we start working with forms.
 

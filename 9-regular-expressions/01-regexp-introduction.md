@@ -50,24 +50,24 @@ There are only 6 of them in JavaScript:
 : With this flag the search looks for all matches, without it -- only the first match is returned.
 
 `pattern:m`
-: Multiline mode (covered in the chapter <info:regexp-multiline-mode>).
+: Multiline mode (covered in the chapter &lt;info:regexp-multiline-mode&gt;).
 
 `pattern:s`
-: Enables "dotall" mode, that allows a dot `pattern:.` to match newline character `\n` (covered in the chapter <info:regexp-character-classes>).
+: Enables "dotall" mode, that allows a dot `pattern:.` to match newline character `\n` (covered in the chapter &lt;info:regexp-character-classes&gt;).
 
 `pattern:u`
-: Enables full Unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter <info:regexp-unicode>.
+: Enables full Unicode support. The flag enables correct processing of surrogate pairs. More about that in the chapter &lt;info:regexp-unicode&gt;.
 
 `pattern:y`
-: "Sticky" mode: searching at the exact position in the text  (covered in the chapter <info:regexp-sticky>)
+: "Sticky" mode: searching at the exact position in the text  (covered in the chapter &lt;info:regexp-sticky&gt;)
 
-:::info Colors
+
 From here on the color scheme is:
 
 - regexp -- `pattern:red`
 - string (where we search) -- `subject:blue`
 - result -- `match:green`
-:::
+
 
 ## Searching: str.match
 
@@ -78,7 +78,7 @@ The method `str.match(regexp)` finds all matches of `regexp` in the string `str`
 It has 3 working modes:
 
 1. If the regular expression has flag `pattern:g`, it returns an array of all matches:
-    ```js run
+```js
     let str = "We will, we will rock you";
 
     alert( str.match(/we/gi) ); // We,we (an array of 2 substrings that match)
@@ -86,7 +86,7 @@ It has 3 working modes:
     Please note that both `match:We` and `match:we` are found, because flag `pattern:i` makes the regular expression case-insensitive.
 
 2. If there's no such flag it returns only the first match in the form of an array, with the full match at index `0` and some additional details in properties:
-    ```js run
+```js
     let str = "We will, we will rock you";
 
     let result = str.match(/we/i); // without flag g
@@ -98,13 +98,13 @@ It has 3 working modes:
     alert( result.index );  // 0 (position of the match)
     alert( result.input );  // We will, we will rock you (source string)
     ```
-    The array may have other indexes, besides `0` if a part of the regular expression is enclosed in parentheses. We'll cover that in the chapter  <info:regexp-groups>.
+    The array may have other indexes, besides `0` if a part of the regular expression is enclosed in parentheses. We'll cover that in the chapter  &lt;info:regexp-groups&gt;.
 
 3. And, finally, if there are no matches, `null` is returned (doesn't matter if there's flag `pattern:g` or not).
 
     This a very important nuance. If there are no matches, we don't receive an empty array, but instead receive `null`. Forgetting about that may lead to errors, e.g.:
 
-    ```js run
+```js
     let matches = "JavaScript".match(/HTML/); // = null
 
     if (!matches.length) { // Error: Cannot read property 'length' of null
@@ -114,8 +114,8 @@ It has 3 working modes:
 
     If we'd like the result to always be an array, we can write it this way:
 
-    ```js run
-    let matches = "JavaScript".match(/HTML/)*!* || []*/!*;
+```js
+    let matches = "JavaScript".match(/HTML/) || [];
 
     if (!matches.length) {
       alert("No matches"); // now it works
@@ -128,7 +128,7 @@ The method `str.replace(regexp, replacement)` replaces matches found using `rege
 
 For instance:
 
-```js run
+```js
 // no flag g
 alert( "We will, we will".replace(/we/i, "I") ); // I will, we will
 
@@ -143,13 +143,13 @@ The second argument is the `replacement` string. We can use special character co
 |`$&`|inserts the whole match|
 |<code>$&#096;</code>|inserts a part of the string before the match|
 |`$'`|inserts a part of the string after the match|
-|`$n`|if `n` is a 1-2 digit number, then it inserts the contents of n-th parentheses, more about it in the chapter <info:regexp-groups>|
-|`$<name>`|inserts the contents of the parentheses with the given `name`, more about it in the chapter <info:regexp-groups>|
+|`$n`|if `n` is a 1-2 digit number, then it inserts the contents of n-th parentheses, more about it in the chapter &lt;info:regexp-groups&gt;|
+|`$<name>`|inserts the contents of the parentheses with the given `name`, more about it in the chapter &lt;info:regexp-groups&gt;|
 |`$$`|inserts character `$` |
 
 An example with `pattern:$&`:
 
-```js run
+```js
 alert( "I love HTML".replace(/HTML/, "$& and JavaScript") ); // I love HTML and JavaScript
 ```
 
@@ -157,7 +157,7 @@ alert( "I love HTML".replace(/HTML/, "$& and JavaScript") ); // I love HTML and 
 
 The method `regexp.test(str)` looks for at least one match, if found, returns `true`, otherwise `false`.
 
-```js run
+```js
 let str = "I love JavaScript";
 let regexp = /LOVE/i;
 
@@ -166,7 +166,7 @@ alert( regexp.test(str) ); // true
 
 Later in this chapter we'll study more regular expressions, walk through more examples, and also meet other methods.
 
-Full information about the methods is given in the article <info:regexp-methods>.
+Full information about the methods is given in the article &lt;info:regexp-methods&gt;.
 
 ## Summary
 

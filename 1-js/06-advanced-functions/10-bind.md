@@ -15,7 +15,7 @@ Chúng ta đã thấy những ví dụ về việc mất `this`. Sau khi một p
 
 Đây là cách nó có thể xảy ra với `setTimeout`:
 
-```js run
+```js
 let user = {
   firstName: "John",
   sayHi() {
@@ -23,9 +23,9 @@ let user = {
   }
 };
 
-*!*
+
 setTimeout(user.sayHi, 1000); // Xin chào, undefined!
-*/!*
+
 ```
 
 Như chúng ta có thể thấy, đầu ra không hiển thị "John" giống như `this.firstName`, mà lại là `undefined`!
@@ -45,7 +45,7 @@ Tác vụ này khá điển hình - chúng ta muốn truyền một phương th�
 
 Giải pháp đơn giản nhất là sử dụng một hàm bao:
 
-```js run
+```js
 let user = {
   firstName: "John",
   sayHi() {
@@ -53,11 +53,11 @@ let user = {
   }
 };
 
-*!*
+
 setTimeout(function() {
   user.sayHi(); // Xin chào, John!
 }, 1000);
-*/!*
+
 ```
 
 Bây giờ nó hoạt động, vì nó nhận `user` từ môi trường từ vựng bên ngoài, và sau đó gọi phương thức một cách bình thường.
@@ -72,7 +72,7 @@ Có vẻ ổn, nhưng một lỗ hổng nhỏ xuất hiện trong cấu trúc m�
 
 Điều gì sẽ xảy ra nếu trước khi `setTimeout` kích hoạt (có độ trễ một giây!) `user` thay đổi giá trị? Sau đó, đột nhiên, nó sẽ gọi nhầm đối tượng!
 
-```js run
+```js
 let user = {
   firstName: "John",
   sayHi() {
@@ -109,7 +109,7 @@ Nói cách khác, gọi `boundFunc` giống như gọi `func` nhưng với `this
 
 Ví dụ, ở đây `funcUser` chuyển lời gọi cho `func` với `this=user`:
 
-```js run
+```js
 let user = {
   firstName: "John"
 };
@@ -118,17 +118,17 @@ function func() {
   alert(this.firstName);
 }
 
-*!*
+
 let funcUser = func.bind(user);
 funcUser(); // John
-*/!*
+
 ```
 
 Ở đây `func.bind(user)` có thể coi là một "biến thể đã ràng buộc" của `func`, với `this` cố định là `user`.
 
 Tất cả đối số được truyền "nguyên trạng" cho hàm `func` gốc, ví dụ:
 
-```js run
+```js
 let user = {
   firstName: "John"
 };
@@ -140,14 +140,14 @@ function func(phrase) {
 // ràng buộc this với user
 let funcUser = func.bind(user);
 
-*!*
+
 funcUser("Xin chào"); // Xin chào, John (đối số "Xin chào" được truyền cho func, và this=user)
-*/!*
+
 ```
 
 Bây giờ thử áp dụng với phương thức của một đối tượng:
 
-```js run
+```js
 let user = {
   firstName: "John",
   sayHi() {
@@ -155,9 +155,9 @@ let user = {
   }
 };
 
-*!*
+
 let sayHi = user.sayHi.bind(user); // (*)
-*/!*
+
 
 // có thể chạy nó mà không cần một đối tượng
 sayHi(); // Xin chào, John!
@@ -175,7 +175,7 @@ Trong dòng `(*)`, chúng ta lấy phương thức `user.sayHi` và ràng buộc
 
 Ở đây chúng ta có thể thấy rằng các đối số được truyền "nguyên trạng", chỉ có `this` được cố định bởi `bind`:
 
-```js run
+```js
 let user = {
   firstName: "John",
   say(phrase) {
@@ -189,7 +189,7 @@ say("Hello"); // Xin chào, John (đối số "Xin chào" được truyền tớ
 say("Bye"); // Tạm biệt, John ("Tạm biệt" được truyền tới say)
 ```
 
-:::info Convenience method: `bindAll`
+
 Nếu một đối tượng có nhiều phương thức và chúng ta dự định chủ động truyền nó xung quanh, thì chúng ta có thể ràng buộc tất cả chúng trong một vòng lặp:
 
 ```js
@@ -227,14 +227,14 @@ function mul(a, b) {
 
 Hãy sử dụng `bind` để tạo một hàm `double` trên cơ sở của nó:
 
-```js run
+```js
 function mul(a, b) {
   return a * b;
 }
 
-*!*
+
 let double = mul.bind(null, 2);
-*/!*
+
 
 alert( double(3) ); // = mul(2, 3) = 6
 alert( double(4) ); // = mul(2, 4) = 8
@@ -249,14 +249,14 @@ Xin lưu ý rằng chúng ta không thực sự sử dụng `this` ở đây. Nh
 
 Hàm `triple` trong đoạn mã dưới đây tăng gấp ba lần giá trị:
 
-```js run
+```js
 function mul(a, b) {
   return a * b;
 }
 
-*!*
+
 let triple = mul.bind(null, 3);
-*/!*
+
 
 alert( triple(3) ); // = mul(3, 3) = 9
 alert( triple(4) ); // = mul(3, 4) = 12
@@ -281,14 +281,14 @@ May mắn thay, một hàm `partial` mà chỉ ràng buộc các đối số có
 
 Như thế này:
 
-```js run
-*!*
+```js
+
 function partial(func, ...argsBound) {
   return function(...args) { // (*)
     return func.call(this, ...argsBound, ...args);
   }
 }
-*/!*
+
 
 // Sử dụng:
 let user = {

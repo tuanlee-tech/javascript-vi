@@ -1,13 +1,13 @@
 
 # Polyfills and transpilers
 
-The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at <https://tc39.github.io/ecma262/> and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
+The JavaScript language steadily evolves. New proposals to the language appear regularly, they are analyzed and, if considered worthy, are appended to the list at &lt;https://tc39.github.io/ecma262/&gt; and then progress to the [specification](http://www.ecma-international.org/publications/standards/Ecma-262.htm).
 
 Teams behind JavaScript engines have their own ideas about what to implement first. They may decide to implement proposals that are in draft and postpone things that are already in the spec, because they are less interesting or just harder to do.
 
 So it's quite common for an engine to implement only the part of the standard.
 
-A good page to see the current state of support for language features is <https://kangax.github.io/compat-table/es6/> (it's big, we have a lot to study yet).
+A good page to see the current state of support for language features is &lt;https://kangax.github.io/compat-table/es6/&gt; (it's big, we have a lot to study yet).
 
 As programmers, we'd like to use most recent features. The more good stuff - the better!
 
@@ -85,8 +85,8 @@ Just don't forget to use transpiler (if using modern syntax or operators) and po
 For example, later when you're familiar with JavaScript, you can setup a code build system based on [webpack](http://webpack.github.io/) with [babel-loader](https://github.com/babel/babel-loader) plugin.
 
 Good resources that show the current state of support for various features:
-- <https://kangax.github.io/compat-table/es6/> - for pure JavaScript.
-- <https://caniuse.com/> - for browser-related functions.
+- &lt;https://kangax.github.io/compat-table/es6/&gt; - for pure JavaScript.
+- &lt;https://caniuse.com/&gt; - for browser-related functions.
 
 P.S. Google Chrome is usually the most up-to-date with language features, try it if a tutorial demo fails. Most tutorial demos work with any modern browser though.
 

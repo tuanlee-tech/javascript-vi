@@ -42,19 +42,19 @@ It gets properties and methods as a superposition of (listed in inheritance orde
 
 To see the DOM node class name, we can recall that an object usually has the `constructor` property. It references the class constructor, and `constructor.name` is its name:
 
-```js run
+```js
 alert( document.body.constructor.name ); // HTMLBodyElement
 ```
 
 ...Or we can just `toString` it:
 
-```js run
+```js
 alert( document.body ); // [object HTMLBodyElement]
 ```
 
 We also can use `instanceof` to check the inheritance:
 
-```js run
+```js
 alert( document.body instanceof HTMLBodyElement ); // true
 alert( document.body instanceof HTMLElement ); // true
 alert( document.body instanceof Element ); // true
@@ -66,7 +66,7 @@ As we can see, DOM nodes are regular JavaScript objects. They use prototype-base
 
 That's also easy to see by outputting an element with `console.dir(elem)` in a browser. There in the console you can see `HTMLElement.prototype`, `Element.prototype` and so on.
 
-:::info `console.dir(elem)` versus `console.log(elem)`
+
 Most browsers support two commands in their developer tools: `console.log` and `console.dir`. They output their arguments to the console. For JavaScript objects these commands usually do the same.
 
 But for DOM elements they are different:
@@ -75,9 +75,9 @@ But for DOM elements they are different:
 - `console.dir(elem)` shows the element as a DOM object, good to explore its properties.
 
 Try it on `document.body`.
-:::
 
-:::info IDL in the spec
+
+
 In the specification, DOM classes aren't described by using JavaScript, but a special [Interface description language](https://en.wikipedia.org/wiki/Interface_description_language) (IDL), that is usually easy to understand.
 
 In IDL all properties are prepended with their types. For instance, `DOMString`, `boolean` and so on.
@@ -86,28 +86,28 @@ Here's an excerpt from it, with comments:
 
 ```js
 // Define HTMLInputElement
-*!*
+
 // The colon ":" means that HTMLInputElement inherits from HTMLElement
-*/!*
+
 interface HTMLInputElement: HTMLElement {
   // here go properties and methods of <input> elements
 
-*!*
+
   // "DOMString" means that the value of a property is a string
-*/!*
+
   attribute DOMString accept;
   attribute DOMString alt;
   attribute DOMString autocomplete;
   attribute DOMString value;
 
-*!*
+
   // boolean value property (true/false)
   attribute boolean autofocus;
-*/!*
+
   ...
-*!*
+
   // now the method: "void" means that the method returns no value
-*/!*
+
   void select();
   ...
 }
@@ -126,7 +126,7 @@ It has a numeric value:
 
 For instance:
 
-```html run
+```html
 <body>
   <script>  
   let elem = document.body;
@@ -151,7 +151,7 @@ Given a DOM node, we can read its tag name from `nodeName` or `tagName` properti
 
 For instance:
 
-```js run
+```js
 alert( document.body.nodeName ); // BODY
 alert( document.body.tagName ); // BODY
 ```
@@ -170,7 +170,7 @@ In other words, `tagName` is only supported by element nodes (as it originates f
 For instance, let's compare `tagName` and `nodeName` for the `document` and a comment node:
 
 
-```html run
+```html
 <body><!-- comment -->
 
   <script>
@@ -187,13 +187,13 @@ For instance, let's compare `tagName` and `nodeName` for the `document` and a co
 
 If we only deal with elements, then we can use both `tagName` and `nodeName` - there's no difference.
 
-:::info The tag name is always uppercase except in XML mode
+
 The browser has two modes of processing documents: HTML and XML. Usually the HTML-mode is used for webpages. XML-mode is enabled when the browser receives an XML-document with the header: `Content-Type: application/xml+xhtml`.
 
 In HTML mode `tagName/nodeName` is always uppercased: it's `BODY` either for `<body>` or `<BoDy>`.
 
 In XML mode the case is kept "as is". Nowadays XML mode is rarely used.
-:::
+
 
 
 ## innerHTML: the contents
@@ -204,7 +204,7 @@ We can also modify it. So it's one of the most powerful ways to change the page.
 
 The example shows the contents of `document.body` and then replaces it completely:
 
-```html run
+```html
 <body>
   <p>A paragraph</p>
   <div>A div</div>
@@ -219,7 +219,7 @@ The example shows the contents of `document.body` and then replaces it completel
 
 We can try to insert invalid HTML, the browser will fix our errors:
 
-```html run
+```html
 <body>
 
   <script>
@@ -230,9 +230,9 @@ We can try to insert invalid HTML, the browser will fix our errors:
 </body>
 ```
 
-:::info Scripts don't execute
+
 If `innerHTML` inserts a `<script>` tag into the document -- it becomes a part of HTML, but doesn't execute.
-:::
+
 
 ### Beware: "innerHTML+=" does a full overwrite
 
@@ -252,9 +252,9 @@ Technically, these two lines do the same:
 ```js
 elem.innerHTML += "...";
 // is a shorter way to write:
-*!*
+
 elem.innerHTML = elem.innerHTML + "..."
-*/!*
+
 ```
 
 In other words, `innerHTML+=` does this:
@@ -276,7 +276,7 @@ The `outerHTML` property contains the full HTML of the element. That's like `inn
 
 Here's an example:
 
-```html run
+```html
 <div id="elem">Hello <b>World</b></div>
 
 <script>
@@ -290,20 +290,20 @@ Yeah, sounds strange, and strange it is, that's why we make a separate note abou
 
 Consider the example:
 
-```html run
+```html
 <div>Hello, world!</div>
 
 <script>
   let div = document.querySelector('div');
 
-*!*
+
   // replace div.outerHTML with <p>...</p>
-*/!*
+
   div.outerHTML = '<p>A new element</p>'; // (*)
 
-*!*
+
   // Wow! 'div' is still the same!
-*/!*
+
   alert(div.outerHTML); // <div>Hello, world!</div> (**)
 </script>
 ```
@@ -331,20 +331,20 @@ Other node types, such as text nodes, have their counterpart: `nodeValue` and `d
 
 An example of reading the content of a text node and a comment:
 
-```html run height="50"
+```html
 <body>
   Hello
   <!-- Comment -->
   <script>
     let text = document.body.firstChild;
-*!*
+
     alert(text.data); // Hello
-*/!*
+
 
     let comment = text.nextSibling;
-*!*
+
     alert(comment.data); // Comment
-*/!*
+
   </script>
 </body>
 ```
@@ -367,7 +367,7 @@ The `textContent` provides access to the *text* inside the element: only text, m
 
 For instance:
 
-```html run
+```html
 <div id="news">
   <h1>Headline!</h1>
   <p>Martians attack people!</p>
@@ -392,7 +392,7 @@ Let's say we have an arbitrary string, for instance entered by a user, and want 
 
 Compare the two:
 
-```html run
+```html
 <div id="elem1"></div>
 <div id="elem2"></div>
 
@@ -415,7 +415,7 @@ The "hidden" attribute and the DOM property specifies whether the element is vis
 
 We can use it in HTML or assign it using JavaScript, like this:
 
-```html run height="80"
+```html
 <div>Both divs below are hidden</div>
 
 <div hidden>With the attribute "hidden"</div>
@@ -432,7 +432,7 @@ Technically, `hidden` works the same as `style="display:none"`. But it's shorter
 Here's a blinking element:
 
 
-```html run height=50
+```html
 <div id="elem">A blinking element</div>
 
 <script>
@@ -451,7 +451,7 @@ DOM elements also have additional properties, in particular those that depend on
 
 For instance:
 
-```html run height="80"
+```html
 <input type="text" id="elem" value="value">
 
 <script>
@@ -463,7 +463,7 @@ For instance:
 
 Most standard HTML attributes have the corresponding DOM property, and we can access it like that.
 
-If we want to know the full list of supported properties for a given class, we can find them in the specification. For instance, `HTMLInputElement` is documented at <https://html.spec.whatwg.org/#htmlinputelement>.
+If we want to know the full list of supported properties for a given class, we can find them in the specification. For instance, `HTMLInputElement` is documented at &lt;https://html.spec.whatwg.org/#htmlinputelement&gt;.
 
 Or if we'd like to get them fast or are interested in a concrete browser specification -- we can always output the element using `console.dir(elem)` and read the properties. Or explore "DOM properties" in the Elements tab of the browser developer tools.
 

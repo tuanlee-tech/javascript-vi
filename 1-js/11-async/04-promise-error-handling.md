@@ -5,10 +5,10 @@ Promise chains are great at error handling. When a promise rejects, the control 
 
 For instance, in the code below the URL to `fetch` is wrong (no such site) and `.catch` handles the error:
 
-```js run
-*!*
+```js
+
 fetch('https://no-such-server.blabla') // rejects
-*/!*
+
   .then(response => response.json())
   .catch(err => alert(err)) // TypeError: failed to fetch (the text may vary)
 ```
@@ -17,7 +17,7 @@ As you can see, the `.catch` doesn't have to be immediate. It may appear after o
 
 Or, maybe, everything is all right with the site, but the response is not valid JSON. The easiest way to catch all errors is to append `.catch` to the end of chain:
 
-```js run
+```js
 fetch('/article/promise-chaining/user.json')
   .then(response => response.json())
   .then(user => fetch(`https://api.github.com/users/${user.name}`))
@@ -33,9 +33,9 @@ fetch('/article/promise-chaining/user.json')
       resolve(githubUser);
     }, 3000);
   }))
-*!*
+
   .catch(error => alert(error.message));
-*/!*
+
 ```
 
 Normally, such `.catch` doesn't trigger at all. But if any of the promises above rejects (a network problem or invalid json or whatever), then it would catch it.
@@ -46,21 +46,21 @@ The code of a promise executor and promise handlers has an "invisible `try..catc
 
 For instance, this code:
 
-```js run
+```js
 new Promise((resolve, reject) => {
-*!*
+
   throw new Error("Whoops!");
-*/!*
+
 }).catch(alert); // Error: Whoops!
 ```
 
 ...Works exactly the same as this:
 
-```js run
+```js
 new Promise((resolve, reject) => {
-*!*
+
   reject(new Error("Whoops!"));
-*/!*
+
 }).catch(alert); // Error: Whoops!
 ```
 
@@ -70,25 +70,25 @@ This happens not only in the executor function, but in its handlers as well. If 
 
 Here's an example:
 
-```js run
+```js
 new Promise((resolve, reject) => {
   resolve("ok");
 }).then((result) => {
-*!*
+
   throw new Error("Whoops!"); // rejects the promise
-*/!*
+
 }).catch(alert); // Error: Whoops!
 ```
 
 This happens for all errors, not just those caused by the `throw` statement. For example, a programming error:
 
-```js run
+```js
 new Promise((resolve, reject) => {
   resolve("ok");
 }).then((result) => {
-*!*
+
   blabla(); // no such function
-*/!*
+
 }).catch(alert); // ReferenceError: blabla is not defined
 ```
 
@@ -104,7 +104,7 @@ If we `throw` inside `.catch`, then the control goes to the next closest error h
 
 In the example below the `.catch` successfully handles the error:
 
-```js run
+```js
 // the execution: catch -> then
 new Promise((resolve, reject) => {
 
@@ -121,7 +121,7 @@ Here the `.catch` block finishes normally. So the next successful `.then` handle
 
 In the example below we see the other situation with `.catch`. The handler `(*)` catches the error and just can't handle it (e.g. it only knows how to handle `URIError`), so it throws it again:
 
-```js run
+```js
 // the execution: catch -> catch
 new Promise((resolve, reject) => {
 
@@ -134,9 +134,9 @@ new Promise((resolve, reject) => {
   } else {
     alert("Can't handle such error");
 
-*!*
+
     throw error; // throwing this or another error jumps to the next catch
-*/!*
+
   }
 
 }).then(function() {
@@ -155,7 +155,7 @@ The execution jumps from the first `.catch` `(*)` to the next one `(**)` down th
 
 What happens when an error is not handled? For instance, we forgot to append `.catch` to the end of the chain, like here:
 
-```js untrusted run refresh
+```js
 new Promise(function() {
   noSuchFunction(); // Error here (no such function)
 })
@@ -174,14 +174,14 @@ The JavaScript engine tracks such rejections and generates a global error in tha
 
 In the browser we can catch such errors using the event `unhandledrejection`:
 
-```js run
-*!*
+```js
+
 window.addEventListener('unhandledrejection', function(event) {
   // the event object has two special properties:
   alert(event.promise); // [object Promise] - the promise that generated the error
   alert(event.reason); // Error: Whoops! - the unhandled error object
 });
-*/!*
+
 
 new Promise(function() {
   throw new Error("Whoops!");

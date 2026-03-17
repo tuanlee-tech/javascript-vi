@@ -60,7 +60,7 @@ To demonstrate this approach, for the sake of simplicity, instead of text-highli
 
 If you run the code below, the engine will "hang" for some time. For server-side JS that's clearly noticeable, and if you are running it in-browser, then try to click other buttons on the page -- you'll see that no other events get handled until the counting finishes.
 
-```js run
+```js
 let i = 0;
 
 let start = Date.now();
@@ -82,7 +82,7 @@ The browser may even show a "the script takes too long" warning.
 
 Let's split the job using nested `setTimeout` calls:
 
-```js run
+```js
 let i = 0;
 
 let start = Date.now();
@@ -121,7 +121,7 @@ To make them closer, let's make an improvement.
 
 We'll move the scheduling to the beginning of the `count()`:
 
-```js run
+```js
 let i = 0;
 
 let start = Date.now();
@@ -167,7 +167,7 @@ On one hand, that's great, because our function may create many elements, add th
 Here's the demo, the changes to `i` won't show up until the function finishes, so we'll see only the last value:
 
 
-```html run
+```html
 <div id="progress"></div>
 
 <script>
@@ -189,7 +189,7 @@ If we split the heavy task into pieces using `setTimeout`, then changes are pain
 
 This looks prettier:
 
-```html run
+```html
 <div id="progress"></div>
 
 <script>
@@ -220,7 +220,7 @@ Now the `<div>` shows increasing values of `i`, a kind of a progress bar.
 
 In an event handler we may decide to postpone some actions until the event bubbled up and was handled on all levels. We can do that by wrapping the code in zero delay `setTimeout`.
 
-In the chapter <info:dispatch-events> we saw an example: custom event `menu-open` is dispatched in `setTimeout`, so that it happens after the "click" event is fully handled.
+In the chapter &lt;info:dispatch-events&gt; we saw an example: custom event `menu-open` is dispatched in `setTimeout`, so that it happens after the "click" event is fully handled.
 
 ```js
 menu.onclick = function() {
@@ -238,7 +238,7 @@ menu.onclick = function() {
 
 ## Macrotasks and Microtasks
 
-Along with *macrotasks*, described in this chapter, there are *microtasks*, mentioned in the chapter <info:microtask-queue>.
+Along with *macrotasks*, described in this chapter, there are *microtasks*, mentioned in the chapter &lt;info:microtask-queue&gt;.
 
 Microtasks come solely from our code. They are usually created by promises: an execution of `.then/catch/finally` handler becomes a microtask. Microtasks are used "under the cover" of `await` as well, as it's another form of promise handling.
 
@@ -248,7 +248,7 @@ There's also a special function `queueMicrotask(func)` that queues `func` for ex
 
 For instance, take a look:
 
-```js run
+```js
 setTimeout(() => alert("timeout"));
 
 Promise.resolve()
@@ -275,7 +275,7 @@ If we'd like to execute a function asynchronously (after the current code), but 
 
 Here's an example with "counting progress bar", similar to the one shown previously, but `queueMicrotask` is used instead of `setTimeout`. You can see that it renders at the very end. Just like the synchronous code:
 
-```html run
+```html
 <div id="progress"></div>
 
 <script>
@@ -290,9 +290,9 @@ Here's an example with "counting progress bar", similar to the one shown previou
     } while (i % 1e3 != 0);
 
     if (i < 1e6) {
-  *!*
+  
       queueMicrotask(count);
-  */!*
+  
     }
 
   }
@@ -328,12 +328,12 @@ There's no UI or network event handling between microtasks: they run immediately
 
 So one may want to `queueMicrotask` to execute a function asynchronously, but within the environment state.
 
-:::info Web Workers
-For long heavy calculations that shouldn't block the event loop, we can use [Web Workers](https://html.spec.whatwg.org/multipage/workers.html).
+
+For long heavy calculations that shouldn't block the event loop, we can use [Web Workers](#).
 
 That's a way to run code in another, parallel thread.
 
 Web Workers can exchange messages with the main process, but they have their own variables, and their own event loop.
 
 Web Workers do not have access to DOM, so they are useful, mainly, for calculations, to use multiple CPU cores simultaneously.
-:::
+

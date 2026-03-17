@@ -31,43 +31,43 @@ Usually, that's a function. For historical reasons, a string of code can be pass
 
 For instance, this code calls `sayHi()` after one second:
 
-```js run
+```js
 function sayHi() {
   alert('Hello');
 }
 
-*!*
+
 setTimeout(sayHi, 1000);
-*/!*
+
 ```
 
 With arguments:
 
-```js run
+```js
 function sayHi(phrase, who) {
   alert( phrase + ', ' + who );
 }
 
-*!*
+
 setTimeout(sayHi, 1000, "Hello", "John"); // Hello, John
-*/!*
+
 ```
 
 If the first argument is a string, then JavaScript creates a function from it.
 
 So, this will also work:
 
-```js run no-beautify
+```js
 setTimeout("alert('Hello')", 1000);
 ```
 
 But using strings is not recommended, use arrow functions instead of them, like this:
 
-```js run no-beautify
+```js
 setTimeout(() => alert('Hello'), 1000);
 ```
 
-:::info Pass a function, but don't run it
+
 Novice developers sometimes make a mistake by adding brackets `()` after the function:
 
 ```js
@@ -90,7 +90,7 @@ clearTimeout(timerId);
 
 In the code below, we schedule the function and then cancel it (changed our mind). As a result, nothing happens:
 
-```js run no-beautify
+```js
 let timerId = setTimeout(() => alert("never happens"), 1000);
 alert(timerId); // timer identifier
 
@@ -118,7 +118,7 @@ To stop further calls, we should call `clearInterval(timerId)`.
 
 The following example will show the message every 2 seconds. After 5 seconds, the output is stopped:
 
-```js run
+```js
 // repeat with the interval of 2 seconds
 let timerId = setInterval(() => alert('tick'), 2000);
 
@@ -126,11 +126,11 @@ let timerId = setInterval(() => alert('tick'), 2000);
 setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 ```
 
-:::info Time goes on while `alert` is shown
+
 In most browsers, including Chrome and Firefox the internal timer continues "ticking" while showing `alert/confirm/prompt`.
 
 So if you run the code above and don't dismiss the `alert` window for some time, then the next `alert` will be shown immediately as you do it. The actual interval between alerts will be shorter than 2 seconds.
-:::
+
 
 ## Nested setTimeout
 
@@ -145,9 +145,9 @@ let timerId = setInterval(() => alert('tick'), 2000);
 
 let timerId = setTimeout(function tick() {
   alert('tick');
-*!*
+
   timerId = setTimeout(tick, 2000); // (*)
-*/!*
+
 }, 2000);
 ```
 
@@ -222,7 +222,7 @@ And here is the picture for the nested `setTimeout`:
 
 That's because a new call is planned at the end of the previous one.
 
-:::info Garbage collection and setInterval/setTimeout callback
+
 When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function from being garbage collected, even if there are no other references to it.
 
 ```js
@@ -245,7 +245,7 @@ So the function is scheduled to run "right after" the current script.
 
 For instance, this outputs "Hello", then immediately "World":
 
-```js run
+```js
 setTimeout(() => alert("World"));
 
 alert("Hello");
@@ -253,14 +253,14 @@ alert("Hello");
 
 The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current script is complete, so `"Hello"` is first, and `"World"` -- after it.
 
-There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter <info:event-loop>.
+There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter &lt;info:event-loop&gt;.
 
-:::info Zero delay is in fact not zero (in a browser)
+
 In the browser, there's a limitation of how often nested timers can run. The [HTML5 standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
 
 Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
 
-```js run
+```js
 let start = Date.now();
 let times = [];
 

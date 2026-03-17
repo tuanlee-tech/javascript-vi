@@ -15,7 +15,7 @@ In this chapter we'll learn how to do the same. And also, how to pass arrays to 
 A function can be called with any number of arguments, no matter how it is defined.
 
 Like here:
-```js run
+```js
 function sum(a, b) {
   return a + b;
 }
@@ -29,7 +29,7 @@ The rest of the parameters can be included in the function definition by using t
 
 For instance, to gather all arguments into array `args`:
 
-```js run
+```js
 function sumAll(...args) { // args is the name for the array
   let sum = 0;
 
@@ -47,7 +47,7 @@ We can choose to get the first parameters as variables, and gather only the rest
 
 Here the first two arguments go into variables and the rest go into `titles` array:
 
-```js run
+```js
 function showName(firstName, lastName, ...titles) {
   alert( firstName + ' ' + lastName ); // Julius Caesar
 
@@ -61,7 +61,7 @@ function showName(firstName, lastName, ...titles) {
 showName("Julius", "Caesar", "Consul", "Imperator");
 ```
 
-:::warning The rest parameters must be at the end
+
 The rest parameters gather all remaining arguments, so the following does not make sense and causes an error:
 
 ```js
@@ -79,7 +79,7 @@ There is also a special array-like object named `arguments` that contains all ar
 
 For instance:
 
-```js run
+```js
 function showName() {
   alert( arguments.length );
   alert( arguments[0] );
@@ -104,12 +104,12 @@ Also, it always contains all arguments. We can't capture them partially, like we
 
 So when we need these features, then rest parameters are preferred.
 
-:::info Arrow functions do not have `\arguments\"`"
+
 If we access the `arguments` object from an arrow function, it takes them from the outer "normal" function.
 
 Here's an example:
 
-```js run
+```js
 function f() {
   let showArg = () => alert(arguments[0]);
   showArg();
@@ -130,7 +130,7 @@ But sometimes we need to do exactly the reverse.
 
 For instance, there's a built-in function [Math.max](mdn:js/Math/max) that returns the greatest number from a list:
 
-```js run
+```js
 alert( Math.max(3, 5, 1) ); // 5
 ```
 
@@ -138,12 +138,12 @@ Now let's say we have an array `[3, 5, 1]`. How do we call `Math.max` with it?
 
 Passing it "as is" won't work, because `Math.max` expects a list of numeric arguments, not a single array:
 
-```js run
+```js
 let arr = [3, 5, 1];
 
-*!*
+
 alert( Math.max(arr) ); // NaN
-*/!*
+
 ```
 
 And surely we can't manually list items in the code `Math.max(arr[0], arr[1], arr[2])`, because we may be unsure how many there are. As our script executes, there could be a lot, or there could be none. And that would get ugly.
@@ -154,7 +154,7 @@ When `...arr` is used in the function call, it "expands" an iterable object `arr
 
 For `Math.max`:
 
-```js run
+```js
 let arr = [3, 5, 1];
 
 alert( Math.max(...arr) ); // 5 (spread turns array into a list of arguments)
@@ -162,7 +162,7 @@ alert( Math.max(...arr) ); // 5 (spread turns array into a list of arguments)
 
 We also can pass multiple iterables this way:
 
-```js run
+```js
 let arr1 = [1, -2, 3, 4];
 let arr2 = [8, 3, -8, 1];
 
@@ -172,7 +172,7 @@ alert( Math.max(...arr1, ...arr2) ); // 8
 We can even combine the spread syntax with normal values:
 
 
-```js run
+```js
 let arr1 = [1, -2, 3, 4];
 let arr2 = [8, 3, -8, 1];
 
@@ -181,13 +181,13 @@ alert( Math.max(1, ...arr1, 2, ...arr2, 25) ); // 25
 
 Also, the spread syntax can be used to merge arrays:
 
-```js run
+```js
 let arr = [3, 5, 1];
 let arr2 = [8, 9, 15];
 
-*!*
+
 let merged = [0, ...arr, 2, ...arr2];
-*/!*
+
 
 alert(merged); // 0,3,5,1,2,8,9,15 (0, then arr, then 2, then arr2)
 ```
@@ -196,7 +196,7 @@ In the examples above we used an array to demonstrate the spread syntax, but any
 
 For instance, here we use the spread syntax to turn the string into array of characters:
 
-```js run
+```js
 let str = "Hello";
 
 alert( [...str] ); // H,e,l,l,o
@@ -208,7 +208,7 @@ So, for a string, `for..of` returns characters and `...str` becomes `"H","e","l"
 
 For this particular task we could also use `Array.from`, because it converts an iterable (like a string) into an array:
 
-```js run
+```js
 let str = "Hello";
 
 // Array.from converts an iterable into an array
@@ -227,17 +227,17 @@ So, for the task of turning something into an array, `Array.from` tends to be mo
 
 ## Copy an array/object
 
-Remember when we talked about `Object.assign()` [in the past](info:object-copy#cloning-and-merging-object-assign)?
+Remember when we talked about `Object.assign()` [in the past](#)?
 
 It is possible to do the same thing with the spread syntax.
 
-```js run
+```js
 let arr = [1, 2, 3];
 
-*!*
+
 let arrCopy = [...arr]; // spread the array into a list of parameters
                         // then put the result into a new array
-*/!*
+
 
 // do the arrays have the same contents?
 alert(JSON.stringify(arr) === JSON.stringify(arrCopy)); // true
@@ -253,13 +253,13 @@ alert(arrCopy); // 1, 2, 3
 
 Note that it is possible to do the same thing to make a copy of an object:
 
-```js run
+```js
 let obj = { a: 1, b: 2, c: 3 };
 
-*!*
+
 let objCopy = { ...obj }; // spread the object into a list of parameters
                           // then return the result in a new object
-*/!*
+
 
 // do the objects have the same contents?
 alert(JSON.stringify(obj) === JSON.stringify(objCopy)); // true

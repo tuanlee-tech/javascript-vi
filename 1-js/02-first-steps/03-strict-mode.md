@@ -21,12 +21,12 @@ Ví dụ:
 
 Rất nhanh chúng ta sẽ tìm hiểu các hàm (một cách để nhóm các lệnh), vì vậy hãy lưu ý trước rằng `"use strict"` có thể được đặt ở đầu một hàm. Làm điều đó chỉ bật chế độ nghiêm ngặt trong hàm đó. Nhưng thông thường mọi người sử dụng nó cho toàn bộ script.
 
-:::warning Phải chắc chắn rằng đặt \use strict\" ở đầu"
+
 Bạn phải chắc chắn rằng đặt `"use strict"` ở đầu script, nếu không chế độ "strict" không được bật.
 
 Chế độ "strict" không được bật ở đây:
 
-```js no-strict
+```js
 alert("some code");
 // "use strict" bị bỏ qua--nó phải đặt ở đầu
 
@@ -38,15 +38,15 @@ alert("some code");
 Chỉ các chú thích được phép xuất hiện trước `"use strict"`.
 ````
 
-:::warning Không có cách hủy `use strict`
+
 Không có chỉ dẫn nào kiểu như `"no use strict"` để tắt chế độ strict sau khi đã bật.
 
 Một khi đã vào chế độ strict, không còn đường quay lại.
-:::
+
 
 ## Console của trình duyệt
 
-Khi bạn sử dụng [console của trình duyệt](info:devtools) để chạy mã, xin lưu ý rằng nó mặc định không sử dụng `use strict`.
+Khi bạn sử dụng [console của trình duyệt](#) để chạy mã, xin lưu ý rằng nó mặc định không sử dụng `use strict`.
 
 Thỉnh thoảng, khi `use strict` tạo ra sự khác biệt, bạn sẽ nhận được các kết quả không đúng.
 

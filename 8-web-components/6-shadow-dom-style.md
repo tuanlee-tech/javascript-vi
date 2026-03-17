@@ -12,7 +12,7 @@ For instance, we're making `<custom-dialog>` element that should be centered. Fo
 
 That's exactly what `:host` does:
 
-```html run autorun="no-epub" untrusted height=80
+```html
 <template id="tmpl">
   <style>
     /* the style will be applied from inside to the custom-dialog element */
@@ -69,12 +69,12 @@ Same as `:host`, but applied only if the shadow host matches the `selector`.
 
 For example, we'd like to center the `<custom-dialog>` only if it has `centered` attribute:
 
-```html run autorun="no-epub" untrusted height=80
+```html
 <template id="tmpl">
   <style>
-*!*
+
     :host([centered]) {
-*/!*
+
       position: fixed;
       left: 50%;
       top: 50%;
@@ -135,15 +135,15 @@ Now let's consider the situation with slots.
 Slotted elements come from light DOM, so they use document styles. Local styles do not affect slotted content.
 
 In the example below, slotted `<span>` is bold, as per document style, but does not take `background` from the local style:
-```html run autorun="no-epub" untrusted height=80
+```html
 <style>
-*!*
+
   span { font-weight: bold }
-*/!*
+
 </style>
 
 <user-card>
-  <div slot="username">*!*<span>John Smith</span>*/!*</div>
+  <div slot="username"><span>John Smith</span></div>
 </user-card>
 
 <script>
@@ -152,9 +152,9 @@ customElements.define('user-card', class extends HTMLElement {
     this.attachShadow({mode: 'open'});
     this.shadowRoot.innerHTML = `
       <style>
-*!*
+
       span { background: red; }
-*/!*
+
       </style>
       Name: <slot name="username"></slot>
     `;
@@ -169,9 +169,9 @@ If we'd like to style slotted elements in our component, there are two choices.
 
 First, we can style the `<slot>` itself and rely on CSS inheritance:
 
-```html run autorun="no-epub" untrusted height=80
+```html
 <user-card>
-  <div slot="username">*!*<span>John Smith</span>*/!*</div>
+  <div slot="username"><span>John Smith</span></div>
 </user-card>
 
 <script>
@@ -180,9 +180,9 @@ customElements.define('user-card', class extends HTMLElement {
     this.attachShadow({mode: 'open'});
     this.shadowRoot.innerHTML = `
       <style>
-*!*
+
       slot[name="username"] { font-weight: bold; }
-*/!*
+
       </style>
       Name: <slot name="username"></slot>
     `;
@@ -200,7 +200,7 @@ Another option is to use `::slotted(selector)` pseudo-class. It matches elements
 
 In our example, `::slotted(div)` selects exactly `<div slot="username">`, but not its children:
 
-```html run autorun="no-epub" untrusted height=80
+```html
 <user-card>
   <div slot="username">
     <div>John Smith</div>
@@ -213,9 +213,9 @@ customElements.define('user-card', class extends HTMLElement {
     this.attachShadow({mode: 'open'});
     this.shadowRoot.innerHTML = `
       <style>
-*!*
+
       ::slotted(div) { border: 1px solid red; }
-*/!*
+
       </style>
       Name: <slot name="username"></slot>
     `;
@@ -273,22 +273,22 @@ Custom CSS properties pierce through shadow DOM, they are visible everywhere, so
 
 Here's the full example:
 
-```html run autorun="no-epub" untrusted height=80
+```html
 <style>
-*!*
+
   user-card {
     --user-card-field-color: green;
   }
-*/!*
+
 </style>
 
 <template id="tmpl">
   <style>
-*!*
+
     .field {
       color: var(--user-card-field-color, black);
     }
-*/!*
+
   </style>
   <div class="field">Name: <slot name="username"></slot></div>
   <div class="field">Birthday: <slot name="birthday"></slot></div>

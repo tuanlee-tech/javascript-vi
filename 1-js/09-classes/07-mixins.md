@@ -18,10 +18,10 @@ The simplest way to implement a mixin in JavaScript is to make an object with us
 
 For instance here the mixin `sayHiMixin` is used to add some "speech" for `User`:
 
-```js run
-*!*
+```js
+
 // mixin
-*/!*
+
 let sayHiMixin = {
   sayHi() {
     alert(`Hello ${this.name}`);
@@ -31,9 +31,9 @@ let sayHiMixin = {
   }
 };
 
-*!*
+
 // usage:
-*/!*
+
 class User {
   constructor(name) {
     this.name = name;
@@ -61,7 +61,7 @@ Mixins can make use of inheritance inside themselves.
 
 For instance, here `sayHiMixin` inherits from `sayMixin`:
 
-```js run
+```js
 let sayMixin = {
   say(phrase) {
     alert(phrase);
@@ -72,9 +72,9 @@ let sayHiMixin = {
   __proto__: sayMixin, // (or we could use Object.setPrototypeOf to set the prototype here)
 
   sayHi() {
-    *!*
+    
     // call parent method
-    */!*
+    
     super.say(`Hello ${this.name}`); // (*)
   },
   sayBye() {
@@ -121,7 +121,7 @@ Or, a `menu` can generate the event `"select"` when a menu item is selected, and
 
 Here's the code:
 
-```js run
+```js
 let eventMixin = {
   /**
    * Subscribe to event, usage:
@@ -171,7 +171,7 @@ let eventMixin = {
 
 Usage:
 
-```js run
+```js
 // Make a class
 class Menu {
   choose(value) {
@@ -184,9 +184,9 @@ Object.assign(Menu.prototype, eventMixin);
 let menu = new Menu();
 
 // add a handler, to be called on selection:
-*!*
+
 menu.on("select", value => alert(`Value selected: ${value}`));
-*/!*
+
 
 // triggers the event => the handler above runs and shows:
 // Value selected: 123

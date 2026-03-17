@@ -19,12 +19,12 @@ Here's an example of how an array is destructured into variables:
 // we have an array with the name and surname
 let arr = ["John", "Smith"]
 
-*!*
+
 // destructuring assignment
 // sets firstName = arr[0]
 // and surname = arr[1]
 let [firstName, surname] = arr;
-*/!*
+
 
 alert(firstName); // John
 alert(surname);  // Smith
@@ -34,7 +34,7 @@ Now we can work with variables instead of array members.
 
 It looks great when combined with `split` or other array-returning methods:
 
-```js run
+```js
 let [firstName, surname] = "John Smith".split(' ');
 alert(firstName); // John
 alert(surname);  // Smith
@@ -42,7 +42,7 @@ alert(surname);  // Smith
 
 As you can see, the syntax is simple. There are several peculiar details though. Let's see more examples, to better understand it.
 
-:::info \Destructuring\" does not mean \"destructive\"."
+
 It's called "destructuring assignment," because it "destructurizes" by copying items into variables. But the array itself is not modified.
 
 It's just a shorter way to write:
@@ -53,14 +53,14 @@ let surname = arr[1];
 :::
 ````
 
-:::info Ignore elements using commas
+
 Unwanted elements of the array can also be thrown away via an extra comma:
 
-```js run
-*!*
+```js
+
 // second element is not needed
 let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
-*/!*
+
 
 alert( title ); // Consul
 :::
@@ -68,7 +68,7 @@ alert( title ); // Consul
 In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items is also skipped (as there are no variables for them).
 ````
 
-:::info Works with any iterable on the right-side
+
 
 ...Actually, we can use it with any iterable, not only arrays:
 
@@ -80,11 +80,11 @@ That works, because internally a destructuring assignment works by iterating ove
 ````
 
 
-:::info Assign to anything at the left-side
+
 We can use any "assignables" at the left side.
 
 For instance, an object property:
-```js run
+```js
 let user = {};
 [user.name, user.surname] = "John Smith".split(' ');
 
@@ -94,36 +94,36 @@ alert(user.surname); // Smith
 
 ````
 
-:::info Looping with .entries()
+
 In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
 
 We can use it with destructuring to loop over keys-and-values of an object:
 
-```js run
+```js
 let user = {
   name: "John",
   age: 30
 };
 
 // loop over keys-and-values
-*!*
+
 for (let [key, value] of Object.entries(user)) {
-*/!*
+
   alert(`${key}:${value}`); // name:John, then age:30
 }
 :::
 
 The similar code for a `Map` is simpler, as it's iterable:
 
-```js run
+```js
 let user = new Map();
 user.set("name", "John");
 user.set("age", "30");
 
-*!*
+
 // Map iterates as [key, value] pairs, very convenient for destructuring
 for (let [key, value] of user) {
-*/!*
+
   alert(`${key}:${value}`); // name:John, then age:30
 }
 ```
@@ -132,14 +132,14 @@ for (let [key, value] of user) {
 :::info Swap variables trick
 There's a well-known trick for swapping values of two variables using a destructuring assignment:
 
-```js run
+```js
 let guest = "Jane";
 let admin = "Pete";
 
 // Let's swap the values: make guest=Pete, admin=Jane
-*!*
+
 [guest, admin] = [admin, guest];
-*/!*
+
 
 alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
 :::
@@ -155,7 +155,7 @@ Usually, if the array is longer than the list at the left, the "extra" items are
 
 For example, here only two items are taken, and the rest is just ignored:
 
-```js run
+```js
 let [name1, name2] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
 alert(name1); // Julius
@@ -165,23 +165,23 @@ alert(name2); // Caesar
 
 If we'd like also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
 
-```js run
-let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
+```js
+let [name1, name2, ...rest] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 
-*!*
+
 // rest is array of items, starting from the 3rd one
 alert(rest[0]); // Consul
 alert(rest[1]); // of the Roman Republic
 alert(rest.length); // 2
-*/!*
+
 ```
 
 The value of `rest` is the array of the remaining array elements. 
 
 We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignment.
 
-```js run
-let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+```js
+let [name1, name2, ...titles] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
 // now titles = ["Consul", "of the Roman Republic"]
 ```
 
@@ -189,10 +189,10 @@ let [name1, name2, *!*...titles*/!*] = ["Julius", "Caesar", "Consul", "of the Ro
 
 If the array is shorter than the list of variables at the left, there'll be no errors. Absent values are considered undefined:
 
-```js run
-*!*
+```js
+
 let [firstName, surname] = [];
-*/!*
+
 
 alert(firstName); // undefined
 alert(surname); // undefined
@@ -200,11 +200,11 @@ alert(surname); // undefined
 
 If we want a "default" value to replace the missing one, we can provide it using `=`:
 
-```js run
-*!*
+```js
+
 // default values
 let [name = "Guest", surname = "Anonymous"] = ["Julius"];
-*/!*
+
 
 alert(name);    // Julius (from array)
 alert(surname); // Anonymous (default used)
@@ -214,7 +214,7 @@ Default values can be more complex expressions or even function calls. They are 
 
 For instance, here we use the `prompt` function for two defaults:
 
-```js run
+```js
 // runs only prompt for surname
 let [name = prompt('name?'), surname = prompt('surname?')] = ["Julius"];
 
@@ -238,16 +238,16 @@ We should have an existing object at the right side, that we want to split into 
 
 For instance:
 
-```js run
+```js
 let options = {
   title: "Menu",
   width: 100,
   height: 200
 };
 
-*!*
+
 let {title, width, height} = options;
-*/!*
+
 
 alert(title);  // Menu
 alert(width);  // 100
@@ -267,17 +267,17 @@ The pattern on the left side may be more complex and specify the mapping between
 
 If we want to assign a property to a variable with another name, for instance, make `options.width` go into the variable named `w`, then we can set the variable name using a colon:
 
-```js run
+```js
 let options = {
   title: "Menu",
   width: 100,
   height: 200
 };
 
-*!*
+
 // { sourceProperty: targetVariable }
 let {width: w, height: h, title} = options;
-*/!*
+
 
 // width -> w
 // height -> h
@@ -292,14 +292,14 @@ The colon shows "what : goes where". In the example above the property `width` g
 
 For potentially missing properties we can set default values using `"="`, like this:
 
-```js run
+```js
 let options = {
   title: "Menu"
 };
 
-*!*
+
 let {width = 100, height = 200, title} = options;
-*/!*
+
 
 alert(title);  // Menu
 alert(width);  // 100
@@ -310,14 +310,14 @@ Just like with arrays or function parameters, default values can be any expressi
 
 In the code below `prompt` asks for `width`, but not for `title`:
 
-```js run
+```js
 let options = {
   title: "Menu"
 };
 
-*!*
+
 let {width = prompt("width?"), title = prompt("title?")} = options;
-*/!*
+
 
 alert(title);  // Menu
 alert(width);  // (whatever the result of prompt is)
@@ -325,14 +325,14 @@ alert(width);  // (whatever the result of prompt is)
 
 We also can combine both the colon and equality:
 
-```js run
+```js
 let options = {
   title: "Menu"
 };
 
-*!*
+
 let {width: w = 100, height: h = 200, title} = options;
-*/!*
+
 
 alert(title);  // Menu
 alert(w);      // 100
@@ -341,7 +341,7 @@ alert(h);      // 200
 
 If we have a complex object with many properties, we can extract only what we need:
 
-```js run
+```js
 let options = {
   title: "Menu",
   width: 100,
@@ -362,29 +362,29 @@ We can use the rest pattern, just like we did with arrays. It's not supported by
 
 It looks like this:
 
-```js run
+```js
 let options = {
   title: "Menu",
   height: 200,
   width: 100
 };
 
-*!*
+
 // title = property named title
 // rest = object with the rest of properties
 let {title, ...rest} = options;
-*/!*
+
 
 // now title="Menu", rest={height: 200, width: 100}
 alert(rest.height);  // 200
 alert(rest.width);   // 100
 ```
 
-:::info Gotcha if there's no `let`
+
 In the examples above variables were declared right in the assignment: `let {…} = {…}`. Of course, we could use existing variables too, without `let`. But there's a catch.
 
 This won't work:
-```js run
+```js
 let title, width, height;
 
 // error in this line
@@ -393,7 +393,7 @@ let title, width, height;
 
 The problem is that JavaScript treats `{...}` in the main code flow (not inside another expression) as a code block. Such code blocks can be used to group statements, like this:
 
-```js run
+```js
 {
   // a code block
   let message = "Hello";
@@ -406,11 +406,11 @@ So here JavaScript assumes that we have a code block, that's why there's an erro
 
 To show JavaScript that it's not a code block, we can wrap the expression in parentheses `(...)`:
 
-```js run
+```js
 let title, width, height;
 
 // okay now
-*!*(*/!*{title, width, height} = {title: "Menu", width: 200, height: 100}*!*)*/!*;
+({title, width, height} = {title: "Menu", width: 200, height: 100});
 
 alert( title ); // Menu
 ```
@@ -422,7 +422,7 @@ If an object or an array contain other nested objects and arrays, we can use mor
 
 In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern at the left side of the assignment has the same structure to extract values from them:
 
-```js run
+```js
 let options = {
   size: {
     width: 100,
@@ -484,7 +484,7 @@ Destructuring comes to the rescue!
 
 We can pass parameters as an object, and the function immediately destructurizes them into variables:
 
-```js run
+```js
 // we pass object to function
 let options = {
   title: "My menu",
@@ -492,7 +492,7 @@ let options = {
 };
 
 // ...and it immediately expands it to variables
-function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}*/!*) {
+function showMenu({title = "Untitled", width = 200, height = 100, items = []}) {
   // title, items – taken from options,
   // width, height – defaults used
   alert( `${title} ${width} ${height}` ); // My Menu 200 100
@@ -504,20 +504,20 @@ showMenu(options);
 
 We can also use more complex destructuring with nested objects and colon mappings:
 
-```js run
+```js
 let options = {
   title: "My menu",
   items: ["Item1", "Item2"]
 };
 
-*!*
+
 function showMenu({
   title = "Untitled",
   width: w = 100,  // width goes to w
   height: h = 200, // height goes to h
   items: [item1, item2] // items first element goes to item1, second to item2
 }) {
-*/!*
+
   alert( `${title} ${w} ${h}` ); // My Menu 100 200
   alert( item1 ); // Item1
   alert( item2 ); // Item2
@@ -546,8 +546,8 @@ showMenu(); // this would give an error
 
 We can fix this by making `{}` the default value for the whole object of parameters:
 
-```js run
-function showMenu({ title = "Menu", width = 100, height = 200 }*!* = {}*/!*) {
+```js
+function showMenu({ title = "Menu", width = 100, height = 200 } = {}) {
   alert( `${title} ${width} ${height}` );
 }
 
@@ -560,7 +560,7 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 
 - Destructuring assignment allows for instantly mapping an object or array onto many variables.
 - The full object syntax:
-    ```js
+```js
     let {prop : varName = default, ...rest} = object
     ```
 
@@ -570,7 +570,7 @@ In the code above, the whole arguments object is `{}` by default, so there's alw
 
 - The full array syntax:
 
-    ```js
+```js
     let [item1 = default, item2, ...rest] = array
     ```
 

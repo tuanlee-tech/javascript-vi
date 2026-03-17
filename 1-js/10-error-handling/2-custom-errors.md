@@ -38,10 +38,10 @@ class Error {
 
 Now let's inherit `ValidationError` from it and try it in action:
 
-```js run untrusted
-*!*
+```js
+
 class ValidationError extends Error {
-*/!*
+
   constructor(message) {
     super(message); // (1)
     this.name = "ValidationError"; // (2)
@@ -67,7 +67,7 @@ The parent constructor also sets the `name` property to `"Error"`, so in the lin
 
 Let's try to use it in `readUser(json)`:
 
-```js run
+```js
 class ValidationError extends Error {
   constructor(message) {
     super(message);
@@ -95,9 +95,9 @@ try {
   let user = readUser('{ "age": 25 }');
 } catch (err) {
   if (err instanceof ValidationError) {
-*!*
+
     alert("Invalid data: " + err.message); // Invalid data: No field: name
-*/!*
+
   } else if (err instanceof SyntaxError) { // (*)
     alert("JSON Syntax Error: " + err.message);
   } else {
@@ -127,7 +127,7 @@ Also it's important that if `catch` meets an unknown error, then it rethrows it 
 
 The `ValidationError` class is very generic. Many things may go wrong. The property may be absent or it may be in a wrong format (like a string value for `age`). Let's make a more concrete class `PropertyRequiredError`, exactly for absent properties. It will carry additional information about the property that's missing.
 
-```js run
+```js
 class ValidationError extends Error {
   constructor(message) {
     super(message);
@@ -135,7 +135,7 @@ class ValidationError extends Error {
   }
 }
 
-*!*
+
 class PropertyRequiredError extends ValidationError {
   constructor(property) {
     super("No property: " + property);
@@ -143,7 +143,7 @@ class PropertyRequiredError extends ValidationError {
     this.property = property;
   }
 }
-*/!*
+
 
 // Usage
 function readUser(json) {
@@ -165,11 +165,11 @@ try {
   let user = readUser('{ "age": 25 }');
 } catch (err) {
   if (err instanceof ValidationError) {
-*!*
+
     alert("Invalid data: " + err.message); // Invalid data: No property: name
     alert(err.name); // PropertyRequiredError
     alert(err.property); // name
-*/!*
+
   } else if (err instanceof SyntaxError) {
     alert("JSON Syntax Error: " + err.message);
   } else {
@@ -186,13 +186,13 @@ Let's call it `MyError`.
 
 Here's the code with `MyError` and other custom error classes, simplified:
 
-```js run
+```js
 class MyError extends Error {
   constructor(message) {
     super(message);
-*!*
+
     this.name = this.constructor.name;
-*/!*
+
   }
 }
 
@@ -251,7 +251,7 @@ Then the code that calls `readUser` will only have to check for `ReadError`, not
 
 Here's the code that defines `ReadError` and demonstrates its use in `readUser` and `try..catch`:
 
-```js run
+```js
 class ReadError extends Error {
   constructor(message, cause) {
     super(message);
@@ -279,25 +279,25 @@ function readUser(json) {
   try {
     user = JSON.parse(json);
   } catch (err) {
-*!*
+
     if (err instanceof SyntaxError) {
       throw new ReadError("Syntax Error", err);
     } else {
       throw err;
     }
-*/!*
+
   }
 
   try {
     validateUser(user);
   } catch (err) {
-*!*
+
     if (err instanceof ValidationError) {
       throw new ReadError("Validation Error", err);
     } else {
       throw err;
     }
-*/!*
+
   }
 
 }
@@ -306,11 +306,11 @@ try {
   readUser('{bad json}');
 } catch (e) {
   if (e instanceof ReadError) {
-*!*
+
     alert(e);
     // Original error: SyntaxError: Unexpected token b in JSON at position 1
     alert("Original error: " + e.cause);
-*/!*
+
   } else {
     throw e;
   }

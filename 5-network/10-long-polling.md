@@ -67,7 +67,7 @@ subscribe();
 
 As you can see, `subscribe` function makes a fetch, then waits for the response, handles it and calls itself again.
 
-:::warning Server should be ok with many pending connections
+
 The server architecture must be able to work with many pending connections.
 
 Certain server architectures run one process per connection, resulting in there being as many processes as there are connections, while each process consumes quite a bit of memory. So, too many connections will just consume it all.
@@ -77,7 +77,7 @@ That's often the case for backends written in languages like PHP and Ruby.
 Servers written using Node.js usually don't have such problems.
 
 That said, it isn't a programming language issue. Most modern languages, including PHP and Ruby allow to implement a proper backend. Just please make sure that your server architecture works fine with many simultaneous connections.
-:::
+
 
 ## Demo: a chat
 
@@ -95,4 +95,4 @@ If messages come very often, then the chart of requesting-receiving messages, pa
 
 Every message is a separate request, supplied with headers, authentication overhead, and so on.
 
-So, in this case, another method is preferred, such as [Websocket](info:websocket) or [Server Sent Events](info:server-sent-events).
+So, in this case, another method is preferred, such as [Websocket](#) or [Server Sent Events](#).

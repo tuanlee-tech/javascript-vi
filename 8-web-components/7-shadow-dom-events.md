@@ -10,7 +10,7 @@ So, to keep the details encapsulated, the browser *retargets* the event.
 
 Here's a simple example:
 
-```html run autorun="no-epub" untrusted height=60
+```html
 <user-card></user-card>
 
 <script>
@@ -41,11 +41,11 @@ Event retargeting is a great thing to have, because the outer document doesn't h
 
 For example, if a user clicks on `<span slot="username">` in the example below, the event target is exactly this `span` element, for both shadow and light handlers:
 
-```html run autorun="no-epub" untrusted height=60
+```html
 <user-card id="userCard">
-*!*
+
   <span slot="username">John Smith</span>
-*/!*
+
 </user-card>
 
 <script>
@@ -94,11 +94,11 @@ In the example above, the flattened DOM is:
 
 So, for a click on `<span slot="username">`, a call to `event.composedPath()` returns an array: [`span`, `slot`, `div`, `shadow-root`, `user-card`, `body`, `html`, `document`, `window`]. That's exactly the parent chain from the target element in the flattened DOM, after the composition.
 
-:::warning Shadow tree details are only provided for `{mode:'open'}` trees
+
 If the shadow tree was created with `{mode: 'closed'}`, then the composed path starts from the host: `user-card` and upwards.
 
 That's the similar principle as for other methods that work with shadow DOM. Internals of closed trees are completely hidden.
-:::
+
 
 
 ## event.composed
@@ -132,7 +132,7 @@ When we dispatch custom events, we need to set both `bubbles` and `composed` pro
 
 For example, here we create `div#inner` in the shadow DOM of `div#outer` and trigger two events on it. Only the one with `composed: true` makes it outside to the document:
 
-```html run untrusted height=0
+```html
 <div id="outer"></div>
 
 <script>
@@ -151,17 +151,17 @@ document.addEventListener('test', event => alert(event.detail));
 
 inner.dispatchEvent(new CustomEvent('test', {
   bubbles: true,
-*!*
+
   composed: true,
-*/!*
+
   detail: "composed"
 }));
 
 inner.dispatchEvent(new CustomEvent('test', {
   bubbles: true,
-*!*
+
   composed: false,
-*/!*
+
   detail: "not composed"
 }));
 </script>
@@ -173,9 +173,9 @@ Events only cross shadow DOM boundaries if their `composed` flag is set to `true
 
 Built-in events mostly have `composed: true`, as described in the relevant specifications:
 
-- UI Events <https://www.w3.org/TR/uievents>.
-- Touch Events <https://w3c.github.io/touch-events>.
-- Pointer Events <https://www.w3.org/TR/pointerevents>.
+- UI Events &lt;https://www.w3.org/TR/uievents&gt;.
+- Touch Events &lt;https://w3c.github.io/touch-events&gt;.
+- Pointer Events &lt;https://www.w3.org/TR/pointerevents&gt;.
 - ...And so on.
 
 Some built-in events that have `composed: false`:

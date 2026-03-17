@@ -1,7 +1,7 @@
 
 # Đối tượng
 
-Như chúng ta đã biết ở chương <info:types>, có tám loại dữ liệu trong JavaScript. Bảy trong số chúng được gọi là "nguyên thủy", bởi vì giá trị của chúng chỉ chứa một thứ duy nhất (đó có thể là một chuỗi hoặc một số hoặc cái gì đó khác).
+Như chúng ta đã biết ở chương &lt;info:types&gt;, có tám loại dữ liệu trong JavaScript. Bảy trong số chúng được gọi là "nguyên thủy", bởi vì giá trị của chúng chỉ chứa một thứ duy nhất (đó có thể là một chuỗi hoặc một số hoặc cái gì đó khác).
 
 Ngược lại, các đối tượng được sử dụng để lưu trữ các bộ sưu tập có khóa của các dữ liệu khác nhau và các thực thể phức tạp hơn. Trong JavaScript, các đối tượng thâm nhập vào hầu hết mọi khía cạnh của ngôn ngữ. Vì vậy, chúng ta phải hiểu chúng trước khi đi sâu vào bất cứ nơi nào khác.
 
@@ -89,7 +89,7 @@ Thuộc tính cuối cùng trong danh sách có thể kết thúc bằng dấu p
 ```js
 let user = {
   name: "John",
-  age: 30*!*,*/!*
+  age: 30,
 }
 ```
 Đó được gọi là dấu phẩy "trailing" hay "hanging". Nó khiến dễ dàng thêm/xóa/di chuyển xung quanh các thuộc tính, bởi vì tất cả các dòng trở nên giống nhau.
@@ -98,7 +98,7 @@ let user = {
 
 Với thuộc tính nhiều từ, truy cập bằng dấu chấm không hoạt động:
 
-```js run
+```js
 // sẽ có lỗi cú pháp
 user.likes birds = true
 ```
@@ -109,7 +109,7 @@ Dấu chấm yêu cầu khóa phải là một biến định danh hợp lệ. �
 
 Có một thay thế là "dấu ngoặc vuông" sẽ hoạt động với bất cứ chuỗi nào:
 
-```js run
+```js
 let user = {};
 
 // set
@@ -137,7 +137,7 @@ user[key] = true;
 
 Ví dụ:
 
-```js run
+```js
 let user = {
   name: "John",
   age: 30
@@ -151,7 +151,7 @@ alert( user[key] ); // John (nếu nhập "name")
 
 Dấu chấm không thể dùng theo cách như vậy:
 
-```js run
+```js
 let user = {
   name: "John",
   age: 30
@@ -167,13 +167,13 @@ Chúng ta có thể sử dụng dấu ngoặc vuông trong một object literal,
 
 Ví dụ:
 
-```js run
+```js
 let fruit = prompt("Mua loại trái cây nào?", "apple");
 
 let bag = {
-*!*
+
   [fruit]: 5, // tên của thuộc tính được lấy từ biến fruit
-*/!*
+
 };
 
 alert( bag.apple ); // 5 nếu fruit="apple"
@@ -184,7 +184,7 @@ alert( bag.apple ); // 5 nếu fruit="apple"
 Do vậy, nếu người dùng nhập `"apple"`, `bag` sẽ thành `{apple: 5}`.
 
 Về cơ bản, nó hoạt động giống như:
-```js run
+```js
 let fruit = prompt("Mua loại trái cây nào?", "apple");
 let bag = {};
 
@@ -213,7 +213,7 @@ Trong code chúng ta thường sử dụng các biến sẵn có làm giá trị
 
 Ví dụ:
 
-```js run
+```js
 function makeUser(name, age) {
   return {
     name: name,
@@ -232,13 +232,13 @@ Thay vì `name:name` chúng ta có thể viết `name`, như thế này:
 
 ```js
 function makeUser(name, age) {
-*!*
+
   return {
     name, // giống như name: name
     age,  // giống như age: age
     // ...
   };
-*/!*
+
 }
 ```
 
@@ -257,7 +257,7 @@ Như ta đã biết, một biến không thể có tên trùng với những t�
 
 Nhưng thuộc tính của object thì không giới hạn:
 
-```js run
+```js
 // những thuộc tính này đều đúng
 let obj = {
   for: 1,
@@ -274,7 +274,7 @@ Các loại khác được tự động chuyển thành chuỗi.
 
 Chẳng hạn, số `0` trở thành một chuỗi `"0"` khi được sử dụng làm khóa thuộc tính:
 
-```js run
+```js
 let obj = {
   0: "test" // giống như "0": "test"
 };
@@ -286,7 +286,7 @@ alert( obj[0] ); // test (có cùng thuộc tính)
 
 Có một vấn đề nhỏ với thuộc tính đặc biệt có tên `__proto__`. Chúng ta không thể đặt nó thành non-object value:
 
-```js run
+```js
 let obj = {};
 obj.__proto__ = 5; // assign a number
 alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
@@ -294,7 +294,7 @@ alert(obj.__proto__); // [object Object] - the value is an object, didn't work a
 
 Như chúng ta thấy từ code, việc gán cho số `5` bị bỏ qua.
 
-Chúng ta sẽ đề cập đến bản chất đặc biệt của `__proto__` trong [các chương tiếp theo](info:prototype-inheritance) và đề xuất [các cách khắc phục](info:prototype-methods) hành vi như vậy.
+Chúng ta sẽ đề cập đến bản chất đặc biệt của `__proto__` trong [các chương tiếp theo](#) và đề xuất [các cách khắc phục](#) hành vi như vậy.
 
 ## Kiểm tra sự tồn tại của thuộc tính, toán tử "in"
 
@@ -302,7 +302,7 @@ Một tính năng đáng chú ý của các đối tượng trong JavaScript, so
 
 Việc truy cập thuộc tính không tồn tại chỉ trả về `undefined`. Vì vậy, chúng ta có thể dễ dàng kiểm tra xem thuộc tính có tồn tại hay không:
 
-```js run
+```js
 let user = {};
 
 alert( user.noSuchProperty === undefined ); // true có nghĩa là "no such property"
@@ -317,7 +317,7 @@ Cú pháp:
 
 Ví dụ:
 
-```js run
+```js
 let user = { name: "John", age: 30 };
 
 alert( "age" in user ); // true, user.age tồn tại
@@ -328,12 +328,12 @@ Hãy lưu ý rằng ở phía bên trái của `in` phải có *tên thuộc tí
 
 Nếu chúng ta bỏ qua dấu ngoặc kép, điều đó có nghĩa là một biến chứa tên thực tế sẽ được kiểm tra. Ví dụ:
 
-```js run
+```js
 let user = { age: 30 };
 
 let key = "age";
 
-alert( *!*key*/!* in user ); // true, thuộc tính "age" tồn tại
+alert( key in user ); // true, thuộc tính "age" tồn tại
 ```
 
 Tại sao `in` tồn tại? Không phải nó quá đủ để so sánh `undefined` sao?
@@ -342,7 +342,7 @@ Vâng, thường thì so sánh với `undefined` là đủ. Nhưng có một tr�
 
 Đó là khi một thuộc tính trong đối tượng tồn tại, nhưng lưu trữ là `undefined`:
 
-```js run
+```js
 let obj = {
   test: undefined
 };
@@ -370,7 +370,7 @@ for (key in object) {
 
 Ví dụ, in ra tất cả các thuộc tính của `user`:
 
-```js run
+```js
 let user = {
   name: "John",
   age: 30,
@@ -398,7 +398,7 @@ Câu trả lời là: "sắp xếp theo kiểu đặc biệt": thuộc tính s�
 
 Ví dụ: hãy xem xét một đối tượng có chứa mã điện thoại:
 
-```js run
+```js
 let codes = {
   "49": "Đức",
   "41": "Thụy Sĩ",
@@ -407,11 +407,11 @@ let codes = {
   "1": "Mỹ"
 };
 
-*!*
+
 for (let code in codes) {
   alert(code); // 1, 41, 44, 49
 }
-*/!*
+
 ```
 
 Đối tượng có thể được sử dụng để đề xuất một danh sách các tùy chọn cho người dùng. Nếu chúng ta tạo một trang chủ yếu cho người Đức thì có lẽ chúng ta muốn `49` đứng đầu tiên.
@@ -423,12 +423,12 @@ Nhưng nếu chúng ta chạy code, chúng ta sẽ thấy một bức tranh hoà
 
 Các mã điện thoại đi theo thứ tự tăng dần, bởi vì chúng là số nguyên. Vì vậy, chúng ta thấy `1, 41, 44, 49`.
 
-:::info Integer properties? What's that?
+
 Thuật ngữ "thuộc tính số nguyên" ở đây có nghĩa là một chuỗi có thể được chuyển đổi thành và từ một số nguyên mà không thay đổi.
 
 Do đó, "49" là thuộc thuộc tính số nguyên, vì khi nó được chuyển đổi sang số nguyên và ngược lại, nó vẫn giống nhau. Nhưng "+49" và "1.2" thì không:
 
-```js run
+```js
 // Math.trunc là một hàm dựng sẵn để xóa một phần của số thập phân
 alert( String(Math.trunc(Number("49"))) ); // "49", giống nhau, thuộc tính số nguyên
 alert( String(Math.trunc(Number("+49"))) ); // "49", không giống "+49" ⇒ không phải thuộc tính số nguyên
@@ -438,16 +438,16 @@ alert( String(Math.trunc(Number("1.2"))) ); // "1", không giống "1.2" ⇒ kh�
 
 ...Mặt khác, nếu các khóa không phải là số nguyên, thì chúng được liệt kê theo thứ tự tạo, Ví dụ:
 
-```js run
+```js
 let user = {
   name: "John",
   surname: "Smith"
 };
 user.age = 25; // thêm một thuộc tính nữa
 
-*!*
+
 // thuộc tính không nguyên được liệt kê theo thứ tự tạo
-*/!*
+
 for (let prop in user) {
   alert( prop ); // name, surname, age
 }
@@ -457,7 +457,7 @@ Vì vậy, để khắc phục sự cố với mã điện thoại, chúng ta c�
 
 Như sau:
 
-```js run
+```js
 let codes = {
   "+49": "Đức",
   "+41": "Thụy Sỹ",

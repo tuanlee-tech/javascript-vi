@@ -16,7 +16,7 @@ An object
 
 One of the best things about objects is that we can store a function as one of its properties.
 
-```js run
+```js
 let john = {
   name: "John",
   sayHi: function() {
@@ -54,7 +54,7 @@ For instance, there exists a string method [str.toUpperCase()](https://developer
 
 Here's how it works:
 
-```js run
+```js
 let str = "Hello";
 
 alert( str.toUpperCase() ); // HELLO
@@ -72,23 +72,23 @@ The JavaScript engine highly optimizes this process. It may even skip the creati
 
 A number has methods of its own, for instance, [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to the given precision:
 
-```js run
+```js
 let n = 1.23456;
 
 alert( n.toFixed(2) ); // 1.23
 ```
 
-We'll see more specific methods in chapters <info:number> and <info:string>.
+We'll see more specific methods in chapters &lt;info:number&gt; and &lt;info:string&gt;.
 
 
-:::warning Constructors `String/Number/Boolean` are for internal use only
+
 Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like `new Number(1)` or `new Boolean(false)`.
 
 In JavaScript, that's also possible for historical reasons, but highly **unrecommended**. Things will go crazy in several places.
 
 For instance:
 
-```js run
+```js
 alert( typeof 0 ); // "number"
 
 alert( typeof new Number(0) ); // "object"!
@@ -96,7 +96,7 @@ alert( typeof new Number(0) ); // "object"!
 
 Objects are always truthy in `if`, so here the alert will show up:
 
-```js run
+```js
 let zero = new Number(0);
 
 if (zero) { // zero is true, because it's an object
@@ -118,7 +118,7 @@ The special primitives `null` and `undefined` are exceptions. They have no corre
 
 An attempt to access a property of such value would give the error:
 
-```js run
+```js
 alert(null.test); // error
 :::
 

@@ -30,7 +30,7 @@ Generally, we have two parties in the process:
 
 Here's the full example (without `fetch` yet):
 
-```js run
+```js
 let controller = new AbortController();
 let signal = controller.signal;
 
@@ -77,7 +77,7 @@ When a fetch is aborted, its promise rejects with an error `AbortError`, so we s
 
 Here's the full example with `fetch` aborted after 1 second:
 
-```js run async
+```js
 // abort in 1 second
 let controller = new AbortController();
 setTimeout(() => controller.abort(), 1000);

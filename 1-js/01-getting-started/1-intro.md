@@ -12,11 +12,11 @@ Các tập lệnh (scripts) được cung cấp và thực thi dưới dạng v�
 
 Ở khía cạnh này, JavaScript rất khác với ngôn ngữ lập trình có tên là [Java](https://vi.wikipedia.org/wiki/Java_(ng%C3%B4n_ng%E1%BB%AF_l%E1%BA%ADp_tr%C3%ACnh)).
 
-:::info Vì sao nó được gọi là <u>Java</u>Script?
+
 Khi Javascript được tạo ra, ban đầu nó có một cái tên khác: "LiveScript". Nhưng lúc đó Java đang rất phổ biến, vì vậy người ta đã quyết định rằng đặt một ngôn ngữ mới là "em trai" của Java sẽ có ích.
 
 Nhưng với sự phát triển của mình, JavaScript đã trở thành một ngôn ngữ hoàn toàn độc lập, với những đặc điểm kỹ thuật riêng của mình được gọi là [ECMAScript](https://vi.wikipedia.org/wiki/ECMAScript), và bây giờ nó chẳng liên quan gì đến Java cả.
-:::
+
 
 Ngày nay, JavaScript không những có thể thực thi trên trình duyệt, mà còn trên cả máy chủ (server), hoặc trên bất cứ nơi nào có chương trình tên là [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
 
@@ -30,7 +30,7 @@ Những engine khác nhau thì sẽ có những "tên mã" khác nhau. Chẳng h
 
 Nên ghi nhớ các thuật ngữ trên bởi vì chúng được sử dụng khá nhiều trong các bài viết dành cho nhà phát triển (developer) trên Internet, và cả chúng ta. Ví dụ, nếu "tính năng X được hỗ trợ bởi V8", vậy nó có lẽ sẽ hoạt động trên Chrome và Opera.
 
-:::info Engine hoạt động như thế nào?
+
 
 Engine khá phức tạp, tuy nhiên có thể hiểu đơn giản như sau:
 
@@ -39,7 +39,7 @@ Engine khá phức tạp, tuy nhiên có thể hiểu đơn giản như sau:
 3. Và sau đó mã máy chạy, khá nhanh.
 
 Engine áp dụng tối ưu hóa ở mỗi bước của quá trình. Nó thậm chí còn theo dõi tập lệnh đã biên dịch khi nó chạy, phân tích dữ liệu chạy qua nó và tối ưu hóa hơn nữa mã máy dựa trên kiến thức đó.
-:::
+
 
 ## JavaScript có thể làm gì trong trình duyệt?
 
@@ -83,11 +83,11 @@ Những giới hạn trên sẽ không tồn tại nếu như Javascript đượ
 
 Có ít nhất *ba* điều tuyệt vời ở Javascript:
 
-:::details So sánh
+
 + Tích hợp hoàn toàn với HTML/CSS.
 + Những điều đơn giản được thực hiện một cách đơn giản.
 + Được hỗ trợ bởi tất cả các trình duyệt chính và được bật theo mặc định.
-:::
+
 
 Javascript là công nghệ trình duyệt duy nhất kết hợp cả 3 điều trên.
 
@@ -112,7 +112,7 @@ Có thể kể đến một số ngôn ngữ:
 - [Flow](http://flow.org/) cũng thêm một vài cách gõ dữ liệu, nhưng theo một cách khác. Phát triển bởi Facebook.
 - [Dart](https://www.dartlang.org/) là một ngôn ngữ độc lập có engine riêng và có thể chạy trong môi trường khác ngoài trình duyệt, nó cũng có thể được dịch sang Javascript. Phát triển bởi Google.
 - [Brython](https://brython.info/) là một trình chuyển tiếp Python sang JavaScript cho phép viết các ứng dụng bằng Python thuần túy mà không cần JavaScript.
-- [Kotlin](https://kotlinlang.org/docs/reference/js-overview.html) là một ngôn ngữ lập trình hiện đại, ngắn gọn và an toàn, mà có thể nhắm đến trình duyệt hoặc Node.
+- [Kotlin](#) là một ngôn ngữ lập trình hiện đại, ngắn gọn và an toàn, mà có thể nhắm đến trình duyệt hoặc Node.
 
 Sẽ có nhiều hơn số kể trên. Dĩ nhiên, ngay cả khi chúng ta sử dụng một trong những ngôn ngữ đó, chúng ta cũng nên biết Javascript để thực sự hiểu chúng ta đang làm gì.
 

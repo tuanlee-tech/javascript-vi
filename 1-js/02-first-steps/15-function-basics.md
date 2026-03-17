@@ -32,15 +32,15 @@ Hàm mới của chúng ta có thể được gọi bằng tên của nó:: `sho
 
 Ví dụ:
 
-```js run
+```js
 function showMessage() {
   alert( 'Xin chào mọi người!' );
 }
 
-*!*
+
 showMessage();
 showMessage();
-*/!*
+
 ```
 
 Việc gọi `showMessage()` thực thi đoạn mã trong hàm. Ở đây chúng ta sẽ thấy thông điệp được hiển thị hai lần.
@@ -55,11 +55,11 @@ Một biến được khai báo bên trong một hàm chỉ nhìn thấy đượ
 
 Ví dụ:
 
-```js run
+```js
 function showMessage() {
-*!*
+
   let message = "Xin chào, tôi là JavaScript!"; // biến cục bộ
-*/!*
+
 
   alert( message );
 }
@@ -73,11 +73,11 @@ alert( message ); // <-- Lỗi! Đây là cục bộ đối với hàm
 
 Một hàm cũng có thể truy cập một biến ngoài, ví dụ:
 
-```js run no-beautify
-let *!*userName*/!* = 'John';
+```js
+let userName = 'John';
 
 function showMessage() {
-  let message = 'Xin chào, ' + *!*userName*/!*;
+  let message = 'Xin chào, ' + userName;
   alert(message);
 }
 
@@ -88,52 +88,52 @@ Hàm có toàn quyền truy cập vào biến ngoài. Nó cũng có thể thay �
 
 Ví dụ:
 
-```js run
-let *!*userName*/!* = 'John';
+```js
+let userName = 'John';
 
 function showMessage() {
-  *!*userName*/!* = "Bob"; // (1) đã thay đổi biến ngoài
+  userName = "Bob"; // (1) đã thay đổi biến ngoài
 
-  let message = 'Hello, ' + *!*userName*/!*;
+  let message = 'Hello, ' + userName;
   alert(message);
 }
 
-alert( userName ); // *!*John*/!* trước khi hàm được gọi
+alert( userName ); // John trước khi hàm được gọi
 
 showMessage();
 
-alert( userName ); // *!*Bob*/!*, the value was modified by the function
+alert( userName ); // Bob, the value was modified by the function
 ```
 
 Biến ngoài chỉ được sử dụng nếu không có biến cục bộ trùng tên với nó.
 
 Nếu một biến cùng tên được khai báo bên trong hàm thì nó sẽ *che khuất* biến bên ngoài. Ví dụ: trong đoạn mã bên dưới, hàm sử dụng `userName` cục bộ. Biến bên ngoài bị bỏ qua:
 
-```js run
+```js
 let userName = 'John';
 
 function showMessage() {
-*!*
-  let userName = "Bob"; // declare a local variable
-*/!*
 
-  let message = 'Xin chào, ' + userName; // *!*Bob*/!*
+  let userName = "Bob"; // declare a local variable
+
+
+  let message = 'Xin chào, ' + userName; // Bob
   alert(message);
 }
 
 // the function will create and use its own userName
 showMessage();
 
-alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
+alert( userName ); // John, unchanged, the function did not access the outer variable
 ```
 
-:::info Biến toàn cục
+
 Các biến được khai báo bên ngoài bất kỳ hàm nào, chẳng hạn như biến ngoài `userName` trong mã ở trên, được gọi là *toàn cục*.
 
 Các biến toàn cục có thể nhìn thấy được từ bất kỳ hàm nào (trừ phi bị che bởi biến cục bộ).
 
 Một cách thực hành tốt là giảm thiểu việc sử dụng các biến toàn cục. Mã nguồn hiện đại có ít hoặc không có toàn cục. Hầu hết các biến đều nằm trong hàm của chúng. Tuy nhiên, đôi khi chúng có thể hữu ích để lưu trữ dữ liệu cấp dự án.
-:::
+
 
 ## Các tham số
 
@@ -141,15 +141,15 @@ Chúng ta có thể truyền dữ liệu tùy ý đến các hàm bằng cách s
 
 In the example below, the function has two parameters: `from` and `text`.
 
-```js run
-function showMessage(*!*from, text*/!*) { // arguments: from, text
+```js
+function showMessage(from, text) { // arguments: from, text
   alert(from + ': ' + text);
 }
 
-*!*
+
 showMessage('Ann', 'Xin chào!'); // Ann: Hello! (*)
 showMessage('Ann', "Có chuyện gì á?"); // Ann: What's up? (**)
-*/!*
+
 ```
 
 Khi hàm được gọi trong các dòng `(*)` và `(**)`, các giá trị đã cho sẽ được sao chép sang các biến cục bộ `from` và `text`. Sau đó, hàm sẽ sử dụng chúng.
@@ -157,12 +157,12 @@ Khi hàm được gọi trong các dòng `(*)` và `(**)`, các giá trị đã 
 Đây là một ví dụ nữa: chúng ta có một biến `from` và truyền nó cho hàm. Xin lưu ý: hàm thay đổi `from`, nhưng sự thay đổi không được nhìn thấy từ bên ngoài, vì hàm luôn nhận được bản sao của giá trị:
 
 
-```js run
+```js
 function showMessage(from, text) {
 
-*!*
+
   from = '*' + from + '*'; // khiến "from" trông thân thiện hơn
-*/!*
+
 
   alert( from + ': ' + text );
 }
@@ -189,8 +189,8 @@ showMessage("Ann");
 
 Nếu chúng ta muốn sử dụng một `text` "mặc định" trong trường hợp này thì chúng ta có thể chỉ định nó sau `=`:
 
-```js run
-function showMessage(from, *!*text = "không có văn bản nào được đưa ra"*/!*) {
+```js
+function showMessage(from, text = "không có văn bản nào được đưa ra") {
   alert( from + ": " + text );
 }
 
@@ -201,18 +201,18 @@ Bây giờ nếu tham số `text` không được truyền, nó sẽ nhận giá
 
 Ở đây `"không có văn bản nào được đưa ra"` là một chuỗi, nhưng nó có thể là một biểu thức phức tạp hơn, chỉ được đánh giá và gán nếu thiếu tham số. Vì vậy, điều này cũng có thể:
 
-```js run
+```js
 function showMessage(from, text = anotherFunction()) {
   // anotherFunction() chỉ được thực hiện nếu không có văn bản nào được đưa ra
   // kết quả của nó trở thành giá trị của văn bản
 }
 ```
 
-:::info Đánh giá các tham số mặc định
+
 Trong JavaScript, một tham số mặc định được đánh giá mỗi khi hàm được gọi mà không có tham số tương ứng.
 
 Trong ví dụ trên, `anotherFunction()` được gọi mỗi khi `showMessage()` được gọi mà không có tham số `text`.
-:::
+
 
 ### Các tham số mặc định thay thế
 
@@ -220,13 +220,13 @@ Sometimes it makes sense to set default values for parameters not in the functio
 
 To check for an omitted parameter, we can compare it with `undefined`:
 
-```js run
+```js
 function showMessage(text) {
-*!*
+
   if (text === undefined) {
     text = 'tin nhắn rỗng';
   }
-*/!*
+
 
   alert(text);
 }
@@ -244,9 +244,9 @@ function showMessage(text) {
 }
 ```
 
-Các công cụ JavaScript hiện đại hỗ trợ [toán tử hợp nhất nullish](info:nullish-coalescing-operator) `??`, sẽ tốt hơn khi các giá trị sai, chẳng hạn như `0`, được coi là thông thường:
+Các công cụ JavaScript hiện đại hỗ trợ [toán tử hợp nhất nullish](#) `??`, sẽ tốt hơn khi các giá trị sai, chẳng hạn như `0`, được coi là thông thường:
 
-```js run
+```js
 // if there's no "count" parameter, show "unknown"
 function showCount(count) {
   alert(count ?? "unknown");
@@ -263,9 +263,9 @@ Một hàm có thể trả về một giá trị làm kết quả cho mã gọi 
 
 Ví dụ đơn giản nhất là hàm tính tổng hai giá trị:
 
-```js run no-beautify
+```js
 function sum(a, b) {
-  *!*return*/!* a + b;
+  return a + b;
 }
 
 let result = sum(1, 2);
@@ -276,16 +276,16 @@ Lệnh `return` có thể ở bất kỳ vị trí nào của hàm. Khi thực t
 
 Có thể có nhiều lần xuất hiện của `return` trong một hàm. Ví dụ:
 
-```js run
+```js
 function checkAge(age) {
   if (age >= 18) {
-*!*
+
     return true;
-*/!*
+
   } else {
-*!*
+
     return confirm('Bạn có sự cho phép của bố mẹ chưa?');
-*/!*
+
   }
 }
 
@@ -305,9 +305,9 @@ Ví dụ:
 ```js
 function showMovie(age) {
   if ( !checkAge(age) ) {
-*!*
+
     return;
-*/!*
+
   }
 
   alert( "Cho bạn xem bộ phim" ); // (*)
@@ -317,10 +317,10 @@ function showMovie(age) {
 
 Ở đoạn mã ở trên, nếu `checkAge(age)` trả về `false`, thì `showMovie` sẽ không thực hiện hàm `alert`.
 
-:::info Một hàm với `return` rỗng hoặc không có `return` thì trả về `undefined`
+
 Nếu một hàm không trả về một giá trị thì cũng giống như là nó trả về `undefined`:
 
-```js run
+```js
 function doNothing() { /* empty */ }
 
 alert( doNothing() === undefined ); // true
@@ -328,7 +328,7 @@ alert( doNothing() === undefined ); // true
 
 Trường hợp `return` rỗng, không kèm theo giá trị, thì cũng giống với `return undefined`:
 
-```js run
+```js
 function doNothing() {
   return;
 }
@@ -347,7 +347,7 @@ return
 Điều đó không hiệu quả, vì JavaScript giả sử dấu chấm phẩy sau `return`. Điều đó sẽ hoạt động giống như:
 
 ```js
-return*!*;*/!*
+return;
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
 
@@ -382,7 +382,7 @@ Chức năng bắt đầu bằng...
 
 Các ví dụ cho những tên kể trên:
 
-```js no-beautify
+```js
 showMessage(..)     // đưa ra một thông báo
 getAge(..)          // trả về tuổi (lấy nó bằng cách nào đó)
 calcSum(..)         // tính tổng và trả về kết quả
@@ -392,7 +392,7 @@ checkPermission(..) // kiểm tra quyền, trả về đúng/sai
 
 Với các tiền tố đã có sẵn, chỉ cần nhìn lướt qua tên hàm là bạn sẽ hiểu nó thực hiện loại công việc gì và trả về loại giá trị nào..
 
-:::info Một hàm -- một hành động
+
 Một hàm nên thực hiện chính xác những gì được gợi ý theo tên của nó, và không làm gì khác nữa.
 
 Hai hành động độc lập thường xứng đáng có hai hàm, ngay cả khi chúng thường được gọi cùng nhau (trong trường hợp đó chúng ta có thể tạo hàm thứ 3 gọi hai hàm đó).
@@ -404,15 +404,15 @@ Một vài ví dụ về việc vi phạm quy tắc này:
 - `checkPermission` -- sẽ rất tệ nếu nó hiển thị thông báo `quyền truy cập được cấp/từ chối` (chỉ nên thực hiện kiểm tra và trả về kết quả).
 
 Những ví dụ này giả định ý nghĩa chung của tiền tố. Bạn và nhóm của bạn có thể tự do đồng ý về các ý nghĩa khác, nhưng thông thường chúng không khác nhau nhiều. Trong mọi trường hợp, bạn phải hiểu rõ ý nghĩa của tiền tố, hàm có tiền tố có thể và không thể làm gì. Tất cả các hàm có tiền tố giống nhau phải tuân theo các quy tắc. Và nhóm nên có chung nhận ​​thức.
-:::
 
-:::info Những tên hàm siêu ngắn
+
+
 Các hàm được sử dụng *rất thường xuyên* đôi khi có tên cực ngắn.
 
 Ví dụ: khung [jQuery](http://jquery.com) định nghĩa một hàm tên là `$`. Thư viện [Lodash](http://lodash.com/) có hàm cốt lõi tên là `_`.
 
 Đây là những trường hợp ngoại lệ. Nói chung tên hàm phải ngắn gọn và mang tính mô tả.
-:::
+
 
 ## Hàm == Chú thích
 
@@ -443,7 +443,7 @@ Biến thể thứ hai sử dụng hàm bổ sung `isPrime(n)` để kiểm tra 
 function showPrimes(n) {
 
   for (let i = 2; i < n; i++) {
-    *!*if (!isPrime(i)) continue;*/!*
+    if (!isPrime(i)) continue;
 
     alert(i);  // a prime
   }

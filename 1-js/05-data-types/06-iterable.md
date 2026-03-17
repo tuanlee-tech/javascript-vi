@@ -35,7 +35,7 @@ To make the `range` object iterable (and thus let `for..of` work) we need to add
 
 Here's the full implementation for `range` with remarks:
 
-```js run
+```js
 let range = {
   from: 1,
   to: 5
@@ -79,7 +79,7 @@ Technically, we may merge them and use `range` itself as the iterator to make th
 
 Like this:
 
-```js run
+```js
 let range = {
   from: 1,
   to: 5,
@@ -107,13 +107,13 @@ Now `range[Symbol.iterator]()` returns the `range` object itself:  it has the ne
 
 The downside is that now it's impossible to have two `for..of` loops running over the object simultaneously: they'll share the iteration state, because there's only one iterator -- the object itself. But two parallel for-ofs is a rare thing, even in async scenarios.
 
-:::info Infinite iterators
+
 Infinite iterators are also possible. For instance, the `range` becomes infinite for `range.to = Infinity`. Or we can make an iterable object that generates an infinite sequence of pseudorandom numbers. Also can be useful.
 
 There are no limitations on `next`, it can return more and more values, that's normal.
 
 Of course, the `for..of` loop over such an iterable would be endless. But we can always stop it using `break`.
-:::
+
 
 
 ## String is iterable
@@ -122,7 +122,7 @@ Arrays and strings are most widely used built-in iterables.
 
 For a string, `for..of` loops over its characters:
 
-```js run
+```js
 for (let char of "test") {
   // triggers 4 times: once for each character
   alert( char ); // t, then e, then s, then t
@@ -131,7 +131,7 @@ for (let char of "test") {
 
 And it works correctly with surrogate pairs!
 
-```js run
+```js
 let str = '𝒳😂';
 for (let char of str) {
     alert( char ); // 𝒳, and then 😂
@@ -144,15 +144,15 @@ For deeper understanding, let's see how to use an iterator explicitly.
 
 We'll iterate over a string in exactly the same way as `for..of`, but with direct calls. This code creates a string iterator and gets values from it "manually":
 
-```js run
+```js
 let str = "Hello";
 
 // does the same as
 // for (let char of str) alert(char);
 
-*!*
+
 let iterator = str[Symbol.iterator]();
-*/!*
+
 
 while (true) {
   let result = iterator.next();
@@ -180,17 +180,17 @@ For example, the `range` in the example above is iterable, but not array-like, b
 
 And here's the object that is array-like, but not iterable:
 
-```js run
+```js
 let arrayLike = { // has indexes and length => array-like
   0: "Hello",
   1: "World",
   length: 2
 };
 
-*!*
+
 // Error (no Symbol.iterator)
 for (let item of arrayLike) {}
-*/!*
+
 ```
 
 Both iterables and array-likes are usually *not arrays*, they don't have `push`, `pop` etc. That's rather inconvenient if we have such an object and want to work with it as with an array. E.g. we would like to work with `range` using array methods. How to achieve that?
@@ -201,16 +201,16 @@ There's a universal method [Array.from](mdn:js/Array/from) that takes an iterabl
 
 For instance:
 
-```js run
+```js
 let arrayLike = {
   0: "Hello",
   1: "World",
   length: 2
 };
 
-*!*
+
 let arr = Array.from(arrayLike); // (*)
-*/!*
+
 alert(arr.pop()); // World (method works)
 ```
 
@@ -244,7 +244,7 @@ alert(arr); // 1,4,9,16,25
 
 Here we use `Array.from` to turn a string into an array of characters:
 
-```js run
+```js
 let str = '𝒳😂';
 
 // splits str into array of characters
@@ -259,7 +259,7 @@ Unlike `str.split`, it relies on the iterable nature of the string and so, just 
 
 Technically here it does the same as:
 
-```js run
+```js
 let str = '𝒳😂';
 
 let chars = []; // Array.from internally does the same loop
@@ -274,7 +274,7 @@ alert(chars);
 
 We can even build surrogate-aware `slice` on it:
 
-```js run
+```js
 function slice(str, start, end) {
   return Array.from(str).slice(start, end).join('');
 }

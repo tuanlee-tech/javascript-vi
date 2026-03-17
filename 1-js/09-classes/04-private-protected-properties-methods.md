@@ -62,7 +62,7 @@ Bây giờ chúng ta sẽ tạo một máy pha cà phê trong JavaScript sử d�
 
 Tạo một class máy pha cà phê đơn giản trước:
 
-```js run
+```js
 class CoffeeMachine {
   waterAmount = 0; // lượng nước bên trong
 
@@ -90,7 +90,7 @@ Chúng ta không muốn ai cũng có thể thay đổi mức nước, nên sẽ 
 
 Phương thức được đặt tên lại là `_waterAmount`:
 
-```js run
+```js
 class CoffeeMachine {
   _waterAmount = 0;
 
@@ -128,7 +128,7 @@ Với thuộc tính `power`, ta khiến nó trở thành thuộc tính chỉ đ�
 
 Để thực hiện chúng ta chỉ tạo getter mà không tạo setter:
 
-```js run
+```js
 class CoffeeMachine {
   // ...
 
@@ -150,7 +150,7 @@ alert(`Công suất là: ${coffeeMachine.power}W`); // Công suất là: 100W
 coffeeMachine.power = 25; // Lỗi (không có setter)
 ```
 
-:::info Các hàm getter/setter
+
 Ở đây chúng ta sử dụng cú pháp getter/setter.
 
 Nhưng thường các hàm `get.../set...` được ưa thích sử dụng hơn, giống như:
@@ -159,12 +159,12 @@ Nhưng thường các hàm `get.../set...` được ưa thích sử dụng hơn,
 class CoffeeMachine {
   _waterAmount = 0;
 
-  *!*setWaterAmount(value)*/!* {
+  setWaterAmount(value) {
     if (value < 0) value = 0;
     this._waterAmount = value;
   }
 
-  *!*getWaterAmount()*/!* {
+  getWaterAmount() {
     return this._waterAmount;
   }
 }
@@ -177,11 +177,11 @@ Dù trông có vẻ dài, nhưng các hàm này mềm dẻo hơn. Chúng có th�
 Nhưng ưu điểm của get/set là nó ngắn hơn. Vậy nên không có quy tắc nào bắt buộc ở đây. Việc sử dụng cái nào là do bạn.
 ````
 
-:::info Các trường protected được thừa kế
+
 Nếu chúng ta thừa kế `class MegaMachine extends CoffeeMachine`, thì không có gì ngắn cấm truy cập `this._waterAmount` hoặc `this._power` từ các phương thức của class mới.
 
 Vậy nên các trường "protected" được thừa kế một cách tự nhiên. Không như các trường private mà ta sẽ thấy dưới đây.
-:::
+
 
 ## Thuộc tính riêng "#waterLimit"
 
@@ -193,18 +193,18 @@ Chúng được bắt đầu bằng `#`. Và chúng chỉ có thể truy cập �
 
 Ví dụ, `#waterLimit` là thuộc tính private và `#checkWater` là phương thức private:
 
-```js run
+```js
 class CoffeeMachine {
-*!*
-  #waterLimit = 200;
-*/!*
 
-*!*
+  #waterLimit = 200;
+
+
+
   #fixWaterAmount(value) {
     if (value < 0) return 0;
     if (value > this.#waterLimit) return this.#waterLimit;
   }
-*/!*
+
 
   setWaterAmount(value) {
     this.#waterLimit = this.#fixWaterAmount(value);
@@ -214,11 +214,11 @@ class CoffeeMachine {
 
 let coffeeMachine = new CoffeeMachine();
 
-*!*
+
 // không thể truy cập từ bên ngoài class
 coffeeMachine.#fixWaterAmount(123); // Lỗi
 coffeeMachine.#waterLimit = 1000; // Lỗi
-*/!*
+
 ```
 
 Ở cấp độ ngôn ngữ, `#` là ký tự đặc biệt để đánh dấu các trường private. Chúng ta không thể truy cập chúng từ ngoài và từ các class thừa kế.
@@ -227,7 +227,7 @@ Các trường private không xung đột với trường public cùng tên. Ch�
 
 Ví dụ, khiến `waterAmount` thành thuộc tính truy cập cho `#waterAmount`:
 
-```js run
+```js
 class CoffeeMachine {
 
   #waterAmount = 0;
@@ -255,16 +255,16 @@ Nhưng nếu ta thừa kế từ `CoffeeMachine`, thì không thể truy cập �
 ```js
 class MegaCoffeeMachine extends CoffeeMachine {
   method() {
-*!*
+
     alert( this.#waterAmount ); // Lỗi: chỉ truy cập được từ CoffeeMachine
-*/!*
+
   }
 }
 ```
 
 Trong nhiều tình huống, hạn chế như là quá nghiêm trọng. Nếu chúng ta thừa kế `CoffeeMachine`, chúng ta có lý do chính đáng để truy cập thuộc tính bên trong `CoffeeMachine`. Đó là lý do tại sao các trường "protected" được sử dụng nhiều hơn, mặc dù chúng không được hỗ trợ bởi một cú pháp của ngôn ngữ.
 
-:::warning Trường private không truy cập được bằng cú pháp this[name]
+
 Các trường private rất đặc biệt.
 
 Như chúng ta biết, các trường có thể truy cập được bằng `this[name]`:
@@ -274,7 +274,7 @@ class User {
   ...
   sayHi() {
     let fieldName = "name";
-    alert(`Hello, ${*!*this[fieldName]*/!*}`);
+    alert(`Hello, ${this[fieldName]}`);
   }
 }
 :::

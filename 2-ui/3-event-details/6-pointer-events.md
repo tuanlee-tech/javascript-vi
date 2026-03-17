@@ -45,11 +45,11 @@ Pointer events are named similarly to mouse events:
 
 As we can see, for every `mouse<event>`, there's a `pointer<event>` that plays a similar role. Also there are 3 additional pointer events that don't have a corresponding `mouse...` counterpart, we'll explain them soon. 
 
-:::info Replacing `mouse<event>` with `pointer<event>` in our code
+
 We can replace `mouse<event>` events with `pointer<event>` in our code and expect things to continue working fine with mouse.
 
 The support for touch devices will also "magically" improve. Although, we may need to add `touch-action: none` in some places in CSS. We'll cover it below in the section about `pointercancel`. 
-:::
+
 
 ## Pointer event properties
 
@@ -92,7 +92,7 @@ The events associated with the first finger always have `isPrimary=true`.
 
 We can track multiple touching fingers using their `pointerId`. When the user moves and then removes a finger, we get `pointermove` and `pointerup` events with the same `pointerId` as we had in `pointerdown`.
 
-```online
+```text
 Here's the demo that logs `pointerdown` and `pointerup` events:
 
 [iframe src="multitouch" edit height=200]
@@ -111,7 +111,7 @@ Such causes are:
 
 We'll demonstrate `pointercancel` on a practical example to see how it affects us.
 
-Let's say we're impelementing drag'n'drop for a ball, just as in the beginning of the article <info:mouse-drag-and-drop>.
+Let's say we're impelementing drag'n'drop for a ball, just as in the beginning of the article &lt;info:mouse-drag-and-drop&gt;.
 
 Here is the flow of user actions and the corresponding events:
 
@@ -125,7 +125,7 @@ Here is the flow of user actions and the corresponding events:
 
 So the issue is that the browser "hijacks" the interaction: `pointercancel` fires in the beginning of the "drag-and-drop" process, and no more `pointermove` events are generated.
 
-```online
+```text
 Here's the drag'n'drop demo with loggin of pointer events (only `up/down`, `move` and `cancel`) in the `textarea`: 
 
 [iframe src="ball" height=240 edit]
@@ -138,7 +138,7 @@ We'd like to implement the drag'n'drop on our own, so let's tell the browser not
 We need to do two things:
 
 1. Prevent native drag'n'drop from happening:
-    - We can do this by setting `ball.ondragstart = () => false`, just as described in the article <info:mouse-drag-and-drop>.
+    - We can do this by setting `ball.ondragstart = () => false`, just as described in the article &lt;info:mouse-drag-and-drop&gt;.
     - That works well for mouse events.
 2. For touch devices, there are other touch-related browser actions (besides drag'n'drop). To avoid problems with them too:
     - Prevent them by setting `#ball { touch-action: none }` in CSS. 
@@ -146,7 +146,7 @@ We need to do two things:
 
 After we do that, the events will work as intended, the browser won't hijack the process and doesn't emit `pointercancel`.
 
-```online
+```text
 This demo adds these lines:
 
 [iframe src="ball-2" height=240 edit]
@@ -174,7 +174,7 @@ The binding is removed:
 
 **Pointer capturing can be used to simplify drag'n'drop kind of interactions.**
 
-As an example, let's recall how one can implement a custom slider, described in the <info:mouse-drag-and-drop>.
+As an example, let's recall how one can implement a custom slider, described in the &lt;info:mouse-drag-and-drop&gt;.
 
 We make a slider element with the strip and the "runner" (`thumb`) inside it.
 
@@ -214,7 +214,7 @@ thumb.onpointermove = function(event) {
 // it happens on pointerup automatically
 ```
 
-```online
+```text
 The full demo:
 
 [iframe src="slider" height=100 edit]

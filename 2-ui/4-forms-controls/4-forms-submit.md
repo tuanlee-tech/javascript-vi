@@ -21,23 +21,23 @@ In the form below:
 
 Both actions show `alert` and the form is not sent anywhere due to `return false`:
 
-```html autorun height=60 no-beautify
+```html
 <form onsubmit="alert('submit!');return false">
   First: Enter in the input field <input type="text" value="text"><br>
   Second: Click "submit": <input type="submit" value="Submit">
 </form>
 ```
 
-:::info Relation between `submit` and `click`
+
 When a form is sent using `key:Enter` on an input field, a `click` event triggers on the `<input type="submit">`.
 
 That's rather funny, because there was no click at all.
 
 Here's the demo:
-```html autorun height=60
+```html
 <form onsubmit="return false">
  <input type="text" size="30" value="Focus here and press enter">
- <input type="submit" value="Submit" *!*onclick="alert('click')"*/!*>
+ <input type="submit" value="Submit" onclick="alert('click')">
 </form>
 :::
 
@@ -51,7 +51,7 @@ Then the `submit` event is not generated. It is assumed that if the programmer c
 
 Sometimes that's used to manually create and send a form, like this:
 
-```js run
+```js
 let form = document.createElement('form');
 form.action = 'https://google.com/search';
 form.method = 'GET';

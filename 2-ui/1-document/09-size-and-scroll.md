@@ -8,7 +8,7 @@ We often need them when moving or positioning elements in JavaScript.
 
 As a sample element to demonstrate properties we'll use the one given below:
 
-```html no-beautify
+```html
 <div id="example">
   ...Text...
 </div>
@@ -31,15 +31,15 @@ The element looks like this:
 
 You can [open the document in the sandbox](sandbox:metric).
 
-:::info Mind the scrollbar
+
 The picture above demonstrates the most complex case when the element has a scrollbar. Some browsers (not all) reserve the space for it by taking it from the content (labeled as "content width" above).
 
 So, without scrollbar the content width would be `300px`, but if the scrollbar is `16px` wide (the width may vary between devices and browsers) then only `300 - 16 = 284px` remains, and we should take it into account. That's why examples from this chapter assume that there's a scrollbar. Without it, some calculations are simpler.
-:::
 
-:::info The `padding-bottom` area may be filled with text
+
+
 Usually paddings are shown empty on our illustrations, but if there's a lot of text in the element and it overflows, then browsers show the "overflowing" text at `padding-bottom`, that's normal.
-:::
+
 
 ## Geometry
 
@@ -67,7 +67,7 @@ Properties `offsetLeft/offsetTop` provide x/y coordinates relative to `offsetPar
 
 In the example below the inner `<div>` has `<main>` as `offsetParent` and `offsetLeft/offsetTop` shifts from its upper-left corner (`180`):
 
-```html run height=10
+```html
 <main style="position: relative" id="main">
   <article>
     <div id="example" style="position: absolute; left: 180px; top: 180px">...</div>
@@ -101,7 +101,7 @@ For our sample element:
 - `offsetWidth = 390` -- the outer width, can be calculated as inner CSS-width (`300px`) plus paddings (`2 * 20px`) and borders (`2 * 25px`).
 - `offsetHeight = 290` -- the outer height.
 
-:::info Geometry properties are zero/null for elements that are not displayed
+
 Geometry properties are calculated only for displayed elements.
 
 If an element (or any of its ancestors) has `display:none` or is not in the document, then all geometry properties are zero (or `null` for `offsetParent`).
@@ -184,7 +184,7 @@ Like this:
 element.style.height = `${element.scrollHeight}px`;
 ```
 
-```online
+```text
 Click the button to expand the element:
 
 <div id="element" style="width:300px;height:200px; padding: 0;overflow: auto; border:1px solid black;">text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text text</div>
@@ -202,10 +202,10 @@ On the picture below we can see `scrollHeight` and `scrollTop` for a block with 
 
 In other words, `scrollTop` is "how much is scrolled up".
 
-:::info `scrollLeft/scrollTop` can be modified
+
 Most of the geometry properties here are read-only, but `scrollLeft/scrollTop` can be changed, and the browser will scroll the element.
 
-```online
+```text
 If you click the element below, the code `elem.scrollTop += 10` executes. That makes the element content scroll `10px` down.
 
 <div onclick="this.scrollTop+=10" style="cursor:pointer;border:1px solid black;width:100px;height:80px;overflow:auto">Click<br>Me<br>1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9</div>
@@ -218,11 +218,11 @@ Setting `scrollTop` to `0` or a big value, such as `1e9` will make the element s
 
 We've just covered geometry properties of DOM elements, that can be used to get widths, heights and calculate distances.
 
-But as we know from the chapter <info:styles-and-classes>, we can read CSS-height and width using `getComputedStyle`.
+But as we know from the chapter &lt;info:styles-and-classes&gt;, we can read CSS-height and width using `getComputedStyle`.
 
 So why not to read the width of an element with `getComputedStyle`, like this?
 
-```js run
+```js
 let elem = document.body;
 
 alert( getComputedStyle(elem).width ); // show CSS width for elem
@@ -233,13 +233,13 @@ Why should we use geometry properties instead? There are two reasons:
 1. First, CSS `width/height` depend on another property: `box-sizing` that defines "what is" CSS width and height. A change in `box-sizing` for CSS purposes may break such JavaScript.
 2. Second, CSS `width/height` may be `auto`, for instance for an inline element:
 
-    ```html run
+```html
     <span id="elem">Hello!</span>
 
     <script>
-    *!*
+    
       alert( getComputedStyle(elem).width ); // auto
-    */!*
+    
     </script>
     ```
 
@@ -249,7 +249,7 @@ And there's one more reason: a scrollbar. Sometimes the code that works fine wit
 
 ...But with `getComputedStyle(elem).width` the situation is different. Some browsers (e.g. Chrome) return the real inner width, minus the scrollbar, and some of them (e.g. Firefox) -- CSS width (ignore the scrollbar). Such cross-browser differences is the reason not to use `getComputedStyle`, but rather rely on geometry properties.
 
-```online
+```text
 If your browser reserves the space for a scrollbar (most browsers for Windows do), then you can test it below.
 
 [iframe src="cssWidthScroll" link border=1]

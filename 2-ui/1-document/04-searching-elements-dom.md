@@ -10,16 +10,16 @@ If an element has the `id` attribute, we can get the element using the method `d
 
 For instance:
 
-```html run
+```html
 <div id="elem">
   <div id="elem-content">Element</div>
 </div>
 
 <script>
   // get the element
-*!*
+
   let elem = document.getElementById('elem');
-*/!*
+
 
   // make its background red
   elem.style.background = 'red';
@@ -28,9 +28,9 @@ For instance:
 
 Also, there's a global variable named by `id` that references the element:
 
-```html run
-<div id="*!*elem*/!*">
-  <div id="*!*elem-content*/!*">Element</div>
+```html
+<div id="elem">
+  <div id="elem-content">Element</div>
 </div>
 
 <script>
@@ -44,7 +44,7 @@ Also, there's a global variable named by `id` that references the element:
 
 ...That's unless we declare a JavaScript variable with the same name, then it takes precedence:
 
-```html run untrusted height=0
+```html
 <div id="elem"></div>
 
 <script>
@@ -54,7 +54,7 @@ Also, there's a global variable named by `id` that references the element:
 </script>
 ```
 
-:::warning Please don't use id-named global variables to access elements
+
 This behavior is described [in the specification](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), so it's kind of standard. But it is supported mainly for compatibility.
 
 The browser tries to help us by mixing namespaces of JS and DOM. That's fine for simple scripts, inlined into HTML, but generally isn't a good thing. There may be naming conflicts. Also, when one reads JS code and doesn't have HTML in view, it's not obvious where the variable comes from.
@@ -62,17 +62,17 @@ The browser tries to help us by mixing namespaces of JS and DOM. That's fine for
 Here in the tutorial we use `id` to directly reference an element for brevity, when it's obvious where the element comes from.
 
 In real life `document.getElementById` is the preferred method.
-:::
 
-:::info The `id` must be unique
+
+
 The `id` must be unique. There can be only one element in the document with the given `id`.
 
 If there are multiple elements with the same `id`, then the behavior of methods that use it is unpredictable, e.g. `document.getElementById` may return any of such elements at random. So please stick to the rule and keep `id` unique.
-:::
 
-:::warning Only `document.getElementById`, not `anyElem.getElementById`
+
+
 The method `getElementById` can be called only on `document` object. It looks for the given `id` in the whole document.
-:::
+
 
 ## querySelectorAll [#querySelectorAll]
 
@@ -80,7 +80,7 @@ By far, the most versatile method, `elem.querySelectorAll(css)` returns all elem
 
 Here we look for all `<li>` elements that are last children:
 
-```html run
+```html
 <ul>
   <li>The</li>
   <li>test</li>
@@ -90,9 +90,9 @@ Here we look for all `<li>` elements that are last children:
   <li>passed</li>
 </ul>
 <script>
-*!*
+
   let elements = document.querySelectorAll('ul > li:last-child');
-*/!*
+
 
   for (let elem of elements) {
     alert(elem.innerHTML); // "test", "passed"
@@ -102,9 +102,9 @@ Here we look for all `<li>` elements that are last children:
 
 This method is indeed powerful, because any CSS selector can be used.
 
-:::info Can use pseudo-classes as well
+
 Pseudo-classes in the CSS selector like `:hover` and `:active` are also supported. For instance, `document.querySelectorAll(':hover')` will return the collection with elements that the pointer is over now (in nesting order: from the outermost `<html>` to the most nested one).
-:::
+
 
 ## querySelector [#querySelector]
 
@@ -122,16 +122,16 @@ The method comes in handy when we are iterating over elements (like in an array 
 
 For instance:
 
-```html run
+```html
 <a href="http://example.com/file.zip">...</a>
 <a href="http://ya.ru">...</a>
 
 <script>
   // can be any collection instead of document.body.children
   for (let elem of document.body.children) {
-*!*
+
     if (elem.matches('a[href$="zip"]')) {
-*/!*
+
       alert("The archive reference: " + elem.href );
     }
   }
@@ -148,7 +148,7 @@ In other words, the method `closest` goes up from the element and checks each of
 
 For instance:
 
-```html run
+```html
 <h1>Contents</h1>
 
 <div class="contents">
@@ -188,7 +188,7 @@ let divs = document.getElementsByTagName('div');
 
 Let's find all `input` tags inside the table:
 
-```html run height=50
+```html
 <table id="table">
   <tr>
     <td>Your age:</td>
@@ -208,9 +208,9 @@ Let's find all `input` tags inside the table:
 </table>
 
 <script>
-*!*
+
   let inputs = table.getElementsByTagName('input');
-*/!*
+
 
   for (let input of inputs) {
     alert( input.value + ': ' + input.checked );
@@ -218,13 +218,13 @@ Let's find all `input` tags inside the table:
 </script>
 ```
 
-:::warning Don't forget the `\s\"` letter!"
+
 Novice developers sometimes forget the letter `"s"`. That is, they try to call `getElementByTagName` instead of <code>getElement<b>s</b>ByTagName</code>.
 
 The `"s"` letter is absent in `getElementById`, because it returns a single element. But `getElementsByTagName` returns a collection of elements, so there's `"s"` inside.
-:::
 
-:::warning It returns a collection, not an element!
+
+
 Another widespread novice mistake is to write:
 
 ```js
@@ -244,7 +244,7 @@ document.getElementsByTagName('input')[0].value = 5;
 
 Looking for `.article` elements:
 
-```html run height=50
+```html
 <form name="my-form">
   <div class="article">Article</div>
   <div class="long article">Long article</div>
@@ -269,7 +269,7 @@ In the example below, there are two scripts.
 1. The first one creates a reference to the collection of `<div>`. As of now, its length is `1`.
 2. The second scripts runs after the browser meets one more `<div>`, so its length is `2`.
 
-```html run
+```html
 <div>First div</div>
 
 <script>
@@ -280,9 +280,9 @@ In the example below, there are two scripts.
 <div>Second div</div>
 
 <script>
-*!*
+
   alert(divs.length); // 2
-*/!*
+
 </script>
 ```
 
@@ -291,7 +291,7 @@ In contrast, `querySelectorAll` returns a *static* collection. It's like a fixed
 If we use it instead, then both scripts output `1`:
 
 
-```html run
+```html
 <div>First div</div>
 
 <script>
@@ -302,9 +302,9 @@ If we use it instead, then both scripts output `1`:
 <div>Second div</div>
 
 <script>
-*!*
+
   alert(divs.length); // 1
-*/!*
+
 </script>
 ```
 

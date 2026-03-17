@@ -1,12 +1,12 @@
 # Khai báo kiểu cũ "var"
 
-:::info Bài viết này là để hiểu các tập lệnh cũ
+
 Thông tin trong bài viết này rất hữu ích để hiểu các tập lệnh cũ.
 
 Đó không phải là cách chúng ta viết mã mới.
-:::
 
-Trong chương đầu tiên về [variables](info:variables), chúng ta đã nói đến ba cách khai báo biến:
+
+Trong chương đầu tiên về [variables](#), chúng ta đã nói đến ba cách khai báo biến:
 
 1. `let`
 2. `const`
@@ -14,7 +14,7 @@ Trong chương đầu tiên về [variables](info:variables), chúng ta đã nó
 
 Khai báo `var` tương tự với khai báo `let`. Hầu hết thời gian chúng ta có thể thay thế `let` bằng `var` hoặc ngược lại và mong đợi mọi thứ hoạt động:
 
-```js run
+```js
 var message = "Xin chào";
 alert(message); // Xin chào
 ```
@@ -31,28 +31,28 @@ Các biến, được khai báo bằng `var`, có phạm vi hàm hoặc phạm v
 
 Ví dụ:
 
-```js run
+```js
 if (true) {
   var test = true; // dùng "var" thay vì "let"
 }
 
-*!*
+
 alert(test); // true, biến này tồn tại ngoài khối lệnh if
-*/!*
+
 ```
 
 Vì `var` bỏ qua các khối lệnh (code blocks), vậy nên ta có một biến toàn cục `test`.
 
 Nếu đổi sang `let test` thay vì `var test`, thì khi đó biến này sẽ chỉ tồn tại bên trong  `if`:
 
-```js run
+```js
 if (true) {
   let test = true; // dùng "let"
 }
 
-*!*
+
 alert(test); // ReferenceError: test is not defined
-*/!*
+
 ```
 
 Tương tự với vòng lặp: `var` không thể bị block:
@@ -63,15 +63,15 @@ for (var i = 0; i < 10; i++) {
   // ...
 }
 
-*!*
+
 alert(i);   // 10, "i" vẫn tồn tại sau khi vòng lặp kết thúc, nó là một biến toàn cục
 alert(one); // 1, "one" vẫn tồn tại sau khi vòng lặp kết thúc, nó là một biến toàn cục
-*/!*
+
 ```
 
 Nếu một khối lệnh tồn tại bên trọng một hàm, thì khi đó `var` sẽ trở thành một biến cục bộ:
 
-```js run
+```js
 function sayHi() {
   if (true) {
     var phrase = "Xin chào";
@@ -90,14 +90,14 @@ Như ta thấy, `var` "đi xuyên qua" `if`, `for` hay các khối lệnh khác.
 
 Nếu chúng ta khai báo cùng một biến với `let` hai lần trong cùng một phạm vi, đó là một lỗi:
 
-```js run
+```js
 let user;
 let user; // SyntaxError: 'user' has already been declared
 ```
 
 Với `var`, chúng ta có thể khai báo lại một biến bất kỳ lúc nào. Nếu chúng ta sử dụng `var` với một biến đã được khai báo, nó đơn giản là bị bỏ qua:
 
-```js run
+```js
 var user = "Pete";
 
 var user = "John"; // "var" này không có tác dụng (đã được khai báo)
@@ -114,26 +114,26 @@ Nói cách khác, các biến `var` được định nghĩa từ lúc bắt đ�
 
 Đoạn code sau:
 
-```js run
+```js
 function sayHi() {
   phrase = "Xin chào";
 
   alert(phrase);
 
-*!*
+
   var phrase;
-*/!*
+
 }
 sayHi();
 ```
 
 ...tương tự với đoạn code này (chuyển `var phrase` lên trên):
 
-```js run
+```js
 function sayHi() {
-*!*
+
   var phrase;
-*/!*
+
 
   phrase = "Xin chào";
 
@@ -144,15 +144,15 @@ sayHi();
 
 ...hay đoạn code này (các khối lệnh bị bỏ qua):
 
-```js run
+```js
 function sayHi() {
   phrase = "Xin chào"; // (*)
 
-  *!*
+  
   if (false) {
     var phrase;
   }
-  */!*
+  
 
   alert(phrase);
 }
@@ -167,13 +167,13 @@ Với ví dụ ở trên, nhánh `if (false)` chưa bao giờ được thực th
 
 Điều đó được chứng minh tốt nhất bằng một ví dụ:
 
-```js run
+```js
 function sayHi() {
   alert(phrase);  
 
-*!*
+
   var phrase = "Xin chào";
-*/!*
+
 }
 
 sayHi();
@@ -186,17 +186,17 @@ sayHi();
 
 Phần khai báo được đưa lên ngay lúc hàm bắt đầu thực thi, nhưng phép gán thì luôn luôn chỉ được thực thi tại chỗ. Vậy nên đoạn code trên sẽ nhìn giống như sau:
 
-```js run
+```js
 function sayHi() {
-*!*
+
   var phrase; // Khai báo biến diễn ra lúc bắt đầu...
-*/!*
+
 
   alert(phrase); // undefined
 
-*!*
+
   phrase = "Hello"; // ...phép gán - thực thi tại chỗ.
-*/!*
+
 }
 
 sayHi();
@@ -214,7 +214,7 @@ Trước đây, vì chỉ có `var` và nó không có phạm vi ở mức khố
 
 Một IIFE trông như này:
 
-```js run
+```js
 (function() {
 
   var message = "Xin chào";
@@ -228,7 +228,7 @@ Tại đây, một Biểu thức Hàm được tạo và ngay lập tức đư�
 
 Biểu thức Hàm được bao bọc bằng dấu ngoặc đơn `(function {...})`, bởi vì khi công cụ JavaScript gặp `"function"` trong mã chính, nó sẽ hiểu nó là phần bắt đầu của một Khai báo Hàm. Nhưng Khai báo Hàm phải có tên, vì vậy loại mã này sẽ gây ra lỗi:
 
-```js run
+```js
 // Cố gắng khai báo và gọi ngay một hàm
 function() { // <-- SyntaxError: function statement requires a name
 
@@ -241,7 +241,7 @@ function() { // <-- SyntaxError: function statement requires a name
 
 Ngay cả khi chúng ta nói: "được rồi, hãy thêm tên", điều đó sẽ không hoạt động, vì JavaScript không cho phép gọi Khai báo Hàm ngay lập tức:
 
-```js run
+```js
 // lỗi cú pháp vì dấu ngoặc đơn bên dưới
 function go() {
 
@@ -252,22 +252,22 @@ Vì vậy, các dấu ngoặc đơn xung quanh hàm là một mẹo để cho Ja
 
 Có những cách khác ngoài dấu ngoặc đơn để nói với JavaScript rằng chúng ta muốn một Biểu thức Hàm:
 
-```js run
+```js
 // Các cách tạo IIFE
 
 (function() {
   alert("Dấu ngoặc đơn xung quanh hàm");
-}*!*)*/!*();
+})();
 
 (function() {
   alert("Dấu ngoặc đơn xung quanh toàn bộ");
-}()*!*)*/!*;
+}());
 
-*!*!*/!*function() {
+!function() {
   alert("Toán tử NOT theo bit bắt đầu biểu thức");
 }();
 
-*!*+*/!*function() {
++function() {
   alert("Toán tử cộng một ngôi bắt đầu biểu thức");
 }();
 ```
