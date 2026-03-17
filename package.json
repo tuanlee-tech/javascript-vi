@@ -1,0 +1,15 @@
+{
+  "name": "javascript-vi",
+  "version": "1.0.0",
+  "description": "Phiên bản tiếng Việt của javascript.info",
+  "private": true,
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "vitepress": "^1.6.4"
+  }
+}

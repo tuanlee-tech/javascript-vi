@@ -1,0 +1,2302 @@
+{
+  "/1-js/": [
+    {
+      "text": "Lời mở đầu",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Mở đầu về Javascript",
+          "link": "/1-js/01-getting-started/1-intro"
+        },
+        {
+          "text": "Cẩm nang và đặc tả",
+          "link": "/1-js/01-getting-started/2-manuals-specifications"
+        },
+        {
+          "text": "Code editors",
+          "link": "/1-js/01-getting-started/3-code-editors"
+        },
+        {
+          "text": "Developer console",
+          "link": "/1-js/01-getting-started/4-devtools"
+        }
+      ]
+    },
+    {
+      "text": "JavaScript Fundamentals",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Chào thế giới!",
+          "link": "/1-js/02-first-steps/01-hello-world"
+        },
+        {
+          "text": "Cấu trúc mã",
+          "link": "/1-js/02-first-steps/02-structure"
+        },
+        {
+          "text": "Chế độ hiện đại, \"use strict\"",
+          "link": "/1-js/02-first-steps/03-strict-mode"
+        },
+        {
+          "text": "Các biến",
+          "link": "/1-js/02-first-steps/04-variables"
+        },
+        {
+          "text": "Các kiểu dữ liệu",
+          "link": "/1-js/02-first-steps/05-types"
+        },
+        {
+          "text": "Interaction: alert, prompt, confirm",
+          "link": "/1-js/02-first-steps/06-alert-prompt-confirm"
+        },
+        {
+          "text": "Type Conversions",
+          "link": "/1-js/02-first-steps/07-type-conversions"
+        },
+        {
+          "text": "Các toán tử",
+          "link": "/1-js/02-first-steps/08-operators"
+        },
+        {
+          "text": "Comparisons",
+          "link": "/1-js/02-first-steps/09-comparison"
+        },
+        {
+          "text": "Conditional branching: if, '?'",
+          "link": "/1-js/02-first-steps/10-ifelse"
+        },
+        {
+          "text": "Logical operators",
+          "link": "/1-js/02-first-steps/11-logical-operators"
+        },
+        {
+          "text": "Nullish coalescing operator '??'",
+          "link": "/1-js/02-first-steps/12-nullish-coalescing-operator"
+        },
+        {
+          "text": "Loops: while and for",
+          "link": "/1-js/02-first-steps/13-while-for"
+        },
+        {
+          "text": "The \"switch\" statement",
+          "link": "/1-js/02-first-steps/14-switch"
+        },
+        {
+          "text": "Các hàm",
+          "link": "/1-js/02-first-steps/15-function-basics"
+        },
+        {
+          "text": "Function expressions",
+          "link": "/1-js/02-first-steps/16-function-expressions"
+        },
+        {
+          "text": "Arrow functions, the basics",
+          "link": "/1-js/02-first-steps/17-arrow-functions-basics"
+        },
+        {
+          "text": "JavaScript specials",
+          "link": "/1-js/02-first-steps/18-javascript-specials"
+        }
+      ]
+    },
+    {
+      "text": "Code quality",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Gỡ lỗi trong Chrome",
+          "link": "/1-js/03-code-quality/01-debugging-chrome"
+        },
+        {
+          "text": "Phong cách viết code",
+          "link": "/1-js/03-code-quality/02-coding-style"
+        },
+        {
+          "text": "Comments",
+          "link": "/1-js/03-code-quality/03-comments"
+        },
+        {
+          "text": "Ninja code",
+          "link": "/1-js/03-code-quality/04-ninja-code"
+        },
+        {
+          "text": "Automated testing with Mocha",
+          "link": "/1-js/03-code-quality/05-testing-mocha"
+        },
+        {
+          "text": "Polyfills and transpilers",
+          "link": "/1-js/03-code-quality/06-polyfills"
+        }
+      ]
+    },
+    {
+      "text": "Objects: the basics",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Đối tượng",
+          "link": "/1-js/04-object-basics/01-object"
+        },
+        {
+          "text": "Object references and copying",
+          "link": "/1-js/04-object-basics/02-object-copy"
+        },
+        {
+          "text": "Garbage collection",
+          "link": "/1-js/04-object-basics/03-garbage-collection"
+        },
+        {
+          "text": "Object methods, \"this\"",
+          "link": "/1-js/04-object-basics/04-object-methods"
+        },
+        {
+          "text": "Constructor, operator \"new\"",
+          "link": "/1-js/04-object-basics/06-constructor-new"
+        },
+        {
+          "text": "Optional chaining '?.'",
+          "link": "/1-js/04-object-basics/07-optional-chaining"
+        },
+        {
+          "text": "Symbol type",
+          "link": "/1-js/04-object-basics/08-symbol"
+        },
+        {
+          "text": "Object to primitive conversion",
+          "link": "/1-js/04-object-basics/09-object-toprimitive"
+        }
+      ]
+    },
+    {
+      "text": "Data types",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Methods of primitives",
+          "link": "/1-js/05-data-types/01-primitives-methods"
+        },
+        {
+          "text": "Numbers",
+          "link": "/1-js/05-data-types/02-number"
+        },
+        {
+          "text": "Strings",
+          "link": "/1-js/05-data-types/03-string"
+        },
+        {
+          "text": "Arrays",
+          "link": "/1-js/05-data-types/04-array"
+        },
+        {
+          "text": "Array methods",
+          "link": "/1-js/05-data-types/05-array-methods"
+        },
+        {
+          "text": "Iterables",
+          "link": "/1-js/05-data-types/06-iterable"
+        },
+        {
+          "text": "Map and Set",
+          "link": "/1-js/05-data-types/07-map-set"
+        },
+        {
+          "text": "WeakMap and WeakSet",
+          "link": "/1-js/05-data-types/08-weakmap-weakset"
+        },
+        {
+          "text": "Object.keys, values, entries",
+          "link": "/1-js/05-data-types/09-keys-values-entries"
+        },
+        {
+          "text": "Destructuring assignment",
+          "link": "/1-js/05-data-types/10-destructuring-assignment"
+        },
+        {
+          "text": "Date and time",
+          "link": "/1-js/05-data-types/11-date"
+        },
+        {
+          "text": "JSON methods, toJSON",
+          "link": "/1-js/05-data-types/12-json"
+        }
+      ]
+    },
+    {
+      "text": "Advanced working with functions",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Recursion and stack",
+          "link": "/1-js/06-advanced-functions/01-recursion"
+        },
+        {
+          "text": "Rest parameters and spread syntax",
+          "link": "/1-js/06-advanced-functions/02-rest-parameters-spread"
+        },
+        {
+          "text": "Variable scope, closure",
+          "link": "/1-js/06-advanced-functions/03-closure"
+        },
+        {
+          "text": "Khai báo kiểu cũ \"var\"",
+          "link": "/1-js/06-advanced-functions/04-var"
+        },
+        {
+          "text": "Đối tượng toàn cục",
+          "link": "/1-js/06-advanced-functions/05-global-object"
+        },
+        {
+          "text": "Function object, NFE",
+          "link": "/1-js/06-advanced-functions/06-function-object"
+        },
+        {
+          "text": "The \"new Function\" syntax",
+          "link": "/1-js/06-advanced-functions/07-new-function"
+        },
+        {
+          "text": "Scheduling: setTimeout and setInterval",
+          "link": "/1-js/06-advanced-functions/08-settimeout-setinterval"
+        },
+        {
+          "text": "Decorators and forwarding, call/apply",
+          "link": "/1-js/06-advanced-functions/09-call-apply-decorators"
+        },
+        {
+          "text": "Ràng buộc hàm",
+          "link": "/1-js/06-advanced-functions/10-bind"
+        },
+        {
+          "text": "Xem lại các hàm mũi tên",
+          "link": "/1-js/06-advanced-functions/12-arrow-functions"
+        }
+      ]
+    },
+    {
+      "text": "Cấu hình cho các thuộc tính",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Các cờ và bộ mô tả của thuộc tính",
+          "link": "/1-js/07-object-properties/01-property-descriptors"
+        },
+        {
+          "text": "Các thuộc tính getter và setter",
+          "link": "/1-js/07-object-properties/02-property-accessors"
+        }
+      ]
+    },
+    {
+      "text": "Nguyên mẫu, thừa kế",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Kế thừa dựa trên nguyên mẫu",
+          "link": "/1-js/08-prototypes/01-prototype-inheritance"
+        },
+        {
+          "text": "F.prototype",
+          "link": "/1-js/08-prototypes/02-function-prototype"
+        },
+        {
+          "text": "Các nguyên mẫu có sẵn",
+          "link": "/1-js/08-prototypes/03-native-prototypes"
+        },
+        {
+          "text": "Các phương thức và đối tượng nguyên mẫu không có __proto__",
+          "link": "/1-js/08-prototypes/04-prototype-methods"
+        }
+      ]
+    },
+    {
+      "text": "Classes",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Cú pháp cơ bản của class",
+          "link": "/1-js/09-classes/01-class"
+        },
+        {
+          "text": "Sự kế thừa class",
+          "link": "/1-js/09-classes/02-class-inheritance"
+        },
+        {
+          "text": "Các thuộc tính và phương thức tĩnh",
+          "link": "/1-js/09-classes/03-static-properties-methods"
+        },
+        {
+          "text": "Các phương thức và thuộc tính được bảo vệ và riêng tư",
+          "link": "/1-js/09-classes/04-private-protected-properties-methods"
+        },
+        {
+          "text": "Extending built-in classes",
+          "link": "/1-js/09-classes/05-extend-natives"
+        },
+        {
+          "text": "Class checking: \"instanceof\"",
+          "link": "/1-js/09-classes/06-instanceof"
+        },
+        {
+          "text": "Mixins",
+          "link": "/1-js/09-classes/07-mixins"
+        }
+      ]
+    },
+    {
+      "text": "Error handling",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Error handling, \"try...catch\"",
+          "link": "/1-js/10-error-handling/1-try-catch"
+        },
+        {
+          "text": "Custom errors, extending Error",
+          "link": "/1-js/10-error-handling/2-custom-errors"
+        }
+      ]
+    },
+    {
+      "text": "Promises, async/await",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Introduction: callbacks",
+          "link": "/1-js/11-async/01-callbacks"
+        },
+        {
+          "text": "Promise",
+          "link": "/1-js/11-async/02-promise-basics"
+        },
+        {
+          "text": "Promises chaining",
+          "link": "/1-js/11-async/03-promise-chaining"
+        },
+        {
+          "text": "Error handling with promises",
+          "link": "/1-js/11-async/04-promise-error-handling"
+        },
+        {
+          "text": "Promise API",
+          "link": "/1-js/11-async/05-promise-api"
+        },
+        {
+          "text": "Promisification",
+          "link": "/1-js/11-async/06-promisify"
+        },
+        {
+          "text": "Microtasks",
+          "link": "/1-js/11-async/07-microtask-queue"
+        },
+        {
+          "text": "Async/await",
+          "link": "/1-js/11-async/08-async-await"
+        }
+      ]
+    },
+    {
+      "text": "Generators, advanced iteration",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Generators",
+          "link": "/1-js/12-generators-iterators/1-generators"
+        },
+        {
+          "text": "Async iteration and generators",
+          "link": "/1-js/12-generators-iterators/2-async-iterators-generators"
+        }
+      ]
+    },
+    {
+      "text": "Modules",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Modules, introduction",
+          "link": "/1-js/13-modules/01-modules-intro"
+        },
+        {
+          "text": "Export and Import",
+          "link": "/1-js/13-modules/02-import-export"
+        },
+        {
+          "text": "Dynamic imports",
+          "link": "/1-js/13-modules/03-modules-dynamic-imports"
+        }
+      ]
+    },
+    {
+      "text": "Miscellaneous",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Proxy and Reflect",
+          "link": "/1-js/99-js-misc/01-proxy"
+        },
+        {
+          "text": "Eval: run a code string",
+          "link": "/1-js/99-js-misc/02-eval"
+        },
+        {
+          "text": "Currying",
+          "link": "/1-js/99-js-misc/03-currying-partials"
+        },
+        {
+          "text": "Reference Type",
+          "link": "/1-js/99-js-misc/04-reference-type"
+        },
+        {
+          "text": "BigInt",
+          "link": "/1-js/99-js-misc/05-bigint"
+        }
+      ]
+    }
+  ],
+  "/2-ui/": [
+    {
+      "text": "Document",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Browser environment, specs",
+          "link": "/2-ui/1-document/01-browser-environment"
+        },
+        {
+          "text": "DOM tree",
+          "link": "/2-ui/1-document/02-dom-nodes"
+        },
+        {
+          "text": "Walking the DOM",
+          "link": "/2-ui/1-document/03-dom-navigation"
+        },
+        {
+          "text": "Searching: getElement*, querySelector*",
+          "link": "/2-ui/1-document/04-searching-elements-dom"
+        },
+        {
+          "text": "Node properties: type, tag and contents",
+          "link": "/2-ui/1-document/05-basic-dom-node-properties"
+        },
+        {
+          "text": "Attributes and properties",
+          "link": "/2-ui/1-document/06-dom-attributes-and-properties"
+        },
+        {
+          "text": "Modifying the document",
+          "link": "/2-ui/1-document/07-modifying-document"
+        },
+        {
+          "text": "Styles and classes",
+          "link": "/2-ui/1-document/08-styles-and-classes"
+        },
+        {
+          "text": "Element size and scrolling",
+          "link": "/2-ui/1-document/09-size-and-scroll"
+        },
+        {
+          "text": "Window sizes and scrolling",
+          "link": "/2-ui/1-document/10-size-and-scroll-window"
+        },
+        {
+          "text": "Coordinates",
+          "link": "/2-ui/1-document/11-coordinates"
+        }
+      ]
+    },
+    {
+      "text": "Introduction to Events",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Introduction to browser events",
+          "link": "/2-ui/2-events/01-introduction-browser-events"
+        },
+        {
+          "text": "Bubbling and capturing",
+          "link": "/2-ui/2-events/02-bubbling-and-capturing"
+        },
+        {
+          "text": "Event delegation",
+          "link": "/2-ui/2-events/03-event-delegation"
+        },
+        {
+          "text": "Browser default actions",
+          "link": "/2-ui/2-events/04-default-browser-action"
+        },
+        {
+          "text": "Dispatching custom events",
+          "link": "/2-ui/2-events/05-dispatch-events"
+        }
+      ]
+    },
+    {
+      "text": "UI Events",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Mouse events",
+          "link": "/2-ui/3-event-details/1-mouse-events-basics"
+        },
+        {
+          "text": "Moving the mouse: mouseover/out, mouseenter/leave",
+          "link": "/2-ui/3-event-details/3-mousemove-mouseover-mouseout-mouseenter-mouseleave"
+        },
+        {
+          "text": "Drag'n'Drop with mouse events",
+          "link": "/2-ui/3-event-details/4-mouse-drag-and-drop"
+        },
+        {
+          "text": "Pointer events",
+          "link": "/2-ui/3-event-details/6-pointer-events"
+        },
+        {
+          "text": "Keyboard: keydown and keyup",
+          "link": "/2-ui/3-event-details/7-keyboard-events"
+        },
+        {
+          "text": "Scrolling",
+          "link": "/2-ui/3-event-details/8-onscroll"
+        }
+      ]
+    },
+    {
+      "text": "Forms, controls",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Form properties and methods",
+          "link": "/2-ui/4-forms-controls/1-form-elements"
+        },
+        {
+          "text": "Focusing: focus/blur",
+          "link": "/2-ui/4-forms-controls/2-focus-blur"
+        },
+        {
+          "text": "Events: change, input, cut, copy, paste",
+          "link": "/2-ui/4-forms-controls/3-events-change-input"
+        },
+        {
+          "text": "Forms: event and method submit",
+          "link": "/2-ui/4-forms-controls/4-forms-submit"
+        }
+      ]
+    },
+    {
+      "text": "Document and resource loading",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Page: DOMContentLoaded, load, beforeunload, unload",
+          "link": "/2-ui/5-loading/01-onload-ondomcontentloaded"
+        },
+        {
+          "text": "Scripts: async, defer",
+          "link": "/2-ui/5-loading/02-script-async-defer"
+        },
+        {
+          "text": "Resource loading: onload and onerror",
+          "link": "/2-ui/5-loading/03-onload-onerror"
+        }
+      ]
+    },
+    {
+      "text": "Miscellaneous",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Mutation observer",
+          "link": "/2-ui/99-ui-misc/01-mutation-observer"
+        },
+        {
+          "text": "Selection and Range",
+          "link": "/2-ui/99-ui-misc/02-selection-range"
+        },
+        {
+          "text": "Event loop: microtasks and macrotasks",
+          "link": "/2-ui/99-ui-misc/03-event-loop"
+        }
+      ]
+    }
+  ],
+  "/3-frames-and-windows/": [
+    {
+      "text": "Frames and windows",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Popups and window methods",
+          "link": "/3-frames-and-windows/01-popup-windows"
+        },
+        {
+          "text": "Cross-window communication",
+          "link": "/3-frames-and-windows/03-cross-window-communication"
+        },
+        {
+          "text": "The clickjacking attack",
+          "link": "/3-frames-and-windows/06-clickjacking"
+        }
+      ]
+    },
+    {
+      "text": "Binary data, files",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "ArrayBuffer, binary arrays",
+          "link": "/4-binary/01-arraybuffer-binary-arrays"
+        },
+        {
+          "text": "TextDecoder and TextEncoder",
+          "link": "/4-binary/02-text-decoder"
+        },
+        {
+          "text": "Blob",
+          "link": "/4-binary/03-blob"
+        },
+        {
+          "text": "File and FileReader",
+          "link": "/4-binary/04-file"
+        }
+      ]
+    },
+    {
+      "text": "Network requests",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Fetch",
+          "link": "/5-network/01-fetch"
+        },
+        {
+          "text": "FormData",
+          "link": "/5-network/02-formdata"
+        },
+        {
+          "text": "Fetch: Download progress",
+          "link": "/5-network/03-fetch-progress"
+        },
+        {
+          "text": "Fetch: Abort",
+          "link": "/5-network/04-fetch-abort"
+        },
+        {
+          "text": "Fetch: Cross-Origin Requests",
+          "link": "/5-network/05-fetch-crossorigin"
+        },
+        {
+          "text": "Fetch API",
+          "link": "/5-network/06-fetch-api"
+        },
+        {
+          "text": "URL objects",
+          "link": "/5-network/07-url"
+        },
+        {
+          "text": "XMLHttpRequest",
+          "link": "/5-network/08-xmlhttprequest"
+        },
+        {
+          "text": "Resumable file upload",
+          "link": "/5-network/09-resume-upload"
+        },
+        {
+          "text": "Long polling",
+          "link": "/5-network/10-long-polling"
+        },
+        {
+          "text": "WebSocket",
+          "link": "/5-network/11-websocket"
+        },
+        {
+          "text": "Server Sent Events",
+          "link": "/5-network/12-server-sent-events"
+        }
+      ]
+    },
+    {
+      "text": "Storing data in the browser",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Cookies, document.cookie",
+          "link": "/6-data-storage/01-cookie"
+        },
+        {
+          "text": "LocalStorage, sessionStorage",
+          "link": "/6-data-storage/02-localstorage"
+        },
+        {
+          "text": "IndexedDB",
+          "link": "/6-data-storage/03-indexeddb"
+        }
+      ]
+    },
+    {
+      "text": "Animation",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Bezier curve",
+          "link": "/7-animation/1-bezier-curve"
+        },
+        {
+          "text": "CSS-animations",
+          "link": "/7-animation/2-css-animations"
+        },
+        {
+          "text": "JavaScript animations",
+          "link": "/7-animation/3-js-animation"
+        }
+      ]
+    },
+    {
+      "text": "Web components",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "From the orbital height",
+          "link": "/8-web-components/1-webcomponents-intro"
+        },
+        {
+          "text": "Custom elements",
+          "link": "/8-web-components/2-custom-elements"
+        },
+        {
+          "text": "Shadow DOM",
+          "link": "/8-web-components/3-shadow-dom"
+        },
+        {
+          "text": "Template element",
+          "link": "/8-web-components/4-template-element"
+        },
+        {
+          "text": "Shadow DOM slots, composition",
+          "link": "/8-web-components/5-slots-composition"
+        },
+        {
+          "text": "Shadow DOM styling",
+          "link": "/8-web-components/6-shadow-dom-style"
+        },
+        {
+          "text": "Shadow DOM and events",
+          "link": "/8-web-components/7-shadow-dom-events"
+        }
+      ]
+    },
+    {
+      "text": "Regular expressions",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Patterns and flags",
+          "link": "/9-regular-expressions/01-regexp-introduction"
+        },
+        {
+          "text": "Character classes",
+          "link": "/9-regular-expressions/02-regexp-character-classes"
+        },
+        {
+          "text": "Unicode: flag \"u\" and class \\p{...}",
+          "link": "/9-regular-expressions/03-regexp-unicode"
+        },
+        {
+          "text": "Anchors: string start ^ and end $",
+          "link": "/9-regular-expressions/04-regexp-anchors"
+        },
+        {
+          "text": "Multiline mode of anchors ^ $, flag \"m\"",
+          "link": "/9-regular-expressions/05-regexp-multiline-mode"
+        },
+        {
+          "text": "Word boundary: \\b",
+          "link": "/9-regular-expressions/06-regexp-boundary"
+        },
+        {
+          "text": "Escaping, special characters",
+          "link": "/9-regular-expressions/07-regexp-escaping"
+        },
+        {
+          "text": "Sets and ranges [...]",
+          "link": "/9-regular-expressions/08-regexp-character-sets-and-ranges"
+        },
+        {
+          "text": "Quantifiers +, *, ? and {n}",
+          "link": "/9-regular-expressions/09-regexp-quantifiers"
+        },
+        {
+          "text": "Greedy and lazy quantifiers",
+          "link": "/9-regular-expressions/10-regexp-greedy-and-lazy"
+        },
+        {
+          "text": "Capturing groups",
+          "link": "/9-regular-expressions/11-regexp-groups"
+        },
+        {
+          "text": "Backreferences in pattern: \\N and \\k<name>",
+          "link": "/9-regular-expressions/12-regexp-backreferences"
+        },
+        {
+          "text": "Alternation (OR) |",
+          "link": "/9-regular-expressions/13-regexp-alternation"
+        },
+        {
+          "text": "Lookahead and lookbehind",
+          "link": "/9-regular-expressions/14-regexp-lookahead-lookbehind"
+        },
+        {
+          "text": "Catastrophic backtracking",
+          "link": "/9-regular-expressions/15-regexp-catastrophic-backtracking"
+        },
+        {
+          "text": "Sticky flag \"y\", searching at position",
+          "link": "/9-regular-expressions/16-regexp-sticky"
+        },
+        {
+          "text": "Methods of RegExp and String",
+          "link": "/9-regular-expressions/17-regexp-methods"
+        }
+      ]
+    }
+  ],
+  "/4-binary/": [
+    {
+      "text": "Frames and windows",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Popups and window methods",
+          "link": "/3-frames-and-windows/01-popup-windows"
+        },
+        {
+          "text": "Cross-window communication",
+          "link": "/3-frames-and-windows/03-cross-window-communication"
+        },
+        {
+          "text": "The clickjacking attack",
+          "link": "/3-frames-and-windows/06-clickjacking"
+        }
+      ]
+    },
+    {
+      "text": "Binary data, files",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "ArrayBuffer, binary arrays",
+          "link": "/4-binary/01-arraybuffer-binary-arrays"
+        },
+        {
+          "text": "TextDecoder and TextEncoder",
+          "link": "/4-binary/02-text-decoder"
+        },
+        {
+          "text": "Blob",
+          "link": "/4-binary/03-blob"
+        },
+        {
+          "text": "File and FileReader",
+          "link": "/4-binary/04-file"
+        }
+      ]
+    },
+    {
+      "text": "Network requests",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Fetch",
+          "link": "/5-network/01-fetch"
+        },
+        {
+          "text": "FormData",
+          "link": "/5-network/02-formdata"
+        },
+        {
+          "text": "Fetch: Download progress",
+          "link": "/5-network/03-fetch-progress"
+        },
+        {
+          "text": "Fetch: Abort",
+          "link": "/5-network/04-fetch-abort"
+        },
+        {
+          "text": "Fetch: Cross-Origin Requests",
+          "link": "/5-network/05-fetch-crossorigin"
+        },
+        {
+          "text": "Fetch API",
+          "link": "/5-network/06-fetch-api"
+        },
+        {
+          "text": "URL objects",
+          "link": "/5-network/07-url"
+        },
+        {
+          "text": "XMLHttpRequest",
+          "link": "/5-network/08-xmlhttprequest"
+        },
+        {
+          "text": "Resumable file upload",
+          "link": "/5-network/09-resume-upload"
+        },
+        {
+          "text": "Long polling",
+          "link": "/5-network/10-long-polling"
+        },
+        {
+          "text": "WebSocket",
+          "link": "/5-network/11-websocket"
+        },
+        {
+          "text": "Server Sent Events",
+          "link": "/5-network/12-server-sent-events"
+        }
+      ]
+    },
+    {
+      "text": "Storing data in the browser",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Cookies, document.cookie",
+          "link": "/6-data-storage/01-cookie"
+        },
+        {
+          "text": "LocalStorage, sessionStorage",
+          "link": "/6-data-storage/02-localstorage"
+        },
+        {
+          "text": "IndexedDB",
+          "link": "/6-data-storage/03-indexeddb"
+        }
+      ]
+    },
+    {
+      "text": "Animation",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Bezier curve",
+          "link": "/7-animation/1-bezier-curve"
+        },
+        {
+          "text": "CSS-animations",
+          "link": "/7-animation/2-css-animations"
+        },
+        {
+          "text": "JavaScript animations",
+          "link": "/7-animation/3-js-animation"
+        }
+      ]
+    },
+    {
+      "text": "Web components",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "From the orbital height",
+          "link": "/8-web-components/1-webcomponents-intro"
+        },
+        {
+          "text": "Custom elements",
+          "link": "/8-web-components/2-custom-elements"
+        },
+        {
+          "text": "Shadow DOM",
+          "link": "/8-web-components/3-shadow-dom"
+        },
+        {
+          "text": "Template element",
+          "link": "/8-web-components/4-template-element"
+        },
+        {
+          "text": "Shadow DOM slots, composition",
+          "link": "/8-web-components/5-slots-composition"
+        },
+        {
+          "text": "Shadow DOM styling",
+          "link": "/8-web-components/6-shadow-dom-style"
+        },
+        {
+          "text": "Shadow DOM and events",
+          "link": "/8-web-components/7-shadow-dom-events"
+        }
+      ]
+    },
+    {
+      "text": "Regular expressions",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Patterns and flags",
+          "link": "/9-regular-expressions/01-regexp-introduction"
+        },
+        {
+          "text": "Character classes",
+          "link": "/9-regular-expressions/02-regexp-character-classes"
+        },
+        {
+          "text": "Unicode: flag \"u\" and class \\p{...}",
+          "link": "/9-regular-expressions/03-regexp-unicode"
+        },
+        {
+          "text": "Anchors: string start ^ and end $",
+          "link": "/9-regular-expressions/04-regexp-anchors"
+        },
+        {
+          "text": "Multiline mode of anchors ^ $, flag \"m\"",
+          "link": "/9-regular-expressions/05-regexp-multiline-mode"
+        },
+        {
+          "text": "Word boundary: \\b",
+          "link": "/9-regular-expressions/06-regexp-boundary"
+        },
+        {
+          "text": "Escaping, special characters",
+          "link": "/9-regular-expressions/07-regexp-escaping"
+        },
+        {
+          "text": "Sets and ranges [...]",
+          "link": "/9-regular-expressions/08-regexp-character-sets-and-ranges"
+        },
+        {
+          "text": "Quantifiers +, *, ? and {n}",
+          "link": "/9-regular-expressions/09-regexp-quantifiers"
+        },
+        {
+          "text": "Greedy and lazy quantifiers",
+          "link": "/9-regular-expressions/10-regexp-greedy-and-lazy"
+        },
+        {
+          "text": "Capturing groups",
+          "link": "/9-regular-expressions/11-regexp-groups"
+        },
+        {
+          "text": "Backreferences in pattern: \\N and \\k<name>",
+          "link": "/9-regular-expressions/12-regexp-backreferences"
+        },
+        {
+          "text": "Alternation (OR) |",
+          "link": "/9-regular-expressions/13-regexp-alternation"
+        },
+        {
+          "text": "Lookahead and lookbehind",
+          "link": "/9-regular-expressions/14-regexp-lookahead-lookbehind"
+        },
+        {
+          "text": "Catastrophic backtracking",
+          "link": "/9-regular-expressions/15-regexp-catastrophic-backtracking"
+        },
+        {
+          "text": "Sticky flag \"y\", searching at position",
+          "link": "/9-regular-expressions/16-regexp-sticky"
+        },
+        {
+          "text": "Methods of RegExp and String",
+          "link": "/9-regular-expressions/17-regexp-methods"
+        }
+      ]
+    }
+  ],
+  "/5-network/": [
+    {
+      "text": "Frames and windows",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Popups and window methods",
+          "link": "/3-frames-and-windows/01-popup-windows"
+        },
+        {
+          "text": "Cross-window communication",
+          "link": "/3-frames-and-windows/03-cross-window-communication"
+        },
+        {
+          "text": "The clickjacking attack",
+          "link": "/3-frames-and-windows/06-clickjacking"
+        }
+      ]
+    },
+    {
+      "text": "Binary data, files",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "ArrayBuffer, binary arrays",
+          "link": "/4-binary/01-arraybuffer-binary-arrays"
+        },
+        {
+          "text": "TextDecoder and TextEncoder",
+          "link": "/4-binary/02-text-decoder"
+        },
+        {
+          "text": "Blob",
+          "link": "/4-binary/03-blob"
+        },
+        {
+          "text": "File and FileReader",
+          "link": "/4-binary/04-file"
+        }
+      ]
+    },
+    {
+      "text": "Network requests",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Fetch",
+          "link": "/5-network/01-fetch"
+        },
+        {
+          "text": "FormData",
+          "link": "/5-network/02-formdata"
+        },
+        {
+          "text": "Fetch: Download progress",
+          "link": "/5-network/03-fetch-progress"
+        },
+        {
+          "text": "Fetch: Abort",
+          "link": "/5-network/04-fetch-abort"
+        },
+        {
+          "text": "Fetch: Cross-Origin Requests",
+          "link": "/5-network/05-fetch-crossorigin"
+        },
+        {
+          "text": "Fetch API",
+          "link": "/5-network/06-fetch-api"
+        },
+        {
+          "text": "URL objects",
+          "link": "/5-network/07-url"
+        },
+        {
+          "text": "XMLHttpRequest",
+          "link": "/5-network/08-xmlhttprequest"
+        },
+        {
+          "text": "Resumable file upload",
+          "link": "/5-network/09-resume-upload"
+        },
+        {
+          "text": "Long polling",
+          "link": "/5-network/10-long-polling"
+        },
+        {
+          "text": "WebSocket",
+          "link": "/5-network/11-websocket"
+        },
+        {
+          "text": "Server Sent Events",
+          "link": "/5-network/12-server-sent-events"
+        }
+      ]
+    },
+    {
+      "text": "Storing data in the browser",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Cookies, document.cookie",
+          "link": "/6-data-storage/01-cookie"
+        },
+        {
+          "text": "LocalStorage, sessionStorage",
+          "link": "/6-data-storage/02-localstorage"
+        },
+        {
+          "text": "IndexedDB",
+          "link": "/6-data-storage/03-indexeddb"
+        }
+      ]
+    },
+    {
+      "text": "Animation",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Bezier curve",
+          "link": "/7-animation/1-bezier-curve"
+        },
+        {
+          "text": "CSS-animations",
+          "link": "/7-animation/2-css-animations"
+        },
+        {
+          "text": "JavaScript animations",
+          "link": "/7-animation/3-js-animation"
+        }
+      ]
+    },
+    {
+      "text": "Web components",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "From the orbital height",
+          "link": "/8-web-components/1-webcomponents-intro"
+        },
+        {
+          "text": "Custom elements",
+          "link": "/8-web-components/2-custom-elements"
+        },
+        {
+          "text": "Shadow DOM",
+          "link": "/8-web-components/3-shadow-dom"
+        },
+        {
+          "text": "Template element",
+          "link": "/8-web-components/4-template-element"
+        },
+        {
+          "text": "Shadow DOM slots, composition",
+          "link": "/8-web-components/5-slots-composition"
+        },
+        {
+          "text": "Shadow DOM styling",
+          "link": "/8-web-components/6-shadow-dom-style"
+        },
+        {
+          "text": "Shadow DOM and events",
+          "link": "/8-web-components/7-shadow-dom-events"
+        }
+      ]
+    },
+    {
+      "text": "Regular expressions",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Patterns and flags",
+          "link": "/9-regular-expressions/01-regexp-introduction"
+        },
+        {
+          "text": "Character classes",
+          "link": "/9-regular-expressions/02-regexp-character-classes"
+        },
+        {
+          "text": "Unicode: flag \"u\" and class \\p{...}",
+          "link": "/9-regular-expressions/03-regexp-unicode"
+        },
+        {
+          "text": "Anchors: string start ^ and end $",
+          "link": "/9-regular-expressions/04-regexp-anchors"
+        },
+        {
+          "text": "Multiline mode of anchors ^ $, flag \"m\"",
+          "link": "/9-regular-expressions/05-regexp-multiline-mode"
+        },
+        {
+          "text": "Word boundary: \\b",
+          "link": "/9-regular-expressions/06-regexp-boundary"
+        },
+        {
+          "text": "Escaping, special characters",
+          "link": "/9-regular-expressions/07-regexp-escaping"
+        },
+        {
+          "text": "Sets and ranges [...]",
+          "link": "/9-regular-expressions/08-regexp-character-sets-and-ranges"
+        },
+        {
+          "text": "Quantifiers +, *, ? and {n}",
+          "link": "/9-regular-expressions/09-regexp-quantifiers"
+        },
+        {
+          "text": "Greedy and lazy quantifiers",
+          "link": "/9-regular-expressions/10-regexp-greedy-and-lazy"
+        },
+        {
+          "text": "Capturing groups",
+          "link": "/9-regular-expressions/11-regexp-groups"
+        },
+        {
+          "text": "Backreferences in pattern: \\N and \\k<name>",
+          "link": "/9-regular-expressions/12-regexp-backreferences"
+        },
+        {
+          "text": "Alternation (OR) |",
+          "link": "/9-regular-expressions/13-regexp-alternation"
+        },
+        {
+          "text": "Lookahead and lookbehind",
+          "link": "/9-regular-expressions/14-regexp-lookahead-lookbehind"
+        },
+        {
+          "text": "Catastrophic backtracking",
+          "link": "/9-regular-expressions/15-regexp-catastrophic-backtracking"
+        },
+        {
+          "text": "Sticky flag \"y\", searching at position",
+          "link": "/9-regular-expressions/16-regexp-sticky"
+        },
+        {
+          "text": "Methods of RegExp and String",
+          "link": "/9-regular-expressions/17-regexp-methods"
+        }
+      ]
+    }
+  ],
+  "/6-data-storage/": [
+    {
+      "text": "Frames and windows",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Popups and window methods",
+          "link": "/3-frames-and-windows/01-popup-windows"
+        },
+        {
+          "text": "Cross-window communication",
+          "link": "/3-frames-and-windows/03-cross-window-communication"
+        },
+        {
+          "text": "The clickjacking attack",
+          "link": "/3-frames-and-windows/06-clickjacking"
+        }
+      ]
+    },
+    {
+      "text": "Binary data, files",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "ArrayBuffer, binary arrays",
+          "link": "/4-binary/01-arraybuffer-binary-arrays"
+        },
+        {
+          "text": "TextDecoder and TextEncoder",
+          "link": "/4-binary/02-text-decoder"
+        },
+        {
+          "text": "Blob",
+          "link": "/4-binary/03-blob"
+        },
+        {
+          "text": "File and FileReader",
+          "link": "/4-binary/04-file"
+        }
+      ]
+    },
+    {
+      "text": "Network requests",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Fetch",
+          "link": "/5-network/01-fetch"
+        },
+        {
+          "text": "FormData",
+          "link": "/5-network/02-formdata"
+        },
+        {
+          "text": "Fetch: Download progress",
+          "link": "/5-network/03-fetch-progress"
+        },
+        {
+          "text": "Fetch: Abort",
+          "link": "/5-network/04-fetch-abort"
+        },
+        {
+          "text": "Fetch: Cross-Origin Requests",
+          "link": "/5-network/05-fetch-crossorigin"
+        },
+        {
+          "text": "Fetch API",
+          "link": "/5-network/06-fetch-api"
+        },
+        {
+          "text": "URL objects",
+          "link": "/5-network/07-url"
+        },
+        {
+          "text": "XMLHttpRequest",
+          "link": "/5-network/08-xmlhttprequest"
+        },
+        {
+          "text": "Resumable file upload",
+          "link": "/5-network/09-resume-upload"
+        },
+        {
+          "text": "Long polling",
+          "link": "/5-network/10-long-polling"
+        },
+        {
+          "text": "WebSocket",
+          "link": "/5-network/11-websocket"
+        },
+        {
+          "text": "Server Sent Events",
+          "link": "/5-network/12-server-sent-events"
+        }
+      ]
+    },
+    {
+      "text": "Storing data in the browser",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Cookies, document.cookie",
+          "link": "/6-data-storage/01-cookie"
+        },
+        {
+          "text": "LocalStorage, sessionStorage",
+          "link": "/6-data-storage/02-localstorage"
+        },
+        {
+          "text": "IndexedDB",
+          "link": "/6-data-storage/03-indexeddb"
+        }
+      ]
+    },
+    {
+      "text": "Animation",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Bezier curve",
+          "link": "/7-animation/1-bezier-curve"
+        },
+        {
+          "text": "CSS-animations",
+          "link": "/7-animation/2-css-animations"
+        },
+        {
+          "text": "JavaScript animations",
+          "link": "/7-animation/3-js-animation"
+        }
+      ]
+    },
+    {
+      "text": "Web components",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "From the orbital height",
+          "link": "/8-web-components/1-webcomponents-intro"
+        },
+        {
+          "text": "Custom elements",
+          "link": "/8-web-components/2-custom-elements"
+        },
+        {
+          "text": "Shadow DOM",
+          "link": "/8-web-components/3-shadow-dom"
+        },
+        {
+          "text": "Template element",
+          "link": "/8-web-components/4-template-element"
+        },
+        {
+          "text": "Shadow DOM slots, composition",
+          "link": "/8-web-components/5-slots-composition"
+        },
+        {
+          "text": "Shadow DOM styling",
+          "link": "/8-web-components/6-shadow-dom-style"
+        },
+        {
+          "text": "Shadow DOM and events",
+          "link": "/8-web-components/7-shadow-dom-events"
+        }
+      ]
+    },
+    {
+      "text": "Regular expressions",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Patterns and flags",
+          "link": "/9-regular-expressions/01-regexp-introduction"
+        },
+        {
+          "text": "Character classes",
+          "link": "/9-regular-expressions/02-regexp-character-classes"
+        },
+        {
+          "text": "Unicode: flag \"u\" and class \\p{...}",
+          "link": "/9-regular-expressions/03-regexp-unicode"
+        },
+        {
+          "text": "Anchors: string start ^ and end $",
+          "link": "/9-regular-expressions/04-regexp-anchors"
+        },
+        {
+          "text": "Multiline mode of anchors ^ $, flag \"m\"",
+          "link": "/9-regular-expressions/05-regexp-multiline-mode"
+        },
+        {
+          "text": "Word boundary: \\b",
+          "link": "/9-regular-expressions/06-regexp-boundary"
+        },
+        {
+          "text": "Escaping, special characters",
+          "link": "/9-regular-expressions/07-regexp-escaping"
+        },
+        {
+          "text": "Sets and ranges [...]",
+          "link": "/9-regular-expressions/08-regexp-character-sets-and-ranges"
+        },
+        {
+          "text": "Quantifiers +, *, ? and {n}",
+          "link": "/9-regular-expressions/09-regexp-quantifiers"
+        },
+        {
+          "text": "Greedy and lazy quantifiers",
+          "link": "/9-regular-expressions/10-regexp-greedy-and-lazy"
+        },
+        {
+          "text": "Capturing groups",
+          "link": "/9-regular-expressions/11-regexp-groups"
+        },
+        {
+          "text": "Backreferences in pattern: \\N and \\k<name>",
+          "link": "/9-regular-expressions/12-regexp-backreferences"
+        },
+        {
+          "text": "Alternation (OR) |",
+          "link": "/9-regular-expressions/13-regexp-alternation"
+        },
+        {
+          "text": "Lookahead and lookbehind",
+          "link": "/9-regular-expressions/14-regexp-lookahead-lookbehind"
+        },
+        {
+          "text": "Catastrophic backtracking",
+          "link": "/9-regular-expressions/15-regexp-catastrophic-backtracking"
+        },
+        {
+          "text": "Sticky flag \"y\", searching at position",
+          "link": "/9-regular-expressions/16-regexp-sticky"
+        },
+        {
+          "text": "Methods of RegExp and String",
+          "link": "/9-regular-expressions/17-regexp-methods"
+        }
+      ]
+    }
+  ],
+  "/7-animation/": [
+    {
+      "text": "Frames and windows",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Popups and window methods",
+          "link": "/3-frames-and-windows/01-popup-windows"
+        },
+        {
+          "text": "Cross-window communication",
+          "link": "/3-frames-and-windows/03-cross-window-communication"
+        },
+        {
+          "text": "The clickjacking attack",
+          "link": "/3-frames-and-windows/06-clickjacking"
+        }
+      ]
+    },
+    {
+      "text": "Binary data, files",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "ArrayBuffer, binary arrays",
+          "link": "/4-binary/01-arraybuffer-binary-arrays"
+        },
+        {
+          "text": "TextDecoder and TextEncoder",
+          "link": "/4-binary/02-text-decoder"
+        },
+        {
+          "text": "Blob",
+          "link": "/4-binary/03-blob"
+        },
+        {
+          "text": "File and FileReader",
+          "link": "/4-binary/04-file"
+        }
+      ]
+    },
+    {
+      "text": "Network requests",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Fetch",
+          "link": "/5-network/01-fetch"
+        },
+        {
+          "text": "FormData",
+          "link": "/5-network/02-formdata"
+        },
+        {
+          "text": "Fetch: Download progress",
+          "link": "/5-network/03-fetch-progress"
+        },
+        {
+          "text": "Fetch: Abort",
+          "link": "/5-network/04-fetch-abort"
+        },
+        {
+          "text": "Fetch: Cross-Origin Requests",
+          "link": "/5-network/05-fetch-crossorigin"
+        },
+        {
+          "text": "Fetch API",
+          "link": "/5-network/06-fetch-api"
+        },
+        {
+          "text": "URL objects",
+          "link": "/5-network/07-url"
+        },
+        {
+          "text": "XMLHttpRequest",
+          "link": "/5-network/08-xmlhttprequest"
+        },
+        {
+          "text": "Resumable file upload",
+          "link": "/5-network/09-resume-upload"
+        },
+        {
+          "text": "Long polling",
+          "link": "/5-network/10-long-polling"
+        },
+        {
+          "text": "WebSocket",
+          "link": "/5-network/11-websocket"
+        },
+        {
+          "text": "Server Sent Events",
+          "link": "/5-network/12-server-sent-events"
+        }
+      ]
+    },
+    {
+      "text": "Storing data in the browser",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Cookies, document.cookie",
+          "link": "/6-data-storage/01-cookie"
+        },
+        {
+          "text": "LocalStorage, sessionStorage",
+          "link": "/6-data-storage/02-localstorage"
+        },
+        {
+          "text": "IndexedDB",
+          "link": "/6-data-storage/03-indexeddb"
+        }
+      ]
+    },
+    {
+      "text": "Animation",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Bezier curve",
+          "link": "/7-animation/1-bezier-curve"
+        },
+        {
+          "text": "CSS-animations",
+          "link": "/7-animation/2-css-animations"
+        },
+        {
+          "text": "JavaScript animations",
+          "link": "/7-animation/3-js-animation"
+        }
+      ]
+    },
+    {
+      "text": "Web components",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "From the orbital height",
+          "link": "/8-web-components/1-webcomponents-intro"
+        },
+        {
+          "text": "Custom elements",
+          "link": "/8-web-components/2-custom-elements"
+        },
+        {
+          "text": "Shadow DOM",
+          "link": "/8-web-components/3-shadow-dom"
+        },
+        {
+          "text": "Template element",
+          "link": "/8-web-components/4-template-element"
+        },
+        {
+          "text": "Shadow DOM slots, composition",
+          "link": "/8-web-components/5-slots-composition"
+        },
+        {
+          "text": "Shadow DOM styling",
+          "link": "/8-web-components/6-shadow-dom-style"
+        },
+        {
+          "text": "Shadow DOM and events",
+          "link": "/8-web-components/7-shadow-dom-events"
+        }
+      ]
+    },
+    {
+      "text": "Regular expressions",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Patterns and flags",
+          "link": "/9-regular-expressions/01-regexp-introduction"
+        },
+        {
+          "text": "Character classes",
+          "link": "/9-regular-expressions/02-regexp-character-classes"
+        },
+        {
+          "text": "Unicode: flag \"u\" and class \\p{...}",
+          "link": "/9-regular-expressions/03-regexp-unicode"
+        },
+        {
+          "text": "Anchors: string start ^ and end $",
+          "link": "/9-regular-expressions/04-regexp-anchors"
+        },
+        {
+          "text": "Multiline mode of anchors ^ $, flag \"m\"",
+          "link": "/9-regular-expressions/05-regexp-multiline-mode"
+        },
+        {
+          "text": "Word boundary: \\b",
+          "link": "/9-regular-expressions/06-regexp-boundary"
+        },
+        {
+          "text": "Escaping, special characters",
+          "link": "/9-regular-expressions/07-regexp-escaping"
+        },
+        {
+          "text": "Sets and ranges [...]",
+          "link": "/9-regular-expressions/08-regexp-character-sets-and-ranges"
+        },
+        {
+          "text": "Quantifiers +, *, ? and {n}",
+          "link": "/9-regular-expressions/09-regexp-quantifiers"
+        },
+        {
+          "text": "Greedy and lazy quantifiers",
+          "link": "/9-regular-expressions/10-regexp-greedy-and-lazy"
+        },
+        {
+          "text": "Capturing groups",
+          "link": "/9-regular-expressions/11-regexp-groups"
+        },
+        {
+          "text": "Backreferences in pattern: \\N and \\k<name>",
+          "link": "/9-regular-expressions/12-regexp-backreferences"
+        },
+        {
+          "text": "Alternation (OR) |",
+          "link": "/9-regular-expressions/13-regexp-alternation"
+        },
+        {
+          "text": "Lookahead and lookbehind",
+          "link": "/9-regular-expressions/14-regexp-lookahead-lookbehind"
+        },
+        {
+          "text": "Catastrophic backtracking",
+          "link": "/9-regular-expressions/15-regexp-catastrophic-backtracking"
+        },
+        {
+          "text": "Sticky flag \"y\", searching at position",
+          "link": "/9-regular-expressions/16-regexp-sticky"
+        },
+        {
+          "text": "Methods of RegExp and String",
+          "link": "/9-regular-expressions/17-regexp-methods"
+        }
+      ]
+    }
+  ],
+  "/8-web-components/": [
+    {
+      "text": "Frames and windows",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Popups and window methods",
+          "link": "/3-frames-and-windows/01-popup-windows"
+        },
+        {
+          "text": "Cross-window communication",
+          "link": "/3-frames-and-windows/03-cross-window-communication"
+        },
+        {
+          "text": "The clickjacking attack",
+          "link": "/3-frames-and-windows/06-clickjacking"
+        }
+      ]
+    },
+    {
+      "text": "Binary data, files",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "ArrayBuffer, binary arrays",
+          "link": "/4-binary/01-arraybuffer-binary-arrays"
+        },
+        {
+          "text": "TextDecoder and TextEncoder",
+          "link": "/4-binary/02-text-decoder"
+        },
+        {
+          "text": "Blob",
+          "link": "/4-binary/03-blob"
+        },
+        {
+          "text": "File and FileReader",
+          "link": "/4-binary/04-file"
+        }
+      ]
+    },
+    {
+      "text": "Network requests",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Fetch",
+          "link": "/5-network/01-fetch"
+        },
+        {
+          "text": "FormData",
+          "link": "/5-network/02-formdata"
+        },
+        {
+          "text": "Fetch: Download progress",
+          "link": "/5-network/03-fetch-progress"
+        },
+        {
+          "text": "Fetch: Abort",
+          "link": "/5-network/04-fetch-abort"
+        },
+        {
+          "text": "Fetch: Cross-Origin Requests",
+          "link": "/5-network/05-fetch-crossorigin"
+        },
+        {
+          "text": "Fetch API",
+          "link": "/5-network/06-fetch-api"
+        },
+        {
+          "text": "URL objects",
+          "link": "/5-network/07-url"
+        },
+        {
+          "text": "XMLHttpRequest",
+          "link": "/5-network/08-xmlhttprequest"
+        },
+        {
+          "text": "Resumable file upload",
+          "link": "/5-network/09-resume-upload"
+        },
+        {
+          "text": "Long polling",
+          "link": "/5-network/10-long-polling"
+        },
+        {
+          "text": "WebSocket",
+          "link": "/5-network/11-websocket"
+        },
+        {
+          "text": "Server Sent Events",
+          "link": "/5-network/12-server-sent-events"
+        }
+      ]
+    },
+    {
+      "text": "Storing data in the browser",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Cookies, document.cookie",
+          "link": "/6-data-storage/01-cookie"
+        },
+        {
+          "text": "LocalStorage, sessionStorage",
+          "link": "/6-data-storage/02-localstorage"
+        },
+        {
+          "text": "IndexedDB",
+          "link": "/6-data-storage/03-indexeddb"
+        }
+      ]
+    },
+    {
+      "text": "Animation",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Bezier curve",
+          "link": "/7-animation/1-bezier-curve"
+        },
+        {
+          "text": "CSS-animations",
+          "link": "/7-animation/2-css-animations"
+        },
+        {
+          "text": "JavaScript animations",
+          "link": "/7-animation/3-js-animation"
+        }
+      ]
+    },
+    {
+      "text": "Web components",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "From the orbital height",
+          "link": "/8-web-components/1-webcomponents-intro"
+        },
+        {
+          "text": "Custom elements",
+          "link": "/8-web-components/2-custom-elements"
+        },
+        {
+          "text": "Shadow DOM",
+          "link": "/8-web-components/3-shadow-dom"
+        },
+        {
+          "text": "Template element",
+          "link": "/8-web-components/4-template-element"
+        },
+        {
+          "text": "Shadow DOM slots, composition",
+          "link": "/8-web-components/5-slots-composition"
+        },
+        {
+          "text": "Shadow DOM styling",
+          "link": "/8-web-components/6-shadow-dom-style"
+        },
+        {
+          "text": "Shadow DOM and events",
+          "link": "/8-web-components/7-shadow-dom-events"
+        }
+      ]
+    },
+    {
+      "text": "Regular expressions",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Patterns and flags",
+          "link": "/9-regular-expressions/01-regexp-introduction"
+        },
+        {
+          "text": "Character classes",
+          "link": "/9-regular-expressions/02-regexp-character-classes"
+        },
+        {
+          "text": "Unicode: flag \"u\" and class \\p{...}",
+          "link": "/9-regular-expressions/03-regexp-unicode"
+        },
+        {
+          "text": "Anchors: string start ^ and end $",
+          "link": "/9-regular-expressions/04-regexp-anchors"
+        },
+        {
+          "text": "Multiline mode of anchors ^ $, flag \"m\"",
+          "link": "/9-regular-expressions/05-regexp-multiline-mode"
+        },
+        {
+          "text": "Word boundary: \\b",
+          "link": "/9-regular-expressions/06-regexp-boundary"
+        },
+        {
+          "text": "Escaping, special characters",
+          "link": "/9-regular-expressions/07-regexp-escaping"
+        },
+        {
+          "text": "Sets and ranges [...]",
+          "link": "/9-regular-expressions/08-regexp-character-sets-and-ranges"
+        },
+        {
+          "text": "Quantifiers +, *, ? and {n}",
+          "link": "/9-regular-expressions/09-regexp-quantifiers"
+        },
+        {
+          "text": "Greedy and lazy quantifiers",
+          "link": "/9-regular-expressions/10-regexp-greedy-and-lazy"
+        },
+        {
+          "text": "Capturing groups",
+          "link": "/9-regular-expressions/11-regexp-groups"
+        },
+        {
+          "text": "Backreferences in pattern: \\N and \\k<name>",
+          "link": "/9-regular-expressions/12-regexp-backreferences"
+        },
+        {
+          "text": "Alternation (OR) |",
+          "link": "/9-regular-expressions/13-regexp-alternation"
+        },
+        {
+          "text": "Lookahead and lookbehind",
+          "link": "/9-regular-expressions/14-regexp-lookahead-lookbehind"
+        },
+        {
+          "text": "Catastrophic backtracking",
+          "link": "/9-regular-expressions/15-regexp-catastrophic-backtracking"
+        },
+        {
+          "text": "Sticky flag \"y\", searching at position",
+          "link": "/9-regular-expressions/16-regexp-sticky"
+        },
+        {
+          "text": "Methods of RegExp and String",
+          "link": "/9-regular-expressions/17-regexp-methods"
+        }
+      ]
+    }
+  ],
+  "/9-regular-expressions/": [
+    {
+      "text": "Frames and windows",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Popups and window methods",
+          "link": "/3-frames-and-windows/01-popup-windows"
+        },
+        {
+          "text": "Cross-window communication",
+          "link": "/3-frames-and-windows/03-cross-window-communication"
+        },
+        {
+          "text": "The clickjacking attack",
+          "link": "/3-frames-and-windows/06-clickjacking"
+        }
+      ]
+    },
+    {
+      "text": "Binary data, files",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "ArrayBuffer, binary arrays",
+          "link": "/4-binary/01-arraybuffer-binary-arrays"
+        },
+        {
+          "text": "TextDecoder and TextEncoder",
+          "link": "/4-binary/02-text-decoder"
+        },
+        {
+          "text": "Blob",
+          "link": "/4-binary/03-blob"
+        },
+        {
+          "text": "File and FileReader",
+          "link": "/4-binary/04-file"
+        }
+      ]
+    },
+    {
+      "text": "Network requests",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Fetch",
+          "link": "/5-network/01-fetch"
+        },
+        {
+          "text": "FormData",
+          "link": "/5-network/02-formdata"
+        },
+        {
+          "text": "Fetch: Download progress",
+          "link": "/5-network/03-fetch-progress"
+        },
+        {
+          "text": "Fetch: Abort",
+          "link": "/5-network/04-fetch-abort"
+        },
+        {
+          "text": "Fetch: Cross-Origin Requests",
+          "link": "/5-network/05-fetch-crossorigin"
+        },
+        {
+          "text": "Fetch API",
+          "link": "/5-network/06-fetch-api"
+        },
+        {
+          "text": "URL objects",
+          "link": "/5-network/07-url"
+        },
+        {
+          "text": "XMLHttpRequest",
+          "link": "/5-network/08-xmlhttprequest"
+        },
+        {
+          "text": "Resumable file upload",
+          "link": "/5-network/09-resume-upload"
+        },
+        {
+          "text": "Long polling",
+          "link": "/5-network/10-long-polling"
+        },
+        {
+          "text": "WebSocket",
+          "link": "/5-network/11-websocket"
+        },
+        {
+          "text": "Server Sent Events",
+          "link": "/5-network/12-server-sent-events"
+        }
+      ]
+    },
+    {
+      "text": "Storing data in the browser",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Cookies, document.cookie",
+          "link": "/6-data-storage/01-cookie"
+        },
+        {
+          "text": "LocalStorage, sessionStorage",
+          "link": "/6-data-storage/02-localstorage"
+        },
+        {
+          "text": "IndexedDB",
+          "link": "/6-data-storage/03-indexeddb"
+        }
+      ]
+    },
+    {
+      "text": "Animation",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Bezier curve",
+          "link": "/7-animation/1-bezier-curve"
+        },
+        {
+          "text": "CSS-animations",
+          "link": "/7-animation/2-css-animations"
+        },
+        {
+          "text": "JavaScript animations",
+          "link": "/7-animation/3-js-animation"
+        }
+      ]
+    },
+    {
+      "text": "Web components",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "From the orbital height",
+          "link": "/8-web-components/1-webcomponents-intro"
+        },
+        {
+          "text": "Custom elements",
+          "link": "/8-web-components/2-custom-elements"
+        },
+        {
+          "text": "Shadow DOM",
+          "link": "/8-web-components/3-shadow-dom"
+        },
+        {
+          "text": "Template element",
+          "link": "/8-web-components/4-template-element"
+        },
+        {
+          "text": "Shadow DOM slots, composition",
+          "link": "/8-web-components/5-slots-composition"
+        },
+        {
+          "text": "Shadow DOM styling",
+          "link": "/8-web-components/6-shadow-dom-style"
+        },
+        {
+          "text": "Shadow DOM and events",
+          "link": "/8-web-components/7-shadow-dom-events"
+        }
+      ]
+    },
+    {
+      "text": "Regular expressions",
+      "collapsed": true,
+      "items": [
+        {
+          "text": "Patterns and flags",
+          "link": "/9-regular-expressions/01-regexp-introduction"
+        },
+        {
+          "text": "Character classes",
+          "link": "/9-regular-expressions/02-regexp-character-classes"
+        },
+        {
+          "text": "Unicode: flag \"u\" and class \\p{...}",
+          "link": "/9-regular-expressions/03-regexp-unicode"
+        },
+        {
+          "text": "Anchors: string start ^ and end $",
+          "link": "/9-regular-expressions/04-regexp-anchors"
+        },
+        {
+          "text": "Multiline mode of anchors ^ $, flag \"m\"",
+          "link": "/9-regular-expressions/05-regexp-multiline-mode"
+        },
+        {
+          "text": "Word boundary: \\b",
+          "link": "/9-regular-expressions/06-regexp-boundary"
+        },
+        {
+          "text": "Escaping, special characters",
+          "link": "/9-regular-expressions/07-regexp-escaping"
+        },
+        {
+          "text": "Sets and ranges [...]",
+          "link": "/9-regular-expressions/08-regexp-character-sets-and-ranges"
+        },
+        {
+          "text": "Quantifiers +, *, ? and {n}",
+          "link": "/9-regular-expressions/09-regexp-quantifiers"
+        },
+        {
+          "text": "Greedy and lazy quantifiers",
+          "link": "/9-regular-expressions/10-regexp-greedy-and-lazy"
+        },
+        {
+          "text": "Capturing groups",
+          "link": "/9-regular-expressions/11-regexp-groups"
+        },
+        {
+          "text": "Backreferences in pattern: \\N and \\k<name>",
+          "link": "/9-regular-expressions/12-regexp-backreferences"
+        },
+        {
+          "text": "Alternation (OR) |",
+          "link": "/9-regular-expressions/13-regexp-alternation"
+        },
+        {
+          "text": "Lookahead and lookbehind",
+          "link": "/9-regular-expressions/14-regexp-lookahead-lookbehind"
+        },
+        {
+          "text": "Catastrophic backtracking",
+          "link": "/9-regular-expressions/15-regexp-catastrophic-backtracking"
+        },
+        {
+          "text": "Sticky flag \"y\", searching at position",
+          "link": "/9-regular-expressions/16-regexp-sticky"
+        },
+        {
+          "text": "Methods of RegExp and String",
+          "link": "/9-regular-expressions/17-regexp-methods"
+        }
+      ]
+    }
+  ]
+}
