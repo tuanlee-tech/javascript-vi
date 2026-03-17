@@ -23,7 +23,7 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: '/logo.svg',
+    logo: `${base}/logo.png`,
 
     nav: [
       { text: 'Trang chủ', link: '/' },
