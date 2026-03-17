@@ -11,15 +11,15 @@ export default defineConfig({
   lang: 'vi-VN',
   base: base,
   head: [
-    ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
+    ['link', { rel: 'icon', type: 'image/png', href: `${base}/logo.png` }],
     ['meta', { name: 'theme-color', content: '#F0DB4F' }],
     ['meta', { property: 'og:type', content: 'website' }],
     ['meta', { property: 'og:locale', content: 'vi_VN' }],
     ['meta', { property: 'og:title', content: 'JavaScript Tiếng Việt' }],
     ['meta', { property: 'og:description', content: 'Hướng dẫn JavaScript hiện đại - Phiên bản tiếng Việt của javascript.info' }],
-    ['meta', { property: 'og:image', content: '/og-image.png' }],
+    ['meta', { property: 'og:image', content: `${base}og-image.png` }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
-    ['meta', { name: 'twitter:image', content: '/og-image.png' }],
+    ['meta', { name: 'twitter:image', content: `${base}og-image.png` }],
   ],
 
   themeConfig: {
@@ -54,7 +54,7 @@ export default defineConfig({
     sidebar,
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/' }
+      { icon: 'github', link: 'https://github.com/tuanlee-tech/javascript-vi' }
     ],
 
     outline: {
