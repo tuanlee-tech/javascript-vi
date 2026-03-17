@@ -20,6 +20,13 @@ export default defineConfig({
     ['meta', { property: 'og:image', content: `${base}og-image.png` }],
     ['meta', { name: 'twitter:card', content: 'summary_large_image' }],
     ['meta', { name: 'twitter:image', content: `${base}og-image.png` }],
+    [
+      'meta',
+      {
+        property: 'og:url',
+        content: 'https://tuanlee-tech.github.io/javascript-vi',
+      },
+    ],
   ],
 
   themeConfig: {
