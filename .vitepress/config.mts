@@ -30,8 +30,6 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    logo: `${base}/logo.png`,
-
     nav: [
       { text: 'Trang chủ', link: '/' },
       {
