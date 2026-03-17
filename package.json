@@ -1,5 +1,6 @@
 {
   "name": "javascript-vi",
+  "homepage": "https://tuanlee-tech.github.io/javascript-vi/",
   "version": "1.0.0",
   "description": "Phiên bản tiếng Việt của javascript.info",
   "private": true,
@@ -10,6 +11,7 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^25.5.0",
     "vitepress": "^1.6.4"
   }
 }

@@ -1,11 +1,15 @@
 import { defineConfig } from 'vitepress'
 import sidebar from './sidebar.json'
 
+const isProd = process.env.NODE_ENV === 'production';
+const repo = 'javascript-vi';
+export const base = isProd ? `/${repo}/` : '/';
+
 export default defineConfig({
   title: 'JavaScript Tiếng Việt',
   description: 'Hướng dẫn JavaScript hiện đại - Phiên bản tiếng Việt của javascript.info',
   lang: 'vi-VN',
-
+  base: base,
   head: [
     ['link', { rel: 'icon', type: 'image/png', href: '/logo.png' }],
     ['meta', { name: 'theme-color', content: '#F0DB4F' }],
