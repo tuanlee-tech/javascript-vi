@@ -170,7 +170,7 @@ class CoffeeMachine {
 }
 
 new CoffeeMachine().setWaterAmount(100);
-:::
+
 
 Dù trông có vẻ dài, nhưng các hàm này mềm dẻo hơn. Chúng có thể nhận nhiều đối số (kể cả khi lúc này ta không cần).
 
@@ -277,7 +277,7 @@ class User {
     alert(`Hello, ${this[fieldName]}`);
   }
 }
-:::
+
 
 Với các trường private `this['#name']` không làm việc. Đó là một hạn chế về cú pháp để đảm bảo sự riêng tư.
 ````

@@ -107,7 +107,7 @@ let b = "0";
 alert( Boolean(b) ); // true
 
 alert(a == b); // true!
-:::
+
 
 From JavaScript's standpoint, this result is quite normal. An equality check converts values using the numeric conversion (hence `"0"` becomes `0`), while the explicit `Boolean` conversion uses another set of rules.
 ````

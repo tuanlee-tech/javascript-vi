@@ -279,7 +279,7 @@ describe("test", function() {
   it('test 2', () => alert(2));
 
 });
-:::
+
 
 The running sequence will be:
 

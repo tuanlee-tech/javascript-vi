@@ -112,7 +112,7 @@ Promise.all([
   2,
   3
 ]).then(alert); // 1, 2, 3
-:::
+
 
 So we are able to pass ready values to `Promise.all` where convenient.
 ````

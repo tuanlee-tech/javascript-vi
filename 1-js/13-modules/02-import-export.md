@@ -36,7 +36,7 @@ That's why there's no need for a semicolon at the end of `export class` and `exp
 export function sayHi(user) {
   alert(`Hello, ${user}!`);
 }  // no ; at the end 
-:::
+
 
 ````
 
@@ -77,7 +77,7 @@ sayHi('John'); // Hello, John!
 sayBye('John'); // Bye, John!
 ```
 
-But if there's a lot to import, we can import everything as an object using `import * as <obj>`, for instance:
+But if there's a lot to import, we can import everything as an object using `import * as ``&lt;obj&gt;```, for instance:
 
 ```js
 // 📁 main.js

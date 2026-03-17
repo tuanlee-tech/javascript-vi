@@ -139,7 +139,7 @@ url.searchParams.set('q', 'test me!');
 
 // the parameter 'q' is encoded
 xhr.open('GET', url); // https://google.com/search?q=test+me%21
-:::
+
 
 ````
 

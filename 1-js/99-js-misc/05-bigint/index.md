@@ -47,7 +47,7 @@ alert(Number(bigint) + number); // 3
 
 The conversion operations are always silent, never give errors, but if the bigint is too huge and won't fit the number type, then extra bits will be cut off, so we should be careful doing such conversion.
 
-
+::: info
 The unary plus operator `+value` is a well-known way to convert `value` to a number.
 
 In order to avoid confusion, it's not supported on bigints:
@@ -56,8 +56,8 @@ let bigint = 1n;
 
 alert( +bigint ); // error
 :::
+
 So we should use `Number()` to convert a bigint to a number.
-````
 
 ## Comparisons
 

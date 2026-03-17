@@ -293,7 +293,7 @@ function getCookie(name) {
 }
 ```
 
-Here `new RegExp` is generated dynamically, to match `; name=<value>`.
+Here `new RegExp` is generated dynamically, to match `; name=``&lt;value&gt;```.
 
 Please note that a cookie value is encoded, so `getCookie` uses a built-in `decodeURIComponent` function to decode it.
 

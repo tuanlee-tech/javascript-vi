@@ -246,7 +246,7 @@ user.name = "Pete"; // (*)
 
 
 alert(user.name); // Pete
-:::
+
 
 It might seem that the line `(*)` would cause an error, but it does not. The value of `user` is constant, it must always reference the same object, but properties of that object are free to change.
 

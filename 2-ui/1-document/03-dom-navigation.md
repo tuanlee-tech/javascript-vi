@@ -56,7 +56,7 @@ So, in the example below the first `alert` shows `null`:
 
 </body>
 </html>
-:::
+
 ````
 
 
@@ -178,7 +178,7 @@ Please, don't. The `for..in` loop iterates over all enumerable properties. And c
   for (let prop in document.body.childNodes) alert(prop);
 </script>
 </body>
-:::
+
 
 ## Siblings and the parent
 
@@ -237,7 +237,7 @@ With the one exception of `document.documentElement`:
 ```js
 alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
-:::
+
 
 The reason is that the root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
 

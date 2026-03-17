@@ -83,7 +83,7 @@ class User extends f("Xin chào") {}
 
 
 new User().sayHi(); // Xin chào
-:::
+
 
 Ở đây `class User` kế thừa từ kết quả của `f("Hello")`.
 
@@ -165,7 +165,7 @@ class Rabbit extends Animal {
     setTimeout(() => super.stop(), 1000); // gọi phương thức stop của cha sau 1 giây
   }
 }
-:::
+
 
 `super` trong hàm mũi tên cũng giống như trong hàm `stop()`, vì vậy nó hoạt động như dự định. Nếu chúng ta chỉ định một hàm "thông thường" ở đây, sẽ có lỗi:
 

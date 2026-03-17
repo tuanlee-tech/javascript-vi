@@ -214,7 +214,7 @@ new Promise(resolve => resolve(1))
 
   })
   .then(alert); // shows 2 after 1000ms
-:::
+
 
 JavaScript checks the object returned by the `.then` handler in line `(*)`: if it has a callable method named `then`, then it calls that method providing native functions `resolve`, `reject` as arguments (similar to an executor) and waits until one of them is called. In the example above `resolve(2)` is called after 1 second `(**)`. Then the result is passed further down the chain.
 

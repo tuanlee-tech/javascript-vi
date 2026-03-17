@@ -144,7 +144,7 @@ The second argument is the `replacement` string. We can use special character co
 |<code>$&#096;</code>|inserts a part of the string before the match|
 |`$'`|inserts a part of the string after the match|
 |`$n`|if `n` is a 1-2 digit number, then it inserts the contents of n-th parentheses, more about it in the chapter &lt;info:regexp-groups&gt;|
-|`$<name>`|inserts the contents of the parentheses with the given `name`, more about it in the chapter &lt;info:regexp-groups&gt;|
+|`$``&lt;name&gt;```|inserts the contents of the parentheses with the given `name`, more about it in the chapter &lt;info:regexp-groups&gt;|
 |`$$`|inserts character `$` |
 
 An example with `pattern:$&`:

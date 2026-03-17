@@ -204,7 +204,7 @@ If we click a button -- its value is increased. Not buttons, but the general app
 There can be as many attributes with `data-counter` as we want. We can add new ones to HTML at any moment. Using the event delegation we "extended" HTML, added an attribute that describes a new behavior.
 
 
-When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.on<event>`, because the latter will cause conflicts: new handlers overwrite old ones.
+When we assign an event handler to the `document` object, we should always use `addEventListener`, not `document.on``&lt;event&gt;```, because the latter will cause conflicts: new handlers overwrite old ones.
 
 For real projects it's normal that there are many handlers on `document` set by different parts of the code.
 

@@ -55,7 +55,7 @@ let i = 3;
 
 while (i) alert(i--);
 
-:::
+
 ````
 
 ## The "do..while" loop
@@ -149,7 +149,7 @@ for (let i = 0; i < 3; i++) {
   alert(i); // 0, 1, 2
 }
 alert(i); // error, no such variable
-:::
+
 
 Instead of defining a variable, we could use an existing one:
 
@@ -264,7 +264,7 @@ for (let i = 0; i < 10; i++) {
   }
 
 }
-:::
+
 
 From a technical point of view, this is identical to the example above. Surely, we can just wrap the code in an `if` block instead of using `continue`.
 
@@ -282,7 +282,7 @@ if (i > 5) {
 } else {
   continue;
 }
-:::
+
 
 ...and rewrite it using a question mark:
 
@@ -327,7 +327,7 @@ labelName: for (...) {
 }
 ```
 
-The `break <labelName>` statement in the loop below breaks out to the label:
+The `break ``&lt;labelName&gt;``` statement in the loop below breaks out to the label:
 
 ```js
 outer: for (let i = 0; i < 3; i++) {
@@ -366,7 +366,7 @@ For example, it is impossible to do this:
 break label; // jump to the label below (doesn't work)
 
 label: for (...)
-:::
+
 
 A `break` directive must be inside a code block. Technically, any labelled code block will do, e.g.:
 ```js

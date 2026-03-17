@@ -86,7 +86,7 @@ Trong các mã chương trình cũ, bạn sẽ bắt gặp từ khóa `var` thay
 
 ```js
 var message = 'Hello';
-:::
+
 
 Từ khóa `var` *hầu như* giống hệt `let`. Nó cũng khai báo biến, nhưng có chút khác biệt, bởi nó làm việc theo cách cũ.
 
@@ -145,7 +145,7 @@ let message = "This";
 
 // lặp lại 'let' dẫn đến một lỗi
 let message = "That"; // SyntaxError: 'message' đã được khai báo rồi
-:::
+
 Vì thế, chúng ta nên khai báo mỗi biến một lần và tham chiếu đến nó mà không có `let`.
 ````
 
@@ -202,7 +202,7 @@ Có thể sử dụng chữ cái trong bất cứ ngôn ngữ nào để đặt 
 ```js
 let имя = '...';
 let 我 = '...';
-:::
+
 
 Toàn bộ những tên biến như vậy hợp lệ, nhưng có một quy tắc được áp dụng rộng rãi là chỉ sử dụng các chữ cái trong bảng chữ cái tiếng Anh làm tên biến. Quy tắc này đảm bảo mọi người từ nhiều quốc gia có thể hiểu được.
 ````
@@ -217,7 +217,7 @@ Mã dưới dưới đây tạo ra một lỗi cú pháp:
 ```js
 let let = 5; // lỗi, không thể đặt tên biến là từ khóa "let"!
 let return = 5; // cũng không thể đặt tên biến là từ khóa "return"!
-:::
+
 ````
 
 
@@ -230,7 +230,7 @@ Thông thường, chúng ta cần khai báo biến trước khi sử dụng. Nh�
 num = 5; // biến "num" được tạo ra nếu chưa có
 
 alert(num); // 5
-:::
+
 
 Đây là cách viết không tốt và sẽ gây lỗi trong chế độ strict:
 

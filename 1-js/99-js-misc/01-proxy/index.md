@@ -69,7 +69,7 @@ For every internal method, there's a trap in this table: the name of the method 
 | `[[GetOwnProperty]]` | `getOwnPropertyDescriptor` | [Object.getOwnPropertyDescriptor](mdn:/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor), `for..in`, `Object.keys/values/entries` |
 | `[[OwnPropertyKeys]]` | `ownKeys` | [Object.getOwnPropertyNames](mdn:/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames), [Object.getOwnPropertySymbols](mdn:/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols), `for..in`, `Object.keys/values/entries` |
 
-
+::: warning
 JavaScript enforces some invariants -- conditions that must be fulfilled by internal methods and traps.
 
 Most of them are for return values:
@@ -83,7 +83,7 @@ There are some other invariants, like:
 Traps can intercept these operations, but they must follow these rules.
 
 Invariants ensure correct and consistent behavior of language features. The full invariants list is in [the specification](https://tc39.es/ecma262/#sec-proxy-object-internal-methods-and-internal-slots). You probably won't violate them if you're not doing something weird.
-
+:::
 
 Let's see how that works in practical examples.
 
@@ -104,7 +104,6 @@ Let's use `get` to implement default values for an object.
 We'll make a numeric array that returns `0` for nonexistent values.
 
 Usually when one tries to get a non-existing array item, they get `undefined`, but we'll wrap a regular array into the proxy that traps reading and returns `0` if there's no such property:
-
 ```js
 let numbers = [0, 1, 2];
 
@@ -121,8 +120,7 @@ numbers = new Proxy(numbers, {
 
 alert( numbers[1] ); // 1
 alert( numbers[123] ); // 0 (no such item)
-
-```
+:::
 
 As we can see, it's quite easy to do with a `get` trap.
 
@@ -171,15 +169,14 @@ alert( dictionary['Welcome to Proxy']); // Welcome to Proxy (no translation)
 
 ```
 
-
+::: info
 Please note how the proxy overwrites the variable:
-
 ```js
 dictionary = new Proxy(dictionary, ...);
+```
 :::
 
 The proxy should totally replace the target object everywhere. No one should ever reference the target object after it got proxied. Otherwise it's easy to mess up.
-````
 
 ## Validation with "set" trap
 
@@ -231,13 +228,12 @@ We don't have to override value-adding array methods like `push` and `unshift`, 
 
 So the code is clean and concise.
 
-
+::: warning
 As said above, there are invariants to be held.
 
 For `set`, it must return `true` for a successful write.
 
 If we forget to do it or return any falsy value, the operation triggers `TypeError`.
-
 
 ## Iteration with "ownKeys" and "getOwnPropertyDescriptor"
 
@@ -246,13 +242,12 @@ If we forget to do it or return any falsy value, the operation triggers `TypeErr
 Such methods differ in details:
 - `Object.getOwnPropertyNames(obj)` returns non-symbol keys.
 - `Object.getOwnPropertySymbols(obj)` returns symbol keys.
-- `Object.keys/values()` returns non-symbol keys/values with `enumerable` flag (property flags were explained in the article &lt;info:property-descriptors&gt;).
+- `Object.keys/values()` returns non-symbol keys/values with `enumerable` flag (property flags were explained in the article ``<info:property-descriptors>``).
 - `for..in` loops over non-symbol keys with `enumerable` flag, and also prototype keys.
 
 ...But all of them start with that list.
 
 In the example below we use `ownKeys` trap to make `for..in` loop over `user`, and also `Object.keys` and `Object.values`, to skip properties starting with an underscore `_`:
-
 ```js
 let user = {
   name: "John",
@@ -274,7 +269,7 @@ for(let key in user) alert(key); // name, then: age
 // same effect on these methods:
 alert( Object.keys(user) ); // name,age
 alert( Object.values(user) ); // John,30
-```
+:::
 
 So far, it works.
 
@@ -294,7 +289,7 @@ user = new Proxy(user, {
 alert( Object.keys(user) ); // <empty>
 ```
 
-Why? The reason is simple: `Object.keys` returns only properties with the `enumerable` flag. To check for it, it calls the internal method `[[GetOwnProperty]]` for every property to get [its descriptor](#). And here, as there's no property, its descriptor is empty, no `enumerable` flag, so it's skipped.
+Why? The reason is simple: `Object.keys` returns only properties with the `enumerable` flag. To check for it, it calls the internal method `[[GetOwnProperty]]` for every property to get [its descriptor](info:property-descriptors). And here, as there's no property, its descriptor is empty, no `enumerable` flag, so it's skipped.
 
 For `Object.keys` to return a property, we need it to either exist in the object, with the `enumerable` flag, or we can intercept calls to `[[GetOwnProperty]]` (the trap `getOwnPropertyDescriptor` does it), and return a descriptor with `enumerable: true`.
 
@@ -447,24 +442,22 @@ Besides, an object may be proxied multiple times (multiple proxies may add diffe
 
 So, such a proxy shouldn't be used everywhere.
 
-
-Modern JavaScript engines natively support private properties in classes, prefixed with `#`. They are described in the article &lt;info:private-protected-properties-methods&gt;. No proxies required.
+::: info
+Modern JavaScript engines natively support private properties in classes, prefixed with `#`. They are described in the article `&lt;info:private-protected-properties-methods&gt;`. No proxies required.
 
 Such properties have their own issues though. In particular, they are not inherited.
-
 
 ## "In range" with "has" trap
 
 Let's see more examples.
 
 We have a range object:
-
 ```js
 let range = {
   start: 1,
   end: 10
 };
-```
+:::
 
 We'd like to use the `in` operator to check that a number is in `range`.
 
@@ -509,7 +502,7 @@ The `apply(target, thisArg, args)` trap handles calling a proxy as function:
 - `thisArg` is the value of `this`.
 - `args` is a list of arguments.
 
-For example, let's recall `delay(f, ms)` decorator, that we did in the article &lt;info:call-apply-decorators&gt;.
+For example, let's recall `delay(f, ms)` decorator, that we did in the article ``<info:call-apply-decorators>``.
 
 In that article we did it without proxies. A call to `delay(f, ms)` returned a function that forwards all calls to `f` after `ms` milliseconds.
 
@@ -832,18 +825,16 @@ Now it works fine, because `get` trap binds function properties, such as `map.se
 
 Unlike the previous example, the value of `this` inside `proxy.set(...)` will be not `proxy`, but the original `map`. So when the internal implementation of `set` tries to access `this.[[MapData]]` internal slot, it succeeds.
 
-
+::: info
 A notable exception: built-in `Array` doesn't use internal slots. That's for historical reasons, as it appeared so long ago.
 
 So there's no such problem when proxying an array.
-
 
 ### Private fields
 
 A similar thing happens with private class fields.
 
 For example, `getName()` method accesses the private `#name` property and breaks after proxying:
-
 ```js
 class User {
   #name = "Guest";
@@ -859,8 +850,7 @@ user = new Proxy(user, {});
 
 
 alert(user.getName()); // Error
-
-```
+:::
 
 The reason is that private fields are implemented using internal slots. JavaScript does not use `[[Get]]/[[Set]]` when accessing them.
 
@@ -920,13 +910,12 @@ alert(allUsers.has(user)); // false
 
 As we can see, after proxying we can't find `user` in the set `allUsers`, because the proxy is a different object.
 
-
+::: warning
 Proxies can intercept many operators, such as `new` (with `construct`), `in` (with `has`), `delete` (with `deleteProperty`) and so on.
 
 But there's no way to intercept a strict equality test for objects. An object is strictly equal to itself only, and no other value.
 
 So all operations and built-in classes that compare objects for equality will differentiate between the object and the proxy. No transparent replacement here.
-
 
 ## Revocable proxies
 
@@ -937,10 +926,9 @@ Let's say we have a resource, and would like to close access to it any moment.
 What we can do is to wrap it into a revocable proxy, without any traps. Such a proxy will forward operations to object, and we can disable it at any moment.
 
 The syntax is:
-
 ```js
 let {proxy, revoke} = Proxy.revocable(target, handler)
-```
+:::
 
 The call returns an object with the `proxy` and `revoke` function to disable it.
 

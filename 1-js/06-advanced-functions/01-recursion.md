@@ -91,7 +91,7 @@ Here we can rewrite the same using the conditional operator `?` instead of `if` 
 function pow(x, n) {
   return (n == 1) ? x : (x * pow(x, n - 1));
 }
-:::
+
 ````
 
 The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.

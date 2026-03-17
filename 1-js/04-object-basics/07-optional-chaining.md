@@ -119,7 +119,7 @@ If there's no variable `user` at all, then `user?.anything` triggers an error:
 ```js
 // ReferenceError: user is not defined
 user?.address;
-:::
+
 The variable must be declared (e.g. `let/const/var user` or as a function parameter). The optional chaining works only for declared variables.
 ````
 
@@ -200,7 +200,7 @@ let user = null;
 
 user?.name = "John"; // Error, doesn't work
 // because it evaluates to undefined = "John"
-:::
+
 
 It's just not that smart.
 ````

@@ -109,7 +109,7 @@ let arr = [1, 2, 5];
 arr.splice(-1, 0, 3, 4);
 
 alert( arr ); // 1,2,3,4,5
-:::
+
 ````
 
 ### slice
@@ -443,7 +443,7 @@ let arr = [ 1, 2, 15 ];
 arr.sort(function(a, b) { return a - b; });
 
 alert(arr);  // 1, 2, 15
-:::
+
 ````
 
 
@@ -451,7 +451,7 @@ Remember [arrow functions](#)? We can use them here for neater sorting:
 
 ```js
 arr.sort( (a, b) => a - b );
-:::
+
 
 This works exactly the same as the longer version above.
 ````
@@ -469,7 +469,7 @@ let countries = ['Österreich', 'Andorra', 'Vietnam'];
 alert( countries.sort( (a, b) => a > b ? 1 : -1) ); // Andorra, Vietnam, Österreich (wrong)
 
 alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,Vietnam (correct!)
-:::
+
 ````
 
 ### reverse
@@ -520,7 +520,7 @@ The call to `split(s)` with an empty `s` would split the string into an array of
 let str = "test";
 
 alert( str.split('') ); // t,e,s,t
-:::
+
 ````
 
 The call [arr.join(glue)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items joined by `glue` between them.

@@ -78,7 +78,7 @@ let user = new function() {
   // maybe complex logic and statements
   // local variables etc
 };
-:::
+
 
 The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
 ````
@@ -176,7 +176,7 @@ By the way, we can omit parentheses after `new`, if it has no arguments:
 let user = new User; // <-- no parentheses
 // same as
 let user = new User();
-:::
+
 
 Omitting parentheses here is not considered a "good style", but the syntax is permitted by specification.
 ````

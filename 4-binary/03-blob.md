@@ -89,7 +89,7 @@ link.click();
 URL.revokeObjectURL(link.href);
 ```
 
-`URL.createObjectURL` takes a `Blob` and creates a unique URL for it, in the form `blob:<origin>/<uuid>`.
+`URL.createObjectURL` takes a `Blob` and creates a unique URL for it, in the form `blob:``&lt;origin&gt;``/``&lt;uuid&gt;```.
 
 That's what the value of `link.href` looks like:
 
@@ -119,7 +119,7 @@ An alternative to `URL.createObjectURL` is to convert a `Blob` into a base64-enc
 
 That encoding represents binary data as a string of ultra-safe "readable" characters with ASCII-codes from 0 to 64. And what's more important -- we can use this encoding in "data-urls".
 
-A [data url](mdn:/http/Data_URIs) has the form `data:[<mediatype>][;base64],<data>`. We can use such urls everywhere, on par with "regular" urls.
+A [data url](mdn:/http/Data_URIs) has the form `data:[``&lt;mediatype&gt;``][;base64],``&lt;data&gt;```. We can use such urls everywhere, on par with "regular" urls.
 
 For instance, here's a smiley:
 

@@ -256,7 +256,7 @@ E.g. there are potentially 100 matches in the text, but in a `for..of` loop we f
 
 Remembering groups by their numbers is hard. For simple patterns it's doable, but for more complex ones counting parentheses is inconvenient. We have a much better option: give names to parentheses.
 
-That's done by putting `pattern:?<name>` immediately after the opening paren.
+That's done by putting `pattern:?``&lt;name&gt;``` immediately after the opening paren.
 
 For example, let's look for a date in the format "year-month-day":
 
@@ -308,7 +308,7 @@ let regexp = /(\w+) (\w+)/;
 alert( str.replace(regexp, '$2, $1') ); // Bull, John
 ```
 
-For named parentheses the reference will be `pattern:$<name>`.
+For named parentheses the reference will be `pattern:$``&lt;name&gt;```.
 
 For example, let's reformat dates from "year-month-day" to "day.month.year":
 
@@ -350,7 +350,7 @@ alert( result.length ); // 2 (no more items in the array)
 
 Parentheses group together a part of the regular expression, so that the quantifier applies to it as a whole.
 
-Parentheses groups are numbered left-to-right, and can optionally be named with  `(?<name>...)`.
+Parentheses groups are numbered left-to-right, and can optionally be named with  `(?``&lt;name&gt;``...)`.
 
 The content, matched by a group, can be obtained in the results:
 
@@ -359,6 +359,6 @@ The content, matched by a group, can be obtained in the results:
 
 If the parentheses have no name, then their contents is available in the match array by its number. Named parentheses are also available in the property `groups`.
 
-We can also use parentheses contents in the replacement string in `str.replace`: by the number `$n` or the name `$<name>`.
+We can also use parentheses contents in the replacement string in `str.replace`: by the number `$n` or the name `$``&lt;name&gt;```.
 
 A group may be excluded from numbering by adding `pattern:?:` in its start. That's used when we need to apply a quantifier to the whole group, but don't want it as a separate item in the results array. We also can't reference such parentheses in the replacement string.

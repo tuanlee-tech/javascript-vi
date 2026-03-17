@@ -27,7 +27,7 @@ If there's a scrollbar, and it occupies some space, then these two lines show di
 ```js
 alert( window.innerWidth ); // full window width
 alert( document.documentElement.clientWidth ); // window width minus the scrollbar
-:::
+
 
 In most cases, we need the *available* window width in order to draw or position something within scrollbars (if there are any), so we should use `documentElement.clientHeight/clientWidth`.
 ````

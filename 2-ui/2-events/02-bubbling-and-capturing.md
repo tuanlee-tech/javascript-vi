@@ -134,7 +134,7 @@ That is: for a click on `<td>` the event first goes through the ancestors chain 
 
 **Before we only talked about bubbling, because the capturing phase is rarely used. Normally it is invisible to us.**
 
-Handlers added using `on<event>`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
+Handlers added using `on&lt;event&gt;`-property or using HTML attributes or using two-argument `addEventListener(event, handler)` don't know anything about capturing, they only run on the 2nd and 3rd phases.
 
 To catch an event on the capturing phase, we need to set the handler `capture` option to `true`:
 
@@ -196,7 +196,7 @@ If we have multiple event handlers on the same phase, assigned to the same eleme
 ```js
 elem.addEventListener("click", e => alert(1)); // guaranteed to trigger first
 elem.addEventListener("click", e => alert(2));
-:::
+
 ````
 
 
@@ -206,7 +206,7 @@ When an event happens -- the most nested element where it happens gets labeled a
 
 - Then the event moves down from the document root to `event.target`, calling handlers assigned with `addEventListener(..., true)` on the way (`true` is a shorthand for `{capture: true}`).
 - Then handlers are called on the target element itself.
-- Then the event bubbles up from `event.target` to the root, calling handlers assigned using `on<event>`, HTML attributes and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
+- Then the event bubbles up from `event.target` to the root, calling handlers assigned using `on&lt;event&gt;`, HTML attributes and `addEventListener` without the 3rd argument or with the 3rd argument `false/{capture:false}`.
 
 Each handler can access `event` object properties:
 

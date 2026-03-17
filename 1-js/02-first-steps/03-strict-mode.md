@@ -33,7 +33,7 @@ alert("some code");
 "use strict";
 
 // chế độ strict không được bật
-:::
+
 
 Chỉ các chú thích được phép xuất hiện trước `"use strict"`.
 ````

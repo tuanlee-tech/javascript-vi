@@ -139,7 +139,7 @@ let elem = document.elementFromPoint(x, y);
 
 elem.style.background = ''; // Error!
 
-:::
+
 ````
 
 ## Using for "fixed" positioning

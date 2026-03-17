@@ -53,7 +53,7 @@ Run this code in Internet Explorer to see:
 
 ```js
 let test = prompt("Test");
-:::
+
 
 So, for prompts to look good in IE, we recommend always providing the second argument:
 

@@ -73,7 +73,7 @@ In modern programming `eval` is used very sparingly. It's often said that "eval 
 
 The reason is simple: long, long time ago JavaScript was a much weaker language, many things could only be done with `eval`. But that time passed a decade ago.
 
-Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](#).
+Right now, there's almost no reason to use `eval`. If someone is using it, there's a good chance they can replace it with a modern language construct or a [JavaScript Module](info:modules).
 
 Please note that its ability to access outer variables has side-effects.
 
@@ -103,7 +103,7 @@ let f = new Function('a', 'alert(a)');
 f(5); // 5
 ```
 
-The `new Function` construct is explained in the chapter &lt;info:new-function&gt;. It creates a function from a string, also in the global scope. So it can't see local variables. But it's so much clearer to pass them explicitly as arguments, like in the example above.
+The `new Function` construct is explained in the chapter ``&lt;info:new-function&gt;``. It creates a function from a string, also in the global scope. So it can't see local variables. But it's so much clearer to pass them explicitly as arguments, like in the example above.
 
 ## Summary
 

@@ -86,7 +86,7 @@ For instance:
 
   </script>
 </body>
-:::
+
 ````
 
 
@@ -117,7 +117,7 @@ That's easy to see in an example:
   alert(form.username == form.login); // true
 
 </script>
-:::
+
 
 That's usually not a problem, however, because we rarely change names of form elements.
 

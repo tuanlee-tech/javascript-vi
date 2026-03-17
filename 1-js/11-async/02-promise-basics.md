@@ -97,7 +97,7 @@ let promise = new Promise(function(resolve, reject) {
   reject(new Error("…")); // ignored
   setTimeout(() => resolve("…")); // ignored
 });
-:::
+
 
 The idea is that a job done by the executor may have only one result or an error.
 
@@ -116,7 +116,7 @@ let promise = new Promise(function(resolve, reject) {
   // not taking our time to do the job
   resolve(123); // immediately give the result: 123
 });
-:::
+
 
 For instance, this might happen when we start to do a job but then see that everything has already been completed and cached.
 
@@ -271,7 +271,7 @@ If a promise is pending, `.then/catch/finally` handlers wait for it. Otherwise, 
 let promise = new Promise(resolve => resolve("done!"));
 
 promise.then(alert); // done! (shows up right now)
-:::
+
 
 Note that this makes promises more powerful than the real life "subscription list" scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won't receive that song. Subscriptions in real life must be done prior to the event.
 

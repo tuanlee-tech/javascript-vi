@@ -46,8 +46,8 @@ If a user works with different languages, then switching to another language wou
 Every key has the code that depends on its location on the keyboard. Key codes described in the [UI Events code specification](https://www.w3.org/TR/uievents-code/).
 
 For instance:
-- Letter keys have codes `"Key<letter>"`: `"KeyA"`, `"KeyB"` etc.
-- Digit keys have codes: `"Digit<number>"`: `"Digit0"`, `"Digit1"` etc.
+- Letter keys have codes `"Key``&lt;letter&gt;``"`: `"KeyA"`, `"KeyB"` etc.
+- Digit keys have codes: `"Digit``&lt;number&gt;``"`: `"Digit0"`, `"Digit1"` etc.
 - Special keys are coded by their names: `"Enter"`, `"Backspace"`, `"Tab"` etc.
 
 There are several widespread keyboard layouts, and the specification gives key codes for each of them.

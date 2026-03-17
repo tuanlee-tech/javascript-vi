@@ -92,7 +92,7 @@ For instance:
 alert( typeof 0 ); // "number"
 
 alert( typeof new Number(0) ); // "object"!
-:::
+
 
 Objects are always truthy in `if`, so here the alert will show up:
 
@@ -113,14 +113,14 @@ let num = Number("123"); // convert a string to number
 ````
 
 
-:::warning null/undefined have no methods
+
 The special primitives `null` and `undefined` are exceptions. They have no corresponding "wrapper objects" and provide no methods. In a sense, they are "the most primitive".
 
 An attempt to access a property of such value would give the error:
 
 ```js
 alert(null.test); // error
-:::
+
 
 ## Summary
 

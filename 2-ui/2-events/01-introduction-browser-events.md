@@ -36,7 +36,7 @@ There are several ways to assign a handler. Let's see them, starting from the si
 
 ### HTML-attribute
 
-A handler can be set in HTML with an attribute named `on<event>`.
+A handler can be set in HTML with an attribute named `on&lt;event&gt;`.
 
 For instance, to assign a `click` handler for an `input`, we can use `onclick`, like here:
 
@@ -68,7 +68,7 @@ As we know, HTML attribute names are not case-sensitive, so `ONCLICK` works as w
 
 ### DOM property
 
-We can assign a handler using a DOM property `on<event>`.
+We can assign a handler using a DOM property `on&lt;event&gt;`.
 
 For instance, `elem.onclick`:
 
@@ -242,7 +242,7 @@ This doesn't work:
 elem.addEventListener( "click" , () => alert('Thanks!'));
 // ....
 elem.removeEventListener( "click", () => alert('Thanks!'));
-:::
+
 
 The handler won't be removed, because `removeEventListener` gets another function -- with the same code, but that doesn't matter, as it's a different function object.
 
@@ -295,7 +295,7 @@ For instance, the `DOMContentLoaded` event, that triggers when the document is l
 document.onDOMContentLoaded = function() {
   alert("DOM built");
 };
-:::
+
 
 ```js
 // this way it works
@@ -344,7 +344,7 @@ If we assign a handler in HTML, we can also use the `event` object, like this:
 
 ```html
 <input type="button" onclick="alert(event.type)" value="Event type">
-:::
+
 
 That's possible because when the browser reads the attribute, it creates a handler like this:  `function(event) { alert(event.type) }`. That is: its first argument is called `"event"`, and the body is taken from the attribute.
 ````

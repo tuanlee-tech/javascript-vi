@@ -68,7 +68,7 @@ The rest parameters gather all remaining arguments, so the following does not ma
 function f(arg1, ...rest, arg2) { // arg2 after ...rest ?!
   // error
 }
-:::
+
 
 The `...rest` must always be last.
 ````
@@ -116,7 +116,7 @@ function f() {
 }
 
 f(1); // 1
-:::
+
 
 As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
 ````

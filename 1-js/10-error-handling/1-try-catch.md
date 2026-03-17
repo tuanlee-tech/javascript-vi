@@ -83,7 +83,7 @@ try {
 } catch (err) {
   alert("The engine can't understand this code, it's invalid");
 }
-:::
+
 
 The JavaScript engine first reads the code, and then runs it. The errors that occur on the reading phase are called "parse-time" errors and are unrecoverable (from inside that code). That's because the engine can't understand the code.
 
@@ -102,7 +102,7 @@ try {
 } catch (err) {
   alert( "won't work" );
 }
-:::
+
 
 That's because the function itself is executed later, when the engine has already left the `try...catch` construct.
 
@@ -560,7 +560,7 @@ function func() {
 }
 
 alert( func() ); // first works alert from finally, and then this one
-:::
+
 ````
 
 
@@ -576,7 +576,7 @@ function func() {
     // complete that thing even if all dies
   }
 }
-:::
+
 In the code above, an error inside `try` always falls out, because there's no `catch`. But `finally` works before the execution flow leaves the function.
 ````
 

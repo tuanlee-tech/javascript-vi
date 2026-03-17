@@ -230,7 +230,7 @@ Another widespread novice mistake is to write:
 ```js
 // doesn't work
 document.getElementsByTagName('input').value = 5;
-:::
+
 
 That won't work, because it takes a *collection* of inputs and assigns the value to it rather than to elements inside it.
 

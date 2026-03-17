@@ -151,7 +151,7 @@ Luckily, there's an alternative, that works everywhere. We can use a regexp like
 
 ```js
 alert( "A\nB".match(/A[\s\S]B/) ); // A\nB (match!)
-:::
+
 
 The pattern `pattern:[\s\S]` literally says: "a space character OR not a space character". In other words, "anything". We could use another pair of complementary classes, such as `pattern:[\d\D]`, that doesn't matter. Or even the `pattern:[^]` -- as it means match any character except nothing.
 
@@ -167,7 +167,7 @@ Let's try to find digits separated by a hyphen:
 
 ```js
 alert( "1 - 5".match(/\d-\d/) ); // null, no match!
-:::
+
 
 Let's fix it adding spaces into the regexp `pattern:\d - \d`:
 

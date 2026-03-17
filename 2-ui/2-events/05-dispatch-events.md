@@ -75,7 +75,7 @@ All we need is to set `bubbles` to `true`:
 
 Notes:
 
-1. We should use `addEventListener` for our custom events, because `on<event>` only exists for built-in events, `document.onhello` doesn't work.
+1. We should use `addEventListener` for our custom events, because `on&lt;event&gt;` only exists for built-in events, `document.onhello` doesn't work.
 2. Must set `bubbles:true`, otherwise the event won't bubble up.
 
 The bubbling mechanics is the same for built-in (`click`) and custom (`hello`) events. There are also capturing and bubbling stages.

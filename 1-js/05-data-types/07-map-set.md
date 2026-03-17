@@ -97,7 +97,7 @@ Every `map.set` call returns the map itself, so we can "chain" the calls:
 map.set('1', 'str1')
   .set(1, 'num1')
   .set(true, 'bool1');
-:::
+
 ````
 
 

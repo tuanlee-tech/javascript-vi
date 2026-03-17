@@ -5,7 +5,7 @@ We can create custom HTML elements, described by our class, with its own methods
 
 Once a custom element is defined, we can use it on par with built-in HTML elements.
 
-That's great, as HTML dictionary is rich, but not infinite. There are no `<easy-tabs>`, `<sliding-carousel>`, `<beautiful-upload>`... Just think of any other tag we might need.
+That's great, as HTML dictionary is rich, but not infinite. There are no ```&lt;easy-tabs&gt;```, ```&lt;sliding-carousel&gt;```, ```&lt;beautiful-upload&gt;```... Just think of any other tag we might need.
 
 We can define them with a special class, and then use as if they were always a part of HTML.
 
@@ -63,7 +63,7 @@ After that, we need to register the element:
 customElements.define("my-element", MyElement);
 ```
 
-Now for any HTML elements with tag `<my-element>`, an instance of `MyElement` is created, and the aforementioned methods are called. We also can `document.createElement('my-element')` in JavaScript.
+Now for any HTML elements with tag ```&lt;my-element&gt;```, an instance of `MyElement` is created, and the aforementioned methods are called. We also can `document.createElement('my-element')` in JavaScript.
 
 
 Custom element name must have a hyphen `-`, e.g. `my-element` and `super-button` are valid names, but `myelement` is not.
@@ -75,7 +75,7 @@ That's to ensure that there are no name conflicts between built-in and custom HT
 
 For example, there already exists `<time>` element in HTML, for date/time. But it doesn't do any formatting by itself.
 
-Let's create `<time-formatted>` element that displays the time in a nice, language-aware format:
+Let's create ```&lt;time-formatted&gt;``` element that displays the time in a nice, language-aware format:
 
 
 ```html
@@ -115,13 +115,13 @@ customElements.define("time-formatted", TimeFormatted); // (2)
 ></time-formatted>
 ```
 
-1. The class has only one method `connectedCallback()` -- the browser calls it when `<time-formatted>` element is added to page (or when HTML parser detects it), and it uses the built-in [Intl.DateTimeFormat](mdn:/JavaScript/Reference/Global_Objects/DateTimeFormat) data formatter, well-supported across the browsers, to show a nicely formatted time.
+1. The class has only one method `connectedCallback()` -- the browser calls it when ```&lt;time-formatted&gt;``` element is added to page (or when HTML parser detects it), and it uses the built-in [Intl.DateTimeFormat](mdn:/JavaScript/Reference/Global_Objects/DateTimeFormat) data formatter, well-supported across the browsers, to show a nicely formatted time.
 2. We need to register our new element by `customElements.define(tag, class)`.
 3. And then we can use it everywhere.
 
 
 
-If the browser encounters any `<time-formatted>` elements before `customElements.define`, that's not an error. But the element is yet unknown, just like any non-standard tag.
+If the browser encounters any ```&lt;time-formatted&gt;``` elements before `customElements.define`, that's not an error. But the element is yet unknown, just like any non-standard tag.
 
 Such "undefined" elements can be styled with CSS selector `:not(:defined)`.
 
@@ -147,11 +147,11 @@ The `connectedCallback` triggers when the element is added to the document. Not 
 
 ## Observing attributes
 
-In the current implementation of `<time-formatted>`, after the element is rendered, further attribute changes don't have any effect. That's strange for an HTML element. Usually, when we change an attribute, like `a.href`, we expect the change to be immediately visible. So let's fix this.
+In the current implementation of ```&lt;time-formatted&gt;```, after the element is rendered, further attribute changes don't have any effect. That's strange for an HTML element. Usually, when we change an attribute, like `a.href`, we expect the change to be immediately visible. So let's fix this.
 
 We can observe attributes by providing their list in `observedAttributes()` static getter. For such attributes, `attributeChangedCallback` is called when they are modified. It doesn't trigger for other, unlisted attributes (that's for performance reasons).
 
-Here's a new `<time-formatted>`, that auto-updates when attributes change:
+Here's a new ```&lt;time-formatted&gt;```, that auto-updates when attributes change:
 
 ```html
 <script>
@@ -216,7 +216,7 @@ setInterval(() => elem.setAttribute('datetime', new Date()), 1000); // (5)
 
 ## Rendering order
 
-When HTML parser builds the DOM, elements are processed one after another, parents before children. E.g. if we have `<outer><inner></inner></outer>`, then `<outer>` element is created and connected to DOM first, and then `<inner>`.
+When HTML parser builds the DOM, elements are processed one after another, parents before children. E.g. if we have ```&lt;outer&gt;````&lt;inner&gt;````&lt;/inner&gt;````&lt;/outer&gt;```, then ```&lt;outer&gt;``` element is created and connected to DOM first, and then ```&lt;inner&gt;```.
 
 That leads to important consequences for custom elements.
 
@@ -242,7 +242,7 @@ customElements.define('user-info', class extends HTMLElement {
 
 If you run it, the `alert` is empty.
 
-That's exactly because there are no children on that stage, the DOM is unfinished. HTML parser connected the custom element `<user-info>`, and is going to proceed to its children, but just didn't yet.
+That's exactly because there are no children on that stage, the DOM is unfinished. HTML parser connected the custom element ```&lt;user-info&gt;```, and is going to proceed to its children, but just didn't yet.
 
 If we'd like to pass information to custom element, we can use attributes. They are available immediately.
 
@@ -306,7 +306,7 @@ There's no built-in callback that triggers after nested elements are ready. If n
 
 ## Customized built-in elements
 
-New elements that we create, such as `<time-formatted>`, don't have any associated semantics. They are unknown to search engines, and accessibility devices can't handle them.
+New elements that we create, such as ```&lt;time-formatted&gt;```, don't have any associated semantics. They are unknown to search engines, and accessibility devices can't handle them.
 
 But such things can be important. E.g, a search engine would be interested to know that we actually show a time. And if we're making a special kind of button, why not reuse the existing `<button>` functionality?
 

@@ -43,7 +43,7 @@ alert( rabbit.eats ); // true
 
 Thuộc tính `F.prototype` chỉ được dùng khi `new F` được gọi, nó đặt `[[Prototype]]` của đối tượng mới tạo ra.
 
-Nếu sau khi tạo đối tượng, thuộc tính `F.prototype` bị thay đổi (`F.prototype = <một đối tượng khác>`), thì các đối tượng mới được tạo bởi `new F` sẽ có một đối tượng khác làm `[[Prototype]]`, nhưng các đối tượng hiện có vẫn giữ đối tượng `[[Prototype]]` cũ.
+Nếu sau khi tạo đối tượng, thuộc tính `F.prototype` bị thay đổi (`F.prototype = &lt;một đối tượng khác&gt;`), thì các đối tượng mới được tạo bởi `new F` sẽ có một đối tượng khác làm `[[Prototype]]`, nhưng các đối tượng hiện có vẫn giữ đối tượng `[[Prototype]]` cũ.
 
 
 ## F.prototype mặc định, thuộc tính "constructor"

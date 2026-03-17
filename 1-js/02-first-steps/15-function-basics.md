@@ -324,7 +324,7 @@ Nếu một hàm không trả về một giá trị thì cũng giống như là 
 function doNothing() { /* empty */ }
 
 alert( doNothing() === undefined ); // true
-:::
+
 
 Trường hợp `return` rỗng, không kèm theo giá trị, thì cũng giống với `return undefined`:
 
@@ -337,13 +337,13 @@ alert( doNothing() === undefined ); // true
 ```
 ````
 
-:::warning Không bao giờ thêm dòng mới giữa `return` và giá trị
+
 Đối với một biểu thức dài trong `return`, có thể bạn muốn đặt nó trên một dòng riêng biệt, như thế này:
 
 ```js
 return
  (some + long + expression + or + whatever * f(a) + f(b))
-:::
+
 Điều đó không hiệu quả, vì JavaScript giả sử dấu chấm phẩy sau `return`. Điều đó sẽ hoạt động giống như:
 
 ```js

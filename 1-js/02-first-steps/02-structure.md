@@ -57,7 +57,7 @@ Nếu bạn tò mò muốn xem một lỗi như vậy, hãy kiểm tra mã này:
 
 ```js
 [1, 2].forEach(alert)
-:::
+
 
 Lúc này, chưa cần biết về ý nghĩa của các dấu ngoặc vuông `[]` và `forEach`. Chúng ta sẽ học chúng sau. Bây giờ chỉ cần nhớ rằng kết quả của nó là hai thông báo liên tiếp `1` và `2`.
 
@@ -149,7 +149,7 @@ Mã sau không chạy và dẫn tới một lỗi:
   /* chú thích trong chú thích ?!? */
 */
 alert( 'thế giới!' );
-:::
+
 ````
 
 Đừng do dự hãy chú thích ngay cho mã của bạn.

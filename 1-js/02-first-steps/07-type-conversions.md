@@ -112,7 +112,7 @@ Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript, a non-emp
 ```js
 alert( Boolean("0") ); // true
 alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
-:::
+
 ````
 
 ## Summary

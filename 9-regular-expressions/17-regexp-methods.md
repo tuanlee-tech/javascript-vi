@@ -150,7 +150,7 @@ The second argument is a replacement string. We can use special characters in it
 |<code>$&#096;</code>|inserts a part of the string before the match|
 |`$'`|inserts a part of the string after the match|
 |`$n`|if `n` is a 1-2 digit number, inserts the contents of n-th capturing group, for details see [](#)|
-|`$<name>`|inserts the contents of the parentheses with the given `name`, for details see [](#)|
+|`$``&lt;name&gt;```|inserts the contents of the parentheses with the given `name`, for details see [](#)|
 |`$$`|inserts character `$` |
 
 For instance:
@@ -353,7 +353,7 @@ let regexp = /javascript/g;  // (regexp just created: regexp.lastIndex=0)
 
 alert( regexp.test("javascript") ); // true (regexp.lastIndex=10 now)
 alert( regexp.test("javascript") ); // false
-:::
+
 
 That's exactly because `regexp.lastIndex` is non-zero in the second test.
 

@@ -73,7 +73,7 @@ Novice developers sometimes make a mistake by adding brackets `()` after the fun
 ```js
 // wrong!
 setTimeout(sayHi(), 1000);
-:::
+
 That doesn't work, because `setTimeout` expects a reference to a function. And here `sayHi()` runs the function, and the *result of its execution* is passed to `setTimeout`. In our case the result of `sayHi()` is `undefined` (the function returns nothing), so nothing is scheduled.
 ````
 
@@ -228,7 +228,7 @@ When a function is passed in `setInterval/setTimeout`, an internal reference is 
 ```js
 // the function stays in memory until the scheduler calls it
 setTimeout(function() {...}, 100);
-:::
+
 
 For `setInterval` the function stays in memory until `clearInterval` is called.
 
@@ -273,7 +273,7 @@ setTimeout(function run() {
 
 // an example of the output:
 // 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
-:::
+
 
 First timers run immediately (just as written in the spec), and then we see `9, 15, 20, 24...`. The 4+ ms obligatory delay between invocations comes into play.
 

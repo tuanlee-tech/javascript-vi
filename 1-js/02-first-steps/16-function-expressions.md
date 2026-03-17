@@ -88,7 +88,7 @@ function sayHi() {
 let sayHi = function() {
   // ...
 };
-:::
+
 
 The answer is simple:
 - There's no need for `;` at the end of code blocks and syntax structures that use them like `if { ... }`, `for {  }`, `function f { }` etc.

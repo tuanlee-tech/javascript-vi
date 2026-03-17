@@ -81,7 +81,7 @@ function f() {
   let result = await promise; // Syntax error
 
 }
-:::
+
 
 We may get this error if we forget to put `async` before a function. As stated earlier, `await` only works inside an `async` function.
 ````
@@ -128,7 +128,7 @@ People who are just starting to use `await` tend to forget the fact that we can'
 // syntax error in top-level code
 let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
-:::
+
 
 But we can wrap it into an anonymous async function, like this:
 
@@ -143,7 +143,7 @@ But we can wrap it into an anonymous async function, like this:
 P.S. New feature: starting from V8 engine version 8.9+, top-level await works in [modules](#).
 ````
 
-:::info `await` accepts \thenables\""
+
 Like `promise.then`, `await` allows us to use thenable objects (those with a callable `then` method). The idea is that a third-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use it with `await`.
 
 Here's a demo `Thenable` class; the `await` below accepts its instances:
@@ -167,7 +167,7 @@ async function f() {
 }
 
 f();
-:::
+
 
 If `await` gets a non-promise object with `.then`, it calls that method providing the built-in functions `resolve` and `reject` as arguments (just as it does for a regular `Promise` executor). Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
 ````
@@ -187,7 +187,7 @@ class Waiter {
 new Waiter()
   .wait()
   .then(alert); // 1 (this is the same as (result => alert(result)))
-:::
+
 The meaning is the same: it ensures that the returned value is a promise and enables `await`.
 
 ````
@@ -283,7 +283,7 @@ let results = await Promise.all([
   fetch(url2),
   ...
 ]);
-:::
+
 
 In the case of an error, it propagates as usual, from the failed promise to `Promise.all`, and then becomes an exception that we can catch using `try..catch` around the call.
 

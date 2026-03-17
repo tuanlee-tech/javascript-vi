@@ -108,7 +108,7 @@ For instance:
 ```js
 button.style.MozBorderRadius = '5px';
 button.style.WebkitBorderRadius = '5px';
-:::
+
 ````
 
 ## Resetting the style property
@@ -146,7 +146,7 @@ To set the full style as a string, there's a special property `style.cssText`:
 
   alert(div.style.cssText);
 </script>
-:::
+
 
 This property is rarely used, because such assignment removes all existing styles: it does not add, but replaces them. May occasionally delete something needed. But we can safely use it for new elements, when we know we won't delete an existing style.
 
@@ -274,7 +274,7 @@ There are other inconsistencies. As an example, some browsers (Chrome) show `10p
   let style = getComputedStyle(document.body);
   alert(style.margin); // empty string in Firefox
 </script>
-:::
+
 ````
 
 

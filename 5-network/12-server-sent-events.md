@@ -255,7 +255,7 @@ Overall cross-origin security is same as for `fetch` and other network methods.
 `error`
 : In case of an error, including both lost connection (will auto-reconnect) and fatal errors. We can check `readyState` to see if the reconnection is being attempted.
 
-The server may set a custom event name in `event:`. Such events should be handled using `addEventListener`, not `on<event>`.
+The server may set a custom event name in `event:`. Such events should be handled using `addEventListener`, not `on&lt;event&gt;`.
 
 ### Server response format
 

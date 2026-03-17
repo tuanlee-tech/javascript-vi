@@ -43,10 +43,10 @@ Pointer events are named similarly to mouse events:
 | `gotpointercapture` | - |
 | `lostpointercapture` | - |
 
-As we can see, for every `mouse<event>`, there's a `pointer<event>` that plays a similar role. Also there are 3 additional pointer events that don't have a corresponding `mouse...` counterpart, we'll explain them soon. 
+As we can see, for every `mouse&lt;event&gt;`, there's a `pointer&lt;event&gt;` that plays a similar role. Also there are 3 additional pointer events that don't have a corresponding `mouse...` counterpart, we'll explain them soon. 
 
 
-We can replace `mouse<event>` events with `pointer<event>` in our code and expect things to continue working fine with mouse.
+We can replace `mouse&lt;event&gt;` events with `pointer&lt;event&gt;` in our code and expect things to continue working fine with mouse.
 
 The support for touch devices will also "magically" improve. Although, we may need to add `touch-action: none` in some places in CSS. We'll cover it below in the section about `pointercancel`. 
 

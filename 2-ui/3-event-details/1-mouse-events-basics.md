@@ -189,7 +189,7 @@ If we want to disable selection to protect our page content from copy-pasting, t
   The copying is forbidden for you.
   If you know JS or HTML, then you can get everything from the page source though.
 </div>
-:::
+
 If you try to copy a piece of text in the `<div>`, that won't work, because the default action `oncopy` is prevented.
 
 Surely the user has access to HTML-source of the page, and can take the content from there, but not everyone knows how to do it.

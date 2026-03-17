@@ -87,7 +87,7 @@ let fruits = [
   "Orange",
   "Plum",
 ];
-:::
+
 
 The "trailing comma" style makes it easier to insert/remove items, because all lines become alike.
 ````

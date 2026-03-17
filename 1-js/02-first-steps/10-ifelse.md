@@ -159,7 +159,7 @@ In the example above, you can avoid using the question mark operator because the
 ```js
 // the same
 let accessAllowed = age > 18;
-:::
+
 ````
 
 ## Multiple '?'

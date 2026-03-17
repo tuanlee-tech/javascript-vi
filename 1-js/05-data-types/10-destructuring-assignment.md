@@ -50,7 +50,7 @@ It's just a shorter way to write:
 // let [firstName, surname] = arr;
 let firstName = arr[0];
 let surname = arr[1];
-:::
+
 ````
 
 
@@ -63,7 +63,7 @@ let [firstName, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic
 
 
 alert( title ); // Consul
-:::
+
 
 In the code above, the second element of the array is skipped, the third one is assigned to `title`, and the rest of the array items is also skipped (as there are no variables for them).
 ````
@@ -75,7 +75,7 @@ In the code above, the second element of the array is skipped, the third one is 
 ```js
 let [a, b, c] = "abc"; // ["a", "b", "c"]
 let [one, two, three] = new Set([1, 2, 3]);
-:::
+
 That works, because internally a destructuring assignment works by iterating over the right value. It's kind of syntax sugar for calling `for..of` over the value to the right of `=` and assigning the values.
 ````
 
@@ -90,7 +90,7 @@ let user = {};
 
 alert(user.name); // John
 alert(user.surname); // Smith
-:::
+
 
 ````
 
@@ -111,7 +111,7 @@ for (let [key, value] of Object.entries(user)) {
 
   alert(`${key}:${value}`); // name:John, then age:30
 }
-:::
+
 
 The similar code for a `Map` is simpler, as it's iterable:
 
@@ -129,7 +129,7 @@ for (let [key, value] of user) {
 ```
 ````
 
-:::info Swap variables trick
+
 There's a well-known trick for swapping values of two variables using a destructuring assignment:
 
 ```js
@@ -142,7 +142,7 @@ let admin = "Pete";
 
 
 alert(`${guest} ${admin}`); // Pete Jane (successfully swapped!)
-:::
+
 
 Here we create a temporary array of two variables and immediately destructure it in swapped order.
 
@@ -389,7 +389,7 @@ let title, width, height;
 
 // error in this line
 {title, width, height} = {title: "Menu", width: 200, height: 100};
-:::
+
 
 The problem is that JavaScript treats `{...}` in the main code flow (not inside another expression) as a code block. Such code blocks can be used to group statements, like this:
 

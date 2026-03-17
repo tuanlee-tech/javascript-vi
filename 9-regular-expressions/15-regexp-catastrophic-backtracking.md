@@ -298,7 +298,7 @@ let str = "An input string that takes a long time or even makes this regex hang!
 alert( regexp.test(str) ); // false, works and fast!
 ```
 
-Here `pattern:\2` is used instead of `pattern:\1`, because there are additional outer parentheses. To avoid messing up with the numbers, we can give the parentheses a name, e.g. `pattern:(?<word>\w+)`.
+Here `pattern:\2` is used instead of `pattern:\1`, because there are additional outer parentheses. To avoid messing up with the numbers, we can give the parentheses a name, e.g. `pattern:(?``&lt;word&gt;``\w+)`.
 
 ```js
 // parentheses are named ?<word>, referenced as \k<word>

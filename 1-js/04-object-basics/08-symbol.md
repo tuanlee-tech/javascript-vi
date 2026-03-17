@@ -48,7 +48,7 @@ let id = Symbol("id");
 
 alert(id); // TypeError: Cannot convert a Symbol value to a string
 
-:::
+
 
 That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
 

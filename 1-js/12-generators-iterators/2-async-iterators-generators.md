@@ -25,7 +25,7 @@ That can be implemented using a special method with the name `Symbol.iterator`:
 
 - This method is called in by the `for..of` construct when the loop is started, and it should return an object with the `next` method.
 - For each iteration, the `next()` method is invoked for the next value.
-- The `next()` should return a value in the form `{done: true/false, value:<loop value>}`, where `done:true` means the end of the loop.
+- The `next()` should return a value in the form `{done: true/false, value:``&lt;loop value&gt;``}`, where `done:true` means the end of the loop.
 
 Here's an implementation for the iterable `range`:
 
@@ -142,7 +142,7 @@ Features that require regular, synchronous iterators, don't work with asynchrono
 For instance, a spread syntax won't work:
 ```js
 alert( [...range] ); // Error, no Symbol.iterator
-:::
+
 
 That's natural, as it expects to find `Symbol.iterator`, not `Symbol.asyncIterator`.
 
@@ -256,7 +256,7 @@ In a regular generator we'd use `result = generator.next()` to get values. In an
 
 ```js
 result = await generator.next(); // result = {value: ..., done: true/false}
-:::
+
 That's why async generators work with `for await...of`.
 ````
 
@@ -314,7 +314,7 @@ This pattern is very common. It's not about users, but just about anything.
 
 For instance, GitHub allows us to retrieve commits in the same, paginated fashion:
 
-- We should make a request to `fetch` in the form `https://api.github.com/repos/<repo>/commits`.
+- We should make a request to `fetch` in the form `https://api.github.com/repos/``&lt;repo&gt;``/commits`.
 - It responds with a JSON of 30 commits, and also provides a link to the next page in the `Link` header.
 - Then we can use that link for the next request, to get more commits, and so on.
 
@@ -360,7 +360,7 @@ More explanations about how it works:
 
 1. We use the browser [fetch](#) method to download the commits.
 
-    - The initial URL is `https://api.github.com/repos/<repo>/commits`, and the next page will be in the `Link` header of the response.
+    - The initial URL is `https://api.github.com/repos/``&lt;repo&gt;``/commits`, and the next page will be in the `Link` header of the response.
     - The `fetch` method allows us to supply authorization and other headers if needed -- here GitHub requires `User-Agent`.
 2. The commits are returned in JSON format.
 3. We should get the next page URL from the `Link` header of the response. It has a special format, so we use a regular expression for that (we will learn this feature in [Regular expressions](#)).

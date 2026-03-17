@@ -53,13 +53,13 @@ If we use `?:` in the group, then we can't reference it. Groups that are exclude
 In the replacement string we use a dollar sign: `pattern:$1`, while in the pattern - a backslash `pattern:\1`.
 
 
-## Backreference by name: `\k<name>`
+## Backreference by name: `\k``&lt;name&gt;```
 
 If a regexp has many parentheses, it's convenient to give them names.
 
-To reference a named group we can use `pattern:\k<name>`.
+To reference a named group we can use `pattern:\k``&lt;name&gt;```.
 
-In the example below the group with quotes is named `pattern:?<quote>`, so the backreference is `pattern:\k<quote>`:
+In the example below the group with quotes is named `pattern:?``&lt;quote&gt;```, so the backreference is `pattern:\k``&lt;quote&gt;```:
 
 ```js
 let str = `He said: "She's the one!".`;

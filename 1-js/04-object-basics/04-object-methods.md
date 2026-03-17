@@ -216,7 +216,7 @@ function sayHi() {
 }
 
 sayHi(); // undefined
-:::
+
 
 In this case `this` is `undefined` in strict mode. If we try to access `this.name`, there will be an error.
 

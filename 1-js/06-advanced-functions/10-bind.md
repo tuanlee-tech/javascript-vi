@@ -198,7 +198,7 @@ for (let key in user) {
     user[key] = user[key].bind(user);
   }
 }
-:::
+
 
 Các thư viện JavaScript cũng cung cấp các chức năng để thuận tiện ràng buộc hàng loạt, ví dụ [_.bindAll(object, methodNames)](http://lodash.com/docs#bindAll) trong lodash.
 ````

@@ -2,7 +2,7 @@
 
 The idea behind shadow tree is to encapsulate internal implementation details of a component.
 
-Let's say, a click event happens inside a shadow DOM of `<user-card>` component. But scripts in the main document have no idea about the shadow DOM internals, especially if the component comes from a 3rd-party library.  
+Let's say, a click event happens inside a shadow DOM of ```&lt;user-card&gt;``` component. But scripts in the main document have no idea about the shadow DOM internals, especially if the component comes from a 3rd-party library.  
 
 So, to keep the details encapsulated, the browser *retargets* the event.
 
@@ -35,7 +35,7 @@ If you click on the button, the messages are:
 1. Inner target: `BUTTON` -- internal event handler gets the correct target, the element inside shadow DOM.
 2. Outer target: `USER-CARD` -- document event handler gets shadow host as the target.
 
-Event retargeting is a great thing to have, because the outer document doesn't have to know  about component internals. From its point of view, the event happened on `<user-card>`.
+Event retargeting is a great thing to have, because the outer document doesn't have to know  about component internals. From its point of view, the event happened on ```&lt;user-card&gt;```.
 
 **Retargeting does not occur if the event occurs on a slotted element, that physically lives in the light DOM.**
 
@@ -67,13 +67,13 @@ userCard.onclick = e => alert(`Outer target: ${e.target.tagName}`);
 
 If a click happens on `"John Smith"`, for both inner and outer handlers the target is `<span slot="username">`. That's an element from the light DOM, so no retargeting.
 
-On the other hand, if the click occurs on an element originating from shadow DOM, e.g. on `<b>Name</b>`, then, as it bubbles out of the shadow DOM, its `event.target` is reset to `<user-card>`.
+On the other hand, if the click occurs on an element originating from shadow DOM, e.g. on `<b>Name</b>`, then, as it bubbles out of the shadow DOM, its `event.target` is reset to ```&lt;user-card&gt;```.
 
 ## Bubbling, event.composedPath()
 
 For purposes of event bubbling, flattened DOM is used.
 
-So, if we have a slotted element, and an event occurs somewhere inside it, then it bubbles up to the `<slot>` and upwards.
+So, if we have a slotted element, and an event occurs somewhere inside it, then it bubbles up to the ```&lt;slot&gt;``` and upwards.
 
 The full path to the original event target, with all the shadow elements, can be obtained using `event.composedPath()`. As we can see from the name of the method, that path is taken after the composition.
 

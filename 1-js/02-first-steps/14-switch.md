@@ -106,7 +106,7 @@ switch (+a) {
   default:
     alert("this doesn't run");
 }
-:::
+
 Here `+a` gives `1`, that's compared with `b + 1` in `case`, and the corresponding code is executed.
 ````
 

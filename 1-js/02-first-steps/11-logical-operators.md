@@ -232,7 +232,7 @@ For instance:
 let x = 1;
 
 (x > 0) && alert( 'Greater than zero!' );
-:::
+
 
 The action in the right part of `&&` would execute only if the evaluation reaches it. That is, only if `(x > 0)` is true.
 

@@ -165,7 +165,7 @@ For the HTML:
 
 ```html
 <table id="table"><tr><td>1</td></tr></table>
-:::
+
 
 DOM-structure will be:
 <div class="domtree"></div>

@@ -272,7 +272,7 @@ Try running this:
 ```js
 // Hello! I'm a self-increasing number!
 alert( 9999999999999999 ); // shows 10000000000000000
-:::
+
 
 This suffers from the same issue: a loss of precision. There are 64 bits for the number, 52 of them can be used to store digits, but that's not enough. So the least significant digits disappear.
 
@@ -381,7 +381,7 @@ alert( parseInt('0xff', 16) ); // 255
 alert( parseInt('ff', 16) ); // 255, without 0x also works
 
 alert( parseInt('2n9c', 36) ); // 123456
-:::
+
 ````
 
 ## Other math functions

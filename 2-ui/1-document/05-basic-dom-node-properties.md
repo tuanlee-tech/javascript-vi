@@ -111,7 +111,7 @@ interface HTMLInputElement: HTMLElement {
   void select();
   ...
 }
-:::
+
 ````
 
 ## The "nodeType" property
@@ -363,7 +363,7 @@ Sometimes developers embed information or template instructions into HTML in the
 
 ## textContent: pure text
 
-The `textContent` provides access to the *text* inside the element: only text, minus all `<tags>`.
+The `textContent` provides access to the *text* inside the element: only text, minus all ```&lt;tags&gt;```.
 
 For instance:
 
@@ -379,7 +379,7 @@ For instance:
 </script>
 ```
 
-As we can see, only text is returned, as if all `<tags>` were cut out, but the text in them remained.
+As we can see, only text is returned, as if all ```&lt;tags&gt;``` were cut out, but the text in them remained.
 
 In practice, reading such text is rarely needed.
 
@@ -489,7 +489,7 @@ Main DOM node properties are:
 : The content of a non-element node (text, comment). These two are almost the same, usually we use `data`. Can be modified.
 
 `textContent`
-: The text inside the element: HTML minus all `<tags>`. Writing into it puts the text inside the element, with all special characters and tags treated exactly as text. Can safely insert user-generated text and protect from unwanted HTML insertions.
+: The text inside the element: HTML minus all ```&lt;tags&gt;```. Writing into it puts the text inside the element, with all special characters and tags treated exactly as text. Can safely insert user-generated text and protect from unwanted HTML insertions.
 
 `hidden`
 : When set to `true`, does the same as CSS `display:none`.

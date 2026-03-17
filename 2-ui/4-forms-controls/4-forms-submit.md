@@ -39,7 +39,7 @@ Here's the demo:
  <input type="text" size="30" value="Focus here and press enter">
  <input type="submit" value="Submit" onclick="alert('click')">
 </form>
-:::
+
 
 ````
 

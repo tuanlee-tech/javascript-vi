@@ -50,7 +50,7 @@ If an element has both, then the browser renders only the shadow tree. But we ca
 
 Shadow tree can be used in Custom Elements to hide component internals and apply component-local styles.
 
-For example, this `<show-hello>` element hides its internal DOM in shadow tree:
+For example, this ```&lt;show-hello&gt;``` element hides its internal DOM in shadow tree:
 
 ```html
 <script>

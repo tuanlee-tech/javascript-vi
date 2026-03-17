@@ -169,17 +169,15 @@ When we run it, there are two `if` execution branches:
 
 Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
 
-
+::: info
 The currying requires the function to have a fixed number of arguments.
 
 A function that uses rest parameters, such as `f(...args)`, can't be curried this way.
 
-
-
+::: info
 By definition, currying should convert `sum(a, b, c)` into `sum(a)(b)(c)`.
 
 But most implementations of currying in JavaScript are advanced, as described: they also keep the function callable in the multi-argument variant.
-
 
 ## Summary
 

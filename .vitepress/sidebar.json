@@ -287,7 +287,7 @@
       ]
     },
     {
-      "text": "Nguyên mẫu, thừa kế",
+      "text": "Prototypes, inheritance (Nguyên mẫu, thừa kế)",
       "collapsed": true,
       "items": [
         {
@@ -432,23 +432,31 @@
       "items": [
         {
           "text": "Proxy and Reflect",
-          "link": "/1-js/99-js-misc/01-proxy"
+          "link": "/1-js/99-js-misc/01-proxy/"
         },
         {
           "text": "Eval: run a code string",
-          "link": "/1-js/99-js-misc/02-eval"
+          "link": "/1-js/99-js-misc/02-eval/"
         },
         {
           "text": "Currying",
-          "link": "/1-js/99-js-misc/03-currying-partials"
+          "link": "/1-js/99-js-misc/03-currying-partials/"
         },
         {
           "text": "Reference Type",
-          "link": "/1-js/99-js-misc/04-reference-type"
+          "link": "/1-js/99-js-misc/04-reference-type/"
         },
         {
           "text": "BigInt",
-          "link": "/1-js/99-js-misc/05-bigint"
+          "link": "/1-js/99-js-misc/05-bigint/"
+        },
+        {
+          "text": "Unicode",
+          "link": "/1-js/99-js-misc/06-unicode/"
+        },
+        {
+          "text": "WeakRef and FinalizationRegistry",
+          "link": "/1-js/99-js-misc/07-weakref-finalizationregistry/"
         }
       ]
     }

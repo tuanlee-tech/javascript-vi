@@ -105,7 +105,7 @@ Sẽ không làm việc:
 <script src="file.js">
   alert(1); // script bị bỏ qua vì thuộc tính src được dùng
 </script>
-:::
+
 
 Bạn buộc phải chọn hoặc sử dụng script ngoài `<script src="…">` hoặc thẻ `<script>` với script đặt trong.
 

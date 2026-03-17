@@ -433,7 +433,7 @@ Do đó, "49" là thuộc thuộc tính số nguyên, vì khi nó được chuy�
 alert( String(Math.trunc(Number("49"))) ); // "49", giống nhau, thuộc tính số nguyên
 alert( String(Math.trunc(Number("+49"))) ); // "49", không giống "+49" ⇒ không phải thuộc tính số nguyên
 alert( String(Math.trunc(Number("1.2"))) ); // "1", không giống "1.2" ⇒ không phải thuộc tính số nguyên
-:::
+
 ````
 
 ...Mặt khác, nếu các khóa không phải là số nguyên, thì chúng được liệt kê theo thứ tự tạo, Ví dụ:

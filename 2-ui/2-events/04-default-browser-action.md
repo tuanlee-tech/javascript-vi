@@ -15,7 +15,7 @@ If we handle an event in JavaScript, we may not want the corresponding browser a
 There are two ways to tell the browser we don't want it to act:
 
 - The main way is to use the `event` object. There's a method `event.preventDefault()`.
-- If the handler is assigned using `on<event>` (not by `addEventListener`), then returning `false` also works the same.
+- If the handler is assigned using `on&lt;event&gt;` (not by `addEventListener`), then returning `false` also works the same.
 
 In this HTML a click on a link doesn't lead to navigation, browser doesn't do anything:
 
@@ -30,7 +30,7 @@ In the next example we'll use this technique to create a JavaScript-powered menu
 
 The value returned by an event handler is usually ignored.
 
-The only exception is `return false` from a handler assigned using `on<event>`.
+The only exception is `return false` from a handler assigned using `on&lt;event&gt;`.
 
 In all other cases, `return` value is ignored. In particular, there's no sense in returning `true`.
 
@@ -87,7 +87,7 @@ Try to click on the first `<input>` below -- the `focus` event happens. But if y
 ```html
 <input value="Focus works" onfocus="this.value=''">
 <input onmousedown="return false" onfocus="this.value=''" value="Click me">
-:::
+
 
 That's because the browser action is canceled on `mousedown`. The focusing is still possible if we use another way to enter the input. For instance, the `key:Tab` key to switch from the 1st input into the 2nd. But not with the mouse click any more.
 ````
@@ -227,7 +227,7 @@ There are many default browser actions:
 
 All the default actions can be prevented if we want to handle the event exclusively by JavaScript.
 
-To prevent a default action -- use either `event.preventDefault()` or  `return false`. The second method works only for handlers assigned with `on<event>`.
+To prevent a default action -- use either `event.preventDefault()` or  `return false`. The second method works only for handlers assigned with `on&lt;event&gt;`.
 
 The `passive: true` option of `addEventListener` tells the browser that the action is not going to be prevented. That's useful for some mobile events, like `touchstart` and `touchmove`, to tell the browser that it should not wait for all handlers to finish before scrolling.
 
